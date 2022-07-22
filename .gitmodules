@@ -1,0 +1,3 @@
+[submodule "lyswe-vehicle"]
+	path = lyswe-vehicle
+	url = git@bitbucket.org:lightyear-company/lyswe-vehicle.git
