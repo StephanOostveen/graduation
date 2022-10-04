@@ -4,3 +4,6 @@
 [submodule "paper/UseLATEX"]
 	path = paper/UseLATEX
 	url = https://gitlab.kitware.com/kmorel/UseLATEX.git
+[submodule "logical_simulation/cmake"]
+	path = logical_simulation/cmake
+	url = https://github.com/omnetpp/cmake.git
