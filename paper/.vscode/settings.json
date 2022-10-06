@@ -3,5 +3,7 @@
     "explorer.autoReveal": false,
     "cSpell.words": [
         "Lightyear"
-    ]
+    ],
+    "ltex.additionalRules.motherTongue": "nl",
+    "ltex.language": "en-GB"
 }
