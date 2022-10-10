@@ -1,6 +1,6 @@
 \section{Introduction}
 \label{sec:introduction}
-Lightyear designs and develops solar electric vehicles (SEVs), these are highly efficient battery electric vehicles that can charge their batteries using an integrated solar panel. The following factors play a role in a vehicle's efficiency: Aerodynamic drag, friction losses from tires, cabin heating and cooling, drivetrain losses, static energy consumption. Lightyear seeks to design a vehicle that minimizes these losses as a reduction in energy consumption has a snowball effect on vehicle efficiency. For example, a lower aerodynamic drag enables the use of a smaller battery pack while maintaining the same range, reducing the vehicle weight, resulting in less friction losses from the tires etc. In the end yielding a very efficient vehicle.
+Lightyear designs and develops solar electric vehicles (SEVs), these are highly efficient battery electric vehicles that can charge their batteries using an integrated solar panel. The following factors play a role in a vehicle's efficiency: Aerodynamic drag, friction losses from tires, cabin heating and cooling, drivetrain losses, static energy consumption. Lightyear seeks to design a vehicle that minimizes these losses as a reduction in energy consumption has a snowball effect on vehicle efficiency. For example, a lower aerodynamic drag enables the use of a smaller battery pack while maintaining the same range, reducing the vehicle weight, resulting in less friction losses from the tires etc. In the end yielding a very efficient vehicle that can charge at any time using the power of the sun. Lightyear is constantly searching for solutions which improve vehicle efficiency, one key aspect which can be optimized is the electrical/electronic architecture.
 
 \subsection{Current and future automotive architectures}
 \label{sec:automotive-arch}
@@ -25,7 +25,6 @@ Figure~\ref{fig:zonal-arch} represents the same vehicle as in Figure~\ref{fig:fu
     \caption{Example of an automotive zonal architecture}
     \label{fig:zonal-arch}
 \end{figure}
-
 \subsection{Real-time communication over Ethernet}
 Some electrically/electronically features in a vehicle pose strict timing requirements on the architecture and implementation. For example the passenger safety system must always deploy the airbags within a specific time period after a crash. Deploying the airbags too quickly or too late can cause harm to the passengers. Systems with strict timing guarantees are called real-time systems and require the timing properties of the system to be bounded and analysable. If the implementation of such a feature requires several networked ECUs to work together the network and the ECUs should be real-time. Examples of automotive networks that support real-time communication are LIN, CAN and FlexRay. 
 
@@ -35,7 +34,48 @@ Originally Ethernet was designed as a bus network with CSMA/CD to allow multiple
 
 Full-duplex switched Ethernet no longer uses CSMA/CD, but the switches introduce a delay as well. IEEE 802.3 does not specify how a switch should operate, hence no guarantee can be made about the queuing and switching delay added to the transmission time by a switch. Lastly, it is reasonable to assume that queuing delays increase as the number of packets passing through a switch increases. Together this makes Ethernet unsuitable for use in a real-time system. 
 
-Several higher level protocols have been proposed to make real-time communication on top of Ethernet possible e.g. EtherCAT, PROFINET, TTEthernet and Time Sensitive Networking. Some of these protocols require special network interface cards or switches to operate, or they are not directly interoperable with \textit{standard} Ethernet which complicates mixing the network with other devices such as a computer using the TCP/IP stack. As mentioned in Section~\ref{sec:automotive-arch}, Time Sensitive Networking (TSN) is a set of standards created by the IEEE specifically to allow interoperability on standard Ethernet networks such that real-time and non-real-time traffic can coexist on the same network.
+Several higher level protocols have been proposed to make real-time communication on top of Ethernet possible e.g. EtherCAT, PROFINET, TTEthernet and Time Sensitive Networking. Some of these protocols require special network interface cards or switches to operate, or they are not directly interoperable with \textit{standard} Ethernet which complicates mixing the network with other devices such as a computer using the TCP/IP stack. 
 
+\subsection{Time Sensitive Networking}
+As mentioned in Section~\ref{sec:automotive-arch}, Time Sensitive Networking (TSN) is a set of standards created by an IEEE Task Group according to their website their goal is "\textit{to provide deterministic connectivity through IEEE 802 networks, i.e., guaranteed packet transport with bounded latency, low packet delay variation and low packet loss}". TSN standards and amendments to standards can be grouped in four categories according to their design goal~\cite{ashjaei2021time}: Timing and synchronization, resource management, bounded low latency and high reliability.
 
+\paragraph{Globally accurate time base}
+TSN recognized that having an accurate common notion of time in a network simplifies the design and implementation of real-time systems. A globally accurate and synchronized time base is the central concept in the Time Triggered Architecture~\cite{kopetz2003time} from which TTEthernet was developed. The IEEE 802.1AS-2020 standard specifies an algorithm, called the Best Master Clock Algorithm (BMCA), for determining the time reference node (Grand Master) in the network. The generalized precision time protocol (gPTP) takes care of synchronizing the clocks of all nodes by supplying the Grand Master clock value. It also provides redundancy in the clock synchronization and Grand Master clock in case of node or link failure.
+
+\paragraph{Network resource management} In cases where real-time network traffic has a dynamic nature e.g., an audio/video stream in a converged network which only occurs at specific times, TSN provides the Stream Reservation Protocol (SRP) through the IEEE 802.1Qat standard. SRP reserves resources in the bridges between the source and destination nodes of the stream. Resulting in an upfront guarantee that the network is capable of meeting the stream bandwidth and latency requirements. IEEE 802.1Qcc extends the SRP for more complex networks with different traffic shapers and frame preemption. While SRP uses decentralized registration and reservation, IEEE 802.1Qcc adds centralized configuration management which can coexist with decentralized stream reservation in the same network. Finally, a modelling language called YANG is used to describe network configuration setup and management which can be used to push new configurations to a Time Sensitive Network. 
+
+\paragraph{Deterministic transmission latency} The lack of deterministic transmission latency for Ethernet frames is caused by the network switches, called bridges in the IEEE 802.1Q-2018 standard. A schematic overview describing the steps involved in routing an Ethernet Frame between two ports can be found in Figure~\ref{fig:switchinternals}. TSN leverages the VLAN standard which defined eight priority classes and a strict priority scheduling algorithm. Each physical port of the bridge has a logical input and output port, when a frame enters the input port it undergoes filtering and metering before being placed in one of eight queues that are specific for that output port. Meaning that each output port has eight queues in which frames are placed that need to traverse that output port. The frame's priority determines in which queue it is placed. When the output port is free to transmit a frame, the transmission selection determines from which queue the next frame will be transmitted. As a basis TSN uses a strict priority scheduler, meaning that the queued message with the highest static priority will always be transmitted first. This can cause starvation of lower priority messages.
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{images/high-level-switch.png}
+		\caption{High level overview of a network switch}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{images/switching-process.png}
+		\caption{Internal view of the switching process as specified in clause 8.6 of IEEE 802.1Q-2018}
+	\end{subfigure}
+	
+	\caption{Model of a (TSN) switch showing the steps an Ethernet Frame undergoes between input and output port. Port 0 - Port 4 represent physical ports on the switch used for receiving and transmitting frames}
+	\label{fig:switchinternals}
+\end{figure} 
+To avoid starvation of lower priority streams while still allowing prioritization an alternative \textit{Transmission selection} function has been standardized: IEEE 802.1Qav, known as the Credit Based Shaper (CBS). The Credit Based Shaper sits between a queue and the strict priority scheduler, multiple queues can have a shaper active. Each shaper acts on one specific queue only as depicted in Figure~\ref{fig:cbs}. The Credit Based Shaper limits the maximum bandwidth of a priority class by prohibiting the selection of a new frame when the allocated bandwidth has been consumed. As no frame can be selected from that priority queue, lower priority messages get the chance to be selected next. Whenever the credit of a shaper is zero or higher a frame may be selected by the strict priority scheduler. If the credit is strictly lower than zero no new frames from that queue can be selected for transmission. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/cbs.png}
+    \caption{An output port with two credit based shapers}
+    \label{fig:cbs}
+\end{figure}
+
+Credit of a specific shaper starts of at zero and decreases during the transmission of frames from that queue at a rate called the \textit{sendSlope}. When the credit becomes negative no new frames can be transmitted and the credit increases with a rate called the \textit{idleSlope} until it reaches zero. If the queue contains messages that are being blocked credit rises at the \textit{idleSlope} rate. Positive credit is reset to zero if the queue contains no more frames.
+
+The CBS adds fairness and smooths out traffic bursts by limiting the bandwidth of a specific traffic class, but the total delay over multiple hops can become too large for certain control applications. IEEE 802.1Qbv, sometimes called the Time Aware Shaper (TAS)
+\todo{TAS 802.1Qbv}
+\todo{ATS 802.1Qcr}
+\todo{802.1Qch cyclic queuing and forwarding}
+\todo{Frame preemption 802.1 Qbu \& 802.3br}
+
+\paragraph{Reliable frame transmission}
 \vfill
