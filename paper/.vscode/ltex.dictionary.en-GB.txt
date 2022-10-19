@@ -4,3 +4,5 @@ SEVs
 FlexRay
 preemption
 preemption
+TDMA
+preempted
