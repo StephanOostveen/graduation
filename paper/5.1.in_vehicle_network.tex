@@ -1,0 +1,47 @@
+\subsection{The in-vehicle network}
+The Lightyear zero's in-vehicle network is based on a decentralized domain architecture, with CAN and LIN as the main network technologies with Ethernet being used for non-real time applications. Meaning that networked components pertaining to the same function or domain (body control, powertrain etc.) are grouped together in a network. The networks are linked together using a central gateway who is responsible for bridging necessary data between networks. For example information about the motor power might be required in the Battery Management System, Propulsion Controller and Media Controller. But for various reasons these controllers might not all be connected to the same network, so the motor power information needs to be forwarded on the relevant networks. 
+
+At the core of the embedded system are three ECUs named the Central Gateway, Vehicle Control Unit and Safety Control Unit. The Safety Control Unit contains two heterogeneous cores, that both have access to the connected CAN busses. Each ECU has a real-time operating system (RTOS) with a rate monotonic preemptive scheduler and can be connected up to four CAN busses and two LIN busses. The software on these ECUs is developed by Lightyear and thus the functionality of an ECU is not fixed or prescribed by a vendor. As the functionality is not fixed we will call these ECUs \textit{programmable end nodes} for modelling purposes. 
+
+The other nodes in the network have a fixed function, some of them are developed by Lightyear such as motor inverters and solar converters, while others are developed by third parties. Some of these nodes can be configured by the user to tune the behaviour, while others are completely fixed. In some cases the parameters that can be changed are related to the network behaviour e.g., changing the CAN identifiers of certain messages. For ease of modelling we call these fixed function nodes \textit{parametrizable end nodes}, even if a node is completely fixed and cannot be configured. The inner workings of parametrizable end nodes varies and is often unknown in case of third party components. Fortunately the only necessary knowledge for an accurate network simulation is the external behaviour. Because parametrizable end nodes must be integrated, a precise specification of the network traffic generated and consumed by the end node is available and can be used for modelling purposes. 
+
+Three special cases of parametrizable end nodes are worth mentioning, the motor inverters (inverter), the media ECU and the telematics control unit. The motor inverters and media ECU have both a CAN interface and Ethernet interface. The telematics control unit has a CAN interface, Ethernet interface and a wireless modem, giving access to the internet which is shared with the media ECU so that applications such as navigation can use online services.
+
+Table~\ref{tab:networks} gives an overview of the networks in the car and which nodes are connected to which bus. For brevity a subset of the \textit{parametrizable end nodes} is enumerated, it can be assumed that each bus has several extra nodes connected. The two LIN busses, LIN A and LIN B, each connect to the Central Gateway which acts as the master in the LIN networks. The slave nodes are third party off the shelf components and can be classified as \textit{parametrizable end nodes}.
+
+Finally, there are components in the vehicle that generate or consume data but are not seen as a networked component in the "traditional" sense. Examples of such components are speakers, which consume audio data, rearview cameras which produce image data, instrument cluster displays which consume video/graphical data. Further investigation is necessary to determine how many of these nodes exist, how they are connected and how they should be modelled from a networking perspective.
+
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}llllllllllllllllll@{}}
+                                & \multicolumn{10}{c}{Controller Area Network} & \multicolumn{2}{c}{LIN} & \multicolumn{3}{c}{Ethernet} \\* \cmidrule(lr){2-11} \cmidrule(r){12-13} \cmidrule(r){14-18}
+    Node name                & \multicolumn{1}{R{2.5cm}}{Driver support} & \multicolumn{1}{R{2cm}}{Drivetrain} & \multicolumn{1}{R{2cm}}{Energy\\ management} & \multicolumn{1}{R{2cm}}{HVBS} & \multicolumn{1}{R{2cm}}{Powertrain} & \multicolumn{1}{R{2cm}}{Solar} & \multicolumn{1}{R{2cm}}{Surrounding\\ sense} & \multicolumn{1}{R{2cm}}{Telematics} & \multicolumn{1}{R{2cm}}{Vehicle} & \multicolumn{1}{R{2cm}}{Vehicle 2} & \multicolumn{1}{R{2cm}}{LIN A} & \multicolumn{1}{R{2cm}}{LIN B} & \multicolumn{1}{R{2cm}}{Media} & \multicolumn{1}{R{2cm}}{Inverter FL} & \multicolumn{1}{R{2cm}}{Inverter FR} & \multicolumn{1}{R{2cm}}{Inverter RL} & \multicolumn{1}{R{2cm}}{Inverter RR}   \\*\cmidrule(r){1-1} \cmidrule(r){2-11}\cmidrule(r){12-13} \cmidrule(r){14-18}
+    Vehicle Control Unit     & X &   &   &   &   & X & X &   & X &   &   &   &   &   &   &   &   \\
+    Central Gateway          &   &   &   &   & X &   &   & X & X & X & X & X &   &   &   &   &   \\
+    Safety Control Unit      &   & X & X & X & X &   &   &   &   &   &   &   &   &   &   &   &   \\
+    Steering Column Module   & X &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   \\
+    Inverter FL              &   & X &   &   &   &   &   &   &   &   &   &   &   & X &   &   &   \\
+    Inverter FR              &   & X &   &   &   &   &   &   &   &   &   &   &   &   & X &   &   \\
+    Inverter RL              &   & X &   &   &   &   &   &   &   &   &   &   &   &   &   & X &   \\
+    Inverter RR              &   & X &   &   &   &   &   &   &   &   &   &   &   &   &   &   & X \\
+    High Voltage Battery     &   &   &   & X &   &   &   &   &   &   &   &   &   &   &   &   &   \\
+    On board charger         &   &   & X &   &   &   &   &   &   &   &   &   &   &   &   &   &   \\
+    Media ECU                &   &   &   &   & X &   &   &   &   &   &   &   & X &   &   &   &   \\
+    Steering Angle Sensor    &   &   &   &   & X &   &   &   &   &   &   &   &   &   &   &   &   \\
+    Dual String Controller 1 &   &   &   &   &   & X &   &   &   &   &   &   &   &   &   &   &   \\
+    Camera Monitoring System &   &   &   &   &   &   & X &   &   &   &   &   &   &   &   &   &   \\
+    Parking Sensor System    &   &   &   &   &   &   & X &   &   &   &   &   &   &   &   &   &   \\
+    Telematics Control Unit  &   &   &   &   &   &   &   & X &   &   &   &   & X &   &   &   &   \\
+    Window Wiper             &   &   &   &   &   &   &   &   & X &   &   &   &   &   &   &   &   \\
+    RC Compressor            &   &   &   &   &   &   &   &   & X &   &   &   &   &   &   &   &   \\
+    Tailgate Latch           &   &   &   &   &   &   &   &   &   & X &   &   &   &   &   &   &   \\
+    Rain light sensor        &   &   &   &   &   &   &   &   &   &   & X &   &   &   &   &   &   \\
+    Coolant 4-way valve      &   &   &   &   &   &   &   &   &   &   & X &   &   &   &   &   &   \\
+    Air Quality Sensor       &   &   &   &   &   &   &   &   &   &   &   & X &   &   &   &   &   \\
+    Air flap actuator        &   &   &   &   &   &   &   &   &   &   &   & X &   &   &   &   &   \\
+\end{tabular}%
+}
+\caption{Partial overview of in-vehicle networks and nodes}
+\label{tab:networks}
+\end{table}

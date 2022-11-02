@@ -1,10 +1,14 @@
 \documentclass[a4paper,twoside]{article}
-\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs}
+\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array}
 \usepackage[english]{babel}
 \usepackage[backend=biber, maxbibnames=10]{biblatex}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{regexpatch}
-%\tracingxpatches%for debugging
+\newcolumntype{R}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\small}l%
+	<{\end{minipage}\end{turn}}%
+	}
+
+	
 \makeatletter
 \xpatchcmd{\@todo}{\setkeys{todonotes}{#1}}{\setkeys{todonotes}{inline,#1}}{}{}
 \NewBibliographyString{artno}

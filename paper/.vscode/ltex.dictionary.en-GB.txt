@@ -6,3 +6,4 @@ preemption
 preemption
 TDMA
 preempted
+preemptive
