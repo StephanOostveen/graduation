@@ -1,0 +1,162 @@
+\subsection{The in-vehicle network}
+\label{sec:invehicle}
+The Lightyear 0's in-vehicle network is based on a decentralized domain architecture, with CAN and LIN as the main network technologies with Ethernet being used for non-real time applications. Meaning that networked components pertaining to the same function or domain (body control, powertrain etc.) are grouped together in a network. The networks are linked together using a central gateway who is responsible for bridging necessary data between networks. For example information about the motor power might be required in the Battery Management System, Propulsion Controller and Media Controller. But for various reasons these controllers might not all be connected to the same network, so the motor power information needs to be forwarded on the relevant networks.
+
+At the core of the embedded system are three ECUs named the Central Gateway, Vehicle Control Unit and Safety Control Unit. The Safety Control Unit contains two heterogeneous cores, that both have access to the connected CAN busses. Each ECU has a real-time operating system (RTOS) with a rate monotonic preemptive scheduler and can be connected up to four CAN busses and two LIN busses. The software on these ECUs is developed by Lightyear and thus the functionality of an ECU is not fixed or prescribed by a vendor. As the functionality is not fixed we will call these ECUs \textit{programmable end nodes} for modelling purposes.
+
+The other nodes in the network have a fixed function, some of them are developed by Lightyear such as motor inverters and solar converters, while others are developed by third parties. Some of these nodes can be configured by the user to tune the behaviour, while others are completely fixed. In some cases the parameters that can be changed are related to the network behaviour e.g., changing the CAN identifiers of certain messages. For ease of modelling we call these fixed function nodes \textit{parametrizable end nodes}, even if a node is completely fixed and cannot be configured. The inner workings of parametrizable end nodes varies and is often unknown in case of third party components. Fortunately the only necessary knowledge for an accurate network simulation is the external behaviour. Because parametrizable end nodes must be integrated, a precise specification of the network traffic generated and consumed by the end node is available and can be used for modelling purposes.
+
+Three special cases of parametrizable end nodes are worth mentioning, the motor inverters (inverter), the media ECU and the telematics control unit. The motor inverters and media ECU have both a CAN interface and Ethernet interface. The telematics control unit has a CAN interface, Ethernet interface and a wireless modem, giving access to the internet which is shared with the media ECU so that applications such as navigation can use online services.
+
+Table~\ref{tab:networks} gives an overview of all the networks in the car and which nodes are connected to which bus. For brevity a subset of the \textit{parametrizable end nodes} is enumerated, it can be assumed that each bus has several extra nodes connected. Information of the not mentioned nodes is available but simply left out for space reasons. The two LIN busses, LIN A and LIN B, each connect to the Central Gateway which acts as the master in the LIN networks. The slave nodes are third party off the shelf components and can be classified as \textit{parametrizable end nodes}. The same information is represented in diagram form in Figure~\ref{fig:networkoverview}.
+
+Finally, there are components in the vehicle that generate or consume data but are not seen as a networked component in the "traditional" sense. Examples of such components are speakers, which consume audio data, rearview cameras which produce image data, instrument cluster displays which consume video/graphical data. Further investigation is necessary to determine how many of these nodes exist, how they are connected and how they should be modelled from a networking perspective.
+
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}lllllllllllllllllll@{}}
+                                & \multicolumn{10}{c}{Controller Area Network} & \multicolumn{2}{c|}{LIN} & \multicolumn{5}{c}{Ethernet} & \multicolumn{1}{c}{Other} \\* \cmidrule(lr){2-11} \cmidrule(r){12-13} \cmidrule(r){14-18} \cmidrule(r){19-19}
+    Node name                & \multicolumn{1}{R{2.5cm}}{Driver support} & \multicolumn{1}{R{2cm}}{Drivetrain} & \multicolumn{1}{R{2cm}}{Energy\\ management} & \multicolumn{1}{R{2cm}}{HVBS} & \multicolumn{1}{R{2cm}}{Powertrain} & \multicolumn{1}{R{2cm}}{Solar} & \multicolumn{1}{R{2cm}}{Surrounding\\ sense} & \multicolumn{1}{R{2cm}}{Telematics} & \multicolumn{1}{R{2cm}}{Vehicle} & \multicolumn{1}{R{2cm}}{Vehicle 2} & \multicolumn{1}{R{2cm}}{LIN A} & \multicolumn{1}{R{2cm}|}{LIN B} & \multicolumn{1}{R{2cm}}{Media} & \multicolumn{1}{R{2cm}}{Inverter FL} & \multicolumn{1}{R{2cm}}{Inverter FR} & \multicolumn{1}{R{2cm}}{Inverter RL} & \multicolumn{1}{R{2cm}}{Inverter RR} & \multicolumn{1}{R{2cm}}{Others}   \\*\cmidrule(r){1-1} \cmidrule(r){2-11}\cmidrule(r){12-13} \cmidrule(r){14-18} \cmidrule(r){19-19}
+    Vehicle Control Unit     & X &   &   &   &   & X & X &   & X &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Central Gateway          &   &   &   &   & X &   &   & X & X & X & X & \multicolumn{1}{c|}{X} &   &   &   &   &   &   \\
+    Safety Control Unit      &   & X & X & X & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Steering Column Module   & X &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Inverter FL              &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   & X &   &   &   &   \\
+    Inverter FR              &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   & X &   &   &   \\
+    Inverter RL              &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   & X &   &   \\
+    Inverter RR              &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   & X &   \\
+    High Voltage Battery     &   &   &   & X &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    On-board charger         &   &   & X &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Media ECU                &   &   &   &   & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  & X &   &   &   &   & X \\
+    Steering Angle Sensor    &   &   &   &   & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Dual String Controller 1 &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Camera Monitoring System &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Parking Sensor System    &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Telematics Control Unit  &   &   &   &   &   &   &   & X &   &   &   & \multicolumn{1}{c|}{}  & X &   &   &   &   &   \\
+    Window Wiper             &   &   &   &   &   &   &   &   & X &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    RC Compressor            &   &   &   &   &   &   &   &   & X &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Tailgate Latch           &   &   &   &   &   &   &   &   &   & X &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Rain light sensor        &   &   &   &   &   &   &   &   &   &   & X & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Air flap actuator        &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{X} &   &   &   &   &   &   \\
+    Speaker Left             &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   & X \\
+    Display                  &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   & X \\
+    Rearview camera          &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   & X \\
+\end{tabular}%
+}
+\caption{Partial overview of in-vehicle networks and nodes}
+\label{tab:networks}
+\end{table}
+
+\begin{figure}[htb]
+    \centering
+\begin{tikzpicture}[
+    programmablenode/.style={rectangle, draw=lightblue, fill=lightblue},
+    parametrizablenode/.style={rectangle, draw=orange, fill=orange},
+    canbus/.style={rectangle, fill=mint},
+    linbus/.style={rectangle, fill=pink},
+    ethernet/.style={rectangle, fill=olive},
+    other/.style={rectangle, fill=palegrey},
+]
+    % Nodes & Networks
+    \node[programmablenode] (SCU) {Safety Control Unit};
+    \node[canbus] (PT) [above=of SCU] {Powertrain};
+    \node[programmablenode] (CGW) [above=of PT]{Central Gateway};
+    \node[canbus] (VEHICLE) [above=of CGW] {Vehicle};
+    \node[programmablenode] (VCU) [above=of VEHICLE]{Vehicle Control Unit};
+    \draw[-] (SCU.north) -- (PT.south);
+    \draw[-] (CGW.south) -- (PT.north);
+    % Driver support
+    \node[canbus] (DS) [right= of VCU] {Driver Support};
+    \node[parametrizablenode] (SCM) [above=of DS] {Steering Column Module};
+    \draw[-] (DS.west) -- (VCU.east);
+    \draw[-] (DS.north) -- (SCM.south);
+    % Drivetrain
+    \node[canbus] (DT) [below= of SCU] {Drivetrain};  
+    \node[parametrizablenode] (INVFL) [below left=of DT]{Inverter FL};
+    \node[parametrizablenode] (INVFR) [below =of INVFL]{Inverter FR};
+    \node[parametrizablenode] (INVRL) at (DT|-INVFL){Inverter RL};
+    \node[parametrizablenode] (INVRR) at (DS|-INVFL){Inverter RR};
+    \draw[-] (SCU.south) -- (DT.north);
+    \draw[-] (INVFL.north) -- (DT.west);
+    \draw[-] (DT.south west) -- (INVFR.north east);
+    \draw[-] (DT.south) -- (INVRL.north);
+    \draw[-] (DT.south east) -- (INVRR.north west);
+    % Energy Management
+    \node[canbus] (EM) at (DS|-SCU) {Energy Managment};
+    \node[parametrizablenode] (OBC) [below= of EM] {On-board charger};
+    \draw[-] (EM.west) -- (SCU.east);
+    \draw[-] (EM.south) -- (OBC.north);
+    % Powertrain
+    \node[parametrizablenode] (MEDIA) [left= of SCU] {Media ECU};
+    \node[parametrizablenode] (SAS) at (DS|-PT) {Steering angle sensor};
+    \draw[-] (MEDIA.north) -- (PT.west);
+    \draw[-] (SAS.west) -- (PT.east);
+    % Surounding Sense
+    \node[canbus] (SS) [above= of VCU] {Surounding Sense};
+    \node[parametrizablenode] (PSS) [above right=of SS] {Parking Sensor System};
+    \node[parametrizablenode] (CMS) [above=of SS] {Camera Monitoring System};
+    \draw[-] (VCU.north) -- (SS.south);
+    \draw[-] (SS.north) -- (CMS.south);
+    \draw[-] (SS.north east) -- (PSS.south west);
+    % Solar
+    \node[canbus] (SOLAR) [left=of SS] {Solar};
+    \node[parametrizablenode] (DSC) [left=of CMS] {Dual String Converter 1};
+    \draw[-] (SOLAR.south east) -- (VCU.north west);
+    \draw[-] (DSC.south) -- (SOLAR.north);
+    % Telematics
+    \node[canbus] (TELE) [left=of PT] {Telematics};
+    \node[parametrizablenode] (TCU) [left=of TELE] {Telematics Control Unit};
+    \node[ethernet] (MEDIAETH) at(TCU|-MEDIA) {Media Ethernet};
+    \draw[-] (CGW.south west) -- (TELE.north east);
+    \draw[-] (TELE.west) -- (TCU.east);
+    \draw[-] (MEDIAETH.north) -- (TCU.south);
+    \draw[-] (MEDIAETH.east) -- (MEDIA.west);
+    % HVBS
+    \node[canbus] (HVBS) [below left= of SCU] {HVBS};
+    \node[parametrizablenode] (BAT) at(MEDIAETH|-HVBS) {High Voltage Battery};
+    \draw[-] (HVBS.north east) -- (SCU.south west);
+    \draw[-] (HVBS.west) -- (BAT.east);
+    % Vehicle
+    \node[parametrizablenode] (WIP) at (DS|-VEHICLE) {Window Wiper};
+    \node[parametrizablenode] (COMP) [below=of WIP] {RC Compressor};
+    \draw[-] (CGW.north) -- (VEHICLE.south);
+    \draw[-] (VEHICLE.north) -- (VCU.south);
+    \draw[-] (VEHICLE.east) -- (WIP.west);
+    \draw[-] (VEHICLE.south east) -- (COMP.west);
+    % Vehicle2
+    \node[canbus] (VEHICLE2) [left=of VCU] {Vehicle 2};
+    \node[parametrizablenode] (LATCH) at (DSC|-SOLAR) {Tailgate Latch};
+    \draw[-] (VCU.west) -- (VEHICLE2.east);
+    \draw[-] (VEHICLE2.north west) -- (LATCH.south);
+    %INVerter Ethernet
+    \node[ethernet] (ETHFL) at(MEDIAETH|-INVFL) {Inverter FL};
+    \draw[-] (INVFL.west) -- (ETHFL.east);
+    \node[ethernet] (ETHFR) at(MEDIAETH|-INVFR) {Inverter FR};
+    \draw[-] (INVFR.west) -- (ETHFR.east);
+    \node[ethernet] (ETHRL) at(INVRL|-INVFR) {Inverter RL};
+    \draw[-] (INVRL.south) -- (ETHRL.north);
+    \node[ethernet] (ETHRR) at(INVRR|-INVFR) {Inverter RR};
+    \draw[-] (INVRR.south) -- (ETHRR.north);
+    %LIN busses
+    \node[linbus] (LINA) at(MEDIA|-VEHICLE) {LINA};
+    \node[parametrizablenode] (RAIN) at(TCU|-LINA) {Rain light sensor};
+    \draw[-] (RAIN.east) -- (LINA.west);
+    \draw[-] (LINA.east) -- (CGW.north west);
+    \node[linbus] (LINB) at(MEDIA|-CGW) {LINB};
+    \node[parametrizablenode] (AIR) at (TCU|-LINB) {Air flap actuator};
+    \draw[-] (AIR.east) -- (LINB.west);
+    \draw[-] (LINB.east) -- (CGW.west);
+    %Legend
+    \filldraw[palegrey, thick] (-8.3,10.3) rectangle (6.0, 13);
+    \node[programmablenode] (PROG) [align=center] at (TCU|- 50,11){Programmable\\ end node};
+    \node[parametrizablenode] (PARA) [right=of PROG, align=center] {Parametrizable\\ end node};
+    \node[canbus] (CAN) [right=of PARA] {CAN bus};
+    \node[linbus] (LIN) [right=of CAN] {LIN bus};
+    \node[ethernet] (ETH) [right=of LIN, align=center] {Ethernet\\ network};
+    \node[] (Legend) at (-1.1,12.5) {Legend};
+    
+\end{tikzpicture}
+\caption{Partial block diagram of the in-vehicle networks and nodes}
+\label{fig:networkoverview}
+\end{figure}

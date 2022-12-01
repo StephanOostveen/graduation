@@ -1,9 +1,11 @@
 \documentclass[a4paper,twoside]{article}
-\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array,tikz}
 \usepackage[english]{babel}
 \usepackage[backend=biber, maxbibnames=10]{biblatex}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{regexpatch}
+\usepackage{tikzit}
 \newcolumntype{R}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\small}l%
 	<{\end{minipage}\end{turn}}%
 	}
@@ -17,8 +19,23 @@
 \DeclareFieldFormat[article,periodical]{eid}{\bibstring{artno}\addabbrvspace #1}
 
 \addbibresource{resources.bib}
-%
-%----------------------- Macros and Definitions --------------------------
+%------------------------- Colour definitions --------------------------
+\definecolor{lightblue}{HTML}{77AADD}
+\definecolor{lightcyan}{HTML}{99DDFF}
+\definecolor{mint}{HTML}{44BB99}
+\definecolor{pear}{HTML}{BBCC33}
+\definecolor{olive}{HTML}{AAAA00}
+\definecolor{lightyellow}{HTML}{EEDD88}
+\definecolor{orange}{HTML}{EE8866}
+\definecolor{pink}{HTML}{FFAABB}
+\definecolor{palegrey}{HTML}{DDDDDD}
+%--------------------------------- Tikz ---------------------------------
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+
+\input{sample.tikzstyles}
+%------------------------ Macros and Definitions ------------------------
 
 \setlength\headheight{20pt}
 \addtolength\topmargin{-10pt}
@@ -48,15 +65,17 @@
 \begin{document}
 	\pagenumbering{roman}
 	\input{./titlepage.tex}
+	\listoftodos
 	\tableofcontents
 	\newpage
 	\pagenumbering{arabic}
 	\input{./1.0.introduction.tex}
-	\input{./2.0.problem_statement.tex}
-	\input{./3.0.sota_analysis.tex}
-	\input{./4.0.research_description.tex}
-	\input{./5.0.feasibility_experiments.tex}
-	\input{./6.0.planning.tex}
-	\newpage
+	\input{./2.0.domain.tex}
+	\input{./3.0.problem_statement.tex}
+	\input{./4.0.sota_analysis.tex}
+	\input{./5.0.research_description.tex}
+	\input{./6.0.feasibility_experiments.tex}
+	\input{./7.0.planning.tex}
+	\clearpage
 	\printbibliography
 \end{document}

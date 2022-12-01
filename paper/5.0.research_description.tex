@@ -1,0 +1,47 @@
+\section{Research description}
+\label{sec:researchdescription}
+\todo{Beschrijf dat dit verslag onderzoekt wat de onderzoeksvraag van graduation project moet zijn.}
+\subsection{Research question}
+\label{sec:researchquestion}
+In Section~\ref{sec:domain} we have discussed the transition to new electrical/electronic architectures in the automotive domain and how Time Sensitive Networking will serve a core role in these architectures. Section~\ref{sec:problemstatement} explained that the transition to new architectures and technologies has associated risks and costs which need to be minimized for a successful transition. Part of the risks and costs come from the numerous possible network configurations and physical layouts and the difficulty of evaluating the network performance of a specific configuration. If an estimate of network performance under various situations is known early in the design phase Lightyear can be confident that the network will behave as expected when implemented. In practice, it is necessary to test various configurations before the right configuration is found, a structured approach will ease this process. For these reasons the proposed research will try to answer the following question:
+\begin{quote}
+    \emph{What is an effective method for evaluating the effect of various network configurations and architectures during the architecture design phase in a structured manner for an automotive in-vehicle network?}
+\end{quote}
+\todo{Moet hier nog een qualificatie TSN bij?}
+\todo{Relevance of answering this question}
+\subsection{Research contribution}
+\todo{Research contribution, hoe gaat dit helpen om de abstracte vraag te beantwoorden, output is meer het resultaat bvijv een paper of een simulator ??}
+Three methods for evaluating the performance of a system are available: \textit{measurements}, \textit{analysis} and \textit{simulation}. Performing measurements on the system is not very suitable for guiding the design of the system itself as it means you first need to build (a prototype of) the system. As a result the feedback cycle between designing a system and performing measurements on an instance of that system to guide the design is large, as stated before this comes with certain risks and costs. Analysis of a system has the advantage that it can happen during the design phase, reducing the feedback cycle and thus the associated costs and risks. Analysis is also exact, resulting in confidence in the system. Unfortunately accurate analysis can be difficult, the system might violate the assumptions of the available methods, and for certain configurations of Time Sensitive Networking the analysis methods are still under development~\cite{ashjaei2021time}. The final option is to get performance numbers through simulation of the system. The advantages of simulation are that it does not depend on the availability of a real system and is not constrained by boundary conditions or assumptions about the system an analysis method might have. A disadvantage of simulation is that by definition the results are not exact and care should be taken when interpreting the results as stochastic processes are used in the simulation. Due to the disadvantages of the measurement and analysis methods the research will try to answer the question by means of the simulation method. 
+
+A popular model for network simulations is the discrete event simulation model~\cite{ashjaei2021time}, examples of existing discrete event simulation frameworks are OMNeT++, NS3 and the Matlab Simulink Discrete-Event simulation toolbox. With OMNeT++ being the popular framework in the research of simulating Time Sensitive Networks. Because of the availability of models for the various traffic shapers and other TSN mechanisms, OMNeT++ will serve as a basis for the research. 
+
+\todo{Should I make these explicit subquestions?}
+% Questions:
+% What are some of the parameters that should be measured in simulation to determine the quality of a network?
+% What analysis should be performed on the simulation results to guide decisions for specific network configurations.
+
+% What are some of the network configurations that an architect wants to play with?
+
+% What does a realistic automotive network and its traffic look like?
+
+When evaluating the effect of various network configurations it is important to understand the goal of the evaluation, as it determines which performance indicators should eventually be retrieved from the simulations. For example, a goal could be to minimize the memory usage inside a switch while maintaining a certain Quality of Service in a defined scenario. Which requires different data to be extracted from a series of simulations than when the goal is to minimize the average case latency of a data stream. In order to make the method effective a list of relevant performance indicators should be created, followed by methods to conveniently extract and present these performance indicators from a series of simulations.
+
+Time Sensitive Networking is a big group of standards that can be combined and configured in different ways. It is important to understand which networking problems the automotive industry wants to solve or avoid as it guides the choice in standards and configuration. For example, a redundant transmission path can be a requirement for certain safety related subsystems, which can be achieved through the use of IEEE 802.1CB. With that understanding the simulation framework can be made more effective for the architects by creating suitable interfaces and abstractions for experimenting with the relevant standards.
+
+Finally, to gauge the effectiveness of the proposed method some experiments must be performed. Traditionally synthetic benchmarks are used in academia to evaluate the performance of proposed solutions as freely available descriptions of real-world automotive networks do not exist~\cite{ashjaei2021time}. We have found one benchmark~\cite{kramer2015real} describing application characteristics of an internal combustion engine control application. Unfortunately the benchmark does not describe the network architecture or traffic of that application. Furthermore, it is not clear how applicable the benchmark is to the system level of a vehicle. And lastly it is conceivable that an electric vehicle has a different timing characteristics, different network architecture and dataflow. For these reasons it is interesting to create a benchmark of a current generation electric vehicle in-vehicle network for validation of the effectiveness of the simulation method.
+
+\subsection{Development approach}
+In this section we will briefly lay out the plan for finding an answer to the research question. To start, a machine-readable network description and dataflow description will be created of the periodic data for both the logical view as the concrete deployment found in LY 0. This will help during the development and validation of the simulation framework. Depending on the availability of time, the dataflow description can be augmented with a description of sporadic and uses cases in which aperiodic data is communicated.
+
+Secondly we want to start developing the simulation framework which we will start by investigating which features are required from the network and which problems the industry wants to solve using Time Sensitive Networking. With this information suitable solutions will be sketched, for example which combination of TSN standards and configuration options are relevant when solving a certain problem. Using this information we can develop suitable interfaces and abstractions for defining a network in the simulation framework. 
+
+Thirdly, we will investigate what the guiding performance indicators are for an automotive in-vehicle network, since these are the desired output of the method which will be used to define the in-vehicle network. Methods for transforming raw simulation data into these performance indicators will be defined. Both the performance indicators and analysis methods will be used to create easy-to-use interfaces for defining experiments on a simulated network. The output of the experiments should be a set of processed performance indicators enabling the architects to decide which network architecture and configuration should be used.
+
+Lastly, to gauge the effectiveness of the developed framework, the network and dataflow description will be used to evaluate the performance of several TSN networks which could be implemented in a vehicle.
+
+\subsection{Risks}
+\begin{enumerate}
+\item Is information about the in-vehicle network available in a machine or human-readable format? How complete is that information?
+\item What information is available on the network traffic and is it available in either a machine or human-readable format? How complete is that information
+\item Is the simulation framework OMNeT++ still maintained, does it behave as advertised, is it well documented, are we able to perform meaningfull simulations with it?
+\end{enumerate}
