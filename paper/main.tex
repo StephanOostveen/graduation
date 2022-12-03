@@ -1,6 +1,6 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage[dvipsnames]{xcolor}
-\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array,tikz}
+\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array,tikz,relsize,xspace}
 \usepackage[english]{babel}
 \usepackage[backend=biber, maxbibnames=10]{biblatex}
 \usepackage[colorinlistoftodos]{todonotes}
@@ -10,7 +10,8 @@
 	<{\end{minipage}\end{turn}}%
 	}
 
-	
+\protected\def\omnet{OMNeT\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}\xspace}
+
 \makeatletter
 \xpatchcmd{\@todo}{\setkeys{todonotes}{#1}}{\setkeys{todonotes}{inline,#1}}{}{}
 \NewBibliographyString{artno}
