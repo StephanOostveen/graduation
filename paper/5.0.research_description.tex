@@ -43,18 +43,24 @@ A model will be proposed for simulating automotive in-vehicle networks based on 
 
 \subsection{Development approach}
 \label{sec:researchdevelopment}
-In this section we will briefly lay out the plan for finding an answer to the research question. To start, a machine-readable network description and dataflow description will be created of the periodic data for both the logical view as the concrete deployment found in LY 0. The logical view is interesting because it describes the data requirements on the system level without dictating a concrete deployment. It can be used to generate different deployments implementing the same functionality. The result can be used during the development and validation of the simulation framework. Depending on the availability of time, the dataflow description can be augmented with a description of sporadic data and a definition of uses cases in which aperiodic data is communicated.
+In this section we will briefly lay out the plan for finding an answer to the research question. To start, a machine-readable network and dataflow description will be created of the periodic data for both the logical view as the concrete deployment found in LY 0. The logical view is interesting because it describes the data requirements on the system level without dictating a concrete deployment. It can be used to generate different deployments implementing the same functionality. The result can be used during the development and validation of the simulation framework. Depending on the availability of time, the dataflow description can be augmented with a description of sporadic data and a definition of uses cases in which aperiodic data is communicated.
 
-Secondly we want to start developing the simulation framework which we will start by investigating which features are required from the network and which problems the industry wants to solve using Time Sensitive Networking. With this information suitable solutions will be sketched, for example which combination of TSN standards and configuration options are relevant when solving a certain problem. Using this information we can develop suitable interfaces and abstractions for defining a network in \omnet. 
+Secondly we want to start developing the simulation framework which we will start by investigating which features are required from the network and which problems the industry wants to solve using Time Sensitive Networking. With this information suitable solutions will be sketched for the required features and problems. For example, data streams that are involved in safety functions, such as braking, can require redundant transmission from source to end node. One solution would be to use 802.1CB (frame replication and elimination for reliability) for those streams, which is a static redundancy method. In contrast, software defined networking is a dynamic redundancy method that monitors the state of the network and changes the routing of data streams requiring redundancy at run-time when required, an approach is presented in~\cite{kong2021run}. Knowing the requirements and problems of the automotive industry we will research and list the available alternatives.
 
-Thirdly, we will investigate what the guiding performance indicators are for an automotive in-vehicle network, since these are the desired output of the method which will be used to define the in-vehicle network. Methods for transforming raw simulation data into these performance indicators will be defined. Both the performance indicators and analysis methods will be used to create easy-to-use interfaces for defining experiments on a simulated network. The output of the experiments should be a set of processed performance indicators enabling the architects to decide which network architecture and configuration should be used.
+Thirdly, we will investigate what the guiding performance indicators are for an automotive in-vehicle network, as they are the desired outputs of the simulations guiding the design of in-vehicle networks. As mentioned in Section~\ref{sec:problemstatement} the schedule of the Time Aware Shaper can influence the performance of the network, for example using Optimization Modulo Theories a schedule can be generated which maximizes the Quality Of Service for best-effort traffic~\cite{houtan2021synthesising}. Strategies for optimizing the relevant performance indicators will be researched and methods for obtaining results from the simulations can be developed. 
 
-Lastly, to gauge the effectiveness of the developed framework, the network and dataflow description will be used to evaluate the performance of several TSN networks which could be implemented in a vehicle.
+Based on the list of relevant network standards, configurations and relevant performance indicators we can develop suitable interfaces and abstractions for defining and simulating a network in \omnet. The network and dataflow description of the Lightyear 0 will serve as input for simulating and evaluating the performance of different network configurations deemed relevant for the automotive industry.
 
 \subsection{Risks}
 \label{sec:researchrisks}
-\begin{enumerate}
-\item Is information about the in-vehicle network available in a machine or human-readable format? How complete is that information?
-\item What information is available on the network traffic and is it available in either a machine or human-readable format? How complete is that information
-\item Is the simulation framework \omnet still maintained, does it behave as advertised, is it well documented, are we able to perform meaningfull simulations with it?
-\end{enumerate}
+Several risks were identified for a successful completion of the proposed graduation project, we set out to answer the following questions in the feasibility experiments. Regarding the creation of a network and dataflow benchmark from the Lightyear 0's architecture:
+\begin{itemize}
+\item Is a complete definition of the in-vehicle network available in a machine or human-readable format?
+\item What information is available on the network traffic in either a machine or human-readable format?
+\end{itemize}
+
+Regarding the use of \omnet as a simulation framework:
+\begin{itemize}
+\item Is the simulation framework \omnet actively maintained and well documented, i.e, is it "suitable" for use in an industrial setting?
+\item What interfaces are provided by \omnet to define and run experiments?
+\end{itemize}
