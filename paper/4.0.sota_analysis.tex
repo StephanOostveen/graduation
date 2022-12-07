@@ -1,9 +1,15 @@
 \section{State-of-the-art analysis}
 \label{sec:sota}
-Automotive benchmark
+\todo{overview of this section}
+An overview of the state-of-the-art research in Time Sensitive Networking (TSN) for automotive systems together with open challenges is presented in~\cite{ashjaei2021time}. It suggests the following TSN features to be implemented in new automotive networks: accurate and reliable clock synchronization (IEEE 802.1 AS) for a global, accurate and synchronized timebase, bounded latency for real-time traffic (IEEE 802.1Qav), reservation of resources for different traffic types (IEEE 802.1Qcc). To reduce jitter and achieve temporal isolation, which is necessary to achieve constructive composability as defined by~\cite{kopetz2003time}, scheduled traffic (IEEE 802.1Qbv) is needed. The work finally remarks that the Asynchronous Traffic Shaper (IEEE 802.1Qcr) is promising as it allows mixing real-time traffic types (periodic, sporadic and aperiodic) with integrated policing increasing robustness, but more research is necessary.
 
-nesting
+As one of the main goals of TSN is to provide deterministic transmission latency it starts to be used in time-critical systems. During the design of real-time systems it is natural to perform schedulability analysis and verify the timing requirements are met. The Credit Based Shaper (CBS), IEEE 802.1Qav, was the first traffic shaper to be designed and standardized in 2009. As a result various schedulability analysis techniques have been developed. For example~\cite{de2014complete} uses Network Calculus to compute bounds on the worst case delay for the real time classes A and B. \cite{li2017deterministic} provides a method for computing bounds on the worst case end-to-end delay for sporadic flows sent using the classes A and B. Both lack the ability to calculate a worst cased delay on a specific message or periodic stream. A bound on the per frame delay can be calculated using the method presented in~\cite{cao2016independent}. 
 
-Nesting improvement (auto generation of config files)
+\cite{thiele2015formal} presented an analysis method for computing a bound on the worst case end-to-end delay for frames from Time Aware Shaper (TAS) streams and non-TAS streams. It assumes that all streams of a certain class have the same time interval in which they can be transmitted on a certain link. It also assumes the interval to be periodic. These assumptions are more restrictive than the TAS (IEEE 802.1Qbv) standard, which is not necessarily an issue for an automotive use-case as many applications produce and consume periodic data streams. \cite{zhao2018timing} presents a schedulability analysis for CBS streams in a TAS network. Namely, the time slots for the TAS traffic, the guard bands and preemption overhead have effect on the QoS of CBS streams. The method proofs that the CBS credit does not overflow a certain threshold, concluding that the CBS streams are schedulable.
 
-Uniform random samples with fixed sum ??
+\begin{enumerate}
+    \item Automotive benchmark
+    \item nesting
+    \item Nesting improvement (auto generation of config files)
+    \item Uniform random samples with fixed sum ??
+\end{enumerate}

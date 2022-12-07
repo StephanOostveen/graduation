@@ -8,3 +8,5 @@ TDMA
 preempted
 preemptive
 runnables
+schedulability
+composability
