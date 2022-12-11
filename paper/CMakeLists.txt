@@ -15,6 +15,7 @@ add_latex_document(main.tex
         6.2.network_traffic.tex
         6.3.omnetpp.tex
         7.0.planning.tex
+        8.0.conclusion.tex
         sample.tikzstyles
         figures/logical_example.tikz
         figures/deployment_example.tikz

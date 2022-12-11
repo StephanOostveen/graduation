@@ -63,7 +63,7 @@ From the deployment files we can generate an interface overview of the \textit{p
     \caption{Interface overview for two signals in graphical form}
     \label{fig:interface_overview}
 \end{figure}
-
+\clearpage
 \paragraph{Parametrizable end nodes}
 The network traffic to and from \textit{parametrizable end nodes} is described in special deployment files called DBC files for CAN networks and LDF files for LIN networks. These are industry standards describing the messages that can be found on a network. For each message the content is described in terms of signals and how the raw bytes transmitted on the network map to a signal value. For example a signal \textit{brake pedal position} describing a numerical value has a certain data type (single precision floating point, 16-bit signed integer, 32-bit unsigned integer), but the numerical value can be also scaled and offset to represent the real value. The DBC and LDF standards describe how a set of received bytes can be reinterpreted as the original signal and how a measured value must be transformed in a set of bytes to transmit. 
 

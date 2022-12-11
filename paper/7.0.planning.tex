@@ -1,19 +1,29 @@
 \section{Planning}
-\todo {Conclusion}
 \label{sec:planning}
-The project has a duration of 6 months i.e 26 weeks and starts after the approval of the preparation phase, of which this document is the result.
+The project has a duration of 6 months i.e. 26 weeks and starts after the approval of the preparation phase, of which this document is the result. A high level planning for the project is detailed below.
 
 \begin{table}[htb]
 	\centering
-	\begin{tabular}{cl}
-		\hline
-		\textbf{Week} 	& \textbf{Task} \\
-		\hline
-						& \textbf{Task 1} \\
-		1 - 10			& subtask 1 \\
-		1 - 10			& subtask n \\
-		\hline
-	\end{tabular}
-	\caption{Planning}
-	\label{tab:planning}
+	\begin{tabularx}{\textwidth}{@{}lX@{}}
+		\toprule
+		\textbf{Week} 	& \textbf{Task} \\ \midrule
+						& \textbf{Creation of machine-readable network and dataflow benchmark} \\
+		1 - 2			& Extract logical \& physical architecture \& periodic dataflow of runnables.  \\
+		3 - 5			& Extract logical \& physical architecture \& periodic dataflow to and from parametrizable end nodes.\\\midrule
+						& \textbf{Simulation environment} \\
+		6 - 7			& Research network requirements \& driving performance indicators \\
+		8 				& Investigate which network standards and configurations exist, are relevant and are implemented in \omnet. \\
+		9 - 12			& Create model of runnables, programmable end nodes and inter-runnable periodic dataflow for use in an \omnet TSN simulation.\\
+		13 - 15 		& Create model of parametrizable end nodes and related periodic dataflow for use in an \omnet TSN simulation \\ \midrule
+						& \textbf{Testing the framework} \\
+		16				& Create simulated network, resembling current architecture\\
+		17 - 18			& Perform simulations, evaluating the impact of specific configuration parameters on key performance indicators. \\ \midrule
+						& \textbf{Experimentation} \\
+		19				& Expand benchmark with dataflows for next-generation applications.\\
+		20 - 22			& Evaluate performance of different network architectures \\\midrule
+						& \textbf{Wrap up} \\
+		23 - 25			& Work on report  \\
+		26				& Create presentation \& finish report\\
+		\bottomrule
+	\end{tabularx}
 \end{table}

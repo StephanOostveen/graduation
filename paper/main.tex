@@ -1,6 +1,6 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage[dvipsnames]{xcolor}
-\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array,tikz,relsize,xspace}
+\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array,tikz,relsize,xspace,tabularx}
 \usepackage[english]{babel}
 \usepackage[backend=biber, maxbibnames=10]{biblatex}
 \usepackage[colorinlistoftodos]{todonotes}
@@ -66,18 +66,24 @@
 \begin{document}
 	\pagenumbering{roman}
 	\input{./titlepage.tex}
-	\listoftodos
-	\todo{remove todolist}
 	\tableofcontents
 	\newpage
 	\pagenumbering{arabic}
 	\input{./1.0.introduction.tex}
+	\clearpage
 	\input{./2.0.domain.tex}
+	\clearpage
 	\input{./3.0.problem_statement.tex}
+	\clearpage
 	\input{./4.0.sota_analysis.tex}
+	\clearpage
 	\input{./5.0.research_description.tex}
+	\clearpage
 	\input{./6.0.feasibility_experiments.tex}
+	\clearpage
 	\input{./7.0.planning.tex}
+	\clearpage
+	\input{./8.0.conclusion.tex}
 	\clearpage
 	\printbibliography
 \end{document}
