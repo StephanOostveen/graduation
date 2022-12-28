@@ -7,3 +7,6 @@
 [submodule "logical_simulation/cmake"]
 	path = logical_simulation/cmake
 	url = https://github.com/omnetpp/cmake.git
+[submodule "llvm-project"]
+	path = llvm-project
+	url = https://github.com/llvm/llvm-project.git
