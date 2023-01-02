@@ -1,0 +1,68 @@
+diff --git a/src/implementations/node_abstraction/raft/pal_task_handling.c b/src/implementations/node_abstraction/raft/pal_task_handling.c
+index be5c847..0634001 100644
+--- a/src/implementations/node_abstraction/raft/pal_task_handling.c
++++ b/src/implementations/node_abstraction/raft/pal_task_handling.c
+@@ -11,9 +11,9 @@
+ #include "pal_types.h"
+ 
+ extern void* raft_node_address;
+-void (*raft_set_timer)(uint32_t, uint32_t, void (*)(), void*);
+-uint32_t (*raft_create_timer)(void*);
+-void (*raft_cancel_timer)(uint32_t, void*);
++extern void (*raft_set_timer)(uint32_t, uint32_t, void (*)(), void*);
++extern uint32_t (*raft_create_timer)(void*);
++extern void (*raft_cancel_timer)(uint32_t, void*);
+ 
+ void pal_timer_create(pal_timer_t* timer_obj) {
+   assert(raft_create_timer != NULL);
+diff --git a/src/implementations/node_abstraction/raft/raft_sysvars.c b/src/implementations/node_abstraction/raft/raft_sysvars.c
+index 05c18be..f923488 100644
+--- a/src/implementations/node_abstraction/raft/raft_sysvars.c
++++ b/src/implementations/node_abstraction/raft/raft_sysvars.c
+@@ -28,13 +28,13 @@ typedef enum read_variable_result {
+ const pal_adc_peripheral_info_t
+     pal_adc_input_table[PAL_ADC_INPUT_TABLE_LENGTH] = PAL_ADC_INPUT_TABLE;
+ 
+-int (*raft_set_sysvar_int)(char*, int*, void*);
+-int (*raft_set_sysvar_int64)(char*, int64_t*, void*);
+-int (*raft_set_sysvar_float)(char*, float*, void*);
+-int (*raft_get_sysvar_int)(char*, int*, void*);
+-int (*raft_get_sysvar_int64)(char*, int64_t*, void*);
+-int (*raft_get_sysvar_float)(char*, float*, void*);
+-void* raft_node_address;
++extern int (*raft_set_sysvar_int)(char*, int*, void*);
++extern int (*raft_set_sysvar_int64)(char*, int64_t*, void*);
++extern int (*raft_set_sysvar_float)(char*, float*, void*);
++extern int (*raft_get_sysvar_int)(char*, int*, void*);
++extern int (*raft_get_sysvar_int64)(char*, int64_t*, void*);
++extern int (*raft_get_sysvar_float)(char*, float*, void*);
++extern void* raft_node_address;
+ 
+ /** @brief Prefixes the variable with the appname to make it uniquely identified
+  *    in RAFT.
+diff --git a/src/implementations/node_abstraction/raft/raft_time.c b/src/implementations/node_abstraction/raft/raft_time.c
+index 02dcbf4..80bee91 100644
+--- a/src/implementations/node_abstraction/raft/raft_time.c
++++ b/src/implementations/node_abstraction/raft/raft_time.c
+@@ -13,7 +13,7 @@
+ #include "pal_time.h"
+ 
+ extern void* raft_node_address;
+-double (*raft_elapsed_time)(void *);
++extern double (*raft_elapsed_time)(void *);
+ 
+ static paltime_absolute_time_in_ms_t paltime_external_time = 0;
+ static uint32_t paltime_delta_time_at_update = 0;
+diff --git a/src/interface/os_abstraction/logger.c b/src/interface/os_abstraction/logger.c
+index 15e93fe..b06abd5 100644
+--- a/src/interface/os_abstraction/logger.c
++++ b/src/interface/os_abstraction/logger.c
+@@ -17,7 +17,7 @@
+ #endif
+ 
+ #ifdef BACKEND_ENGINE_RAFT
+-void (*raft_log)(const char*, const char*, va_list);
++extern void (*raft_log)(const char*, const char*, va_list);
+ #endif
+ 
+ /*! \todo  Share the Log Severity type (Fatal,Message,Debug) to the underlying
