@@ -37,7 +37,7 @@ RUN cmake -G Ninja -Hllvm-project/llvm -Bllvm-build \
           -DBOOTSTRAP_LLVM_ENABLE_LTO=Thin 
 
 RUN cmake --build llvm-build --target stage2-install 
-RUN cmake --build clang-tidy --target install-clang-tidy
+RUN cmake --build llvm-build --target install-clang-tidy
 # Setup ssh key
 COPY id_ed25519 /root/.ssh/id_ed25519
 COPY id_ed25519.pub /root/.ssh/id_ed25519.pub
