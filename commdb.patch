@@ -1,0 +1,13 @@
+diff --git a/CAN/DBC_1280_Lightyear_V2.4.dbc b/CAN/DBC_1280_Lightyear_V2.4.dbc
+index 3719291..0635900 100644
+--- a/CAN/DBC_1280_Lightyear_V2.4.dbc
++++ b/CAN/DBC_1280_Lightyear_V2.4.dbc
+@@ -201,7 +201,7 @@ BO_ 265 ECM1: 8 BSM
+ 
+ BO_ 279 SAS1: 8 BSM
+  SG_ Steering_Angle : 7|16@0- (0.1,0) [-3276.8|3276.7] "deg"  ABS
+- SG_ Steering_Angle_Rate : 23|8@0+ (4,0) [0|1016] "�/s"  ABS
++ SG_ Steering_Angle_Rate : 23|8@0+ (4,0) [0|1016] "deg/s"  ABS
+  SG_ Steering_Angle_Valid : 24|1@0+ (1,0) [0|1] ""  ABS
+  SG_ Steering_Angle_Calibrated : 25|1@0+ (1,0) [0|1] ""  ABS
+  SG_ CRC8_117 : 55|8@0+ (1,0) [0|255] ""  ABS

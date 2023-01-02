@@ -1,0 +1,231 @@
+diff --git a/clang-tools-extra/clang-tidy/CMakeLists.txt b/clang-tools-extra/clang-tidy/CMakeLists.txt
+index 8a953eeea..5824b7250 100644
+--- a/clang-tools-extra/clang-tidy/CMakeLists.txt
++++ b/clang-tools-extra/clang-tidy/CMakeLists.txt
+@@ -65,6 +65,7 @@ add_subdirectory(hicpp)
+ add_subdirectory(linuxkernel)
+ add_subdirectory(llvm)
+ add_subdirectory(llvmlibc)
++add_subdirectory(ly)
+ add_subdirectory(misc)
+ add_subdirectory(modernize)
+ if(CLANG_TIDY_ENABLE_STATIC_ANALYZER)
+@@ -92,6 +93,7 @@ set(ALL_CLANG_TIDY_CHECKS
+   clangTidyLinuxKernelModule
+   clangTidyLLVMModule
+   clangTidyLLVMLibcModule
++  clangTidyLyModule
+   clangTidyMiscModule
+   clangTidyModernizeModule
+   clangTidyObjCModule
+diff --git a/clang-tools-extra/clang-tidy/ClangTidyForceLinker.h b/clang-tools-extra/clang-tidy/ClangTidyForceLinker.h
+index 2691d90fa..64b801078 100644
+--- a/clang-tools-extra/clang-tidy/ClangTidyForceLinker.h
++++ b/clang-tools-extra/clang-tidy/ClangTidyForceLinker.h
+@@ -90,6 +90,11 @@ extern volatile int LLVMLibcModuleAnchorSource;
+ static int LLVM_ATTRIBUTE_UNUSED LLVMLibcModuleAnchorDestination =
+     LLVMLibcModuleAnchorSource;
+ 
++// This anchor is used to force the linker to link the LyModule.
++extern volatile int LyModuleAnchorSource;
++static int LLVM_ATTRIBUTE_UNUSED LyModuleAnchorDestination =
++    LyModuleAnchorSource;
++
+ // This anchor is used to force the linker to link the MiscModule.
+ extern volatile int MiscModuleAnchorSource;
+ static int LLVM_ATTRIBUTE_UNUSED MiscModuleAnchorDestination =
+diff --git a/clang-tools-extra/clang-tidy/ly/CMakeLists.txt b/clang-tools-extra/clang-tidy/ly/CMakeLists.txt
+new file mode 100644
+index 000000000..44534e51b
+--- /dev/null
++++ b/clang-tools-extra/clang-tidy/ly/CMakeLists.txt
+@@ -0,0 +1,22 @@
++set(LLVM_LINK_COMPONENTS
++  Support
++)
++
++add_clang_library(clangTidyLyModule
++  LyTidyModule.cpp
++  Palvar_writeCheck.cpp
++
++  LINK_LIBS
++  clangTidy
++  clangTidyUtils
++)
++
++clang_target_link_libraries(clangTidyLyModule
++  PRIVATE
++  clangAnalysis
++  clangAST
++  clangASTMatchers
++  clangBasic
++  clangLex
++  clangTooling
++)
+diff --git a/clang-tools-extra/clang-tidy/ly/LyTidyModule.cpp b/clang-tools-extra/clang-tidy/ly/LyTidyModule.cpp
+new file mode 100644
+index 000000000..a4099ed41
+--- /dev/null
++++ b/clang-tools-extra/clang-tidy/ly/LyTidyModule.cpp
+@@ -0,0 +1,27 @@
++#include "../ClangTidy.h"
++#include "../ClangTidyModule.h"
++#include "../ClangTidyModuleRegistry.h"
++#include "Palvar_writeCheck.h"
++namespace clang{
++namespace tidy {
++namespace ly{
++
++class LyModule : public ClangTidyModule {
++public:
++	void addCheckFactories(ClangTidyCheckFactories &CheckFactories) override {
++
++    CheckFactories.registerCheck<Palvar_writeCheck>(
++        "ly-palvar_write");
++	}
++};
++
++// Register the LyModule using this statically initialized variable
++static ClangTidyModuleRegistry::Add<LyModule>
++	X("ly-module", "Adds LY-related checks.");
++} // namespace ly
++
++// This anchor is used to force the linker to link in the generated object file
++// and thus register the LyModule.
++volatile int LyModuleAnchorSource = 0;
++} // namespace tidy
++} // namespace clang
+diff --git a/clang-tools-extra/clang-tidy/ly/Palvar_writeCheck.cpp b/clang-tools-extra/clang-tidy/ly/Palvar_writeCheck.cpp
+new file mode 100644
+index 000000000..ddeec32b9
+--- /dev/null
++++ b/clang-tools-extra/clang-tidy/ly/Palvar_writeCheck.cpp
+@@ -0,0 +1,72 @@
++//===--- Palvar_writeCheck.cpp - clang-tidy -------------------------------===//
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++
++#include "Palvar_writeCheck.h"
++#include "clang/AST/ASTContext.h"
++#include "clang/AST/ASTFwd.h"
++#include "clang/AST/Decl.h"
++#include "clang/ASTMatchers/ASTMatchFinder.h"
++#include "llvm/Support/raw_ostream.h"
++
++using namespace clang::ast_matchers;
++
++namespace clang {
++namespace tidy {
++namespace ly {
++
++static void findPalOrigin(const MatchFinder::MatchResult &Result,
++                          const CallExpr *callexpr) noexcept {
++  if (auto readCallee = callexpr->getDirectCallee()) {
++    llvm::outs() << readCallee->getName() << "; ";
++
++    auto readParents = Result.Context->getParents(*callexpr);
++    while (!readParents.empty()) {
++      auto parentNode = readParents[0];
++      if (const auto *parent = parentNode.get<FunctionDecl>()) {
++        llvm::outs() << parent->getNameAsString() << "; ";
++      }
++      readParents = Result.Context->getParents(parentNode);
++    }
++    llvm::outs() << '\n';
++  }
++}
++
++void Palvar_writeCheck::registerMatchers(MatchFinder *Finder) {
++  Finder->addMatcher(
++      callExpr(callee(functionDecl(matchesName("palvar_read.*"))))
++          .bind("palvar_read"),
++      this);
++  Finder->addMatcher(
++      callExpr(callee(functionDecl(matchesName("palvar_write.*"))))
++          .bind("palvar_write"),
++      this);
++}
++
++void Palvar_writeCheck::check(const MatchFinder::MatchResult &Result) {
++  if (const auto *readCallNode =
++          Result.Nodes.getNodeAs<CallExpr>("palvar_read")) {
++    findPalOrigin(Result, readCallNode);
++  }
++
++  if (const auto *writeCallNode =
++          Result.Nodes.getNodeAs<CallExpr>("palvar_write")) {
++    findPalOrigin(Result, writeCallNode);
++  }
++  /*
++  if (!MatchedDecl->getIdentifier() ||
++  MatchedDecl->getName().startswith("awesome_")) return;
++  diag(MatchedDecl->getLocation(), "function %0 is insufficiently awesome")
++      << MatchedDecl;
++  diag(MatchedDecl->getLocation(), "insert 'awesome'", DiagnosticIDs::Note)
++      << FixItHint::CreateInsertion(MatchedDecl->getLocation(), "awesome_");
++      */
++}
++
++} // namespace ly
++} // namespace tidy
++} // namespace clang
+diff --git a/clang-tools-extra/clang-tidy/ly/Palvar_writeCheck.h b/clang-tools-extra/clang-tidy/ly/Palvar_writeCheck.h
+new file mode 100644
+index 000000000..d7f912aaf
+--- /dev/null
++++ b/clang-tools-extra/clang-tidy/ly/Palvar_writeCheck.h
+@@ -0,0 +1,34 @@
++//===--- Palvar_writeCheck.h - clang-tidy -----------------------*- C++ -*-===//
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++
++#ifndef LLVM_CLANG_TOOLS_EXTRA_CLANG_TIDY_LY_PALVAR_WRITECHECK_H
++#define LLVM_CLANG_TOOLS_EXTRA_CLANG_TIDY_LY_PALVAR_WRITECHECK_H
++
++#include "../ClangTidyCheck.h"
++
++namespace clang {
++namespace tidy {
++namespace ly {
++
++/// FIXME: Write a short description.
++///
++/// For the user-facing documentation see:
++/// http://clang.llvm.org/extra/clang-tidy/checks/ly/palvar_write.html
++class Palvar_writeCheck : public ClangTidyCheck {
++public:
++  Palvar_writeCheck(StringRef Name, ClangTidyContext *Context)
++      : ClangTidyCheck(Name, Context) {}
++  void registerMatchers(ast_matchers::MatchFinder *Finder) override;
++  void check(const ast_matchers::MatchFinder::MatchResult &Result) override;
++};
++
++} // namespace ly
++} // namespace tidy
++} // namespace clang
++
++#endif // LLVM_CLANG_TOOLS_EXTRA_CLANG_TIDY_LY_PALVAR_WRITECHECK_H
+diff --git a/clang-tools-extra/docs/ReleaseNotes.rst b/clang-tools-extra/docs/ReleaseNotes.rst
+index 182052785..380716d47 100644
+--- a/clang-tools-extra/docs/ReleaseNotes.rst
++++ b/clang-tools-extra/docs/ReleaseNotes.rst
+@@ -154,6 +154,11 @@ New checks
+   Warns when the code is unwrapping a `std::optional<T>`, `absl::optional<T>`,
+   or `base::Optional<T>` object without assuring that it contains a value.
+ 
++- New :doc:`ly-palvar_write
++  <clang-tidy/checks/ly/palvar_write>` check.
++
++  FIXME: add release notes.
++
+ - New :doc:`misc-confusable-identifiers <clang-tidy/checks/misc/confusable-identifiers>` check.
+ 
+   Detects confusable Unicode identifiers.

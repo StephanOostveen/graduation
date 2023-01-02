@@ -1,0 +1,20 @@
+diff --git a/superrepo/inVehicle/nodes/safety_control_unit_primary/src/scu_app.c b/superrepo/inVehicle/nodes/safety_control_unit_primary/src/scu_app.c
+index 34233bb5..453c2b07 100644
+--- a/superrepo/inVehicle/nodes/safety_control_unit_primary/src/scu_app.c
++++ b/superrepo/inVehicle/nodes/safety_control_unit_primary/src/scu_app.c
+@@ -79,6 +79,7 @@ static palcan_channel_t can_channels[4] = {
+     {.id = PAL_CAN_CHANNEL_C, .baud_rate = pal_cbaud_500_kbps},
+     {.id = PAL_CAN_CHANNEL_D, .baud_rate = pal_cbaud_500_kbps}};
+
++void   win_initialise_app(void);
+ void psc_initialise_app(void) {
+   pal_init_data_dictionary();
+
+@@ -158,6 +159,7 @@ void scu_task_10ms(void) {
+   propulsion_safety_10ms();
+ #endif
+ }
++void win_task(void);
+
+ void scu_task_50ms(void) {
+   pal_load_mocked_inputs();

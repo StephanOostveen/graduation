@@ -1,0 +1,59 @@
+diff --git a/src/lv_bms_controller/superb_nomada_12v/control/lvbs_main.c b/src/lv_bms_controller/superb_nomada_12v/control/lvbs_main.c
+index 0e5c23e8..a0f839dd 100644
+--- a/src/lv_bms_controller/superb_nomada_12v/control/lvbs_main.c
++++ b/src/lv_bms_controller/superb_nomada_12v/control/lvbs_main.c
+@@ -46,6 +46,7 @@ static enum init_t safety_check_state = check_in_progress;
+ /**
+  * @brief The task that initializes all Lvbs functionality.
+  */
++void lvb_power_manager_init(void);
+ void lvb_initialise_app(void) {
+   LOG_INFO("Initializing %s", APPNAME);
+   monitor_check_state = check_in_progress;
+@@ -59,6 +60,7 @@ void lvb_initialise_app(void) {
+ /**
+  * @brief The task that updates/executes all Lvbs functionality.
+  */
++void   lvb_power_manager_run(void);
+ void lvb_task(hv_lv_status_t hv_lv_mode, i_power_mode_t vpc_power_mode) {
+   LOG_INFO("Executing %s :lvb_task()", APPNAME);
+ #ifndef CEEDLING_UNIT_TEST
+diff --git a/src/on_board_charger/charger_control_unit/ccu_ly/high_level_communication/hlc.c b/src/on_board_charger/charger_control_unit/ccu_ly/high_level_communication/hlc.c
+index 55f87f10..a4f7a275 100644
+--- a/src/on_board_charger/charger_control_unit/ccu_ly/high_level_communication/hlc.c
++++ b/src/on_board_charger/charger_control_unit/ccu_ly/high_level_communication/hlc.c
+@@ -146,6 +146,21 @@ static void hlc_state_finished_on_tick(hlc_input_t *hlc_in_p) {
+
+   @return None
+ */
++i_ccu_hlc_fsm_state_t hlc_state_iso_pre_charge_on_tick(
++    uint32_t current_performance_timer, hlc_input_t *hlc_in_p,
++    hv_bms_dc_charging_contactors_request_t *contactors_request);
++
++i_ccu_hlc_fsm_state_t hlc_state_din_pre_charge_on_tick(
++    uint32_t current_performance_timer, hlc_input_t *hlc_in_p,
++    hv_bms_dc_charging_contactors_request_t *contactors_request);
++i_ccu_hlc_fsm_state_t hlc_state_iso_power_delivery_on_tick(
++    uint32_t current_performance_timer, hlc_input_t *hlc_in_p,
++    bool *control_pilot_go_to_state_c);
++
++i_ccu_hlc_fsm_state_t hlc_state_din_power_delivery_on_tick(
++    uint32_t current_performance_timer, hlc_input_t *hlc_in_p,
++    bool *control_pilot_go_to_state_c);
++void error_logger_clear_error(esc_modules_t module_id, i_esc_err_t error_id);
+ static void hlc_state_error_on_tick(hlc_input_t *hlc_in_p) {
+   hlc_output.control_pilot_go_to_state_c = false;
+   hlc_output.contactors_request = HV_BMS_DC_CHARGING_CONTACTORS_REQUEST_OPEN;
+diff --git a/src/power_manager/power_manager.c b/src/power_manager/power_manager.c
+index ccba65bb..f2a1ca0c 100644
+--- a/src/power_manager/power_manager.c
++++ b/src/power_manager/power_manager.c
+@@ -69,7 +69,7 @@ void power_manager_run_50ms(power_manager_input_t* power_manager_in_p,
+   }
+   *esc_power_state_out_p = &esc_mode;
+   esc_power_manager_mode = (uint8_t)esc_mode;
+-  return 0;
++
+ }
+
+ i_power_mode_t power_manager_get_esc_mode(void) { return esc_mode; }
