@@ -1,0 +1,191 @@
+diff --git a/src/common/controllers/brake_light_controller/brake_light_controller.c b/src/common/controllers/brake_light_controller/brake_light_controller.c
+index 67f7e62..240bd57 100644
+--- a/src/common/controllers/brake_light_controller/brake_light_controller.c
++++ b/src/common/controllers/brake_light_controller/brake_light_controller.c
+@@ -21,7 +21,7 @@
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void brake_light_controller_init() {
++void brake_light_controller_init(void) {
+   brake_light_driver_init();
+ }
+ 
+diff --git a/src/common/controllers/driving_lights_controller/driving_lights_controller.c b/src/common/controllers/driving_lights_controller/driving_lights_controller.c
+index 685c78a..8158a24 100644
+--- a/src/common/controllers/driving_lights_controller/driving_lights_controller.c
++++ b/src/common/controllers/driving_lights_controller/driving_lights_controller.c
+@@ -70,7 +70,7 @@ static i_on_off_t provide_high_beams_command(
+ static bool is_auto_light_request_on(auto_light_request_t auto_light_request);
+ 
+ /* Public function definitions */
+-void driving_lights_controller_init() {
++void driving_lights_controller_init(void) {
+   daytime_running_light_driver_init();
+   positionlight_driver_init();
+   low_high_beam_driver_init();
+diff --git a/src/common/controllers/fog_light_controller/fog_light_controller.c b/src/common/controllers/fog_light_controller/fog_light_controller.c
+index 60e6b49..352261d 100644
+--- a/src/common/controllers/fog_light_controller/fog_light_controller.c
++++ b/src/common/controllers/fog_light_controller/fog_light_controller.c
+@@ -33,7 +33,7 @@ static bool should_fog_lights_be_on(
+ static bool is_auto_light_request_on(auto_light_request_t auto_light_request);
+ 
+ /* Public function definitions */
+-void fog_light_controller_init() {
++void fog_light_controller_init(void) {
+   fog_light_driver_init();
+ }
+ 
+diff --git a/src/common/controllers/license_plate_light_controller/license_plate_light_controller.c b/src/common/controllers/license_plate_light_controller/license_plate_light_controller.c
+index 7e80cb3..b05812b 100644
+--- a/src/common/controllers/license_plate_light_controller/license_plate_light_controller.c
++++ b/src/common/controllers/license_plate_light_controller/license_plate_light_controller.c
+@@ -22,7 +22,7 @@
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void license_plate_light_controller_init() {
++void license_plate_light_controller_init(void) {
+   license_plate_light_driver_init();
+ }
+ 
+diff --git a/src/common/controllers/reverse_light_controller/reverse_light_controller.c b/src/common/controllers/reverse_light_controller/reverse_light_controller.c
+index 51c7460..7b1047d 100644
+--- a/src/common/controllers/reverse_light_controller/reverse_light_controller.c
++++ b/src/common/controllers/reverse_light_controller/reverse_light_controller.c
+@@ -21,7 +21,7 @@
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void reverse_light_controller_init() {
++void reverse_light_controller_init(void) {
+   reverse_light_driver_init();
+ }
+ 
+diff --git a/src/common/drivers/daytime_running_light_driver/daytime_running_light_driver.c b/src/common/drivers/daytime_running_light_driver/daytime_running_light_driver.c
+index e68f366..70eff85 100644
+--- a/src/common/drivers/daytime_running_light_driver/daytime_running_light_driver.c
++++ b/src/common/drivers/daytime_running_light_driver/daytime_running_light_driver.c
+@@ -27,7 +27,7 @@
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void daytime_running_light_driver_init() {
++void daytime_running_light_driver_init(void) {
+   palhbridge_init(DRL_HBRIDGE);
+   palhbridge_set(DRL_HBRIDGE, PALHBRIDGE_MODE_NO_DRIVE, PWM_FREQ, I_OFF);
+ }
+diff --git a/src/common/drivers/fog_light_driver/fog_light_driver.c b/src/common/drivers/fog_light_driver/fog_light_driver.c
+index c361a83..0a5f182 100644
+--- a/src/common/drivers/fog_light_driver/fog_light_driver.c
++++ b/src/common/drivers/fog_light_driver/fog_light_driver.c
+@@ -29,7 +29,7 @@ static const exl_generic_static_light_t fog_light = {
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void fog_light_driver_init() {
++void fog_light_driver_init(void) {
+   generic_static_light_driver_init(&fog_light);
+ }
+ 
+diff --git a/src/common/drivers/indicator_driver/indicator_driver.c b/src/common/drivers/indicator_driver/indicator_driver.c
+index 2136a93..59daab3 100644
+--- a/src/common/drivers/indicator_driver/indicator_driver.c
++++ b/src/common/drivers/indicator_driver/indicator_driver.c
+@@ -75,7 +75,7 @@ static int16_t max_rear_value;
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void indicator_driver_init() {
++void indicator_driver_init(void) {
+   front_current_value = 0;
+   rear_current_value  = 0;
+ 
+diff --git a/src/common/drivers/low_high_beam_driver/low_high_beam_driver.c b/src/common/drivers/low_high_beam_driver/low_high_beam_driver.c
+index 2357be4..8629ccb 100644
+--- a/src/common/drivers/low_high_beam_driver/low_high_beam_driver.c
++++ b/src/common/drivers/low_high_beam_driver/low_high_beam_driver.c
+@@ -67,7 +67,7 @@ static const exl_generic_pwm_light_t high_beams[] = {
+ 
+ /* Public function definitions */
+ 
+-void low_high_beam_driver_init() {
++void low_high_beam_driver_init(void) {
+   generic_relay_driver_init(&low_beams[left]);
+   generic_relay_driver_init(&low_beams[right]);
+ 
+diff --git a/src/common/drivers/positionlight_driver/positionlight_driver.c b/src/common/drivers/positionlight_driver/positionlight_driver.c
+index b820349..60571c7 100644
+--- a/src/common/drivers/positionlight_driver/positionlight_driver.c
++++ b/src/common/drivers/positionlight_driver/positionlight_driver.c
+@@ -74,7 +74,7 @@ void positionlight_set_rear(i_on_off_t set_on_off);
+ 
+ 
+ /* Public function definitions */
+-void positionlight_driver_init() {
++void positionlight_driver_init(void) {
+   // Initialize & Enable Digital Outputs
+   (void)paldio_output_init(ENABLE_POSITIONLIGHT_PINS,
+                            PALDIO_LEVEL_HIGH);
+diff --git a/src/common/drivers/reverse_light_driver/reverse_light_driver.c b/src/common/drivers/reverse_light_driver/reverse_light_driver.c
+index 8a15f6d..3433785 100644
+--- a/src/common/drivers/reverse_light_driver/reverse_light_driver.c
++++ b/src/common/drivers/reverse_light_driver/reverse_light_driver.c
+@@ -28,7 +28,7 @@ static const exl_generic_static_light_t reverse_light = {
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void reverse_light_driver_init() {
++void reverse_light_driver_init(void) {
+   generic_static_light_driver_init(&reverse_light);
+ }
+ 
+diff --git a/src/lyes_gw/exterior_lighting_controller_gw.c b/src/lyes_gw/exterior_lighting_controller_gw.c
+index 363c2cc..5d9cfe2 100644
+--- a/src/lyes_gw/exterior_lighting_controller_gw.c
++++ b/src/lyes_gw/exterior_lighting_controller_gw.c
+@@ -100,7 +100,7 @@ void exl_control_task_gw(void) {
+ }
+ 
+ /* Private function definitions */
+-static void initialize_standalone_can_channels() {
++static void initialize_standalone_can_channels(void) {
+   static palcan_channel_t can_channels[NUM_OF_CAN_CHANNELS] = {
+     {.id = PAL_CAN_CHANNEL_A, .baud_rate = pal_cbaud_500_kbps},
+     {.id = PAL_CAN_CHANNEL_B, .baud_rate = pal_cbaud_500_kbps},
+diff --git a/src/lyes_scu/exterior_lighting_controller_scu.c b/src/lyes_scu/exterior_lighting_controller_scu.c
+index ef8f610..34e6bb1 100644
+--- a/src/lyes_scu/exterior_lighting_controller_scu.c
++++ b/src/lyes_scu/exterior_lighting_controller_scu.c
+@@ -59,7 +59,7 @@ void exl_initialise_scu_app(void) {
+ void psc_background_app(void) {}
+ #endif
+ 
+-static void initialize_standalone_can_channels() {
++static void initialize_standalone_can_channels(void) {
+   // Always initialize CAN Channel A for Pi Innovo projects to keep CCP enabled!
+   palcan_channel_t can_channels[1];
+   can_channels[0].id = PAL_CAN_CHANNEL_A;
+diff --git a/src/lyes_vcu/exterior_lighting_controller_vcu.c b/src/lyes_vcu/exterior_lighting_controller_vcu.c
+index b9f6afb..1200ec7 100644
+--- a/src/lyes_vcu/exterior_lighting_controller_vcu.c
++++ b/src/lyes_vcu/exterior_lighting_controller_vcu.c
+@@ -101,7 +101,7 @@ void exl_control_task_vcu(void) {
+ 
+   int16_t exl_fog_lights_active;
+   (void)palvar_read_exl_fog_lights_active(&exl_fog_lights_active);
+-
++  //Potential issue: hmi_input is only partially initialized at this point, consider fully initializing it
+   lighting_states_t hmi_input = {I_OFF};
+   hmi_input.rear_fog = exl_fog_lights_active;  // As determined by GW
+ 
+@@ -216,7 +216,7 @@ STATIC i_power_mode_t determine_power_mode(i_power_mode_t power_mode,
+   return lmv_power_mode;
+ }
+ 
+-static void initialize_standalone_can_channels() {
++static void initialize_standalone_can_channels(void) {
+   // Always initialize CAN Channel A for Pi Innovo projects to keep CCP enabled
+   palcan_channel_t can_channels[1];
+   can_channels[0].id = PAL_CAN_CHANNEL_A;

@@ -1,0 +1,2789 @@
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.c
+index be87f98..8a13747 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.c
+@@ -505,236 +505,236 @@ static bool is_prj_third_system_output_updated = false;
+ static bool is_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_updated = false;
+ 
+ // Get update flags for inputs interfaces
+-bool get_prj_system_input_is_updated_flag(){
++bool get_prj_system_input_is_updated_flag(void){
+   return is_prj_system_input_updated;
+ }
+ 
+-bool get_prj_model_input_is_updated_flag(){
++bool get_prj_model_input_is_updated_flag(void){
+   return is_prj_model_input_updated;
+ }
+ 
+-bool get_prj_input_64_is_updated_flag(){
++bool get_prj_input_64_is_updated_flag(void){
+   return is_prj_input_64_updated;
+ }
+ 
+-bool get_prj_input_with_reliab_is_updated_flag(){
++bool get_prj_input_with_reliab_is_updated_flag(void){
+   return is_prj_input_with_reliab_updated;
+ }
+ 
+-bool get_prj_input_64_with_reliab_is_updated_flag(){
++bool get_prj_input_64_with_reliab_is_updated_flag(void){
+   return is_prj_input_64_with_reliab_updated;
+ }
+ 
+-bool get_prj_input_32_is_updated_flag(){
++bool get_prj_input_32_is_updated_flag(void){
+   return is_prj_input_32_updated;
+ }
+ 
+-bool get_prj_input_int32_is_updated_flag(){
++bool get_prj_input_int32_is_updated_flag(void){
+   return is_prj_input_int32_updated;
+ }
+ 
+-bool get_prj_second_unused_is_updated_flag(){
++bool get_prj_second_unused_is_updated_flag(void){
+   return is_prj_second_unused_updated;
+ }
+ 
+-bool get_prj_second_foo_is_updated_flag(){
++bool get_prj_second_foo_is_updated_flag(void){
+   return is_prj_second_foo_updated;
+ }
+ 
+-bool get_prj_second_bar_is_updated_flag(){
++bool get_prj_second_bar_is_updated_flag(void){
+   return is_prj_second_bar_updated;
+ }
+ 
+-bool get_prj_second_system_output_is_updated_flag(){
++bool get_prj_second_system_output_is_updated_flag(void){
+   return is_prj_second_system_output_updated;
+ }
+ 
+-bool get_prj_second_input_64_to_sec_is_updated_flag(){
++bool get_prj_second_input_64_to_sec_is_updated_flag(void){
+   return is_prj_second_input_64_to_sec_updated;
+ }
+ 
+-bool get_prj_second_test_update_no_over_is_updated_flag(){
++bool get_prj_second_test_update_no_over_is_updated_flag(void){
+   return is_prj_second_test_update_no_over_updated;
+ }
+ 
+-bool get_prj_second_test_update_no_over_64_is_updated_flag(){
++bool get_prj_second_test_update_no_over_64_is_updated_flag(void){
+   return is_prj_second_test_update_no_over_64_updated;
+ }
+ 
+-bool get_prj_second_out_with_reliab_is_updated_flag(){
++bool get_prj_second_out_with_reliab_is_updated_flag(void){
+   return is_prj_second_out_with_reliab_updated;
+ }
+ 
+-bool get_prj_second_input_32_to_second_is_updated_flag(){
++bool get_prj_second_input_32_to_second_is_updated_flag(void){
+   return is_prj_second_input_32_to_second_updated;
+ }
+ 
+-bool get_prj_second_input_int32_to_second_is_updated_flag(){
++bool get_prj_second_input_int32_to_second_is_updated_flag(void){
+   return is_prj_second_input_int32_to_second_updated;
+ }
+ 
+-bool get_prj_third_system_output_is_updated_flag(){
++bool get_prj_third_system_output_is_updated_flag(void){
+   return is_prj_third_system_output_updated;
+ }
+ 
+-bool get_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(){
++bool get_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(void){
+   return is_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_updated;
+ }
+ 
+ // Set update flags for inputs interfaces without matching outputs
+-void set_prj_system_input_is_updated_flag(){
++void set_prj_system_input_is_updated_flag(void){
+   is_prj_system_input_updated = true;
+ }
+ 
+-void set_prj_model_input_is_updated_flag(){
++void set_prj_model_input_is_updated_flag(void){
+   is_prj_model_input_updated = true;
+ }
+ 
+-void set_prj_input_64_is_updated_flag(){
++void set_prj_input_64_is_updated_flag(void){
+   is_prj_input_64_updated = true;
+ }
+ 
+-void set_prj_input_with_reliab_is_updated_flag(){
++void set_prj_input_with_reliab_is_updated_flag(void){
+   is_prj_input_with_reliab_updated = true;
+ }
+ 
+-void set_prj_input_64_with_reliab_is_updated_flag(){
++void set_prj_input_64_with_reliab_is_updated_flag(void){
+   is_prj_input_64_with_reliab_updated = true;
+ }
+ 
+-void set_prj_input_32_is_updated_flag(){
++void set_prj_input_32_is_updated_flag(void){
+   is_prj_input_32_updated = true;
+ }
+ 
+-void set_prj_input_int32_is_updated_flag(){
++void set_prj_input_int32_is_updated_flag(void){
+   is_prj_input_int32_updated = true;
+ }
+ 
+-void set_prj_second_bar_is_updated_flag(){
++void set_prj_second_bar_is_updated_flag(void){
+   is_prj_second_bar_updated = true;
+ }
+ 
+-void set_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(){
++void set_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(void){
+   is_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_updated = true;
+ }
+ 
+ // Set update flags for inputs interfaces with matching outputs
+-void set_update_flags_matching_unused(){
++void set_update_flags_matching_unused(void){
+   is_prj_second_unused_updated = true;
+ }
+ 
+-void set_update_flags_matching_foo(){
++void set_update_flags_matching_foo(void){
+   is_prj_second_foo_updated = true;
+ }
+ 
+-void set_update_flags_matching_system_output(){
++void set_update_flags_matching_system_output(void){
+   is_prj_second_system_output_updated = true;
+   is_prj_third_system_output_updated = true;
+ }
+ 
+-void set_update_flags_matching_input_64_to_sec(){
++void set_update_flags_matching_input_64_to_sec(void){
+   is_prj_second_input_64_to_sec_updated = true;
+ }
+ 
+-void set_update_flags_matching_test_update_no_over(){
++void set_update_flags_matching_test_update_no_over(void){
+   is_prj_second_test_update_no_over_updated = true;
+ }
+ 
+-void set_update_flags_matching_test_update_no_over_64(){
++void set_update_flags_matching_test_update_no_over_64(void){
+   is_prj_second_test_update_no_over_64_updated = true;
+ }
+ 
+-void set_update_flags_matching_out_with_reliab(){
++void set_update_flags_matching_out_with_reliab(void){
+   is_prj_second_out_with_reliab_updated = true;
+ }
+ 
+-void set_update_flags_matching_input_32_to_second(){
++void set_update_flags_matching_input_32_to_second(void){
+   is_prj_second_input_32_to_second_updated = true;
+ }
+ 
+-void set_update_flags_matching_input_int32_to_second(){
++void set_update_flags_matching_input_int32_to_second(void){
+   is_prj_second_input_int32_to_second_updated = true;
+ }
+ 
+ // Clear update flags for inputs interfaces
+-void clear_prj_system_input_is_updated_flag(){
++void clear_prj_system_input_is_updated_flag(void){
+   is_prj_system_input_updated = false;
+ }
+ 
+-void clear_prj_model_input_is_updated_flag(){
++void clear_prj_model_input_is_updated_flag(void){
+   is_prj_model_input_updated = false;
+ }
+ 
+-void clear_prj_input_64_is_updated_flag(){
++void clear_prj_input_64_is_updated_flag(void){
+   is_prj_input_64_updated = false;
+ }
+ 
+-void clear_prj_input_with_reliab_is_updated_flag(){
++void clear_prj_input_with_reliab_is_updated_flag(void){
+   is_prj_input_with_reliab_updated = false;
+ }
+ 
+-void clear_prj_input_64_with_reliab_is_updated_flag(){
++void clear_prj_input_64_with_reliab_is_updated_flag(void){
+   is_prj_input_64_with_reliab_updated = false;
+ }
+ 
+-void clear_prj_input_32_is_updated_flag(){
++void clear_prj_input_32_is_updated_flag(void){
+   is_prj_input_32_updated = false;
+ }
+ 
+-void clear_prj_input_int32_is_updated_flag(){
++void clear_prj_input_int32_is_updated_flag(void){
+   is_prj_input_int32_updated = false;
+ }
+ 
+-void clear_prj_second_unused_is_updated_flag(){
++void clear_prj_second_unused_is_updated_flag(void){
+   is_prj_second_unused_updated = false;
+ }
+ 
+-void clear_prj_second_foo_is_updated_flag(){
++void clear_prj_second_foo_is_updated_flag(void){
+   is_prj_second_foo_updated = false;
+ }
+ 
+-void clear_prj_second_bar_is_updated_flag(){
++void clear_prj_second_bar_is_updated_flag(void){
+   is_prj_second_bar_updated = false;
+ }
+ 
+-void clear_prj_second_system_output_is_updated_flag(){
++void clear_prj_second_system_output_is_updated_flag(void){
+   is_prj_second_system_output_updated = false;
+ }
+ 
+-void clear_prj_second_input_64_to_sec_is_updated_flag(){
++void clear_prj_second_input_64_to_sec_is_updated_flag(void){
+   is_prj_second_input_64_to_sec_updated = false;
+ }
+ 
+-void clear_prj_second_test_update_no_over_is_updated_flag(){
++void clear_prj_second_test_update_no_over_is_updated_flag(void){
+   is_prj_second_test_update_no_over_updated = false;
+ }
+ 
+-void clear_prj_second_test_update_no_over_64_is_updated_flag(){
++void clear_prj_second_test_update_no_over_64_is_updated_flag(void){
+   is_prj_second_test_update_no_over_64_updated = false;
+ }
+ 
+-void clear_prj_second_out_with_reliab_is_updated_flag(){
++void clear_prj_second_out_with_reliab_is_updated_flag(void){
+   is_prj_second_out_with_reliab_updated = false;
+ }
+ 
+-void clear_prj_second_input_32_to_second_is_updated_flag(){
++void clear_prj_second_input_32_to_second_is_updated_flag(void){
+   is_prj_second_input_32_to_second_updated = false;
+ }
+ 
+-void clear_prj_second_input_int32_to_second_is_updated_flag(){
++void clear_prj_second_input_int32_to_second_is_updated_flag(void){
+   is_prj_second_input_int32_to_second_updated = false;
+ }
+ 
+-void clear_prj_third_system_output_is_updated_flag(){
++void clear_prj_third_system_output_is_updated_flag(void){
+   is_prj_third_system_output_updated = false;
+ }
+ 
+-void clear_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(){
++void clear_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(void){
+   is_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_updated = false;
+ }
+ 
+ 
+-void pal_init_data_dictionary() {
++void pal_init_data_dictionary(void) {
+   sysvar_handle_system_input = pal_sysvar_init(&sysvar_system_input);
+   sysvar_handle_system_output = pal_sysvar_init(&sysvar_system_output);
+   sysvar_handle_model_input = pal_sysvar_init(&sysvar_model_input);
+@@ -793,7 +793,7 @@ void pal_init_data_dictionary() {
+   sysvar_handle_dummy_to_prevent_empty_mock_pal_dbg = pal_sysvar_init(&sysvar_dummy_to_prevent_empty_mock_pal_dbg);
+ }
+ 
+-void pal_load_mocked_inputs() {
++void pal_load_mocked_inputs(void) {
+   pal_sysvar_write_int32_t(sysvar_handle_system_input, mckc_system_input);
+   set_prj_system_input_is_updated_flag();
+   pal_sysvar_write_int32_t(sysvar_handle_model_input, mckc_model_input);
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.h
+index 5cc2119..4ade231 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_data_dictionary.h
+@@ -107,349 +107,349 @@ extern i_safe_sig_cnd_t out_with_reliab_rel;
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_system_input_is_updated_flag();
++bool get_prj_system_input_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_model_input_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_model_input_is_updated_flag();
++bool get_prj_model_input_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_64_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_64_is_updated_flag();
++bool get_prj_input_64_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_with_reliab_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_with_reliab_is_updated_flag();
++bool get_prj_input_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_64_with_reliab_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_64_with_reliab_is_updated_flag();
++bool get_prj_input_64_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_32_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_32_is_updated_flag();
++bool get_prj_input_32_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_int32_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_int32_is_updated_flag();
++bool get_prj_input_int32_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_unused_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_unused_is_updated_flag();
++bool get_prj_second_unused_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_foo_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_foo_is_updated_flag();
++bool get_prj_second_foo_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_bar_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_bar_is_updated_flag();
++bool get_prj_second_bar_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_system_output_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_system_output_is_updated_flag();
++bool get_prj_second_system_output_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_input_64_to_sec_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_input_64_to_sec_is_updated_flag();
++bool get_prj_second_input_64_to_sec_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_test_update_no_over_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_test_update_no_over_is_updated_flag();
++bool get_prj_second_test_update_no_over_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_test_update_no_over_64_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_test_update_no_over_64_is_updated_flag();
++bool get_prj_second_test_update_no_over_64_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_out_with_reliab_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_out_with_reliab_is_updated_flag();
++bool get_prj_second_out_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_input_32_to_second_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_input_32_to_second_is_updated_flag();
++bool get_prj_second_input_32_to_second_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_input_int32_to_second_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_input_int32_to_second_is_updated_flag();
++bool get_prj_second_input_int32_to_second_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_third_system_output_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_third_system_output_is_updated_flag();
++bool get_prj_third_system_output_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag();
++bool get_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_system_input_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_system_input_is_updated_flag();
++void set_prj_system_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_model_input_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_model_input_is_updated_flag();
++void set_prj_model_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_64_is_updated_flag();
++void set_prj_input_64_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_with_reliab_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_with_reliab_is_updated_flag();
++void set_prj_input_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_with_reliab_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_64_with_reliab_is_updated_flag();
++void set_prj_input_64_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_32_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_32_is_updated_flag();
++void set_prj_input_32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_int32_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_int32_is_updated_flag();
++void set_prj_input_int32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_bar_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_second_bar_is_updated_flag();
++void set_prj_second_bar_is_updated_flag(void);
+ 
+ /** @brief Set is_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag();
++void set_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with system_output. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_system_output();
++void set_update_flags_matching_system_output(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with foo. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_foo();
++void set_update_flags_matching_foo(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with test_update_no_over. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_test_update_no_over();
++void set_update_flags_matching_test_update_no_over(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with test_update_no_over_64. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_test_update_no_over_64();
++void set_update_flags_matching_test_update_no_over_64(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with input_64_to_sec. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_input_64_to_sec();
++void set_update_flags_matching_input_64_to_sec(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with out_with_reliab. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_out_with_reliab();
++void set_update_flags_matching_out_with_reliab(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with input_32_to_second. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_input_32_to_second();
++void set_update_flags_matching_input_32_to_second(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with input_int32_to_second. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_input_int32_to_second();
++void set_update_flags_matching_input_int32_to_second(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with unused. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_unused();
++void set_update_flags_matching_unused(void);
+ 
+ /** @brief Set is_prj_system_input_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_system_input_is_updated_flag();
++void clear_prj_system_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_model_input_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_model_input_is_updated_flag();
++void clear_prj_model_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_64_is_updated_flag();
++void clear_prj_input_64_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_with_reliab_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_with_reliab_is_updated_flag();
++void clear_prj_input_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_with_reliab_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_64_with_reliab_is_updated_flag();
++void clear_prj_input_64_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_32_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_32_is_updated_flag();
++void clear_prj_input_32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_int32_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_int32_is_updated_flag();
++void clear_prj_input_int32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_unused_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_unused_is_updated_flag();
++void clear_prj_second_unused_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_foo_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_foo_is_updated_flag();
++void clear_prj_second_foo_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_bar_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_bar_is_updated_flag();
++void clear_prj_second_bar_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_system_output_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_system_output_is_updated_flag();
++void clear_prj_second_system_output_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_input_64_to_sec_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_input_64_to_sec_is_updated_flag();
++void clear_prj_second_input_64_to_sec_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_test_update_no_over_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_test_update_no_over_is_updated_flag();
++void clear_prj_second_test_update_no_over_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_test_update_no_over_64_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_test_update_no_over_64_is_updated_flag();
++void clear_prj_second_test_update_no_over_64_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_out_with_reliab_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_out_with_reliab_is_updated_flag();
++void clear_prj_second_out_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_input_32_to_second_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_input_32_to_second_is_updated_flag();
++void clear_prj_second_input_32_to_second_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_input_int32_to_second_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_input_int32_to_second_is_updated_flag();
++void clear_prj_second_input_int32_to_second_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_third_system_output_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_third_system_output_is_updated_flag();
++void clear_prj_third_system_output_is_updated_flag(void);
+ 
+ /** @brief Set is_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag();
++void clear_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag(void);
+ 
+ 
+-void pal_init_data_dictionary();
+-void pal_load_mocked_inputs();
++void pal_init_data_dictionary(void);
++void pal_load_mocked_inputs(void);
+ 
+ #endif  // PAL_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.c
+index afa60f6..03a2e16 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.c
+@@ -25,21 +25,21 @@ palvar_read_status_t palvar_read_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg(uin
+ 
+ // Interface outputs
+ 
+-void pal_dbg_load_data_dict_variables() {
++void pal_dbg_load_data_dict_variables(void) {
+ }
+ 
+-void pal_dbg_write_data_dict_variables() {
++void pal_dbg_write_data_dict_variables(void) {
+ }
+ 
+ // Override functions
+ 
+ // Inputs update check functions
+-bool pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated(){
++bool pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated(void){
+   return get_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated_flag();
+ }
+ 
+ // Inputs get_errors functions
+-palvar_read_errors_t palvar_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_get_errors(){
++palvar_read_errors_t palvar_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_get_errors(void){
+   return sysvar_handle_dummy_to_prevent_empty_mock_pal_dbg->errors;
+ }
+ 
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.h
+index 6407635..5768f9c 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/pal_dbg_data_dictionary.h
+@@ -62,7 +62,7 @@ extern PAL_CAL float palc_dbg_pwm_offset;
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated();
++bool pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated(void);
+ 
+ 
+ // Inputs get_errors functions
+@@ -70,19 +70,19 @@ bool pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_is_updated();
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_get_errors();
++palvar_read_errors_t palvar_pal_dbg_dummy_to_prevent_empty_mock_pal_dbg_get_errors(void);
+ 
+ 
+ /** @brief Loads all the calibratables and inputs from their associated system
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void pal_dbg_load_data_dict_variables();
++void pal_dbg_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void pal_dbg_write_data_dict_variables();
++void pal_dbg_write_data_dict_variables(void);
+ 
+ #endif  // PAL_DBG_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.c
+index ce1348f..5fc5a25 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.c
+@@ -339,38 +339,38 @@ palvar_write_status_t palvar_write_prj_input_int32_to_second(int32_t value) {
+ }
+ 
+ 
+-void prj_load_data_dict_variables() {
++void prj_load_data_dict_variables(void) {
+ }
+ 
+-void prj_write_data_dict_variables() {
++void prj_write_data_dict_variables(void) {
+ }
+ 
+ // Override functions
+-void prj_override_displayable1() {
++void prj_override_displayable1(void) {
+   if (true == prjc_eo_displayable1) {
+     prj_displayable1 = prjc_vo_displayable1;
+   }
+ 
+ }
+-void prj_override_displayable_transmission_status() {
++void prj_override_displayable_transmission_status(void) {
+   if (true == prjc_eo_displayable_transmission_status) {
+     prj_displayable_transmission_status = prjc_vo_displayable_transmission_status;
+   }
+ 
+ }
+-void prj_override_displayable_write_requests() {
++void prj_override_displayable_write_requests(void) {
+   if (true == prjc_eo_displayable_write_requests) {
+     prj_displayable_write_requests = prjc_vo_displayable_write_requests;
+   }
+ 
+ }
+-void prj_override_displayable_overwrite_requests() {
++void prj_override_displayable_overwrite_requests(void) {
+   if (true == prjc_eo_displayable_overwrite_requests) {
+     prj_displayable_overwrite_requests = prjc_vo_displayable_overwrite_requests;
+   }
+ 
+ }
+-void prj_override_displayable_tx_acks() {
++void prj_override_displayable_tx_acks(void) {
+   if (true == prjc_eo_displayable_tx_acks) {
+     prj_displayable_tx_acks = prjc_vo_displayable_tx_acks;
+   }
+@@ -378,62 +378,62 @@ void prj_override_displayable_tx_acks() {
+ }
+ 
+ // Inputs update check functions
+-bool prj_system_input_is_updated(){
++bool prj_system_input_is_updated(void){
+   return get_prj_system_input_is_updated_flag();
+ }
+ 
+-bool prj_model_input_is_updated(){
++bool prj_model_input_is_updated(void){
+   return get_prj_model_input_is_updated_flag();
+ }
+ 
+-bool prj_input_64_is_updated(){
++bool prj_input_64_is_updated(void){
+   return get_prj_input_64_is_updated_flag();
+ }
+ 
+-bool prj_input_with_reliab_is_updated(){
++bool prj_input_with_reliab_is_updated(void){
+   return get_prj_input_with_reliab_is_updated_flag();
+ }
+ 
+-bool prj_input_64_with_reliab_is_updated(){
++bool prj_input_64_with_reliab_is_updated(void){
+   return get_prj_input_64_with_reliab_is_updated_flag();
+ }
+ 
+-bool prj_input_32_is_updated(){
++bool prj_input_32_is_updated(void){
+   return get_prj_input_32_is_updated_flag();
+ }
+ 
+-bool prj_input_int32_is_updated(){
++bool prj_input_int32_is_updated(void){
+   return get_prj_input_int32_is_updated_flag();
+ }
+ 
+ // Inputs get_errors functions
+-palvar_read_errors_t palvar_prj_system_input_get_errors(){
++palvar_read_errors_t palvar_prj_system_input_get_errors(void){
+   return sysvar_handle_system_input->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_model_input_get_errors(){
++palvar_read_errors_t palvar_prj_model_input_get_errors(void){
+   return sysvar_handle_model_input->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_64_get_errors(){
++palvar_read_errors_t palvar_prj_input_64_get_errors(void){
+   return (sysvar_handle_input_64_1->errors | sysvar_handle_input_64_2->errors |
+           sysvar_handle_input_64_3->errors | sysvar_handle_input_64_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_with_reliab_get_errors(){
++palvar_read_errors_t palvar_prj_input_with_reliab_get_errors(void){
+   return sysvar_handle_input_with_reliab->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors(){
++palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors(void){
+   return (sysvar_handle_input_64_with_reliab_1->errors | sysvar_handle_input_64_with_reliab_2->errors |
+           sysvar_handle_input_64_with_reliab_3->errors | sysvar_handle_input_64_with_reliab_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_32_get_errors(){
++palvar_read_errors_t palvar_prj_input_32_get_errors(void){
+   return sysvar_handle_input_32->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_int32_get_errors(){
++palvar_read_errors_t palvar_prj_input_int32_get_errors(void){
+   return sysvar_handle_input_int32->errors;
+ }
+ 
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.h
+index a536d73..26f309c 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_data_dictionary.h
+@@ -250,54 +250,54 @@ extern PAL_CAL bool prjc_eo_input_int32_to_second;
+ extern PAL_CAL int32_t prjc_vo_input_int32_to_second;
+ 
+ // Override functions
+-void prj_override_displayable1();
+-void prj_override_displayable_transmission_status();
+-void prj_override_displayable_write_requests();
+-void prj_override_displayable_overwrite_requests();
+-void prj_override_displayable_tx_acks();
++void prj_override_displayable1(void);
++void prj_override_displayable_transmission_status(void);
++void prj_override_displayable_write_requests(void);
++void prj_override_displayable_overwrite_requests(void);
++void prj_override_displayable_tx_acks(void);
+ 
+ // Inputs update check functions
+ /** @brief Check if Interface input system_input has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_system_input_is_updated();
++bool prj_system_input_is_updated(void);
+ 
+ /** @brief Check if Interface input model_input has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_model_input_is_updated();
++bool prj_model_input_is_updated(void);
+ 
+ /** @brief Check if Interface input input_64 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_64_is_updated();
++bool prj_input_64_is_updated(void);
+ 
+ /** @brief Check if Interface input input_with_reliab has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_with_reliab_is_updated();
++bool prj_input_with_reliab_is_updated(void);
+ 
+ /** @brief Check if Interface input input_64_with_reliab has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_64_with_reliab_is_updated();
++bool prj_input_64_with_reliab_is_updated(void);
+ 
+ /** @brief Check if Interface input input_32 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_32_is_updated();
++bool prj_input_32_is_updated(void);
+ 
+ /** @brief Check if Interface input input_int32 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_int32_is_updated();
++bool prj_input_int32_is_updated(void);
+ 
+ 
+ // Inputs get_errors functions
+@@ -305,55 +305,55 @@ bool prj_input_int32_is_updated();
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_system_input_get_errors();
++palvar_read_errors_t palvar_prj_system_input_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input model_input.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_model_input_get_errors();
++palvar_read_errors_t palvar_prj_model_input_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_64.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_64_get_errors();
++palvar_read_errors_t palvar_prj_input_64_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_with_reliab.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_with_reliab_get_errors();
++palvar_read_errors_t palvar_prj_input_with_reliab_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_64_with_reliab.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors();
++palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_32.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_32_get_errors();
++palvar_read_errors_t palvar_prj_input_32_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_int32.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_int32_get_errors();
++palvar_read_errors_t palvar_prj_input_int32_get_errors(void);
+ 
+ 
+ /** @brief Loads all the calibratables and inputs from their associated system
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_load_data_dict_variables();
++void prj_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_write_data_dict_variables();
++void prj_write_data_dict_variables(void);
+ 
+ #endif  // PRJ_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.c
+index 933ef9e..725b123 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.c
+@@ -267,95 +267,95 @@ palvar_write_status_t palvar_write_prj_second_output_int32(int32_t value) {
+ }
+ 
+ 
+-void prj_second_load_data_dict_variables() {
++void prj_second_load_data_dict_variables(void) {
+ }
+ 
+-void prj_second_write_data_dict_variables() {
++void prj_second_write_data_dict_variables(void) {
+ }
+ 
+ // Override functions
+ 
+ // Inputs update check functions
+-bool prj_second_unused_is_updated(){
++bool prj_second_unused_is_updated(void){
+   return get_prj_second_unused_is_updated_flag();
+ }
+ 
+-bool prj_second_foo_is_updated(){
++bool prj_second_foo_is_updated(void){
+   return get_prj_second_foo_is_updated_flag();
+ }
+ 
+-bool prj_second_bar_is_updated(){
++bool prj_second_bar_is_updated(void){
+   return get_prj_second_bar_is_updated_flag();
+ }
+ 
+-bool prj_second_system_output_is_updated(){
++bool prj_second_system_output_is_updated(void){
+   return get_prj_second_system_output_is_updated_flag();
+ }
+ 
+-bool prj_second_input_64_to_sec_is_updated(){
++bool prj_second_input_64_to_sec_is_updated(void){
+   return get_prj_second_input_64_to_sec_is_updated_flag();
+ }
+ 
+-bool prj_second_test_update_no_over_is_updated(){
++bool prj_second_test_update_no_over_is_updated(void){
+   return get_prj_second_test_update_no_over_is_updated_flag();
+ }
+ 
+-bool prj_second_test_update_no_over_64_is_updated(){
++bool prj_second_test_update_no_over_64_is_updated(void){
+   return get_prj_second_test_update_no_over_64_is_updated_flag();
+ }
+ 
+-bool prj_second_out_with_reliab_is_updated(){
++bool prj_second_out_with_reliab_is_updated(void){
+   return get_prj_second_out_with_reliab_is_updated_flag();
+ }
+ 
+-bool prj_second_input_32_to_second_is_updated(){
++bool prj_second_input_32_to_second_is_updated(void){
+   return get_prj_second_input_32_to_second_is_updated_flag();
+ }
+ 
+-bool prj_second_input_int32_to_second_is_updated(){
++bool prj_second_input_int32_to_second_is_updated(void){
+   return get_prj_second_input_int32_to_second_is_updated_flag();
+ }
+ 
+ // Inputs get_errors functions
+-palvar_read_errors_t palvar_prj_second_unused_get_errors(){
++palvar_read_errors_t palvar_prj_second_unused_get_errors(void){
+   return sysvar_handle_unused->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_foo_get_errors(){
++palvar_read_errors_t palvar_prj_second_foo_get_errors(void){
+   return sysvar_handle_foo->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_bar_get_errors(){
++palvar_read_errors_t palvar_prj_second_bar_get_errors(void){
+   return sysvar_handle_bar->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_system_output_get_errors(){
++palvar_read_errors_t palvar_prj_second_system_output_get_errors(void){
+   return sysvar_handle_system_output->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors(){
++palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors(void){
+   return (sysvar_handle_input_64_to_sec_1->errors | sysvar_handle_input_64_to_sec_2->errors |
+           sysvar_handle_input_64_to_sec_3->errors | sysvar_handle_input_64_to_sec_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors(){
++palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors(void){
+   return sysvar_handle_test_update_no_over->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors(){
++palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors(void){
+   return (sysvar_handle_test_update_no_over_64_1->errors | sysvar_handle_test_update_no_over_64_2->errors |
+           sysvar_handle_test_update_no_over_64_3->errors | sysvar_handle_test_update_no_over_64_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors(){
++palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors(void){
+   return sysvar_handle_out_with_reliab->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors(){
++palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors(void){
+   return sysvar_handle_input_32_to_second->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors(){
++palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors(void){
+   return sysvar_handle_input_int32_to_second->errors;
+ }
+ 
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.h
+index 7132ac2..362ec7f 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_second_data_dictionary.h
+@@ -204,61 +204,61 @@ extern PAL_CAL int32_t prjc_second_vo_output_int32;
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_unused_is_updated();
++bool prj_second_unused_is_updated(void);
+ 
+ /** @brief Check if Interface input foo has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_foo_is_updated();
++bool prj_second_foo_is_updated(void);
+ 
+ /** @brief Check if Interface input bar has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_bar_is_updated();
++bool prj_second_bar_is_updated(void);
+ 
+ /** @brief Check if Interface input system_output has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_system_output_is_updated();
++bool prj_second_system_output_is_updated(void);
+ 
+ /** @brief Check if Interface input input_64_to_sec has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_input_64_to_sec_is_updated();
++bool prj_second_input_64_to_sec_is_updated(void);
+ 
+ /** @brief Check if Interface input test_update_no_over has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_test_update_no_over_is_updated();
++bool prj_second_test_update_no_over_is_updated(void);
+ 
+ /** @brief Check if Interface input test_update_no_over_64 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_test_update_no_over_64_is_updated();
++bool prj_second_test_update_no_over_64_is_updated(void);
+ 
+ /** @brief Check if Interface input out_with_reliab has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_out_with_reliab_is_updated();
++bool prj_second_out_with_reliab_is_updated(void);
+ 
+ /** @brief Check if Interface input input_32_to_second has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_input_32_to_second_is_updated();
++bool prj_second_input_32_to_second_is_updated(void);
+ 
+ /** @brief Check if Interface input input_int32_to_second has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_input_int32_to_second_is_updated();
++bool prj_second_input_int32_to_second_is_updated(void);
+ 
+ 
+ // Inputs get_errors functions
+@@ -266,73 +266,73 @@ bool prj_second_input_int32_to_second_is_updated();
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_unused_get_errors();
++palvar_read_errors_t palvar_prj_second_unused_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input foo.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_foo_get_errors();
++palvar_read_errors_t palvar_prj_second_foo_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input bar.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_bar_get_errors();
++palvar_read_errors_t palvar_prj_second_bar_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input system_output.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_system_output_get_errors();
++palvar_read_errors_t palvar_prj_second_system_output_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_64_to_sec.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors();
++palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input test_update_no_over.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors();
++palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input test_update_no_over_64.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors();
++palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input out_with_reliab.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors();
++palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_32_to_second.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors();
++palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_int32_to_second.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors();
++palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors(void);
+ 
+ 
+ /** @brief Loads all the calibratables and inputs from their associated system
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_second_load_data_dict_variables();
++void prj_second_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_second_write_data_dict_variables();
++void prj_second_write_data_dict_variables(void);
+ 
+ #endif  // PRJ_SECOND_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.c
+index ab7615a..b728cae 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.c
+@@ -67,14 +67,14 @@ palvar_write_status_t palvar_write_prj_third_unused(bool value) {
+ }
+ 
+ 
+-void prj_third_load_data_dict_variables() {
++void prj_third_load_data_dict_variables(void) {
+ }
+ 
+-void prj_third_write_data_dict_variables() {
++void prj_third_write_data_dict_variables(void) {
+ }
+ 
+ // Override functions
+-void prj_third_override_displayable_third() {
++void prj_third_override_displayable_third(void) {
+   if (true == prjc_third_eo_displayable_third) {
+     prj_third_displayable_third = prjc_third_vo_displayable_third;
+   }
+@@ -82,12 +82,12 @@ void prj_third_override_displayable_third() {
+ }
+ 
+ // Inputs update check functions
+-bool prj_third_system_output_is_updated(){
++bool prj_third_system_output_is_updated(void){
+   return get_prj_third_system_output_is_updated_flag();
+ }
+ 
+ // Inputs get_errors functions
+-palvar_read_errors_t palvar_prj_third_system_output_get_errors(){
++palvar_read_errors_t palvar_prj_third_system_output_get_errors(void){
+   return sysvar_handle_system_output->errors;
+ }
+ 
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.h
+index 580c129..8a21432 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/PIINNOVO_M560_PRIMARY/prj_third_data_dictionary.h
+@@ -80,14 +80,14 @@ extern PAL_CAL bool prjc_third_vo_unused;
+ extern PAL_CAL bool prjc_third_enable_func1_task_third;
+ 
+ // Override functions
+-void prj_third_override_displayable_third();
++void prj_third_override_displayable_third(void);
+ 
+ // Inputs update check functions
+ /** @brief Check if Interface input system_output has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_third_system_output_is_updated();
++bool prj_third_system_output_is_updated(void);
+ 
+ 
+ // Inputs get_errors functions
+@@ -95,19 +95,19 @@ bool prj_third_system_output_is_updated();
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_third_system_output_get_errors();
++palvar_read_errors_t palvar_prj_third_system_output_get_errors(void);
+ 
+ 
+ /** @brief Loads all the calibratables and inputs from their associated system
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_third_load_data_dict_variables();
++void prj_third_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_third_write_data_dict_variables();
++void prj_third_write_data_dict_variables(void);
+ 
+ #endif  // PRJ_THIRD_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.c
+index cbe16eb..8f2d0cf 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.c
+@@ -1318,224 +1318,224 @@ static bool is_prj_second_input_int32_to_second_updated = false;
+ static bool is_prj_third_system_output_updated = false;
+ 
+ // Get update flags for inputs interfaces
+-bool get_prj_system_input_is_updated_flag(){
++bool get_prj_system_input_is_updated_flag(void){
+   return is_prj_system_input_updated;
+ }
+ 
+-bool get_prj_model_input_is_updated_flag(){
++bool get_prj_model_input_is_updated_flag(void){
+   return is_prj_model_input_updated;
+ }
+ 
+-bool get_prj_input_64_is_updated_flag(){
++bool get_prj_input_64_is_updated_flag(void){
+   return is_prj_input_64_updated;
+ }
+ 
+-bool get_prj_input_with_reliab_is_updated_flag(){
++bool get_prj_input_with_reliab_is_updated_flag(void){
+   return is_prj_input_with_reliab_updated;
+ }
+ 
+-bool get_prj_input_64_with_reliab_is_updated_flag(){
++bool get_prj_input_64_with_reliab_is_updated_flag(void){
+   return is_prj_input_64_with_reliab_updated;
+ }
+ 
+-bool get_prj_input_32_is_updated_flag(){
++bool get_prj_input_32_is_updated_flag(void){
+   return is_prj_input_32_updated;
+ }
+ 
+-bool get_prj_input_int32_is_updated_flag(){
++bool get_prj_input_int32_is_updated_flag(void){
+   return is_prj_input_int32_updated;
+ }
+ 
+-bool get_prj_second_unused_is_updated_flag(){
++bool get_prj_second_unused_is_updated_flag(void){
+   return is_prj_second_unused_updated;
+ }
+ 
+-bool get_prj_second_foo_is_updated_flag(){
++bool get_prj_second_foo_is_updated_flag(void){
+   return is_prj_second_foo_updated;
+ }
+ 
+-bool get_prj_second_bar_is_updated_flag(){
++bool get_prj_second_bar_is_updated_flag(void){
+   return is_prj_second_bar_updated;
+ }
+ 
+-bool get_prj_second_system_output_is_updated_flag(){
++bool get_prj_second_system_output_is_updated_flag(void){
+   return is_prj_second_system_output_updated;
+ }
+ 
+-bool get_prj_second_input_64_to_sec_is_updated_flag(){
++bool get_prj_second_input_64_to_sec_is_updated_flag(void){
+   return is_prj_second_input_64_to_sec_updated;
+ }
+ 
+-bool get_prj_second_test_update_no_over_is_updated_flag(){
++bool get_prj_second_test_update_no_over_is_updated_flag(void){
+   return is_prj_second_test_update_no_over_updated;
+ }
+ 
+-bool get_prj_second_test_update_no_over_64_is_updated_flag(){
++bool get_prj_second_test_update_no_over_64_is_updated_flag(void){
+   return is_prj_second_test_update_no_over_64_updated;
+ }
+ 
+-bool get_prj_second_out_with_reliab_is_updated_flag(){
++bool get_prj_second_out_with_reliab_is_updated_flag(void){
+   return is_prj_second_out_with_reliab_updated;
+ }
+ 
+-bool get_prj_second_input_32_to_second_is_updated_flag(){
++bool get_prj_second_input_32_to_second_is_updated_flag(void){
+   return is_prj_second_input_32_to_second_updated;
+ }
+ 
+-bool get_prj_second_input_int32_to_second_is_updated_flag(){
++bool get_prj_second_input_int32_to_second_is_updated_flag(void){
+   return is_prj_second_input_int32_to_second_updated;
+ }
+ 
+-bool get_prj_third_system_output_is_updated_flag(){
++bool get_prj_third_system_output_is_updated_flag(void){
+   return is_prj_third_system_output_updated;
+ }
+ 
+ // Set update flags for inputs interfaces without matching outputs
+-void set_prj_system_input_is_updated_flag(){
++void set_prj_system_input_is_updated_flag(void){
+   is_prj_system_input_updated = true;
+ }
+ 
+-void set_prj_model_input_is_updated_flag(){
++void set_prj_model_input_is_updated_flag(void){
+   is_prj_model_input_updated = true;
+ }
+ 
+-void set_prj_input_64_is_updated_flag(){
++void set_prj_input_64_is_updated_flag(void){
+   is_prj_input_64_updated = true;
+ }
+ 
+-void set_prj_input_with_reliab_is_updated_flag(){
++void set_prj_input_with_reliab_is_updated_flag(void){
+   is_prj_input_with_reliab_updated = true;
+ }
+ 
+-void set_prj_input_64_with_reliab_is_updated_flag(){
++void set_prj_input_64_with_reliab_is_updated_flag(void){
+   is_prj_input_64_with_reliab_updated = true;
+ }
+ 
+-void set_prj_input_32_is_updated_flag(){
++void set_prj_input_32_is_updated_flag(void){
+   is_prj_input_32_updated = true;
+ }
+ 
+-void set_prj_input_int32_is_updated_flag(){
++void set_prj_input_int32_is_updated_flag(void){
+   is_prj_input_int32_updated = true;
+ }
+ 
+-void set_prj_second_bar_is_updated_flag(){
++void set_prj_second_bar_is_updated_flag(void){
+   is_prj_second_bar_updated = true;
+ }
+ 
+ // Set update flags for inputs interfaces with matching outputs
+-void set_update_flags_matching_unused(){
++void set_update_flags_matching_unused(void){
+   is_prj_second_unused_updated = true;
+ }
+ 
+-void set_update_flags_matching_foo(){
++void set_update_flags_matching_foo(void){
+   is_prj_second_foo_updated = true;
+ }
+ 
+-void set_update_flags_matching_system_output(){
++void set_update_flags_matching_system_output(void){
+   is_prj_second_system_output_updated = true;
+   is_prj_third_system_output_updated = true;
+ }
+ 
+-void set_update_flags_matching_input_64_to_sec(){
++void set_update_flags_matching_input_64_to_sec(void){
+   is_prj_second_input_64_to_sec_updated = true;
+ }
+ 
+-void set_update_flags_matching_test_update_no_over(){
++void set_update_flags_matching_test_update_no_over(void){
+   is_prj_second_test_update_no_over_updated = true;
+ }
+ 
+-void set_update_flags_matching_test_update_no_over_64(){
++void set_update_flags_matching_test_update_no_over_64(void){
+   is_prj_second_test_update_no_over_64_updated = true;
+ }
+ 
+-void set_update_flags_matching_out_with_reliab(){
++void set_update_flags_matching_out_with_reliab(void){
+   is_prj_second_out_with_reliab_updated = true;
+ }
+ 
+-void set_update_flags_matching_input_32_to_second(){
++void set_update_flags_matching_input_32_to_second(void){
+   is_prj_second_input_32_to_second_updated = true;
+ }
+ 
+-void set_update_flags_matching_input_int32_to_second(){
++void set_update_flags_matching_input_int32_to_second(void){
+   is_prj_second_input_int32_to_second_updated = true;
+ }
+ 
+ // Clear update flags for inputs interfaces
+-void clear_prj_system_input_is_updated_flag(){
++void clear_prj_system_input_is_updated_flag(void){
+   is_prj_system_input_updated = false;
+ }
+ 
+-void clear_prj_model_input_is_updated_flag(){
++void clear_prj_model_input_is_updated_flag(void){
+   is_prj_model_input_updated = false;
+ }
+ 
+-void clear_prj_input_64_is_updated_flag(){
++void clear_prj_input_64_is_updated_flag(void){
+   is_prj_input_64_updated = false;
+ }
+ 
+-void clear_prj_input_with_reliab_is_updated_flag(){
++void clear_prj_input_with_reliab_is_updated_flag(void){
+   is_prj_input_with_reliab_updated = false;
+ }
+ 
+-void clear_prj_input_64_with_reliab_is_updated_flag(){
++void clear_prj_input_64_with_reliab_is_updated_flag(void){
+   is_prj_input_64_with_reliab_updated = false;
+ }
+ 
+-void clear_prj_input_32_is_updated_flag(){
++void clear_prj_input_32_is_updated_flag(void){
+   is_prj_input_32_updated = false;
+ }
+ 
+-void clear_prj_input_int32_is_updated_flag(){
++void clear_prj_input_int32_is_updated_flag(void){
+   is_prj_input_int32_updated = false;
+ }
+ 
+-void clear_prj_second_unused_is_updated_flag(){
++void clear_prj_second_unused_is_updated_flag(void){
+   is_prj_second_unused_updated = false;
+ }
+ 
+-void clear_prj_second_foo_is_updated_flag(){
++void clear_prj_second_foo_is_updated_flag(void){
+   is_prj_second_foo_updated = false;
+ }
+ 
+-void clear_prj_second_bar_is_updated_flag(){
++void clear_prj_second_bar_is_updated_flag(void){
+   is_prj_second_bar_updated = false;
+ }
+ 
+-void clear_prj_second_system_output_is_updated_flag(){
++void clear_prj_second_system_output_is_updated_flag(void){
+   is_prj_second_system_output_updated = false;
+ }
+ 
+-void clear_prj_second_input_64_to_sec_is_updated_flag(){
++void clear_prj_second_input_64_to_sec_is_updated_flag(void){
+   is_prj_second_input_64_to_sec_updated = false;
+ }
+ 
+-void clear_prj_second_test_update_no_over_is_updated_flag(){
++void clear_prj_second_test_update_no_over_is_updated_flag(void){
+   is_prj_second_test_update_no_over_updated = false;
+ }
+ 
+-void clear_prj_second_test_update_no_over_64_is_updated_flag(){
++void clear_prj_second_test_update_no_over_64_is_updated_flag(void){
+   is_prj_second_test_update_no_over_64_updated = false;
+ }
+ 
+-void clear_prj_second_out_with_reliab_is_updated_flag(){
++void clear_prj_second_out_with_reliab_is_updated_flag(void){
+   is_prj_second_out_with_reliab_updated = false;
+ }
+ 
+-void clear_prj_second_input_32_to_second_is_updated_flag(){
++void clear_prj_second_input_32_to_second_is_updated_flag(void){
+   is_prj_second_input_32_to_second_updated = false;
+ }
+ 
+-void clear_prj_second_input_int32_to_second_is_updated_flag(){
++void clear_prj_second_input_int32_to_second_is_updated_flag(void){
+   is_prj_second_input_int32_to_second_updated = false;
+ }
+ 
+-void clear_prj_third_system_output_is_updated_flag(){
++void clear_prj_third_system_output_is_updated_flag(void){
+   is_prj_third_system_output_updated = false;
+ }
+ 
+ 
+-void pal_init_data_dictionary() {
++void pal_init_data_dictionary(void) {
+   sysvar_handle_displayable1 = pal_sysvar_init(&sysvar_displayable1);
+   sysvar_handle_eo_displayable1 = pal_sysvar_init(&sysvar_eo_displayable1);
+   sysvar_handle_vo_displayable1 = pal_sysvar_init(&sysvar_vo_displayable1);
+@@ -1742,7 +1742,7 @@ void pal_init_data_dictionary() {
+   pal_sysvar_write_initial_calibratable_value_float(sysvar_handle_pwm_offset, palc_dbg_pwm_offset);
+ }
+ 
+-void pal_load_mocked_inputs() {
++void pal_load_mocked_inputs(void) {
+   set_prj_system_input_is_updated_flag();
+   set_prj_model_input_is_updated_flag();
+   set_prj_input_64_is_updated_flag();
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.h
+index f63fcc7..6d801f2 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_data_dictionary.h
+@@ -183,331 +183,331 @@ extern i_safe_sig_cnd_t out_with_reliab_rel;
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_system_input_is_updated_flag();
++bool get_prj_system_input_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_model_input_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_model_input_is_updated_flag();
++bool get_prj_model_input_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_64_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_64_is_updated_flag();
++bool get_prj_input_64_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_with_reliab_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_with_reliab_is_updated_flag();
++bool get_prj_input_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_64_with_reliab_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_64_with_reliab_is_updated_flag();
++bool get_prj_input_64_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_32_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_32_is_updated_flag();
++bool get_prj_input_32_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_input_int32_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_input_int32_is_updated_flag();
++bool get_prj_input_int32_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_unused_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_unused_is_updated_flag();
++bool get_prj_second_unused_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_foo_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_foo_is_updated_flag();
++bool get_prj_second_foo_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_bar_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_bar_is_updated_flag();
++bool get_prj_second_bar_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_system_output_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_system_output_is_updated_flag();
++bool get_prj_second_system_output_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_input_64_to_sec_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_input_64_to_sec_is_updated_flag();
++bool get_prj_second_input_64_to_sec_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_test_update_no_over_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_test_update_no_over_is_updated_flag();
++bool get_prj_second_test_update_no_over_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_test_update_no_over_64_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_test_update_no_over_64_is_updated_flag();
++bool get_prj_second_test_update_no_over_64_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_out_with_reliab_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_out_with_reliab_is_updated_flag();
++bool get_prj_second_out_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_input_32_to_second_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_input_32_to_second_is_updated_flag();
++bool get_prj_second_input_32_to_second_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_second_input_int32_to_second_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_second_input_int32_to_second_is_updated_flag();
++bool get_prj_second_input_int32_to_second_is_updated_flag(void);
+ 
+ /** @brief Get the value of is_prj_third_system_output_updated
+  *  @return boolean value stored in the variable.
+  *  @note This is an automatically generated function.
+  */
+-bool get_prj_third_system_output_is_updated_flag();
++bool get_prj_third_system_output_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_system_input_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_system_input_is_updated_flag();
++void set_prj_system_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_model_input_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_model_input_is_updated_flag();
++void set_prj_model_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_64_is_updated_flag();
++void set_prj_input_64_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_with_reliab_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_with_reliab_is_updated_flag();
++void set_prj_input_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_with_reliab_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_64_with_reliab_is_updated_flag();
++void set_prj_input_64_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_32_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_32_is_updated_flag();
++void set_prj_input_32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_int32_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_input_int32_is_updated_flag();
++void set_prj_input_int32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_bar_updated
+  *         to true.
+  *  @note This is an automatically generated function.
+  */
+-void set_prj_second_bar_is_updated_flag();
++void set_prj_second_bar_is_updated_flag(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with system_output. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_system_output();
++void set_update_flags_matching_system_output(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with foo. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_foo();
++void set_update_flags_matching_foo(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with test_update_no_over. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_test_update_no_over();
++void set_update_flags_matching_test_update_no_over(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with test_update_no_over_64. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_test_update_no_over_64();
++void set_update_flags_matching_test_update_no_over_64(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with input_64_to_sec. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_input_64_to_sec();
++void set_update_flags_matching_input_64_to_sec(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with out_with_reliab. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_out_with_reliab();
++void set_update_flags_matching_out_with_reliab(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with input_32_to_second. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_input_32_to_second();
++void set_update_flags_matching_input_32_to_second(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with input_int32_to_second. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_input_int32_to_second();
++void set_update_flags_matching_input_int32_to_second(void);
+ 
+ /** @brief Set to true all the input interfaces flags
+  *         matching with unused. This function is
+  *         called everytime the output is overwritten.
+  *  @note This is an automatically generated function.
+  */
+-void set_update_flags_matching_unused();
++void set_update_flags_matching_unused(void);
+ 
+ /** @brief Set is_prj_system_input_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_system_input_is_updated_flag();
++void clear_prj_system_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_model_input_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_model_input_is_updated_flag();
++void clear_prj_model_input_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_64_is_updated_flag();
++void clear_prj_input_64_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_with_reliab_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_with_reliab_is_updated_flag();
++void clear_prj_input_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_64_with_reliab_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_64_with_reliab_is_updated_flag();
++void clear_prj_input_64_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_32_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_32_is_updated_flag();
++void clear_prj_input_32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_input_int32_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_input_int32_is_updated_flag();
++void clear_prj_input_int32_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_unused_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_unused_is_updated_flag();
++void clear_prj_second_unused_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_foo_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_foo_is_updated_flag();
++void clear_prj_second_foo_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_bar_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_bar_is_updated_flag();
++void clear_prj_second_bar_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_system_output_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_system_output_is_updated_flag();
++void clear_prj_second_system_output_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_input_64_to_sec_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_input_64_to_sec_is_updated_flag();
++void clear_prj_second_input_64_to_sec_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_test_update_no_over_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_test_update_no_over_is_updated_flag();
++void clear_prj_second_test_update_no_over_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_test_update_no_over_64_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_test_update_no_over_64_is_updated_flag();
++void clear_prj_second_test_update_no_over_64_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_out_with_reliab_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_out_with_reliab_is_updated_flag();
++void clear_prj_second_out_with_reliab_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_input_32_to_second_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_input_32_to_second_is_updated_flag();
++void clear_prj_second_input_32_to_second_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_second_input_int32_to_second_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_second_input_int32_to_second_is_updated_flag();
++void clear_prj_second_input_int32_to_second_is_updated_flag(void);
+ 
+ /** @brief Set is_prj_third_system_output_updated
+  *         to false.
+  *  @note This is an automatically generated function.
+  */
+-void clear_prj_third_system_output_is_updated_flag();
++void clear_prj_third_system_output_is_updated_flag(void);
+ 
+ 
+-void pal_init_data_dictionary();
+-void pal_load_mocked_inputs();
++void pal_init_data_dictionary(void);
++void pal_load_mocked_inputs(void);
+ 
+ #endif  // PAL_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.c
+index 8de553b..82907b2 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.c
+@@ -14,7 +14,7 @@
+ 
+ // Interface outputs
+ 
+-void pal_dbg_load_data_dict_variables() {
++void pal_dbg_load_data_dict_variables(void) {
+   float temp_float;
+   int32_t temp_int32_t;
+   pal_sysvar_read_int32_t(sysvar_handle_manual_enabled, &temp_int32_t);
+@@ -33,7 +33,7 @@ void pal_dbg_load_data_dict_variables() {
+   *((float*) &palc_dbg_pwm_offset) = (float) temp_float;
+ }
+ 
+-void pal_dbg_write_data_dict_variables() {
++void pal_dbg_write_data_dict_variables(void) {
+   pal_sysvar_write_uint32_t(sysvar_handle_operation_error, (uint32_t) pal_dbg_operation_error);
+   pal_sysvar_write_int32_t(sysvar_handle_operation_result, (int32_t) pal_dbg_operation_result);
+   pal_sysvar_write_int32_t(sysvar_handle_channel_level_read, (int32_t) pal_dbg_channel_level_read);
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.h
+index 3a8fbe1..f2a208d 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/pal_dbg_data_dictionary.h
+@@ -58,12 +58,12 @@ extern PAL_CAL float palc_dbg_pwm_offset;
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void pal_dbg_load_data_dict_variables();
++void pal_dbg_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void pal_dbg_write_data_dict_variables();
++void pal_dbg_write_data_dict_variables(void);
+ 
+ #endif  // PAL_DBG_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.c
+index 4c8603c..769a913 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.c
+@@ -339,7 +339,7 @@ palvar_write_status_t palvar_write_prj_input_int32_to_second(int32_t value) {
+ }
+ 
+ 
+-void prj_load_data_dict_variables() {
++void prj_load_data_dict_variables(void) {
+   uint32_t temp_uint32_t;
+   int32_t temp_int32_t;
+   pal_sysvar_read_int32_t(sysvar_handle_eo_displayable1, &temp_int32_t);
+@@ -412,7 +412,7 @@ void prj_load_data_dict_variables() {
+   *((int32_t*) &prjc_vo_input_int32_to_second) = (int32_t) temp_int32_t;
+ }
+ 
+-void prj_write_data_dict_variables() {
++void prj_write_data_dict_variables(void) {
+   pal_sysvar_write_int32_t(sysvar_handle_displayable1, (int32_t) prj_displayable1);
+   pal_sysvar_write_uint32_t(sysvar_handle_abslt_time_lsb, (uint32_t) prj_abslt_time_lsb);
+   pal_sysvar_write_uint32_t(sysvar_handle_abslt_time_msb, (uint32_t) prj_abslt_time_msb);
+@@ -433,31 +433,31 @@ void prj_write_data_dict_variables() {
+ }
+ 
+ // Override functions
+-void prj_override_displayable1() {
++void prj_override_displayable1(void) {
+   if (true == prjc_eo_displayable1) {
+     prj_displayable1 = prjc_vo_displayable1;
+   }
+   pal_sysvar_write_int32_t(sysvar_handle_displayable1, prjc_vo_displayable1);
+ }
+-void prj_override_displayable_transmission_status() {
++void prj_override_displayable_transmission_status(void) {
+   if (true == prjc_eo_displayable_transmission_status) {
+     prj_displayable_transmission_status = prjc_vo_displayable_transmission_status;
+   }
+   pal_sysvar_write_uint32_t(sysvar_handle_displayable_transmission_status, prjc_vo_displayable_transmission_status);
+ }
+-void prj_override_displayable_write_requests() {
++void prj_override_displayable_write_requests(void) {
+   if (true == prjc_eo_displayable_write_requests) {
+     prj_displayable_write_requests = prjc_vo_displayable_write_requests;
+   }
+   pal_sysvar_write_uint32_t(sysvar_handle_displayable_write_requests, prjc_vo_displayable_write_requests);
+ }
+-void prj_override_displayable_overwrite_requests() {
++void prj_override_displayable_overwrite_requests(void) {
+   if (true == prjc_eo_displayable_overwrite_requests) {
+     prj_displayable_overwrite_requests = prjc_vo_displayable_overwrite_requests;
+   }
+   pal_sysvar_write_uint32_t(sysvar_handle_displayable_overwrite_requests, prjc_vo_displayable_overwrite_requests);
+ }
+-void prj_override_displayable_tx_acks() {
++void prj_override_displayable_tx_acks(void) {
+   if (true == prjc_eo_displayable_tx_acks) {
+     prj_displayable_tx_acks = prjc_vo_displayable_tx_acks;
+   }
+@@ -465,62 +465,62 @@ void prj_override_displayable_tx_acks() {
+ }
+ 
+ // Inputs update check functions
+-bool prj_system_input_is_updated(){
++bool prj_system_input_is_updated(void){
+   return get_prj_system_input_is_updated_flag();
+ }
+ 
+-bool prj_model_input_is_updated(){
++bool prj_model_input_is_updated(void){
+   return get_prj_model_input_is_updated_flag();
+ }
+ 
+-bool prj_input_64_is_updated(){
++bool prj_input_64_is_updated(void){
+   return get_prj_input_64_is_updated_flag();
+ }
+ 
+-bool prj_input_with_reliab_is_updated(){
++bool prj_input_with_reliab_is_updated(void){
+   return get_prj_input_with_reliab_is_updated_flag();
+ }
+ 
+-bool prj_input_64_with_reliab_is_updated(){
++bool prj_input_64_with_reliab_is_updated(void){
+   return get_prj_input_64_with_reliab_is_updated_flag();
+ }
+ 
+-bool prj_input_32_is_updated(){
++bool prj_input_32_is_updated(void){
+   return get_prj_input_32_is_updated_flag();
+ }
+ 
+-bool prj_input_int32_is_updated(){
++bool prj_input_int32_is_updated(void){
+   return get_prj_input_int32_is_updated_flag();
+ }
+ 
+ // Inputs get_errors functions
+-palvar_read_errors_t palvar_prj_system_input_get_errors(){
++palvar_read_errors_t palvar_prj_system_input_get_errors(void){
+   return sysvar_handle_system_input->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_model_input_get_errors(){
++palvar_read_errors_t palvar_prj_model_input_get_errors(void){
+   return sysvar_handle_model_input->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_64_get_errors(){
++palvar_read_errors_t palvar_prj_input_64_get_errors(void){
+   return (sysvar_handle_input_64_1->errors | sysvar_handle_input_64_2->errors |
+           sysvar_handle_input_64_3->errors | sysvar_handle_input_64_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_with_reliab_get_errors(){
++palvar_read_errors_t palvar_prj_input_with_reliab_get_errors(void){
+   return sysvar_handle_input_with_reliab->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors(){
++palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors(void){
+   return (sysvar_handle_input_64_with_reliab_1->errors | sysvar_handle_input_64_with_reliab_2->errors |
+           sysvar_handle_input_64_with_reliab_3->errors | sysvar_handle_input_64_with_reliab_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_32_get_errors(){
++palvar_read_errors_t palvar_prj_input_32_get_errors(void){
+   return sysvar_handle_input_32->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_input_int32_get_errors(){
++palvar_read_errors_t palvar_prj_input_int32_get_errors(void){
+   return sysvar_handle_input_int32->errors;
+ }
+ 
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.h
+index 39356a0..b817eb8 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_data_dictionary.h
+@@ -250,54 +250,54 @@ extern PAL_CAL bool prjc_eo_input_int32_to_second;
+ extern PAL_CAL int32_t prjc_vo_input_int32_to_second;
+ 
+ // Override functions
+-void prj_override_displayable1();
+-void prj_override_displayable_transmission_status();
+-void prj_override_displayable_write_requests();
+-void prj_override_displayable_overwrite_requests();
+-void prj_override_displayable_tx_acks();
++void prj_override_displayable1(void);
++void prj_override_displayable_transmission_status(void);
++void prj_override_displayable_write_requests(void);
++void prj_override_displayable_overwrite_requests(void);
++void prj_override_displayable_tx_acks(void);
+ 
+ // Inputs update check functions
+ /** @brief Check if Interface input system_input has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_system_input_is_updated();
++bool prj_system_input_is_updated(void);
+ 
+ /** @brief Check if Interface input model_input has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_model_input_is_updated();
++bool prj_model_input_is_updated(void);
+ 
+ /** @brief Check if Interface input input_64 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_64_is_updated();
++bool prj_input_64_is_updated(void);
+ 
+ /** @brief Check if Interface input input_with_reliab has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_with_reliab_is_updated();
++bool prj_input_with_reliab_is_updated(void);
+ 
+ /** @brief Check if Interface input input_64_with_reliab has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_64_with_reliab_is_updated();
++bool prj_input_64_with_reliab_is_updated(void);
+ 
+ /** @brief Check if Interface input input_32 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_32_is_updated();
++bool prj_input_32_is_updated(void);
+ 
+ /** @brief Check if Interface input input_int32 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_input_int32_is_updated();
++bool prj_input_int32_is_updated(void);
+ 
+ 
+ // Inputs get_errors functions
+@@ -305,55 +305,55 @@ bool prj_input_int32_is_updated();
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_system_input_get_errors();
++palvar_read_errors_t palvar_prj_system_input_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input model_input.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_model_input_get_errors();
++palvar_read_errors_t palvar_prj_model_input_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_64.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_64_get_errors();
++palvar_read_errors_t palvar_prj_input_64_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_with_reliab.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_with_reliab_get_errors();
++palvar_read_errors_t palvar_prj_input_with_reliab_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_64_with_reliab.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors();
++palvar_read_errors_t palvar_prj_input_64_with_reliab_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_32.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_32_get_errors();
++palvar_read_errors_t palvar_prj_input_32_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_int32.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_input_int32_get_errors();
++palvar_read_errors_t palvar_prj_input_int32_get_errors(void);
+ 
+ 
+ /** @brief Loads all the calibratables and inputs from their associated system
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_load_data_dict_variables();
++void prj_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_write_data_dict_variables();
++void prj_write_data_dict_variables(void);
+ 
+ #endif  // PRJ_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.c
+index 8b99b48..f114f87 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.c
+@@ -267,7 +267,7 @@ palvar_write_status_t palvar_write_prj_second_output_int32(int32_t value) {
+ }
+ 
+ 
+-void prj_second_load_data_dict_variables() {
++void prj_second_load_data_dict_variables(void) {
+   uint32_t temp_uint32_t;
+   int32_t temp_int32_t;
+   pal_sysvar_read_int32_t(sysvar_handle_eo_unused_never_rx, &temp_int32_t);
+@@ -298,7 +298,7 @@ void prj_second_load_data_dict_variables() {
+   *((int32_t*) &prjc_second_vo_output_int32) = (int32_t) temp_int32_t;
+ }
+ 
+-void prj_second_write_data_dict_variables() {
++void prj_second_write_data_dict_variables(void) {
+   pal_sysvar_write_int32_t(sysvar_handle_system_output_second_disp, (int32_t) prj_second_system_output_second_disp);
+   pal_sysvar_write_int32_t(sysvar_handle_system_output_second_reliab_disp, (int32_t) prj_second_system_output_second_reliab_disp);
+ }
+@@ -306,86 +306,86 @@ void prj_second_write_data_dict_variables() {
+ // Override functions
+ 
+ // Inputs update check functions
+-bool prj_second_unused_is_updated(){
++bool prj_second_unused_is_updated(void){
+   return get_prj_second_unused_is_updated_flag();
+ }
+ 
+-bool prj_second_foo_is_updated(){
++bool prj_second_foo_is_updated(void){
+   return get_prj_second_foo_is_updated_flag();
+ }
+ 
+-bool prj_second_bar_is_updated(){
++bool prj_second_bar_is_updated(void){
+   return get_prj_second_bar_is_updated_flag();
+ }
+ 
+-bool prj_second_system_output_is_updated(){
++bool prj_second_system_output_is_updated(void){
+   return get_prj_second_system_output_is_updated_flag();
+ }
+ 
+-bool prj_second_input_64_to_sec_is_updated(){
++bool prj_second_input_64_to_sec_is_updated(void){
+   return get_prj_second_input_64_to_sec_is_updated_flag();
+ }
+ 
+-bool prj_second_test_update_no_over_is_updated(){
++bool prj_second_test_update_no_over_is_updated(void){
+   return get_prj_second_test_update_no_over_is_updated_flag();
+ }
+ 
+-bool prj_second_test_update_no_over_64_is_updated(){
++bool prj_second_test_update_no_over_64_is_updated(void){
+   return get_prj_second_test_update_no_over_64_is_updated_flag();
+ }
+ 
+-bool prj_second_out_with_reliab_is_updated(){
++bool prj_second_out_with_reliab_is_updated(void){
+   return get_prj_second_out_with_reliab_is_updated_flag();
+ }
+ 
+-bool prj_second_input_32_to_second_is_updated(){
++bool prj_second_input_32_to_second_is_updated(void){
+   return get_prj_second_input_32_to_second_is_updated_flag();
+ }
+ 
+-bool prj_second_input_int32_to_second_is_updated(){
++bool prj_second_input_int32_to_second_is_updated(void){
+   return get_prj_second_input_int32_to_second_is_updated_flag();
+ }
+ 
+ // Inputs get_errors functions
+-palvar_read_errors_t palvar_prj_second_unused_get_errors(){
++palvar_read_errors_t palvar_prj_second_unused_get_errors(void){
+   return sysvar_handle_unused->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_foo_get_errors(){
++palvar_read_errors_t palvar_prj_second_foo_get_errors(void){
+   return sysvar_handle_foo->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_bar_get_errors(){
++palvar_read_errors_t palvar_prj_second_bar_get_errors(void){
+   return sysvar_handle_bar->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_system_output_get_errors(){
++palvar_read_errors_t palvar_prj_second_system_output_get_errors(void){
+   return sysvar_handle_system_output->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors(){
++palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors(void){
+   return (sysvar_handle_input_64_to_sec_1->errors | sysvar_handle_input_64_to_sec_2->errors |
+           sysvar_handle_input_64_to_sec_3->errors | sysvar_handle_input_64_to_sec_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors(){
++palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors(void){
+   return sysvar_handle_test_update_no_over->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors(){
++palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors(void){
+   return (sysvar_handle_test_update_no_over_64_1->errors | sysvar_handle_test_update_no_over_64_2->errors |
+           sysvar_handle_test_update_no_over_64_3->errors | sysvar_handle_test_update_no_over_64_4->errors);
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors(){
++palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors(void){
+   return sysvar_handle_out_with_reliab->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors(){
++palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors(void){
+   return sysvar_handle_input_32_to_second->errors;
+ }
+ 
+-palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors(){
++palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors(void){
+   return sysvar_handle_input_int32_to_second->errors;
+ }
+ 
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.h
+index 12509a6..bdd56b3 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_second_data_dictionary.h
+@@ -204,61 +204,61 @@ extern PAL_CAL int32_t prjc_second_vo_output_int32;
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_unused_is_updated();
++bool prj_second_unused_is_updated(void);
+ 
+ /** @brief Check if Interface input foo has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_foo_is_updated();
++bool prj_second_foo_is_updated(void);
+ 
+ /** @brief Check if Interface input bar has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_bar_is_updated();
++bool prj_second_bar_is_updated(void);
+ 
+ /** @brief Check if Interface input system_output has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_system_output_is_updated();
++bool prj_second_system_output_is_updated(void);
+ 
+ /** @brief Check if Interface input input_64_to_sec has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_input_64_to_sec_is_updated();
++bool prj_second_input_64_to_sec_is_updated(void);
+ 
+ /** @brief Check if Interface input test_update_no_over has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_test_update_no_over_is_updated();
++bool prj_second_test_update_no_over_is_updated(void);
+ 
+ /** @brief Check if Interface input test_update_no_over_64 has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_test_update_no_over_64_is_updated();
++bool prj_second_test_update_no_over_64_is_updated(void);
+ 
+ /** @brief Check if Interface input out_with_reliab has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_out_with_reliab_is_updated();
++bool prj_second_out_with_reliab_is_updated(void);
+ 
+ /** @brief Check if Interface input input_32_to_second has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_input_32_to_second_is_updated();
++bool prj_second_input_32_to_second_is_updated(void);
+ 
+ /** @brief Check if Interface input input_int32_to_second has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_second_input_int32_to_second_is_updated();
++bool prj_second_input_int32_to_second_is_updated(void);
+ 
+ 
+ // Inputs get_errors functions
+@@ -266,73 +266,73 @@ bool prj_second_input_int32_to_second_is_updated();
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_unused_get_errors();
++palvar_read_errors_t palvar_prj_second_unused_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input foo.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_foo_get_errors();
++palvar_read_errors_t palvar_prj_second_foo_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input bar.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_bar_get_errors();
++palvar_read_errors_t palvar_prj_second_bar_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input system_output.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_system_output_get_errors();
++palvar_read_errors_t palvar_prj_second_system_output_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_64_to_sec.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors();
++palvar_read_errors_t palvar_prj_second_input_64_to_sec_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input test_update_no_over.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors();
++palvar_read_errors_t palvar_prj_second_test_update_no_over_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input test_update_no_over_64.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors();
++palvar_read_errors_t palvar_prj_second_test_update_no_over_64_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input out_with_reliab.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors();
++palvar_read_errors_t palvar_prj_second_out_with_reliab_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_32_to_second.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors();
++palvar_read_errors_t palvar_prj_second_input_32_to_second_get_errors(void);
+ 
+ /** @brief Retrieve the errors for Interface input input_int32_to_second.
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors();
++palvar_read_errors_t palvar_prj_second_input_int32_to_second_get_errors(void);
+ 
+ 
+ /** @brief Loads all the calibratables and inputs from their associated system
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_second_load_data_dict_variables();
++void prj_second_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_second_write_data_dict_variables();
++void prj_second_write_data_dict_variables(void);
+ 
+ #endif  // PRJ_SECOND_DATA_DICTIONARY_H_
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.c b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.c
+index e33d7ec..192320d 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.c
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.c
+@@ -67,7 +67,7 @@ palvar_write_status_t palvar_write_prj_third_unused(bool value) {
+ }
+ 
+ 
+-void prj_third_load_data_dict_variables() {
++void prj_third_load_data_dict_variables(void) {
+   uint32_t temp_uint32_t;
+   int32_t temp_int32_t;
+   pal_sysvar_read_int32_t(sysvar_handle_eo_output_third, &temp_int32_t);
+@@ -88,14 +88,14 @@ void prj_third_load_data_dict_variables() {
+   *((bool*) &prjc_third_enable_func1_task_third) = (bool) temp_int32_t;
+ }
+ 
+-void prj_third_write_data_dict_variables() {
++void prj_third_write_data_dict_variables(void) {
+   pal_sysvar_write_int32_t(sysvar_handle_system_output_third_disp, (int32_t) prj_third_system_output_third_disp);
+   pal_sysvar_write_uint32_t(sysvar_handle_displayable_third, (uint32_t) prj_third_displayable_third);
+   pal_sysvar_write_int32_t(sysvar_handle_system_output_third_reliab_disp, (int32_t) prj_third_system_output_third_reliab_disp);
+ }
+ 
+ // Override functions
+-void prj_third_override_displayable_third() {
++void prj_third_override_displayable_third(void) {
+   if (true == prjc_third_eo_displayable_third) {
+     prj_third_displayable_third = prjc_third_vo_displayable_third;
+   }
+@@ -103,12 +103,12 @@ void prj_third_override_displayable_third() {
+ }
+ 
+ // Inputs update check functions
+-bool prj_third_system_output_is_updated(){
++bool prj_third_system_output_is_updated(void){
+   return get_prj_third_system_output_is_updated_flag();
+ }
+ 
+ // Inputs get_errors functions
+-palvar_read_errors_t palvar_prj_third_system_output_get_errors(){
++palvar_read_errors_t palvar_prj_third_system_output_get_errors(void){
+   return sysvar_handle_system_output->errors;
+ }
+ 
+diff --git a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.h b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.h
+index 7c2a169..0ecbe75 100644
+--- a/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.h
++++ b/test/unit/python/code_gen/pal/paldatadict/resources/expected_output/RAFT/prj_third_data_dictionary.h
+@@ -80,14 +80,14 @@ extern PAL_CAL bool prjc_third_vo_unused;
+ extern PAL_CAL bool prjc_third_enable_func1_task_third;
+ 
+ // Override functions
+-void prj_third_override_displayable_third();
++void prj_third_override_displayable_third(void);
+ 
+ // Inputs update check functions
+ /** @brief Check if Interface input system_output has been updated.
+  *  @return true if the Interface input is updated, otherwise false.
+  *  @note This is an automatically generated function.
+  */
+-bool prj_third_system_output_is_updated();
++bool prj_third_system_output_is_updated(void);
+ 
+ 
+ // Inputs get_errors functions
+@@ -95,19 +95,19 @@ bool prj_third_system_output_is_updated();
+  *  @return palvar_read_errors_t
+  *  @note This is an automatically generated function.
+  */
+-palvar_read_errors_t palvar_prj_third_system_output_get_errors();
++palvar_read_errors_t palvar_prj_third_system_output_get_errors(void);
+ 
+ 
+ /** @brief Loads all the calibratables and inputs from their associated system
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_third_load_data_dict_variables();
++void prj_third_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void prj_third_write_data_dict_variables();
++void prj_third_write_data_dict_variables(void);
+ 
+ #endif  // PRJ_THIRD_DATA_DICTIONARY_H_

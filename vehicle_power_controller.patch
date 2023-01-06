@@ -1,22 +1,20 @@
+diff --git a/src/vpc_gw/power_state_manager/power_state_manager.c b/src/vpc_gw/power_state_manager/power_state_manager.c
+index a28e38c7..f2a5e27f 100644
+--- a/src/vpc_gw/power_state_manager/power_state_manager.c
++++ b/src/vpc_gw/power_state_manager/power_state_manager.c
+@@ -295,6 +295,8 @@ void power_state_manager_step(void) {
+       break;
+ 
+     default: {
++      //TODO: chose correct default for is_state_change, you can also default initialize it on line 226
++      is_state_change = true;
+       state_machine.current_state = I_POWER_MODE_INITIAL;
+       power_mode = I_POWER_MODE_INITIAL;
+     } break;
 diff --git a/src/vpc_gw/vpc_gw.c b/src/vpc_gw/vpc_gw.c
-index 966994c..420a2bc 100644
+index 966994c7..53d57a3e 100644
 --- a/src/vpc_gw/vpc_gw.c
 +++ b/src/vpc_gw/vpc_gw.c
-@@ -9,13 +9,13 @@
- /* Includes */
- #include "vpc_gw.h"
- 
-+#include "diagnostics/diagnostics_wrapper.h"
- #include "interface_abstraction/digital_output_writer.h"
- #include "logger.h"
- #include "pal_can.h"
- #include "pal_data_dictionary.h"
- #include "pal_digital_io.h"
- #include "power_state_manager/power_state_manager.h"
--#include "diagnostics/diagnostics_wrapper.h"
- #include "vpc_gw_data_dictionary.h"
- 
- #if defined(BACKEND_ENGINE_PIINNOVO_M130)
 @@ -29,7 +29,7 @@
  #endif
  #else
@@ -26,8 +24,17 @@ index 966994c..420a2bc 100644
  #endif
  
  /* Defines and Type definitions */
+@@ -71,7 +71,7 @@ void vpc_gw_initialise_app(void) {
+ void psc_background_app(void) {}
+ #endif
+ 
+-static void initialize_standalone_can_channels() {
++static void initialize_standalone_can_channels(void) {
+   // Always initialize CAN Channel A for Pi-Innovo projects to keep CCP enabled!
+   palcan_init_channels(can_channels,
+                        sizeof(can_channels) / sizeof(palcan_channel_t));
 diff --git a/src/vpc_scu/pal_main.c b/src/vpc_scu/pal_main.c
-index 119edbd..959bef0 100644
+index 119edbd9..959bef0c 100644
 --- a/src/vpc_scu/pal_main.c
 +++ b/src/vpc_scu/pal_main.c
 @@ -22,7 +22,7 @@
@@ -39,25 +46,32 @@ index 119edbd..959bef0 100644
  #endif
  
  #ifndef ENABLE_SECONDARY_PROC
+diff --git a/src/vpc_vcu/power_state_controller/power_state_controller.c b/src/vpc_vcu/power_state_controller/power_state_controller.c
+index 9c0ac8b6..2cc5da1b 100644
+--- a/src/vpc_vcu/power_state_controller/power_state_controller.c
++++ b/src/vpc_vcu/power_state_controller/power_state_controller.c
+@@ -39,7 +39,7 @@ uint8_t vpc_vcu_dtcnvm_saving_status;
+ uint8_t vpc_vcu_vpc_vcu_power_mode;
+ 
+ /* Public function definitions */
+-void power_state_controller_init() {
++void power_state_controller_init(void) {
+   read_pal_interface_inputs();
+ 
+   power_controller_init(&power_controller_output);
+@@ -47,7 +47,7 @@ void power_state_controller_init() {
+   vpc_vcu_dtcnvm_saving_status = power_controller_output.dtcnvm_saving_status;
+ }
+ 
+-void power_state_controller_update() {
++void power_state_controller_update(void) {
+   read_pal_interface_inputs();
+ 
+   power_controller_update(power_controller_input, &power_controller_output);
 diff --git a/src/vpc_vcu/vpc_vcu.c b/src/vpc_vcu/vpc_vcu.c
-index 26d8f79..00b03e6 100644
+index 26d8f795..be11af6c 100644
 --- a/src/vpc_vcu/vpc_vcu.c
 +++ b/src/vpc_vcu/vpc_vcu.c
-@@ -9,13 +9,13 @@
- /* Includes */
- #include "vpc_vcu.h"
- 
-+#include "diagnostics/diagnostics_wrapper.h"
- #include "interface_abstraction/digital_output_writer.h"
- #include "logger.h"
- #include "pal_can.h"
- #include "pal_data_dictionary.h"
- #include "pal_digital_io.h"
- #include "vpc_vcu/power_state_controller/power_state_controller.h"
--#include "diagnostics/diagnostics_wrapper.h"
- #include "vpc_vcu_data_dictionary.h"
- 
- /* NVM usage */
 @@ -30,7 +30,7 @@
  #endif
  #else
@@ -67,3 +81,12 @@ index 26d8f79..00b03e6 100644
  #endif
  
  /* Defines and Type definitions */
+@@ -74,7 +74,7 @@ void vpc_vcu_initialise_app(void) {
+ void psc_background_app(void) {}
+ #endif
+ 
+-static void initialize_standalone_can_channels() {
++static void initialize_standalone_can_channels(void) {
+   // Always initialize CAN Channel A for Pi-Innovo projects to keep CCP enabled!
+   palcan_init_channels(can_channels,
+                        sizeof(can_channels) / sizeof(palcan_channel_t));

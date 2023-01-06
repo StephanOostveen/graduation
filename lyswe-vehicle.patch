@@ -1,3 +1,48 @@
+diff --git a/superrepo/inVehicle/nodes/central_gateway/src/central_gateway.c b/superrepo/inVehicle/nodes/central_gateway/src/central_gateway.c
+index d4ce2741..e336e02f 100644
+--- a/superrepo/inVehicle/nodes/central_gateway/src/central_gateway.c
++++ b/superrepo/inVehicle/nodes/central_gateway/src/central_gateway.c
+@@ -50,7 +50,7 @@ static palcan_channel_t can_channels[4] = {
+     {.id = PAL_CAN_CHANNEL_C, .baud_rate = pal_cbaud_500_kbps},
+     {.id = PAL_CAN_CHANNEL_D, .baud_rate = pal_cbaud_500_kbps}};
+ 
+-static void cgw_update_tcu_ignition() {
++static void cgw_update_tcu_ignition(void) {
+   if (cgwc_tcu_ignition == true) {
+     paldio_output_write(PIN_IGN_TCU_EN, PAL_DIGITAL_PIN_HIGH);
+   }
+diff --git a/superrepo/inVehicle/nodes/common/src/nvm/nvm.c b/superrepo/inVehicle/nodes/common/src/nvm/nvm.c
+index 5d3e60a3..486240b6 100644
+--- a/superrepo/inVehicle/nodes/common/src/nvm/nvm.c
++++ b/superrepo/inVehicle/nodes/common/src/nvm/nvm.c
+@@ -53,7 +53,7 @@ static nvm_validation_t read_nvm_version(int16_t* nvm_version);
+ 
+ static const uint8_t nvm_magic_key[MAGIC_KEY_SIZE + 1] = "LYES";
+ 
+-void initialise_nvm() {
++void initialise_nvm(void) {
+   cgw_nvm_init_status = 0;
+   int16_t nvm_version = -1;
+   int16_t nvmmap_version = -1;
+diff --git a/superrepo/inVehicle/nodes/common/src/nvm/nvm.h b/superrepo/inVehicle/nodes/common/src/nvm/nvm.h
+index 01212b1b..94e319b3 100644
+--- a/superrepo/inVehicle/nodes/common/src/nvm/nvm.h
++++ b/superrepo/inVehicle/nodes/common/src/nvm/nvm.h
+@@ -11,11 +11,11 @@
+ /** @brief Initialises NVM
+   * @param none
+   */
+-void initialise_nvm();
++void initialise_nvm(void);
+ 
+ /** @brief Debug function to test NVM functionality
+   * @param none
+   */
+-void nvm_debug();
++void nvm_debug(void);
+ 
+ #endif // SRC_NVM_NVM_H
+\ No newline at end of file
 diff --git a/superrepo/inVehicle/nodes/safety_control_unit_primary/src/scu_app.c b/superrepo/inVehicle/nodes/safety_control_unit_primary/src/scu_app.c
 index 34233bb5..453c2b07 100644
 --- a/superrepo/inVehicle/nodes/safety_control_unit_primary/src/scu_app.c
@@ -5,16 +50,16 @@ index 34233bb5..453c2b07 100644
 @@ -79,6 +79,7 @@ static palcan_channel_t can_channels[4] = {
      {.id = PAL_CAN_CHANNEL_C, .baud_rate = pal_cbaud_500_kbps},
      {.id = PAL_CAN_CHANNEL_D, .baud_rate = pal_cbaud_500_kbps}};
-
+ 
 +void   win_initialise_app(void);
  void psc_initialise_app(void) {
    pal_init_data_dictionary();
-
+ 
 @@ -158,6 +159,7 @@ void scu_task_10ms(void) {
    propulsion_safety_10ms();
  #endif
  }
 +void win_task(void);
-
+ 
  void scu_task_50ms(void) {
    pal_load_mocked_inputs();

@@ -1,0 +1,268 @@
+diff --git a/src/common/controllers/closures_controller/closures_interface.c b/src/common/controllers/closures_controller/closures_interface.c
+index ea0eaed..713035b 100644
+--- a/src/common/controllers/closures_controller/closures_interface.c
++++ b/src/common/controllers/closures_controller/closures_interface.c
+@@ -58,37 +58,37 @@ void perform_latch_inits(uint16_t task_period) {
+   }
+ }
+ 
+-void perform_status_storage_inits() {
++void perform_status_storage_inits(void) {
+   for (uint8_t i = 0; i < num_of_interfaces; i++) {
+     closures_interfaces[i].status_storage_init();
+   }
+ }
+ 
+-void perform_command_storage_inits() {
++void perform_command_storage_inits(void) {
+   for (uint8_t i = 0; i < num_of_interfaces; i++) {
+     closures_interfaces[i].command_storage_init();
+   }
+ }
+ 
+-void perform_status_can_comm_inits() {
++void perform_status_can_comm_inits(void) {
+   for (uint8_t i = 0; i < num_of_interfaces; i++) {
+     closures_interfaces[i].status_can_comm_init();
+   }
+ }
+ 
+-void perform_command_can_comm_inits() {
++void perform_command_can_comm_inits(void) {
+   for (uint8_t i = 0; i < num_of_interfaces; i++) {
+     closures_interfaces[i].command_can_comm_init();
+   }
+ }
+ 
+-void perform_can_status_receives() {
++void perform_can_status_receives(void) {
+   for (uint8_t i = 0; i < num_of_interfaces; i++) {
+     closures_interfaces[i].can_status_receive();
+   }
+ }
+ 
+-void perform_can_command_sends() {
++void perform_can_command_sends(void) {
+   for (uint8_t i = 0; i < num_of_interfaces; i++) {
+     closures_interfaces[i].can_command_send();
+   }
+diff --git a/src/common/controllers/operators/doors_operator/doors_operator.c b/src/common/controllers/operators/doors_operator/doors_operator.c
+index 8fffbb8..08f04b5 100644
+--- a/src/common/controllers/operators/doors_operator/doors_operator.c
++++ b/src/common/controllers/operators/doors_operator/doors_operator.c
+@@ -217,13 +217,13 @@ void doors_latch_init(uint16_t task_period) {
+   task_cycles_in_button_press_window = (uint16_t)(BUTTON_PRESS_WINDOW_MS) / task_period;
+ }
+ 
+-void doors_status_storage_init() {
++void doors_status_storage_init(void) {
+   for (uint8_t d = 0; d < (uint8_t)NUM_DOORS; ++d) {
+     doors_status_storage_per_latch_init(d);
+   }
+ }
+ 
+-void doors_command_storage_init() {
++void doors_command_storage_init(void) {
+   for (uint8_t d = 0; d < (uint8_t)NUM_DOORS; ++d) {
+     doors_command_storage_per_latch_init(d);
+   }
+@@ -242,26 +242,26 @@ void doors_process_buttons_press_state(uint16_t closure_button_action,
+   }
+ }
+ 
+-void doors_status_can_comm_init() {
++void doors_status_can_comm_init(void) {
+   lylib_can_comm_init(status_msg_list_a, DOORS_NUM_CHAN_A, PAL_CAN_CHANNEL_A,
+                       STATUS_MSG_DIR);
+   lylib_can_comm_init(status_msg_list_c, DOORS_NUM_CHAN_C, PAL_CAN_CHANNEL_C,
+                       STATUS_MSG_DIR);
+ }
+ 
+-void doors_command_can_comm_init() {
++void doors_command_can_comm_init(void) {
+   lylib_can_comm_init(command_msg_list_a, DOORS_NUM_CHAN_A, PAL_CAN_CHANNEL_A,
+                       COMMAND_MSG_DIR);
+   lylib_can_comm_init(command_msg_list_c, DOORS_NUM_CHAN_C, PAL_CAN_CHANNEL_C,
+                       COMMAND_MSG_DIR);
+ }
+ 
+-void doors_can_status_receive() {
++void doors_can_status_receive(void) {
+   lylib_can_comm_receive(status_msg_list_a, DOORS_NUM_CHAN_A, doors_task_period);
+   lylib_can_comm_receive(status_msg_list_c, DOORS_NUM_CHAN_C, doors_task_period);
+ }
+ 
+-void doors_can_command_send() {
++void doors_can_command_send(void) {
+   lylib_can_comm_send(command_msg_list_a, DOORS_NUM_CHAN_A, doors_task_period);
+   lylib_can_comm_send(command_msg_list_c, DOORS_NUM_CHAN_C, doors_task_period);
+ }
+@@ -455,7 +455,7 @@ static void doors_rising_edge_counter_reset(door_latch_t* latch) {
+ 
+ #ifdef CEEDLING_UNIT_TEST
+ // cppcheck-suppress[unusedFunction, misra-c2012-8.4, unmatchedSuppression]
+-door_latch_t* clr_doors_get_doors_latches() {
++door_latch_t* clr_doors_get_doors_latches(void) {
+   return doors_latches;
+ }
+ 
+diff --git a/src/common/controllers/operators/doors_operator/doors_operator.h b/src/common/controllers/operators/doors_operator/doors_operator.h
+index 3785318..c49e876 100644
+--- a/src/common/controllers/operators/doors_operator/doors_operator.h
++++ b/src/common/controllers/operators/doors_operator/doors_operator.h
+@@ -35,28 +35,28 @@ void doors_latch_init(uint16_t task_period);
+ /** @brief Creates storage and the status message for CAN communication, for all door
+  * latches
+  */
+-void doors_status_storage_init();
++void doors_status_storage_init(void);
+ 
+ /** @brief Creates storage and the command message for CAN communication, for all door
+  * latches
+  */
+-void doors_command_storage_init();
++void doors_command_storage_init(void);
+ 
+ /** @brief Initialize the can comm lylib for status messages
+  */
+-void doors_status_can_comm_init();
++void doors_status_can_comm_init(void);
+ 
+ /** @brief Initialize the can comm lylib for command messages
+  */
+-void doors_command_can_comm_init();
++void doors_command_can_comm_init(void);
+ 
+ /** @brief Receive the status messages from the lylib
+  */
+-void doors_can_status_receive();
++void doors_can_status_receive(void);
+ 
+ /** @brief Send the command messages from the lylib
+  */
+-void doors_can_command_send();
++void doors_can_command_send(void);
+ 
+ /** @brief Updates the closures_hmi_scenario
+  *  @param[out] closure_hmi_scenario Closures hmi scenario
+diff --git a/src/common/controllers/operators/tailgate_operator/tailgate_operator.c b/src/common/controllers/operators/tailgate_operator/tailgate_operator.c
+index 68f73fb..314081b 100644
+--- a/src/common/controllers/operators/tailgate_operator/tailgate_operator.c
++++ b/src/common/controllers/operators/tailgate_operator/tailgate_operator.c
+@@ -93,7 +93,7 @@ void tailgate_latch_init(uint16_t task_period) {
+   tailgate_task_period = task_period;
+ }
+ 
+-void tailgate_status_storage_init() {
++void tailgate_status_storage_init(void) {
+   static const tailgate_status_msg_values_t tailgate_status_message_init = {
+     .trigger_input  = tailgate_status_input_default,
+     .node_id_input  = tailgate_status_input_default,
+@@ -120,7 +120,7 @@ void tailgate_status_storage_init() {
+     &data_destination);
+ }
+ 
+-void tailgate_command_storage_init() {
++void tailgate_command_storage_init(void) {
+   latch_command_storage_t* cmd_store = &tailgate_latch.command_storage;
+   cmd_store->door_latch_command = tailgate_command_message_init;
+ 
+@@ -139,21 +139,21 @@ void tailgate_command_storage_init() {
+     cmd_store->msg_data_pointers, &data_source);
+ }
+ 
+-void tailgate_status_can_comm_init() {
++void tailgate_status_can_comm_init(void) {
+   lylib_can_comm_init(status_msg_list, TAILGATE_NUM_CHAN, tailgate_latch.can_channel,
+                       STATUS_MSG_DIR);
+ }
+ 
+-void tailgate_command_can_comm_init() {
++void tailgate_command_can_comm_init(void) {
+   lylib_can_comm_init(command_msg_list, TAILGATE_NUM_CHAN, tailgate_latch.can_channel,
+                       COMMAND_MSG_DIR);
+ }
+ 
+-void tailgate_can_status_receive() {
++void tailgate_can_status_receive(void) {
+   lylib_can_comm_receive(status_msg_list, TAILGATE_NUM_CHAN, tailgate_task_period);
+ }
+ 
+-void tailgate_can_command_send() {
++void tailgate_can_command_send(void) {
+   lylib_can_comm_send(command_msg_list, TAILGATE_NUM_CHAN, tailgate_task_period);
+ }
+ 
+@@ -227,7 +227,7 @@ static bool tailgate_is_rising_edge(bool current_sample, bool* previous_sample_p
+ 
+ #ifdef CEEDLING_UNIT_TEST
+ // cppcheck-suppress[unusedFunction, misra-c2012-8.4, unmatchedSuppression]
+-tailgate_latch_t* clr_tailgate_get_tailgate_latches() {
++tailgate_latch_t* clr_tailgate_get_tailgate_latches(void) {
+   return tailgate_latches;
+ }
+ 
+diff --git a/src/common/controllers/operators/tailgate_operator/tailgate_operator.h b/src/common/controllers/operators/tailgate_operator/tailgate_operator.h
+index 049badd..b91a949 100644
+--- a/src/common/controllers/operators/tailgate_operator/tailgate_operator.h
++++ b/src/common/controllers/operators/tailgate_operator/tailgate_operator.h
+@@ -35,28 +35,28 @@ void tailgate_latch_init(uint16_t task_period);
+ /** @brief Creates storage and the status message for CAN communication, for the tailgate
+  * latch
+  */
+-void tailgate_status_storage_init();
++void tailgate_status_storage_init(void);
+ 
+ /** @brief Creates storage and the command message for CAN communication, for the tailgate
+  * latch
+  */
+-void tailgate_command_storage_init();
++void tailgate_command_storage_init(void);
+ 
+ /** @brief Initialize the can comm lylib for status messages
+  */
+-void tailgate_status_can_comm_init();
++void tailgate_status_can_comm_init(void);
+ 
+ /** @brief Initialize the can comm lylib for command messages
+  */
+-void tailgate_command_can_comm_init();
++void tailgate_command_can_comm_init(void);
+ 
+ /** @brief Receive the status messages from the lylib
+  */
+-void tailgate_can_status_receive();
++void tailgate_can_status_receive(void);
+ 
+ /** @brief Send the command messages from the lylib
+  */
+-void tailgate_can_command_send();
++void tailgate_can_command_send(void);
+ 
+ /** @brief Updates the closures_hmi_scenario
+  *  @param[out] closure_hmi_scenario Closures hmi scenario
+diff --git a/src/common/controllers/state_machines/closuresfsm.c b/src/common/controllers/state_machines/closuresfsm.c
+index 8ec5cdb..4ece6ec 100644
+--- a/src/common/controllers/state_machines/closuresfsm.c
++++ b/src/common/controllers/state_machines/closuresfsm.c
+@@ -180,7 +180,7 @@ static void process_closures_fsm_door_open(closures_fsm_type_t *this,
+ }
+ 
+ /* Public function definitions */
+-closures_fsm_type_t *get_closures_fsm_pointer() {
++closures_fsm_type_t *get_closures_fsm_pointer(void) {
+   static closures_fsm_type_t s_closures_fsm = FSM_INIT_INSTANCE(
+     closures_fsm, CLOSURESFSM_INITIAL);
+ 
+diff --git a/src/common/controllers/state_machines/closuresfsm.h b/src/common/controllers/state_machines/closuresfsm.h
+index d67fdde..fe7f5d3 100644
+--- a/src/common/controllers/state_machines/closuresfsm.h
++++ b/src/common/controllers/state_machines/closuresfsm.h
+@@ -72,6 +72,6 @@ typedef struct {
+ /* Public function declarations */
+ void closures_fsm_tick(closures_fsm_type_t* this);
+ 
+-closures_fsm_type_t* get_closures_fsm_pointer();
++closures_fsm_type_t* get_closures_fsm_pointer(void);
+ 
+ #endif  // CLOSURESFSM_H

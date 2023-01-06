@@ -100,7 +100,7 @@ new file mode 100644
 index 000000000..ddeec32b9
 --- /dev/null
 +++ b/clang-tools-extra/clang-tidy/ly/Palvar_writeCheck.cpp
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,64 @@
 +//===--- Palvar_writeCheck.cpp - clang-tidy -------------------------------===//
 +//
 +// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
@@ -160,14 +160,6 @@ index 000000000..ddeec32b9
 +          Result.Nodes.getNodeAs<CallExpr>("palvar_write")) {
 +    findPalOrigin(Result, writeCallNode);
 +  }
-+  /*
-+  if (!MatchedDecl->getIdentifier() ||
-+  MatchedDecl->getName().startswith("awesome_")) return;
-+  diag(MatchedDecl->getLocation(), "function %0 is insufficiently awesome")
-+      << MatchedDecl;
-+  diag(MatchedDecl->getLocation(), "insert 'awesome'", DiagnosticIDs::Note)
-+      << FixItHint::CreateInsertion(MatchedDecl->getLocation(), "awesome_");
-+      */
 +}
 +
 +} // namespace ly

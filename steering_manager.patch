@@ -1,0 +1,13 @@
+diff --git a/src/steering_manager.c b/src/steering_manager.c
+index e2908b2..d1413e5 100644
+--- a/src/steering_manager.c
++++ b/src/steering_manager.c
+@@ -150,7 +150,7 @@ void stm_task(void) {
+ void psc_background_app(void) {}
+ #endif
+ 
+-static void initialize_can_channels() {
++static void initialize_can_channels(void) {
+   // Always initialize CAN Channel A for Pi Innovo projects to keep CCP enabled!
+   palcan_channel_t can_channels[2];
+   can_channels[0].id = PAL_CAN_CHANNEL_A;

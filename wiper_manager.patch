@@ -1,0 +1,60 @@
+diff --git a/src/common/controller/wiper_controller/wiper_controller.c b/src/common/controller/wiper_controller/wiper_controller.c
+index 102361f..57a9f16 100644
+--- a/src/common/controller/wiper_controller/wiper_controller.c
++++ b/src/common/controller/wiper_controller/wiper_controller.c
+@@ -60,7 +60,7 @@ static bool provide_washer_command(
+ /** @brief Get the wiper actual state
+  *  @return Wiper actual state
+  */
+-static wiper_state_t get_wiper_actual_state();
++static wiper_state_t get_wiper_actual_state(void);
+ 
+ 
+ /* Public function definitions */
+@@ -173,7 +173,7 @@ static transition_status_t wiper_perform_next_state(
+   return transition_status;
+ }
+ 
+-static wiper_state_t get_wiper_actual_state() {
++static wiper_state_t get_wiper_actual_state(void) {
+   wiper_state_t state = STATE_UNKNOWN;
+   wcs_wiper_switch_status_t wiper_state = get_wiper_status();
+ 
+diff --git a/src/common/diagnostics/wiper_dtc_handler.c b/src/common/diagnostics/wiper_dtc_handler.c
+index 21b6d99..18dffcf 100644
+--- a/src/common/diagnostics/wiper_dtc_handler.c
++++ b/src/common/diagnostics/wiper_dtc_handler.c
+@@ -42,7 +42,7 @@ static paldiag_event_t get_dtc_event(wcs_motor_error_status_t wiper_error_status
+ static bool is_failed_to_passed_detected(paldiag_event_status_t dtc_status);
+ 
+ /* Public function definitions */
+-void wiper_dtc_update() {
++void wiper_dtc_update(void) {
+   paldiag_event_status_t dtc_status = PALDIAG_EVENT_STATUS_FAILED;
+   paldiag_event_t dtc_event = NULL;
+ 
+diff --git a/src/common/diagnostics/wiper_dtc_handler.h b/src/common/diagnostics/wiper_dtc_handler.h
+index f5d8e6e..b0c579c 100644
+--- a/src/common/diagnostics/wiper_dtc_handler.h
++++ b/src/common/diagnostics/wiper_dtc_handler.h
+@@ -15,6 +15,6 @@
+ /* Macro definitions */
+ 
+ /* Public function declarations */
+-void wiper_dtc_update();
++void wiper_dtc_update(void);
+ 
+ #endif /* WIPER_DTC_HANDLER_H_ */
+diff --git a/src/common/drivers/washer_level/washer_level.c b/src/common/drivers/washer_level/washer_level.c
+index caa30db..f3f9b7c 100644
+--- a/src/common/drivers/washer_level/washer_level.c
++++ b/src/common/drivers/washer_level/washer_level.c
+@@ -38,7 +38,7 @@ static paldio_level_t level_switch_value = PALDIO_LEVEL_LOW;
+ /* Private function declarations */
+ 
+ /* Public function definitions */
+-void washer_level_init() {
++void washer_level_init(void) {
+   (void)paldio_input_init(WASHER_LEVEL_PIN);
+   // Enable of VREF-B, by initializing and 'disabling the disable' ..
+   (void)paldio_output_init(VREFB_ENABLE_PIN, PALDIO_LEVEL_LOW);

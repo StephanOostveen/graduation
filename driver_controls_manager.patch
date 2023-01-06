@@ -1,0 +1,25 @@
+diff --git a/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.c b/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.c
+index da7a46e..cd375bd 100644
+--- a/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.c
++++ b/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.c
+@@ -86,7 +86,7 @@ can_parser_ret_t parse_can_message(const cp_can_message_t* msg) {
+   return ret_val;
+ }
+ 
+-void reset_can_parser() {
++void reset_can_parser(void) {
+   static const cp_fs_datagram_status_t empty_cp_fs_datagram_status = {
+     .number_of_messages_left = 0, .payload_size_left = 0, .datagram_index = 0};
+   // Reset displayables
+diff --git a/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.h b/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.h
+index a5a1bfe..5d49720 100644
+--- a/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.h
++++ b/src/driver_controls_manager_vcu/parking_sensors_interface/valeo_uls_hp_kit/can_parser/can_parser.h
+@@ -38,6 +38,6 @@ can_parser_ret_t parse_can_message(const cp_can_message_t* msg);
+ 
+ /** @brief Resets the CAN parser.
+  */
+-void reset_can_parser();
++void reset_can_parser(void);
+ 
+ #endif  // VALEO_CAN_PARSER_CAN_PARSER_H_

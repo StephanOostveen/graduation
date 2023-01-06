@@ -1,0 +1,132 @@
+diff --git a/src/supervisor/es/tms_supervisor.c b/src/supervisor/es/tms_supervisor.c
+index 89080a8..154a89c 100644
+--- a/src/supervisor/es/tms_supervisor.c
++++ b/src/supervisor/es/tms_supervisor.c
+@@ -1649,7 +1649,7 @@ static void tick_all_drivers(void) {
+ 
+ 
+ /* Public functions */
+-void supervisor_init() {
++void supervisor_init(void) {
+   config_vars = config_vars_get_ptr();
+ 
+   tms_ext_comm_init();
+@@ -2107,7 +2107,7 @@ void supervisor_init() {
+   config_vars->filling_procedure.status.actuators_not_stopped = false;
+ }
+ 
+-void supervisor_tick() {
++void supervisor_tick(void) {
+   /* This lock prevents the faster (100ms) running task control
+      to run when preempt this one */
+   control_locked++;
+@@ -2184,7 +2184,7 @@ void supervisor_tick() {
+   control_locked--;
+ }
+ 
+-void supervisor_tick_100ms() {
++void supervisor_tick_100ms(void) {
+   // Skip getting and filtering sensor and actuator values if control task
+   // is already running to prevent sudden change in data
+   if (control_locked == 0U) {
+@@ -2199,7 +2199,7 @@ void supervisor_tick_100ms() {
+  *
+  * @return void
+  */
+-static void handle_defog_request() {
++static void handle_defog_request(void) {
+   if (true == tms_heated_windshield_on_requested) {
+     (void)paldio_output_write(WINDSHIELD_HEATER_RELAY, PALDIO_LEVEL_HIGH);
+   } else {
+@@ -2664,17 +2664,17 @@ void ut_supervisor_set_comp_temps_coolant_bat(float temp) {
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-void ut_supervisor_reset_system_fault() {
++void ut_supervisor_reset_system_fault(void) {
+   system_fault = tms_system_fault_invalid;
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-tms_system_fault_t ut_supervisor_get_system_fault() {
++tms_system_fault_t ut_supervisor_get_system_fault(void) {
+   return system_fault;
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-tms_hmi_scenario_t ut_supervisor_get_hmi_scenario() {
++tms_hmi_scenario_t ut_supervisor_get_hmi_scenario(void) {
+   return hmi_scenario;
+ }
+ 
+@@ -2684,22 +2684,22 @@ void ut_supervisor_set_windshield_on_requested(bool on) {
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-uint16_t ut_supervisor_get_coolant_hv_power_draw() {
++uint16_t ut_supervisor_get_coolant_hv_power_draw(void) {
+   return coolant_hv_power_draw;
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-uint16_t ut_supervisor_get_coolant_lv_power_draw() {
++uint16_t ut_supervisor_get_coolant_lv_power_draw(void) {
+   return coolant_lv_power_draw;
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-uint16_t ut_supervisor_get_hvac_hv_power_draw() {
++uint16_t ut_supervisor_get_hvac_hv_power_draw(void) {
+   return hvac_hv_power_draw;
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-uint16_t ut_supervisor_get_hvac_lv_power_draw() {
++uint16_t ut_supervisor_get_hvac_lv_power_draw(void) {
+   return hvac_lv_power_draw;
+ }
+ 
+@@ -2758,7 +2758,7 @@ uint8_t ut_supervisor_get_requested_ags_actuation(uint8_t index) {
+ }
+ 
+ // cppcheck-suppress unusedFunction
+-uint8_t ut_supervisor_get_ivi_airdistr_actual() {
++uint8_t ut_supervisor_get_ivi_airdistr_actual(void) {
+   return (uint8_t) ivi_air_distribution_actual;
+ }
+ #endif  // defined(CEEDLING_UNIT_TEST)
+diff --git a/src/supervisor/tms_supervisor.h b/src/supervisor/tms_supervisor.h
+index b556aa4..cfb1d5d 100644
+--- a/src/supervisor/tms_supervisor.h
++++ b/src/supervisor/tms_supervisor.h
+@@ -42,14 +42,14 @@ void supervisor_tick_100ms(void);
+ #if defined(CEEDLING_UNIT_TEST)
+ void ut_supervisor_set_control_locked(uint8_t locked);
+ void ut_supervisor_set_comp_temps_coolant_bat(float temp);
+-void ut_supervisor_reset_system_fault();
+-tms_system_fault_t ut_supervisor_get_system_fault();
+-tms_hmi_scenario_t ut_supervisor_get_hmi_scenario();
++void ut_supervisor_reset_system_fault(void);
++tms_system_fault_t ut_supervisor_get_system_fault(void);
++tms_hmi_scenario_t ut_supervisor_get_hmi_scenario(void);
+ void ut_supervisor_set_windshield_on_requested(bool on);
+-uint16_t ut_supervisor_get_coolant_hv_power_draw();
+-uint16_t ut_supervisor_get_coolant_lv_power_draw();
+-uint16_t ut_supervisor_get_hvac_hv_power_draw();
+-uint16_t ut_supervisor_get_hvac_lv_power_draw();
++uint16_t ut_supervisor_get_coolant_hv_power_draw(void);
++uint16_t ut_supervisor_get_coolant_lv_power_draw(void);
++uint16_t ut_supervisor_get_hvac_hv_power_draw(void);
++uint16_t ut_supervisor_get_hvac_lv_power_draw(void);
+ void ut_supervisor_set_ivi_airdistr_actual(bool feet_on, bool head_on,
+     bool ws_on, bool back_on);
+ void ut_supervisor_set_continuous_actuators(
+@@ -62,7 +62,7 @@ uint8_t ut_supervisor_get_requested_hvh_actuation(uint8_t index);
+ uint8_t ut_supervisor_get_requested_blwr_actuation(uint8_t index);
+ float ut_supervisor_get_requested_comp_actuation(uint8_t index);
+ uint8_t ut_supervisor_get_requested_ags_actuation(uint8_t index);
+-uint8_t ut_supervisor_get_ivi_airdistr_actual();
++uint8_t ut_supervisor_get_ivi_airdistr_actual(void);
+ 
+ #endif  // defined(CEEDLING_UNIT_TEST)
+ 

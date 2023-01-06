@@ -1,5 +1,178 @@
+diff --git a/scripts/code_gen/pal/paldatadict.py b/scripts/code_gen/pal/paldatadict.py
+index 39d920c..a86a127 100644
+--- a/scripts/code_gen/pal/paldatadict.py
++++ b/scripts/code_gen/pal/paldatadict.py
+@@ -188,17 +188,17 @@ specific_header_function_declarations = """\
+  *    variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void {dd_name}_load_data_dict_variables();
++void {dd_name}_load_data_dict_variables(void);
+ 
+ /** @brief Writes all the values of the variables of displayables and outputs to
+  *    their associated system variables, based on the data dictionary.
+  *  @note This is an automatically generated function.
+  */
+-void {dd_name}_write_data_dict_variables();
++void {dd_name}_write_data_dict_variables(void);
+ """
+ 
+ data_dictionary_override_declarations = """\
+-void {dd_name}_override_{var_name}();
++void {dd_name}_override_{var_name}(void);
+ """
+ 
+ data_dictionary_c_raft_sysvar = """\
+@@ -223,7 +223,7 @@ pal_sysvar_t sysvar_{name} =
+ """
+ 
+ data_dictionary_override_implementations = """\
+-void {dd_name}_override_{var_name}() {{
++void {dd_name}_override_{var_name}(void) {{
+   if (true == {eo_var}) {{
+     {dd_var_name} = {vo_var};
+   }}
+@@ -246,7 +246,7 @@ data_dictionary_get_is_updated_function_call = \
+     "get_{func_dd_name}_{func_name}_is_updated_flag()"
+ 
+ data_dictionary_get_is_updated_function_prototype = \
+-    """bool """ + data_dictionary_get_is_updated_function_call
++    "bool get_{func_dd_name}_{func_name}_is_updated_flag(void)"
+ 
+ data_dictionary_get_is_updated_function_definition = \
+     data_dictionary_get_is_updated_function_prototype + """{{
+@@ -265,7 +265,7 @@ data_dictionary_set_is_updated_function_call = \
+     "set_{func_dd_name}_{func_name}_is_updated_flag()"
+ 
+ data_dictionary_set_is_updated_function_prototype = \
+-    """void """ + data_dictionary_set_is_updated_function_call
++    "void set_{func_dd_name}_{func_name}_is_updated_flag(void)"
+ 
+ data_dictionary_set_is_updated_function_definition = \
+     data_dictionary_set_is_updated_function_prototype + """{{
+@@ -285,7 +285,7 @@ data_dictionary_set_flag_match_output_func_call = \
+     "set_update_flags_matching_{func_name}()"
+ 
+ data_dictionary_set_flag_for_match_output_func_prototype = \
+-    """void """ + data_dictionary_set_flag_match_output_func_call
++    "void set_update_flags_matching_{func_name}(void)"
+ 
+ data_dictionary_set_flag_match_output_func_def = \
+     data_dictionary_set_flag_for_match_output_func_prototype + """{{
+@@ -303,7 +303,7 @@ data_dictionary_clear_is_updated_function_call = \
+     "clear_{func_dd_name}_{func_name}_is_updated_flag()"
+ 
+ data_dictionary_clear_is_updated_function_prototype = \
+-    """void """ + data_dictionary_clear_is_updated_function_call
++    "void clear_{func_dd_name}_{func_name}_is_updated_flag(void)"
+ 
+ data_dictionary_clear_is_updated_function_definition = \
+     data_dictionary_clear_is_updated_function_prototype + """{{
+@@ -319,7 +319,7 @@ palvardata_dictionary_is_updated_function_doc = """\
+ """
+ 
+ palvardata_dictionary_is_updated_function_prototype = \
+-    "bool {func_dd_name}_{func_var_name}_is_updated()"
++    "bool {func_dd_name}_{func_var_name}_is_updated(void)"
+ 
+ palvardata_dictionary_is_updated_function_definition = \
+     palvardata_dictionary_is_updated_function_prototype + """{{
+@@ -336,7 +336,7 @@ palvardata_dictionary_get_errors_function_doc = """\
+ """
+ 
+ palvardata_dictionary_get_errors_function_prototype = \
+-    "palvar_read_errors_t palvar_{func_dd_name}_{func_var_name}_get_errors()"
++    "palvar_read_errors_t palvar_{func_dd_name}_{func_var_name}_get_errors(void)"
+ 
+ palvardata_dictionary_get_errors_function_definition = (
+     palvardata_dictionary_get_errors_function_prototype + """{{
+@@ -1570,7 +1570,7 @@ class PalDataDictCodeGenerator:
+         return (name.startswith('ro_') and properties['Type'] == 'Calibratable')
+ 
+     def _append_load_data_dict_variables_function(self, file, data_dict):
+-        file.append(f"void {data_dict.name}_load_data_dict_variables() {{\n")
++        file.append(f"void {data_dict.name}_load_data_dict_variables(void) {{\n")
+         # In case of RAFT the calibratables have to be loaded from sysvars
+         if self._target == "RAFT" and len(data_dict.variables["Calibratable"]) > 0 :
+             file.append("  double temp;\n")
+@@ -1586,7 +1586,7 @@ class PalDataDictCodeGenerator:
+         file.append("}\n\n")
+ 
+     def _append_write_data_dict_variables_function(self, file, data_dict):
+-        file.append(f"void {data_dict.name}_write_data_dict_variables() {{\n")
++        file.append(f"void {data_dict.name}_write_data_dict_variables(void) {{\n")
+         if self._target == "RAFT":
+             for name, properties in data_dict.variables["Displayable"].items():
+                 var_name = ''
+@@ -1641,8 +1641,8 @@ class PalDataDictCodeGenerator:
+         self._append_set_flag_for_match_output_func_headers(file, data_dictionaries)
+         self._append_clear_is_updated_flag_functions_header(file, data_dictionaries)
+         file.new_line()
+-        file.append("void pal_init_data_dictionary();\n")
+-        file.append("void pal_load_mocked_inputs();\n")
++        file.append("void pal_init_data_dictionary(void);\n")
++        file.append("void pal_load_mocked_inputs(void);\n")
+         file.write(filepath)
+ 
+     def _append_reliability_displayable_declarations(self, file, data_dictionaries):
+@@ -1957,7 +1957,7 @@ class PalDataDictCodeGenerator:
+         file.new_line()
+ 
+     def _append_pal_init_data_dictionary_function(self, file):
+-        file.append("void pal_init_data_dictionary() {\n")
++        file.append("void pal_init_data_dictionary(void) {\n")
+         for name, properties in self._complete_dd.variables["All"].items():
+             if properties['Type'] in ['Calibratable', 'Displayable']:
+                 if self._target != 'RAFT':
+@@ -1979,7 +1979,7 @@ class PalDataDictCodeGenerator:
+             return [f"{name}"]
+ 
+     def _append_pal_load_mocked_inputs_function(self, file, data_dictionaries):
+-        file.append("void pal_load_mocked_inputs() {\n")
++        file.append("void pal_load_mocked_inputs(void) {\n")
+         m = self._get_interface_inputs_without_matching_output()
+         for dd in data_dictionaries:
+             for name in m:
+diff --git a/src/implementations/common/all/pal_debug.c b/src/implementations/common/all/pal_debug.c
+index a76cd88..fb8d4aa 100644
+--- a/src/implementations/common/all/pal_debug.c
++++ b/src/implementations/common/all/pal_debug.c
+@@ -37,7 +37,7 @@ paldbg_api_operation_result_t pal_dbg_operation_result =
+ int16_t pal_dbg_channel_level_read = 0;
+ 
+ 
+-void paldbg_control_manually() {
++void paldbg_control_manually(void) {
+ #if !defined(PAL_PRODUCTION_BUILD)
+   if (palc_dbg_manual_enabled == true) {
+     pal_dbg_operation_result = PALDBG_API_OPERATION_OK;
+diff --git a/src/implementations/common/m130_and_m560_primary/pal_diagnostic_parameters.c b/src/implementations/common/m130_and_m560_primary/pal_diagnostic_parameters.c
+index e08e06e..959d048 100644
+--- a/src/implementations/common/m130_and_m560_primary/pal_diagnostic_parameters.c
++++ b/src/implementations/common/m130_and_m560_primary/pal_diagnostic_parameters.c
+@@ -99,7 +99,7 @@ paldpm_return_t paldpm_update_pid_value(paldpm_pid_t *const pid,
+   return return_val;
+ }
+ 
+-paldpm_nv_status_t paldpm_last_updated_pid_commit_status() {
++paldpm_nv_status_t paldpm_last_updated_pid_commit_status(void) {
+   paldpm_nv_status_t return_val = PALDPM_NV_STATUS_ERROR;
+   PPID_RC_T result = ppid_get_nv_commit_status();
+   if (result == PPID_NV_SAVE_PENDING) {
+diff --git a/src/implementations/node_abstraction/raft/pal_diagnostic_parameters.c b/src/implementations/node_abstraction/raft/pal_diagnostic_parameters.c
+index 636657d..e617829 100644
+--- a/src/implementations/node_abstraction/raft/pal_diagnostic_parameters.c
++++ b/src/implementations/node_abstraction/raft/pal_diagnostic_parameters.c
+@@ -89,6 +89,6 @@ paldpm_return_t paldpm_update_pid_value(paldpm_pid_t *const pid,
+   return return_val;
+ }
+ 
+-paldpm_nv_status_t paldpm_last_updated_pid_commit_status() {
++paldpm_nv_status_t paldpm_last_updated_pid_commit_status(void) {
+   return PALDPM_NV_STATUS_STORED;
+ }
 diff --git a/src/implementations/node_abstraction/raft/pal_task_handling.c b/src/implementations/node_abstraction/raft/pal_task_handling.c
-index be5c847..0634001 100644
+index be5c847..31151d4 100644
 --- a/src/implementations/node_abstraction/raft/pal_task_handling.c
 +++ b/src/implementations/node_abstraction/raft/pal_task_handling.c
 @@ -11,9 +11,9 @@
@@ -9,12 +182,47 @@ index be5c847..0634001 100644
 -void (*raft_set_timer)(uint32_t, uint32_t, void (*)(), void*);
 -uint32_t (*raft_create_timer)(void*);
 -void (*raft_cancel_timer)(uint32_t, void*);
-+extern void (*raft_set_timer)(uint32_t, uint32_t, void (*)(), void*);
++extern void (*raft_set_timer)(uint32_t, uint32_t, void (*)(void), void*);
 +extern uint32_t (*raft_create_timer)(void*);
 +extern void (*raft_cancel_timer)(uint32_t, void*);
  
  void pal_timer_create(pal_timer_t* timer_obj) {
    assert(raft_create_timer != NULL);
+diff --git a/src/implementations/node_abstraction/raft/raft_driver.cpp b/src/implementations/node_abstraction/raft/raft_driver.cpp
+index a7b8389..405e620 100644
+--- a/src/implementations/node_abstraction/raft/raft_driver.cpp
++++ b/src/implementations/node_abstraction/raft/raft_driver.cpp
+@@ -13,7 +13,7 @@
+  * the RAFT
+  */
+ void (*raft_log)(const char *, const char *, va_list) = NULL;
+-void (*raft_set_timer)(int, int, void (*)(), void *) = NULL;
++void (*raft_set_timer)(int, int, void (*)(void), void *) = NULL;
+ int (*raft_create_timer)(void *) = NULL;
+ void (*raft_cancel_timer)(int, void *) = NULL;
+ double (*raft_elapsed_time)(void *) = NULL;
+@@ -66,7 +66,7 @@ void RAFTHook_SetLogger(void (*log_function)(const char *, const char *,
+   raft_log = log_function;
+ }
+ 
+-void RAFTHook_SetTimer(void (*set_Timer_function)(int, int, void (*)(),
++void RAFTHook_SetTimer(void (*set_Timer_function)(int, int, void (*)(void),
+                                                   void *)) {
+   raft_set_timer = set_Timer_function;
+ }
+diff --git a/src/implementations/node_abstraction/raft/raft_driver.h b/src/implementations/node_abstraction/raft/raft_driver.h
+index 6946dcb..01e6f5b 100644
+--- a/src/implementations/node_abstraction/raft/raft_driver.h
++++ b/src/implementations/node_abstraction/raft/raft_driver.h
+@@ -211,7 +211,7 @@ EXTERN_DLL_EXPORT_CALLBACK void (*raft_log)(const char *, const char *,
+ /*Timer API*/
+ EXTERN_DLL_EXPORT_CALLBACK int (*raft_create_timer)(void *);
+ EXTERN_DLL_EXPORT_CALLBACK void (*raft_cancel_timer)(int, void *);
+-EXTERN_DLL_EXPORT_CALLBACK void (*raft_set_timer)(int, int, void (*)(), void *);
++EXTERN_DLL_EXPORT_CALLBACK void (*raft_set_timer)(int, int, void (*)(void), void *);
+ EXTERN_DLL_EXPORT_CALLBACK double (*raft_elapsed_time)(void *);
+ 
+ /* System Variables API */
 diff --git a/src/implementations/node_abstraction/raft/raft_sysvars.c b/src/implementations/node_abstraction/raft/raft_sysvars.c
 index 1526ff5..f5859e4 100644
 --- a/src/implementations/node_abstraction/raft/raft_sysvars.c
@@ -53,6 +261,43 @@ index 02dcbf4..80bee91 100644
  
  static paltime_absolute_time_in_ms_t paltime_external_time = 0;
  static uint32_t paltime_delta_time_at_update = 0;
+diff --git a/src/interface/node_abstraction/pal_debug.h b/src/interface/node_abstraction/pal_debug.h
+index 20927b8..4977581 100644
+--- a/src/interface/node_abstraction/pal_debug.h
++++ b/src/interface/node_abstraction/pal_debug.h
+@@ -97,6 +97,6 @@ typedef enum {
+  *       still set the same pin and this function will have no effect. <b>This API
+  *       does not have any functionality on production build!</b>
+  */
+-void paldbg_control_manually();
++void paldbg_control_manually(void);
+ 
+ #endif  // SRC_IMPLEMENTATIONS_COMMON_PAL_DEBUG_H_
+diff --git a/src/interface/node_abstraction/pal_diagnostic_parameters.h b/src/interface/node_abstraction/pal_diagnostic_parameters.h
+index dcf95b1..62f82bb 100644
+--- a/src/interface/node_abstraction/pal_diagnostic_parameters.h
++++ b/src/interface/node_abstraction/pal_diagnostic_parameters.h
+@@ -197,6 +197,6 @@ paldpm_return_t paldpm_update_pid_value(paldpm_pid_t *const pid,
+  *  @note Do not call this function in a blocking while loop until it's stored.
+  *        Storing to non-volatile memory can take some time!
+  */
+-paldpm_nv_status_t paldpm_last_updated_pid_commit_status();
++paldpm_nv_status_t paldpm_last_updated_pid_commit_status(void);
+ 
+ #endif  // SRC_INTERFACE_NODE_ABSTRACTION_PAL_DIAGNOSTIC_PARAMETERS_H_
+diff --git a/src/interface/node_abstraction/pal_time.h b/src/interface/node_abstraction/pal_time.h
+index 41c99ce..7d304e5 100644
+--- a/src/interface/node_abstraction/pal_time.h
++++ b/src/interface/node_abstraction/pal_time.h
+@@ -49,7 +49,7 @@ typedef enum {
+ /**
+   @brief The periodic tasks data structure
+  */
+-typedef void (*pal_cbk_timeout)();
++typedef void (*pal_cbk_timeout)(void);
+ 
+ typedef struct {
+   //! The timer id
 diff --git a/src/interface/os_abstraction/logger.c b/src/interface/os_abstraction/logger.c
 index 15e93fe..b06abd5 100644
 --- a/src/interface/os_abstraction/logger.c
@@ -66,3 +311,20 @@ index 15e93fe..b06abd5 100644
  #endif
  
  /*! \todo  Share the Log Severity type (Fatal,Message,Debug) to the underlying
+diff --git a/test/unit/raft/test_pal_task_handling.c b/test/unit/raft/test_pal_task_handling.c
+index b08bd26..40b8e07 100755
+--- a/test/unit/raft/test_pal_task_handling.c
++++ b/test/unit/raft/test_pal_task_handling.c
+@@ -25,9 +25,9 @@ static void fake_raft_cancel_timer_function(uint32_t timer_id,
+                                         void* node_pointer);
+ 
+ // Extern globals from pal_task_handling.c
+-extern uint32_t (*raft_create_timer)(void *);
+-extern void (*raft_set_timer)(uint32_t, uint32_t, void (*)(), void *);
+-extern void (*raft_cancel_timer)(uint32_t, void*);
++uint32_t (*raft_create_timer)(void *) = NULL;
++void (*raft_set_timer)(uint32_t, uint32_t, void (*)(void), void *) = NULL;
++void (*raft_cancel_timer)(uint32_t, void*) = NULL;
+ void* raft_node_address = NULL;
+ 
+ // Return value of the fake_raft_create_time_function

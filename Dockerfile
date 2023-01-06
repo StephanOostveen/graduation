@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y ccache ninja-build python3 python3-pip git libssl-dev build-essential lld vim
+RUN apt-get update && apt-get install -y ccache ninja-build python3 python3-pip git libssl-dev \
+                                         build-essential lld vim dos2unix
 
 # Get CMake and LLVM source code
 WORKDIR /opt
@@ -14,9 +15,6 @@ RUN ../CMake/bootstrap --parallel=12 --generator=Ninja && ninja && ninja install
 
 # Build and install modern version of Clang and Clang-tools-extra
 WORKDIR /opt
-# Copy necessary patches to llvm and vehicle repository
-COPY *.patch .
-RUN git apply --directory llvm-project palvar_check.patch
 
 RUN cmake -G Ninja -Hllvm-project/llvm -Bllvm-build \
           -DCMAKE_BUILD_TYPE=Release \
@@ -37,21 +35,64 @@ RUN cmake -G Ninja -Hllvm-project/llvm -Bllvm-build \
           -DBOOTSTRAP_LLVM_ENABLE_LTO=Thin 
 
 RUN cmake --build llvm-build --target stage2-install 
-RUN cmake --build llvm-build --target install-clang-tidy
+
 # Setup ssh key
 COPY id_ed25519 /root/.ssh/id_ed25519
 COPY id_ed25519.pub /root/.ssh/id_ed25519.pub
 RUN chmod 600 /root/.ssh/id_ed25519 && ssh-keyscan -t rsa bitbucket.org >> /root/.ssh/known_hosts
 # Clone lyswe-vehicle
-RUN git clone -b release/i88-2 --depth=1 git@bitbucket.org:lightyear-company/lyswe-vehicle.git && git -C lyswe-vehicle submodule update --init --jobs 10
-
-# Apply patches
-RUN git apply --directory lyswe-vehicle lyswe-vehicle.patch && git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/esc_controller esc_controller.patch && git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/vehicle_power_controller vehicle_power_controller.patch && git apply --directory lyswe-vehicle/superrepo/library/pal pal.patch
-
+RUN git clone -b 4.2.1 --depth=1 git@bitbucket.org:lightyear-company/lyswe-vehicle.git && git -C lyswe-vehicle submodule update --init --jobs 10
 # Setup lyswe environment
 WORKDIR /opt/lyswe-vehicle
 RUN pip3 install jsonschema virtualenv && ./run.py install
+
+# Copy necessary patches for llvm and vehicle repository and apply to llvm.
+WORKDIR /opt/
+COPY palvar_check.patch .
+RUN git apply --directory llvm-project palvar_check.patch
+# Build and install clang-tidy
+RUN cmake --build llvm-build --target install-clang-tidy
+# Apply patches to vehicle repository
+COPY *.patch .
+RUN git apply --directory lyswe-vehicle lyswe-vehicle.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/authentication_manager authentication_manager.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/closures_manager closures_manager.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/driver_controls_manager driver_controls_manager.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/esc_controller esc_controller.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/lighting_manager lighting_manager.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/ssc ssc.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/steering_manager steering_manager.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/tms tms.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/vehicle_power_controller vehicle_power_controller.patch && \
+    git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/wiper_manager wiper_manager.patch && \
+    git apply --directory lyswe-vehicle/superrepo/library/pal pal.patch
+
+RUN unix2dos commdb.patch
+WORKDIR /opt/lyswe-vehicle
 # Apply fixes to recursive submodules that are pulled by run.py install
-RUN git apply --directory superrepo/inVehicle/logical/ssc/superrepo/library/pal ../pal.patch && git apply --directory superrepo/inVehicle/logical/ssc/superrepo/library/commdb ../commdb.patch && git apply --directory superrepo/inVehicle/mock/steering_column_module_delphi/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/authentication_vouch/superrepo/library/pal ../pal_authentication_vouch_mock.patch && git apply --directory superrepo/inVehicle/mock/abs_system/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/motor_controller/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/vdy/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/12v_sensor_icd/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/hvlv_converter_brusa/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/hv_battery/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/on_board_charger_brusa/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/charger_control_unit/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/door_latch/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/airbag_control_unit/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/windscreen_wipers/superrepo/library/pal ../pal_authentication_vouch_mock.patch && git apply --directory superrepo/inVehicle/mock/ev_supply_equipment/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/lv_battery/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/hvlv_converter/superrepo/library/pal ../pal_scm_delphi_mock.patch && git apply --directory superrepo/inVehicle/mock/solar_conversion_system/superrepo/library/pal ../pal_scm_delphi_mock.patch
-RUN CC='clang -fuse-ld=lld' CXX='clang++ -fuse-ld=lld' ./run.py build --config=config/prod.networkcfg --can-forwarding-settings config/forwarding_settings.json --target RAFT --ignore-warnings
+RUN git apply --directory superrepo/inVehicle/logical/ssc/superrepo/library/pal ../pal.patch && \
+    git apply --directory superrepo/inVehicle/logical/ssc/superrepo/library/commdb ../commdb.patch && \
+    git apply --directory superrepo/inVehicle/mock/steering_column_module_delphi/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/authentication_vouch/superrepo/library/pal ../pal_authentication_vouch_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/abs_system/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/motor_controller/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/vdy/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/12v_sensor_icd/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/hvlv_converter_brusa/superrepo/library/pal/ ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/hv_battery/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/on_board_charger_brusa/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/charger_control_unit/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/door_latch/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/airbag_control_unit/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/windscreen_wipers/superrepo/library/pal ../pal_authentication_vouch_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/ev_supply_equipment/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/lv_battery/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/hvlv_converter/superrepo/library/pal ../pal_scm_delphi_mock.patch && \
+    git apply --directory superrepo/inVehicle/mock/solar_conversion_system/superrepo/library/pal ../pal_scm_delphi_mock.patch
+
+RUN CC='clang -fuse-ld=lld -Wno-unused-command-line-argument' CXX='clang++ -fuse-ld=lld \
+             -Wno-unused-command-line-argument' ./run.py build --config=config/prod.networkcfg\
+             --can-forwarding-settings config/forwarding_settings.json --target RAFT --ignore-warnings
+
+#CC='clang -fuse-ld=lld -Wno-unused-command-line-argument' CXX='clang++ -fuse-ld=lld -Wno-unused-command-line-argument' ./run.py build --config=config/prod.networkcfg --can-forwarding-settings config/forwarding_settings.json --target RAFT --ignore-warnings 2>&1 | tee out
 CMD ["/bin/bash"]

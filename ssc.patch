@@ -1,0 +1,202 @@
+diff --git a/scripts/ssc_codegen/sdr/partition_safety_assets_generator.py b/scripts/ssc_codegen/sdr/partition_safety_assets_generator.py
+index 5b4dbc84..5ac309e5 100644
+--- a/scripts/ssc_codegen/sdr/partition_safety_assets_generator.py
++++ b/scripts/ssc_codegen/sdr/partition_safety_assets_generator.py
+@@ -33,7 +33,7 @@ class _HeaderGenerator:
+     def _get_safe_work_variables(self) -> str:
+         safe_work_variables = ""
+         for variable in self._partition.safe_variables:
+-            safe_work_variables += f"{variable.data_type} get_{variable.partition_name}_{variable.name}();\n"
++            safe_work_variables += f"{variable.data_type} get_{variable.partition_name}_{variable.name}(void);\n"
+             safe_work_variables += f"void set_{variable.partition_name}_{variable.name}({variable.data_type} value);\n"
+ 
+         return safe_work_variables[:-1]
+@@ -57,8 +57,8 @@ class _HeaderGenerator:
+     def _get_input_work_variables(self) -> str:
+         input_work_variables = ""
+         for variable in self._partition.input_variables:
+-            input_work_variables += f"{variable.data_type} get_{variable.partition_name}_{variable.name}();\n"
+-            input_work_variables += f"bool {variable.partition_name}_{variable.name}_is_updated();\n"
++            input_work_variables += f"{variable.data_type} get_{variable.partition_name}_{variable.name}(void);\n"
++            input_work_variables += f"bool {variable.partition_name}_{variable.name}_is_updated(void);\n"
+ 
+         return input_work_variables[:-1]
+ 
+diff --git a/scripts/ssc_codegen/sdr/partition_set_get_def_generator.py b/scripts/ssc_codegen/sdr/partition_set_get_def_generator.py
+index ff59927e..dbacb8e9 100644
+--- a/scripts/ssc_codegen/sdr/partition_set_get_def_generator.py
++++ b/scripts/ssc_codegen/sdr/partition_set_get_def_generator.py
+@@ -9,7 +9,7 @@ from .partition import Partition
+ 
+ # Templates
+ _SAFE_VAR_GET_FUNCTION_TEMPLATE = """
+-{type} get_{partition_name}_{variable_name}() {{
++{type} get_{partition_name}_{variable_name}(void) {{
+   return safe_memory.{safe_mem_name};
+ }}
+ """
+@@ -55,12 +55,12 @@ _ASSIGNMENT_FOR_LOOP_TEMPLATE = """\
+ """
+ 
+ _SAFE_INPUT_GET_FUNCTION_TEMPLATE = """
+-{type} get_{partition_name}_{variable_name}() {{
++{type} get_{partition_name}_{variable_name}(void) {{
+   safe_memory.{partition_name}_{safe_mem_name}_new_flag = false;
+   return safe_memory.{safe_mem_name};
+ }}
+ 
+-bool {partition_name}_{variable_name}_is_updated() {{
++bool {partition_name}_{variable_name}_is_updated(void) {{
+   return safe_memory.{partition_name}_{safe_mem_name}_new_flag;
+ }}
+ """
+diff --git a/scripts/ssc_codegen/templates/ssc_safety_framework_template.c b/scripts/ssc_codegen/templates/ssc_safety_framework_template.c
+index 7f82c2f3..e07eee1d 100644
+--- a/scripts/ssc_codegen/templates/ssc_safety_framework_template.c
++++ b/scripts/ssc_codegen/templates/ssc_safety_framework_template.c
+@@ -40,7 +40,7 @@ $(READ_UART_MSG_CONTENT)
+ }
+ 
+ /* Corruption Test Function */
+-void corrupt_safe_memory() {
++void corrupt_safe_memory(void) {
+ #if defined(SSC_TEST_BUILD_ENABLED) && \
+     (defined(BACKEND_ENGINE_PIINNOVO_M560_PRIMARY) || \
+      defined(BACKEND_ENGINE_PIINNOVO_M560_SECONDARY))
+diff --git a/scripts/ssc_codegen/templates/ssc_safety_framework_template.h b/scripts/ssc_codegen/templates/ssc_safety_framework_template.h
+index bbd2e415..70723b01 100644
+--- a/scripts/ssc_codegen/templates/ssc_safety_framework_template.h
++++ b/scripts/ssc_codegen/templates/ssc_safety_framework_template.h
+@@ -49,6 +49,6 @@ void read_uart_message(uint8_t * const raw_data);
+ /**
+  * @brief Corrupt the safe memory to check the response
+  */
+-void corrupt_safe_memory();
++void corrupt_safe_memory(void);
+ 
+ #endif  /* BUILD_$(CONTROLLER_CAPITAL)_SAFETY_FRAMEWORK_H_ */
+diff --git a/src/common/communication/can_utils.h b/src/common/communication/can_utils.h
+index 7a41904d..a152e514 100644
+--- a/src/common/communication/can_utils.h
++++ b/src/common/communication/can_utils.h
+@@ -7,7 +7,7 @@
+  */
+ 
+ #ifndef COMMON_COMMUNICATION_CAN_UTILS_H_
+-#define COMMON_COMMUNICATION_CAL_UTILS_H_
++#define COMMON_COMMUNICATION_CAN_UTILS_H_
+ 
+ /* Includes */
+ #include "ssc_types.h"
+diff --git a/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.c b/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.c
+index 02e727af..4cc0d075 100644
+--- a/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.c
++++ b/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.c
+@@ -22,10 +22,10 @@ PAL_CAL bool sscc_brg_inv_can_diag_disabled = false;
+ PAL_CAL bool sscc_brg_hecu_can_diag_disabled = false;
+ 
+ /* Private Function Declarations */
+-static void update_inv_partition_outputs();
+-static void update_hecu_partition_outputs();
+-static void update_bms_partition_outputs();
+-static void update_disable_can();
++static void update_inv_partition_outputs(void);
++static void update_hecu_partition_outputs(void);
++static void update_bms_partition_outputs(void);
++static void update_disable_can(void);
+ 
+ #if defined(SSC_BRAKE_SYSTEM_COMMUNICATION_ENABLED)
+ /**
+@@ -70,11 +70,11 @@ static void combine_hecu_speed_and_direction(
+ #endif
+ 
+ /* Public Function Definitions */
+-void can_inputs_manager_init() {
++void can_inputs_manager_init(void) {
+   can_interface_controller_init(-30, 30);
+ }
+ 
+-void can_inputs_manager_update() {
++void can_inputs_manager_update(void) {
+   /* Set CAN devices Enabled or Disabled */
+   update_disable_can();
+ 
+@@ -92,7 +92,7 @@ void can_inputs_manager_update() {
+ }
+ 
+ /* Private Function Definitions */
+-static void update_inv_partition_outputs() {
++static void update_inv_partition_outputs(void) {
+ #if !defined(SSC_1_INV_FL_LAYOUT) && !defined(SSC_1_INV_FR_LAYOUT) && \
+     !defined(SSC_1_INV_RL_LAYOUT) && !defined(SSC_1_INV_RR_LAYOUT)
+   set_brg_sbg1_inv_fl_wheel_speed_val(
+@@ -220,7 +220,7 @@ static void update_inv_partition_outputs() {
+ #endif
+ }
+ 
+-static void update_hecu_partition_outputs() {
++static void update_hecu_partition_outputs(void) {
+ #if defined(SSC_BRAKE_SYSTEM_COMMUNICATION_ENABLED)
+   float wheel_speed_fl_val;
+   safe_sig_cnd_t wheel_speed_fl_rel;
+@@ -444,7 +444,7 @@ static void update_hecu_partition_outputs() {
+ #endif
+ }
+ 
+-static void update_bms_partition_outputs() {
++static void update_bms_partition_outputs(void) {
+   /* TRD Monitor Inputs */
+   set_brg_sp23_hvbs_max_mod_temp_val(
+     bms_moduletemperatures_0x337_signals.maxmoduletemperature_bms_val);
+@@ -480,7 +480,7 @@ static void update_bms_partition_outputs() {
+     sc01_state_0x1f_signals.stateextisolation_sc01_cnd);
+ }
+ 
+-static void update_disable_can() {
++static void update_disable_can(void) {
+   bool bms_can_diag_disabled = sscc_brg_bms_can_diag_disabled;
+   bool hecu_can_diag_disabled = sscc_brg_hecu_can_diag_disabled;
+   bool inv_can_diag_disabled = sscc_brg_inv_can_diag_disabled;
+diff --git a/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.h b/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.h
+index 5b8929d6..99eb7641 100644
+--- a/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.h
++++ b/src/primary/partition_bridge/can_inputs_manager/can_inputs_manager.h
+@@ -13,10 +13,10 @@
+ 
+ /** @brief Initialize CAN Inputs Manager
+  */
+-void can_inputs_manager_init();
++void can_inputs_manager_init(void);
+ 
+ /** @brief Update CAN Inputs Manager
+  */
+-void can_inputs_manager_update();
++void can_inputs_manager_update(void);
+ 
+ #endif /* PRIMARY_PARTITION_BRG_CAN_INPUTS_MANAGER_H_ */
+diff --git a/src/secondary/partition_3_2/vsr/p32_vsr_engine.c b/src/secondary/partition_3_2/vsr/p32_vsr_engine.c
+index 1bebec36..79d7481f 100644
+--- a/src/secondary/partition_3_2/vsr/p32_vsr_engine.c
++++ b/src/secondary/partition_3_2/vsr/p32_vsr_engine.c
+@@ -131,7 +131,7 @@ void p32_vsr_engine_ram_init(void) {
+   set_p32_sp32_power_mode(ssc_power_mode);
+ }
+ 
+-void p32_vsr_engine_update() {
++void p32_vsr_engine_update(void) {
+   /* Safe Memory Data Buffers */
+   vsr_outputs_t vsr_output_states;
+   smfm_outputs_t smfm_output_states;
+diff --git a/src/secondary/partition_bridge/can_inputs_manager/can_inputs_manager.c b/src/secondary/partition_bridge/can_inputs_manager/can_inputs_manager.c
+index 308f78e3..5162d8b1 100644
+--- a/src/secondary/partition_bridge/can_inputs_manager/can_inputs_manager.c
++++ b/src/secondary/partition_bridge/can_inputs_manager/can_inputs_manager.c
+@@ -19,7 +19,7 @@ static void update_inv_partition_outputs(void);
+ static void update_disable_can(void);
+ 
+ /* Public Function Definitions */
+-void can_inputs_manager_init() {
++void can_inputs_manager_init(void) {
+   can_interface_controller_init(-30, 30);
+ }
+ 

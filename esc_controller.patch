@@ -23,7 +23,7 @@ index 55f87f10..a4f7a275 100644
 --- a/src/on_board_charger/charger_control_unit/ccu_ly/high_level_communication/hlc.c
 +++ b/src/on_board_charger/charger_control_unit/ccu_ly/high_level_communication/hlc.c
 @@ -146,6 +146,21 @@ static void hlc_state_finished_on_tick(hlc_input_t *hlc_in_p) {
-
+ 
    @return None
  */
 +i_ccu_hlc_fsm_state_t hlc_state_iso_pre_charge_on_tick(
@@ -55,5 +55,5 @@ index ccba65bb..f2a1ca0c 100644
 -  return 0;
 +
  }
-
+ 
  i_power_mode_t power_manager_get_esc_mode(void) { return esc_mode; }
