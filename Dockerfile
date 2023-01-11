@@ -95,4 +95,11 @@ RUN CC='clang -fuse-ld=lld -Wno-unused-command-line-argument' CXX='clang++ -fuse
              --can-forwarding-settings config/forwarding_settings.json --target RAFT --ignore-warnings
 
 #CC='clang -fuse-ld=lld -Wno-unused-command-line-argument' CXX='clang++ -fuse-ld=lld -Wno-unused-command-line-argument' ./run.py build --config=config/prod.networkcfg --can-forwarding-settings config/forwarding_settings.json --target RAFT --ignore-warnings 2>&1 | tee out
+
+RUN mkdir -p /opt/graphs/
+COPY callgraph.py /opt/graphs
+RUN chmod +x /opt/graphs/callgraph.py
+WORKDIR /opt/graphs
+
+RUN pip3 install networkx pydot
 CMD ["/bin/bash"]
