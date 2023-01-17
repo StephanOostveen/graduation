@@ -27,7 +27,7 @@ RUN cmake -G Ninja -Hllvm-project/llvm -Bllvm-build \
           -DLLVM_BUILD_INSTRUMENTED_COVERAGE=OFF \
           -DLLVM_BUILD_TESTS=OFF \
           -DLLVM_OPTIMIZED_TABLEGEN=ON \
-          -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld" \
+          -DLLVM_ENABLE_PROJECTS="clang;lld" \
           -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi;libunwind"\
           -DLLVM_PARALLEL_LINK_JOBS=6 \
           -DLLVM_TARGETS_TO_BUILD="X86"\
@@ -48,10 +48,7 @@ RUN pip3 install jsonschema virtualenv && ./run.py install
 
 # Copy necessary patches for llvm and vehicle repository and apply to llvm.
 WORKDIR /opt/
-COPY palvar_check.patch .
-RUN git apply --directory llvm-project palvar_check.patch
-# Build and install clang-tidy
-RUN cmake --build llvm-build --target install-clang-tidy
+
 # Apply patches to vehicle repository
 COPY *.patch .
 RUN git apply --directory lyswe-vehicle lyswe-vehicle.patch && \
