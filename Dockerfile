@@ -9,7 +9,7 @@ RUN git clone -b llvmorg-15.0.6 --depth=1 https://github.com/llvm/llvm-project.g
 RUN git clone -b v3.25.0 --depth=1 https://github.com/Kitware/CMake.git
 
 # Build and install modern version of CMake that is able to compile llvm
-RUN mkdir cmake-build llvm-build
+RUN mkdir -p cmake-build llvm-build graphs
 WORKDIR /opt/cmake-build
 RUN ../CMake/bootstrap --parallel=12 --generator=Ninja && ninja && ninja install
 
@@ -44,7 +44,7 @@ RUN chmod 600 /root/.ssh/id_ed25519 && ssh-keyscan -t rsa bitbucket.org >> /root
 RUN git clone -b 4.2.1 --depth=1 git@bitbucket.org:lightyear-company/lyswe-vehicle.git && git -C lyswe-vehicle submodule update --init --jobs 10
 # Setup lyswe environment
 WORKDIR /opt/lyswe-vehicle
-RUN pip3 install jsonschema virtualenv && ./run.py install
+RUN pip3 install jsonschema virtualenv networkx pydot && ./run.py install
 
 # Copy necessary patches for llvm and vehicle repository and apply to llvm.
 WORKDIR /opt/
@@ -62,9 +62,9 @@ RUN git apply --directory lyswe-vehicle lyswe-vehicle.patch && \
     git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/tms tms.patch && \
     git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/vehicle_power_controller vehicle_power_controller.patch && \
     git apply --directory lyswe-vehicle/superrepo/inVehicle/logical/wiper_manager wiper_manager.patch && \
-    git apply --directory lyswe-vehicle/superrepo/library/pal pal.patch
+    git apply --directory lyswe-vehicle/superrepo/library/pal pal.patch && \
+    unix2dos commdb.patch
 
-RUN unix2dos commdb.patch
 WORKDIR /opt/lyswe-vehicle
 # Apply fixes to recursive submodules that are pulled by run.py install
 RUN git apply --directory superrepo/inVehicle/logical/ssc/superrepo/library/pal ../pal.patch && \
@@ -90,13 +90,8 @@ RUN git apply --directory superrepo/inVehicle/logical/ssc/superrepo/library/pal 
 RUN CC='clang -fuse-ld=lld -Wno-unused-command-line-argument' CXX='clang++ -fuse-ld=lld \
              -Wno-unused-command-line-argument' ./run.py build --config=config/prod.networkcfg\
              --can-forwarding-settings config/forwarding_settings.json --target RAFT --ignore-warnings
-
-#CC='clang -fuse-ld=lld -Wno-unused-command-line-argument' CXX='clang++ -fuse-ld=lld -Wno-unused-command-line-argument' ./run.py build --config=config/prod.networkcfg --can-forwarding-settings config/forwarding_settings.json --target RAFT --ignore-warnings 2>&1 | tee out
-
-RUN mkdir -p /opt/graphs/
+RUN apt-get install -y libgraphviz-dev && pip3 install pygraphviz 
+WORKDIR /opt/graphs
 COPY callgraph.py /opt/graphs
 RUN chmod +x /opt/graphs/callgraph.py
-WORKDIR /opt/graphs
-
-RUN pip3 install networkx pydot
 CMD ["/bin/bash"]

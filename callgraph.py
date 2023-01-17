@@ -22,21 +22,43 @@ def dir_path(string):
 # Graph G contains palvar_read/palvar_write nodes, perform analysis
 def find_pal_read_write_callgraphs(G):
     H = G.copy()
+    print("\t\tFound and removed the following selfloops: {}".format(list(nx.selfloop_edges(G))))
     H.remove_edges_from(nx.selfloop_edges(G))
     if not nx.is_directed_acyclic_graph(H):
-        print('The graph was not a DAG, aborting analysis, the following cycles were found:')
+        print('\t\tThe graph was not a DAG, aborting analysis, the following cycles were found:')
         print(sorted(nx.simple_cycles(H)))
-        return        
-    
+        return
+    reducedGraph = nx.DiGraph(overlap='false', layout='sfdp')
+
+    for node in H:
+        H.nodes[node]['label'] = H.nodes[node]['label'].replace("{","").replace('"', '').replace("}", '')
+
     callgraphs = []
     for node, nodeData in H.nodes(data=True):
         if any(x in nodeData['label'] for x in ['palvar_read', 'palvar_write']):
             chain = nx.subgraph(H, nx.ancestors(H, node) | {node})
+            reducedGraph.update(chain)
             callgraphs.append([chain.nodes[n]['label'] for n in nx.topological_sort(chain)])
 
     callgraphs = [[node.replace("{","").replace('"', '').replace("}", '') for node in graph] for graph in callgraphs]
 
-    return callgraphs
+    for node in reducedGraph:
+        reducedGraph.nodes[node]['shape']= 'box'
+        if 'palvar_read' in reducedGraph.nodes[node]['label']:
+            reducedGraph.nodes[node]['fillcolor'] = '#77AADD'
+            reducedGraph.nodes[node]['style'] = 'filled'
+        elif 'palvar_write' in reducedGraph.nodes[node]['label']:
+            reducedGraph.nodes[node]['fillcolor'] = '#BBCC33'
+            reducedGraph.nodes[node]['style'] = 'filled'
+
+        c = reducedGraph.nodes[node].get('fillcolor')
+        if len(nx.ancestors(reducedGraph, node)) == 0 and c:   
+            reducedGraph.nodes[node]['fillcolor'] = "{}:{}".format(c, '#EE8866')
+            reducedGraph.nodes[node]['style'] = 'striped'
+        elif len(nx.ancestors(reducedGraph, node)) == 0:
+            reducedGraph.nodes[node]['fillcolor'] = '#EE8866'
+            reducedGraph.nodes[node]['style'] = 'filled'
+    return (callgraphs, reducedGraph)
 
 
 def graph_to_row(callgraphlist, physical):
@@ -61,7 +83,7 @@ def graph_to_row(callgraphlist, physical):
                 'logical' : 'tbd',
                 'physical' : physical,
                 'task' : task_name,
-                'frequency' : 'tbd'
+                'period (ms)' : 'tbd'
         }
 
 if __name__ == "__main__":
@@ -70,45 +92,60 @@ if __name__ == "__main__":
     parser.add_argument('path', type=dir_path, help='path to the folder containing compile_commands.json')
     parser.add_argument('physical', type=str, help='name of the analysed physical, for output purposes')
     args = parser.parse_args()
-    
+    print("----------------{}----------------".format("Starting code transformation"))
     # Create an output directory for this physical
+    print("{}....".format("Creating build and results folder"))
     subprocess.run(['mkdir', '-p', './{}/build/'.format(args.physical), './{}/results/'.format(args.physical)])
+    print("{}....".format("Changing directory to build folder"))
     os.chdir('./{}/build'.format(args.physical))
-
+    if os.listdir("."):
+        raise RuntimeError("Build directory was not empty, clean it first")
     # Open compile_commands, transform each command to emit llvm bitcode
+    print("{}....".format("Open compile_commands.json"))
     with open(args.path + "/compile_commands.json", "r") as input:
         compile_commands = json.load(input)
+        print("{}....".format("Executing compile commands"))
         for file in compile_commands:
             file["command"] = change_command(file["command"]).replace('\\', '')
             cmd = file["command"].split()
             subprocess.run(cmd)
     
     # Link together the llvm bitcode
+    print("{}....".format("Linking together the LLVM-IR files"))
     subprocess.run('llvm-link -o app.ll *.ll', shell=True)
 
     # Use opt to generate a callgraph and use c++filt to demangle symbols
+    print("{}....".format("Outputing callgraph in dot"))
     subprocess.run(['opt', '-dot-callgraph', 'app.ll'])
+    print("{}....".format("Demangling C++ symbols and printing result to ../results/callgraph.dot"))
     subprocess.run(['c++filt < app.ll.callgraph.dot > ../results/callgraph.dot'], shell=True)
     os.chdir('../results')
-
+    
+    print("----------------{}----------------".format("Starting callgraph analysis"))
     G = nx.DiGraph(nx.nx_pydot.read_dot('callgraph.dot'))
     i=0
     callgraphs = []
+    print("{}....".format("Separate weakly connected components"))
     for components in nx.weakly_connected_components(G):
         subgraph = G.subgraph(components)
         nx.nx_pydot.write_dot(subgraph, 'subgraph{}.dot'.format(i))
-        i = i + 1
-
+        
         # Check if graph contains palvar_read or palvar_write nodes
+        print("{}....".format("\tSearch for relevant nodes in weakly connected component {}".format({i})))
         for k, v in subgraph.nodes(data="label"):
             if any(x in v for x in ['palvar_write', 'palvar_write']):
+                print("{}....".format("\t\tFound relevant node, create callgraph for each relevant node"))
                 nx.nx_pydot.write_dot(subgraph, 'palvar_graph{}.dot'.format(i))
-                callgraphs = callgraphs +find_pal_read_write_callgraphs(subgraph)
+                callList, reducedGraph = find_pal_read_write_callgraphs(subgraph)
+                nx.nx_agraph.write_dot(reducedGraph, 'palvar_reduced_graph{}.dot'.format(i))
+                callgraphs = callgraphs + callList
                 break
-
+        i = i + 1
+    
+    print("----------------{}----------------".format("Create resulting CSV"))
     with open('names_{}.csv'.format(args.physical), 'w', newline='') as csvfile, \
         open('graphs_{}.txt'.format(args.physical), 'w') as graphfile:
-        fieldnames = ['type', 'variable', 'action', 'logical', 'physical', 'task', 'frequency']
+        fieldnames = ['type', 'variable', 'action', 'logical', 'physical', 'task', 'period (ms)']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
