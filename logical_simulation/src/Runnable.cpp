@@ -15,12 +15,14 @@ Runnable::~Runnable() noexcept {
 void Runnable::initialize() {
 	invocationMsg = new omnetpp::cMessage("Runnable");
 
+	period = par("period");
+
 	interfaceInputId        = gateBaseId("InterfaceInput$o");
 	interfaceInputGateSize  = gateSize("InterfaceInput");
 	interfaceOutputId       = gateBaseId("InterfaceOutput");
 	interfaceOutputGateSize = gateSize("InterfaceOutput");
 
-	scheduleAt(omnetpp::simTime(), invocationMsg);
+	scheduleAt(omnetpp::simTime() + omnetpp::SimTime(period, omnetpp::SIMTIME_MS), invocationMsg);
 }
 
 void Runnable::handleMessage(omnetpp::cMessage* msg) {
@@ -62,5 +64,5 @@ void Runnable::handleMessage(omnetpp::cMessage* msg) {
 
 	bubble(std::cbegin(s));
 	++invocation;
-	scheduleAt(omnetpp::simTime() + omnetpp::SimTime(50, omnetpp::SIMTIME_MS), invocationMsg);
+	scheduleAt(omnetpp::simTime() + omnetpp::SimTime(period, omnetpp::SIMTIME_MS), invocationMsg);
 }

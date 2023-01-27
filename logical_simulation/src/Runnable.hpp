@@ -13,6 +13,8 @@ private:
 	omnetpp::cMessage* invocationMsg{nullptr};
 	unsigned           invocation{0};
 
+	int period{0};
+
 	int interfaceInputId{0};
 	int interfaceInputGateSize{0};
 	int interfaceOutputId{0};
