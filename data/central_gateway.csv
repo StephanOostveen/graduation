@@ -1,0 +1,345 @@
+type,variable,action,logical,physical,task,period (ms)
+paldd,active_gear,read,Authentication manager,central_gateway,aut_task,50
+paldd,actual_closures_lock_lid,read,Authentication manager,central_gateway,aut_task,50
+paldd,actual_closures_lock_vehicle,read,Authentication manager,central_gateway,aut_task,50
+paldd,alarm_hazard_lights_request,read,Authentication manager,central_gateway,aut_task,50
+paldd,charging_cable_locked,read,Authentication manager,central_gateway,aut_task,50
+paldd,charging_cable_plugged_in,read,Authentication manager,central_gateway,aut_task,50
+paldd,closures_door_status,read,Authentication manager,central_gateway,aut_task,50
+paldd,fob_closures_lock_lid_action,read,Authentication manager,central_gateway,aut_task,50
+paldd,ivi_charge_action,read,Authentication manager,central_gateway,aut_task,50
+paldd,ivi_closures_lock_lid_action,read,Authentication manager,central_gateway,aut_task,50
+paldd,power_mode,read,Authentication manager,central_gateway,aut_task,50
+paldd,starter_kill,read,Authentication manager,central_gateway,aut_task,50
+paldd,vehicle_motion_state,read,Authentication manager,central_gateway,aut_task,50
+paldd,authentication_level,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,charging_lid_open_state,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,closure_button_action_scu,read,Closures manager,central_gateway,clr_gw_read_button_task,10
+paldd,fob_closures_lock_vehicle_action,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,ivi_closures_lock_vehicle_action,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,ivi_closures_reardoor_action,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,safety_doors_unlock_request,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,vehicle_speed,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,vehicle_speed_reliability,read,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,ac_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,active_gear,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_avh_status,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_closures_lock_lid,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_closures_lock_vehicle,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_closures_reardoor,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_grid_charging_current,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_headlight_level,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_max_charge_soc,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_regen_intensity,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,actual_wiper_service_mode,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,air_distribution_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,airbag_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ambient_light_level,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ambient_light_reliability,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,belt_reminder_status,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,blower_speed_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,brake_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,cabin_temp_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,cabin_temp_setpoint_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,charge_mode,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,charging_cable_locked,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,clim_contr_mode_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,closures_door_status,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,closures_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,cms_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,cruise_control_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,cruise_velocity_request,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,dcm_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,defog_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,drivetrain_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,esc_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,excessive_wheelspeed_status,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ext_light_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ext_wiper_and_washer_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,fob_closures_lock_vehicle_action,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,hv_current_draw,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,hvbs_system_voltage,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,light_button_action,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,lv_voltage_12v,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,media_next,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,media_prev,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,media_scroll,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,media_source,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,media_toggle_widget,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,media_volume_down,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,media_volume_up,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,odometer_reading,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_front_ll,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_front_ml,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_front_mr,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_front_rr,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_rear_ll,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_rear_ml,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_rear_mr,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,parking_sense_distance_rear_rr,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,power_mode,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,recirculation_actual,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,remaining_charge_time,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,remaining_energy_hv,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,remaining_energy_lv,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,safety_interior_lights_request,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc00_hood_l11_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc00_hood_l21_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc01_hood_l31_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc01_hood_l32_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc02_hood_r41_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc02_hood_r42_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc03_hood_r51_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc03_hood_r61_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc04_roof_l11_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc04_roof_l21_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc05_roof_l22_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc05_roof_l23_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc06_roof_l12_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc06_roof_l24_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc07_roof_r31_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc07_roof_r41_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc08_roof_r32_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc08_roof_r33_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc09_roof_r34_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc09_roof_r42_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc10_tail_l11_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc10_tail_l21_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc11_tail_l22_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc11_tail_l23_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc12_tail_r32_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc12_tail_r33_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc13_tail_r31_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,solar_dsc13_tail_r41_power,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ssc_hmi_scenario_drvr_action,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ssc_hmi_scenario_issue,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ssc_hmi_scenario_telltale,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,state_of_charge_hv,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,state_of_charge_lv,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,temp_actual_hv_battery,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,temperature_ambient,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,tms_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,total_energy_hv_and_lv,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,trip_meter_reading,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_auxiliary_efficiency,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_cabin_climate_efficiency,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_driving_efficiency,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_power_auxiliaries,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_power_climate_control,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_power_driving,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_power_grid_charging,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_power_regen,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_power_solar_yield,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_range_remaining,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_regen_efficiency,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_speed,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_speed_reliability,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vehicle_total_efficiency,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,vpc_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
+paldd,active_gear,read,Lighting manager,central_gateway,exl_control_task_gw,50
+paldd,auto_light_request,read,Lighting manager,central_gateway,exl_control_task_gw,50
+paldd,exterior_lighting_request,read,Lighting manager,central_gateway,exl_control_task_gw,50
+paldd,fog_light_request,read,Lighting manager,central_gateway,exl_control_task_gw,50
+paldd,operating_mode_lighting,read,Lighting manager,central_gateway,exl_control_task_gw,50
+paldd,ivi_wiper_rain_sensitivity_setting,read,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,operating_mode_ignition,read,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,temperature_ambient,read,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,vehicle_speed,read,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,wiper_position,read,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,actual_closures_lock_vehicle,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ambient_light_level_reliable,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ambient_light_reliability_reliable,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,audio_notification_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,authentication_level,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,auto_light_request_reliable,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,charge_action,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,charging_authentication_level,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,closure_blink_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,closures_door_status,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,closures_hmi_scenario,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,fog_lights_active,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ic_okay,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_ac_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_air_distribution_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_avh_enable,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_blower_speed_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_cabin_temp_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_clim_contr_mode_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_cms_brightness_setting,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_defog_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_headlight_level_setting,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_max_charge_soc_setting,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_recirculation_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_regen_intensity_setting,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,ivi_wiper_service_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,open_door_request,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,power_mode,read,CAN transmit,central_gateway,gwy_transmit_task,50
+paldd,active_vehicle_state,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,authentication_level,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,crash_detected,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,esc_power_mode,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,fob_closures_lock_vehicle_action,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,lmv_power_mode,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,sol_power_mode,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,ssc_power_mode,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,vehicle_speed,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,vehicle_speed_reliability,read,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
+paldd,authentication_level,write,Authentication manager,central_gateway,aut_task,50
+paldd,charge_action,write,Authentication manager,central_gateway,aut_task,50
+paldd,charging_authentication_level,write,Authentication manager,central_gateway,aut_task,50
+paldd,fob_closures_lock_vehicle_action,write,Authentication manager,central_gateway,aut_task,50
+paldd,actual_closures_lock_vehicle,write,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,actual_closures_reardoor,write,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,closure_blink_request,write,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,closures_door_status,write,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,closures_hmi_scenario,write,Closures manager,central_gateway,clr_control_closures_task,50
+paldd,audio_notification_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ic_okay,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_ac_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_air_distribution_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_avh_enable,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_blower_speed_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_cabin_temp_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_charge_action,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_clim_contr_mode_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_closures_hood_action,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_closures_lock_lid_action,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_closures_lock_vehicle_action,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_closures_reardoor_action,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_cms_brightness_setting,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_defog_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_headlight_level_setting,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_max_charge_soc_setting,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_recirculation_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_regen_intensity_setting,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,ivi_wiper_service_request,write,Driver Controls manager,central_gateway,dvi_task,50
+paldd,fog_lights_active,write,Lighting manager,central_gateway,exl_control_task_gw,50
+paldd,ambient_light_level,write,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,ambient_light_reliability,write,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,auto_light_request,write,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,wiper_auto_speed,write,LIN,central_gateway,lin_gw_task_10ms,10
+paldd,ac_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,active_gear,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,active_vehicle_state,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,actual_avh_status,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,actual_closures_lock_lid,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,actual_grid_charging_current,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,actual_headlight_level,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,actual_max_charge_soc,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,actual_regen_intensity,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,actual_wiper_service_mode,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,air_distribution_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,airbag_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,alarm_hazard_lights_request,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,belt_reminder_status,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,blower_speed_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,brake_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,cabin_temp_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,cabin_temp_setpoint_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,charge_mode,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,charging_cable_locked,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,charging_cable_plugged_in,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,charging_lid_open_state,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,clim_contr_mode_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,closure_button_action_scu,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,cms_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,crash_detected,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,cruise_control_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,cruise_velocity_request,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,dcm_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,defog_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,esc_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,esc_power_mode,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,ext_light_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,ext_wiper_and_washer_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,exterior_lighting_request,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,fog_light_request,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,hv_current_draw,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,hvbs_system_voltage,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,light_button_action,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,lmv_power_mode,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,lv_voltage_12v,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,media_next,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,media_prev,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,media_scroll,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,media_source,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,media_toggle_widget,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,media_volume_down,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,media_volume_up,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,odometer_reading,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,operating_mode_ignition,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,operating_mode_lighting,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,park_brake_engaged,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_front_ll,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_front_ml,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_front_mr,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_front_rr,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_rear_ll,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_rear_ml,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_rear_mr,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,parking_sense_distance_rear_rr,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,recirculation_actual,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,remaining_charge_time,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,remaining_energy_hv,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,remaining_energy_lv,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,safety_doors_unlock_request,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,safety_interior_lights_request,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,sol_power_mode,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc00_hood_l11_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc00_hood_l21_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc01_hood_l31_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc01_hood_l32_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc02_hood_r41_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc02_hood_r42_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc03_hood_r51_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc03_hood_r61_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc04_roof_l11_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc04_roof_l21_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc05_roof_l22_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc05_roof_l23_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc06_roof_l12_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc06_roof_l24_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc07_roof_r31_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc07_roof_r41_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc08_roof_r32_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc08_roof_r33_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc09_roof_r34_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc09_roof_r42_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc10_tail_l11_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc10_tail_l21_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc11_tail_l22_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc11_tail_l23_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc12_tail_r32_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc12_tail_r33_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc13_tail_r31_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,solar_dsc13_tail_r41_power,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,ssc_hmi_scenario_drvr_action,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,ssc_hmi_scenario_issue,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,ssc_hmi_scenario_telltale,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,ssc_power_mode,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,starter_kill,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,state_of_charge_hv,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,state_of_charge_lv,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,temp_actual_hv_battery,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,temperature_ambient,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,tms_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,total_energy_hv_and_lv,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,trip_meter_reading,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_auxiliary_efficiency,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_cabin_climate_efficiency,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_driving_efficiency,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_motion_state,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_power_auxiliaries,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_power_climate_control,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_power_driving,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_power_grid_charging,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_power_regen,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_power_solar_yield,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_range_remaining,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_regen_efficiency,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_speed,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_speed_reliability,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vehicle_total_efficiency,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,vpc_hmi_scenario,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,wipe_request,write,CAN receive,central_gateway,gwy_receive_task,50
+paldd,power_mode,write,Vehicle Power Controller,central_gateway,vpc_gw_task_50ms,50
