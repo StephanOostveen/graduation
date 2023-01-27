@@ -94,4 +94,7 @@ RUN apt-get install -y libgraphviz-dev && pip3 install pygraphviz
 WORKDIR /opt/graphs
 COPY callgraph.py /opt/graphs
 RUN chmod +x /opt/graphs/callgraph.py
+RUN ./callgraph.py /opt/lyswe-vehicle/build/nodes/central_gateway_prod_RAFT/ cgw && \
+    ./callgraph.py /opt/lyswe-vehicle/build/nodes/safety_control_unit_primary_prod_RAFT/ scu && \
+    ./callgraph.py /opt/lyswe-vehicle/build/nodes/vehicle_control_unit_prod_RAFT/ vcu
 CMD ["/bin/bash"]

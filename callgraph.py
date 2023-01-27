@@ -19,6 +19,35 @@ def dir_path(string):
     else:
         raise NotADirectoryError(string)
 
+def add_dot_labels(graph):
+    for node in graph:
+        graph.nodes[node]['shape']= 'box'
+        if 'palvar_read' in graph.nodes[node]['label']:
+            graph.nodes[node]['fillcolor'] = '#77AADD'
+            graph.nodes[node]['style'] = 'filled'
+        elif 'palvar_write' in graph.nodes[node]['label']:
+            graph.nodes[node]['fillcolor'] = '#BBCC33'
+            graph.nodes[node]['style'] = 'filled'
+
+        c = graph.nodes[node].get('fillcolor')
+        if len(nx.ancestors(graph, node)) == 0 and c:   
+            graph.nodes[node]['fillcolor'] = "{}:{}".format(c, '#EE8866')
+            graph.nodes[node]['style'] = 'striped'
+        elif len(nx.ancestors(graph, node)) == 0:
+            graph.nodes[node]['fillcolor'] = '#EE8866'
+            graph.nodes[node]['style'] = 'filled'
+
+def anonymize_graph(graph):
+    for node in graph:
+        if 'palvar_read' in graph.nodes[node]['label']:
+            graph.nodes[node]['label'] = 'read_variable_x'
+        elif 'palvar_write' in graph.nodes[node]['label']:
+            graph.nodes[node]['label'] = 'write_variable_x'
+        elif len(nx.ancestors(graph, node)) == 0:
+            graph.nodes[node]['label'] = 'task'
+        else:
+            graph.nodes[node]['label'] = 'function_y'
+
 # Graph G contains palvar_read/palvar_write nodes, perform analysis
 def find_pal_read_write_callgraphs(G):
     H = G.copy()
@@ -29,6 +58,7 @@ def find_pal_read_write_callgraphs(G):
         print(sorted(nx.simple_cycles(H)))
         return
     reducedGraph = nx.DiGraph(overlap='false', layout='sfdp')
+    anonymizedGraph = nx.DiGraph(overlap='false', layout='sfdp')
 
     for node in H:
         H.nodes[node]['label'] = H.nodes[node]['label'].replace("{","").replace('"', '').replace("}", '')
@@ -38,27 +68,15 @@ def find_pal_read_write_callgraphs(G):
         if any(x in nodeData['label'] for x in ['palvar_read', 'palvar_write']):
             chain = nx.subgraph(H, nx.ancestors(H, node) | {node})
             reducedGraph.update(chain)
+            anonymizedGraph.update(chain)
             callgraphs.append([chain.nodes[n]['label'] for n in nx.topological_sort(chain)])
 
     callgraphs = [[node.replace("{","").replace('"', '').replace("}", '') for node in graph] for graph in callgraphs]
 
-    for node in reducedGraph:
-        reducedGraph.nodes[node]['shape']= 'box'
-        if 'palvar_read' in reducedGraph.nodes[node]['label']:
-            reducedGraph.nodes[node]['fillcolor'] = '#77AADD'
-            reducedGraph.nodes[node]['style'] = 'filled'
-        elif 'palvar_write' in reducedGraph.nodes[node]['label']:
-            reducedGraph.nodes[node]['fillcolor'] = '#BBCC33'
-            reducedGraph.nodes[node]['style'] = 'filled'
-
-        c = reducedGraph.nodes[node].get('fillcolor')
-        if len(nx.ancestors(reducedGraph, node)) == 0 and c:   
-            reducedGraph.nodes[node]['fillcolor'] = "{}:{}".format(c, '#EE8866')
-            reducedGraph.nodes[node]['style'] = 'striped'
-        elif len(nx.ancestors(reducedGraph, node)) == 0:
-            reducedGraph.nodes[node]['fillcolor'] = '#EE8866'
-            reducedGraph.nodes[node]['style'] = 'filled'
-    return (callgraphs, reducedGraph)
+    add_dot_labels(reducedGraph)
+    add_dot_labels(anonymizedGraph)
+    anonymize_graph(anonymizedGraph)
+    return (callgraphs, reducedGraph, anonymizedGraph)
 
 
 def graph_to_row(callgraphlist, physical):
@@ -133,11 +151,12 @@ if __name__ == "__main__":
         # Check if graph contains palvar_read or palvar_write nodes
         print("{}....".format("\tSearch for relevant nodes in weakly connected component {}".format({i})))
         for k, v in subgraph.nodes(data="label"):
-            if any(x in v for x in ['palvar_write', 'palvar_write']):
+            if any(x in v for x in ['palvar_read', 'palvar_write']):
                 print("{}....".format("\t\tFound relevant node, create callgraph for each relevant node"))
                 nx.nx_pydot.write_dot(subgraph, 'palvar_graph{}.dot'.format(i))
-                callList, reducedGraph = find_pal_read_write_callgraphs(subgraph)
+                callList, reducedGraph, anonymizedGraph = find_pal_read_write_callgraphs(subgraph)
                 nx.nx_agraph.write_dot(reducedGraph, 'palvar_reduced_graph{}.dot'.format(i))
+                nx.nx_agraph.write_dot(anonymizedGraph, 'palvar_anon_graph{}.dot'.format(i))
                 callgraphs = callgraphs + callList
                 break
         i = i + 1
