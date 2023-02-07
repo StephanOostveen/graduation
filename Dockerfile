@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu@sha256:fdd3c9372c19afa928f99afde58f0f80a008ebb695a8c5ee37de5adb7feb46de
 
 RUN apt-get update && apt-get install -y ccache ninja-build python3 python3-pip git libssl-dev \
                                          build-essential lld vim dos2unix
