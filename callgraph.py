@@ -7,6 +7,9 @@ import subprocess
 import networkx as nx
 import csv
 import re
+
+from collections import defaultdict
+
 # Change the compile command to only do preprocessing and compilation (-S)
 # and emit llvm bitcode (-emit-llvm) and change the output file location (-o ...)
 def change_command(command):
@@ -22,10 +25,10 @@ def dir_path(string):
 def add_dot_labels(graph):
     for node in graph:
         graph.nodes[node]['shape']= 'box'
-        if 'palvar_read' in graph.nodes[node]['label']:
+        if 'palcan_receive' in graph.nodes[node]['label']:
             graph.nodes[node]['fillcolor'] = '#77AADD'
             graph.nodes[node]['style'] = 'filled'
-        elif 'palvar_write' in graph.nodes[node]['label']:
+        elif 'palcan_transmit' in graph.nodes[node]['label']:
             graph.nodes[node]['fillcolor'] = '#BBCC33'
             graph.nodes[node]['style'] = 'filled'
 
@@ -39,10 +42,10 @@ def add_dot_labels(graph):
 
 def anonymize_graph(graph):
     for node in graph:
-        if 'palvar_read' in graph.nodes[node]['label']:
-            graph.nodes[node]['label'] = 'read_variable_x'
-        elif 'palvar_write' in graph.nodes[node]['label']:
-            graph.nodes[node]['label'] = 'write_variable_x'
+        if 'palcan_receive' in graph.nodes[node]['label']:
+            graph.nodes[node]['label'] = 'receive_message_x'
+        elif 'palvar_transmit' in graph.nodes[node]['label']:
+            graph.nodes[node]['label'] = 'transmit_message_x'
         elif len(nx.ancestors(graph, node)) == 0:
             graph.nodes[node]['label'] = 'task'
         else:
@@ -65,11 +68,20 @@ def find_pal_read_write_callgraphs(G):
 
     callgraphs = []
     for node, nodeData in H.nodes(data=True):
-        if any(x in nodeData['label'] for x in ['palvar_read', 'palvar_write']):
+        if any(x in nodeData['label'] for x in ['palcan_receive', 'palcan_transmit']):
             chain = nx.subgraph(H, nx.ancestors(H, node) | {node})
             reducedGraph.update(chain)
             anonymizedGraph.update(chain)
-            callgraphs.append([chain.nodes[n]['label'] for n in nx.topological_sort(chain)])
+            forest = nx.dag_to_branching(reducedGraph)
+            sources = defaultdict(set)
+            for v, source in forest.nodes(data="source"):
+                sources[source].add(v)
+            for source, nodes in sources.items():
+                for v in nodes:
+                    forest.nodes[v].update(reducedGraph.nodes[source])
+            
+            for components in nx.weakly_connected_components(forest):
+                callgraphs.append([components.nodes[n]['label'] for n in nx.topological_sort(components)])
 
     callgraphs = [[node.replace("{","").replace('"', '').replace("}", '') for node in graph] for graph in callgraphs]
 
@@ -83,20 +95,21 @@ def graph_to_row(callgraphlist, physical):
     for callgraph in callgraphlist:
         #  fieldnames = ['variable', 'action', 'logical', 'physical', 'task', 'frequency']
         palfunc = callgraph[-1]
+        caller = callgraph[-2]
         task = callgraph[0]
 
-        palfunc_re = re.match("(palvar_write|palvar_read)_(\w+)", palfunc)
+        palfunc_re = re.match("(palcan_transmit|palcan_receive)", palfunc)
         task_re = re.match("(\w+)", task)
 
         if not palfunc_re or not task_re:
             print("Had issues parsing callgraph: {}".format(callgraph))
             continue
-        action = 'write' if palfunc_re.group(1) == 'palvar_write' else 'read'
-        variable = palfunc_re.group(2)
+        action = 'transmit' if palfunc_re.group(1) == 'palcan_transmit' else 'receive'
         task_name = task_re.group(1)
 
-        yield { 'type' : 'paldd',
-                'variable' : variable,
+        yield { 'type' : 'palcan',
+                'variable' : 'tbd',
+                'caller' : caller,
                 'action' : action,
                 'logical' : 'tbd',
                 'physical' : physical,
@@ -151,7 +164,7 @@ if __name__ == "__main__":
         # Check if graph contains palvar_read or palvar_write nodes
         print("{}....".format("\tSearch for relevant nodes in weakly connected component {}".format({i})))
         for k, v in subgraph.nodes(data="label"):
-            if any(x in v for x in ['palvar_read', 'palvar_write']):
+            if any(x in v for x in ['palcan_receive', 'palcan_transmit']):
                 print("{}....".format("\t\tFound relevant node, create callgraph for each relevant node"))
                 nx.nx_pydot.write_dot(subgraph, 'palvar_graph{}.dot'.format(i))
                 callList, reducedGraph, anonymizedGraph = find_pal_read_write_callgraphs(subgraph)
@@ -164,7 +177,7 @@ if __name__ == "__main__":
     print("----------------{}----------------".format("Create resulting CSV"))
     with open('names_{}.csv'.format(args.physical), 'w', newline='') as csvfile, \
         open('graphs_{}.txt'.format(args.physical), 'w') as graphfile:
-        fieldnames = ['type', 'variable', 'action', 'logical', 'physical', 'task', 'period (ms)']
+        fieldnames = ['type', 'variable', 'caller', 'action', 'logical', 'physical', 'task', 'period (ms)']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
