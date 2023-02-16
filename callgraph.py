@@ -51,6 +51,18 @@ def anonymize_graph(graph):
         else:
             graph.nodes[node]['label'] = 'function_y'
 
+def forest_to_list(forest):
+    callList = []
+    for node in forest.nodes:
+        if any(x in forest.nodes[node]['label'] for x in ['palcan_receive', 'palcan_transmit']):
+            chain = nx.subgraph(forest, nx.ancestors(forest, node) | {node})
+            callList.append([chain.nodes[n]['label'] for n in nx.topological_sort(chain)])
+    print("forest_to_list: " , callList)
+    return callList
+    # for components in nx.weakly_connected_components(forest):
+    #     tree = forest.subgraph(components)
+    #     callgraphs.append([tree.nodes[n]['label'] for n in nx.topological_sort(tree)])
+
 # Graph G contains palvar_read/palvar_write nodes, perform analysis
 def find_pal_read_write_callgraphs(G):
     H = G.copy()
@@ -72,7 +84,8 @@ def find_pal_read_write_callgraphs(G):
             chain = nx.subgraph(H, nx.ancestors(H, node) | {node})
             reducedGraph.update(chain)
             anonymizedGraph.update(chain)
-            forest = nx.dag_to_branching(reducedGraph)
+            # Get all unique paths for CAN analysis
+            forest = nx.dag_to_branching(chain)
             sources = defaultdict(set)
             for v, source in forest.nodes(data="source"):
                 sources[source].add(v)
@@ -80,8 +93,9 @@ def find_pal_read_write_callgraphs(G):
                 for v in nodes:
                     forest.nodes[v].update(reducedGraph.nodes[source])
             
-            for components in nx.weakly_connected_components(forest):
-                callgraphs.append([components.nodes[n]['label'] for n in nx.topological_sort(components)])
+            for l in forest_to_list(forest):
+                if len(l) > 0:
+                    callgraphs.append(l)
 
     callgraphs = [[node.replace("{","").replace('"', '').replace("}", '') for node in graph] for graph in callgraphs]
 
@@ -168,6 +182,7 @@ if __name__ == "__main__":
                 print("{}....".format("\t\tFound relevant node, create callgraph for each relevant node"))
                 nx.nx_pydot.write_dot(subgraph, 'palvar_graph{}.dot'.format(i))
                 callList, reducedGraph, anonymizedGraph = find_pal_read_write_callgraphs(subgraph)
+                print(callList)
                 nx.nx_agraph.write_dot(reducedGraph, 'palvar_reduced_graph{}.dot'.format(i))
                 nx.nx_agraph.write_dot(anonymizedGraph, 'palvar_anon_graph{}.dot'.format(i))
                 callgraphs = callgraphs + callList

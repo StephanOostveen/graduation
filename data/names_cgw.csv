@@ -1,0 +1,325 @@
+type,CAN ID,Signal name,Signal size (bits),CAN Bus,caller,action,logical,physical,task,period (ms),Parametrizable end node
+palcan,401,MODULE_SERIAL_NUMBER_1,64,Vehicle CAN02,check_authentication_trust,receive,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,416,MODULE_SERIAL_NUMBER_2,64,Vehicle CAN02,check_authentication_trust,receive,Authentication manager,cgw,aut_task,50,tbd
+palcan,1,ALERT,8,Vehicle CAN02,check_authentication_trust,receive,Authentication manager,cgw,aut_task,50,tbd
+palcan,400,LOCK_CONTROL,8,Vehicle CAN02,read_lock_command_msg,receive,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,402,RSSI,8,Vehicle CAN02,read_rssi_msg,receive,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,403,STATUS,8,Vehicle CAN02,read_pairing_state_msg,receive,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_8,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_7,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_6,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_5,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_4,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_3,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_2,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,405,APP_VOUCH_IDENTIFIER_1_BYTE_1,v,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_8,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_7,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_6,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_5,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_4,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_3,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_2,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,406,APP_VOUCH_IDENTIFIER_2_BYTE_1,8,Telematics CAN,read_app_vouch_identifier_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,407,APP_INITIATE_ENROLLMENT,8,Telematics CAN,read_app_initiate_enrollment_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,415,APP_CANCEL_ENROLLMENT,8,Telematics CAN,read_app_cancel_enrollment_msg,receive,Authentication manager,cgw,aut_task,50,EOL
+palcan,411,MANUFACTURING_ID_1_BYTE_8,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,411,MANUFACTURING_ID_1_BYTE_7,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,411,MANUFACTURING_ID_1_BYTE_6,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,411,MANUFACTURING_ID_1_BYTE_5,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,411,MANUFACTURING_ID_1_BYTE_4,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,411,MANUFACTURING_ID_1_BYTE_3,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,411,MANUFACTURING_ID_1_BYTE_2,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,411,MANUFACTURING_ID_1_BYTE_1,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_8,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_7,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_6,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_5,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_4,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_3,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_2,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,412,MANUFACTURING_ID_2_BYTE_1,8,Vehicle CAN02,trigger_initiate_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,408,CANCEL_ENROLLMENT,8,Vehicle CAN02,trigger_cancel_enrollment,transmit,Authentication manager,cgw,aut_task,50,VOUCHIO
+palcan,404,ENROLLMENT_STATUS,8,Telematics CAN,send_app_enrollment_status_msg,transmit,Authentication manager,cgw,aut_task,50,EOL
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_8,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_7,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_6,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_5,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_4,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_3,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_2,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,413,VOUCH_IDENTIFIER_1_BYTE_1,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_8,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_7,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_6,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_5,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_4,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_3,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_2,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,414,VOUCH_IDENTIFIER_2_BYTE_1,8,PT CAN,send_vouch_identifier_msg,transmit,Authentication manager,cgw,aut_task,50,Media ECU
+palcan,410,WindowStatusRearRight,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,WindowStatusRearLeft,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,WindowStatusFrontRight,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,DoorStatusRearRight,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,DoorStatusRearLeft,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,DoorStatusFrontRight,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,InteriorSensorsOnReq,1,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,WindowStatusFrontLeft,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,DoorStatusFrontLeft,2,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,IndicatorLightStatus,1,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,IgnitionStatus,4,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,VehicleLockStatus,4,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,TrunkStatus,4,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,HoodStatus,4,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,410,CounterLockLatchStatus,4,PT CAN,alarm_system_manager_run,transmit,Authentication manager,cgw,aut_task,50,Authentication System
+palcan,536805378,cgw_software_version,8,Telematics CAN,cgw_version_handle_transmit,transmit,CGW Version Transmitter,cgw,cgw_version_handle_transmit,50,Telematics Control Unit
+palcan,4,NDoorFLVehicleLocked,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,4,NDoorFLVehicleMoving,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,4,NDoorFLOpenInvRequested,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,4,NDoorFLOpenRequested,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,4,NDoorFLCommandCounter,8,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,6,NDoorRLVehicleMoving,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,6,NDoorRLVehicleLocked,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,6,NDoorRLOpenRequested,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,6,NDoorRLOpenInvRequested,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,6,NDoorRLCommandCounter,8,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,5,NDoorFRVehicleLocked,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,5,NDoorFRVehicleMoving,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,5,NDoorFROpenInvRequested,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,5,NDoorFROpenRequested,2,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,5,NDoorFRCommandCounter,8,Vehicle CAN02,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,7,NDoorRRVehicleMoving,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,7,NDoorRRVehicleLocked,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,7,NDoorRROpenRequested,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,7,NDoorRROpenInvRequested,2,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,7,NDoorRRCommandCounter,8,PT CAN,doors_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,0,NDoorFRExtMechHandle,2,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,0,NDoorFRIntMechHandle,2,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,0,NDoorFRClawStatus,4,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,0,BDLFRResponseError,1,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,0,NDoorLatchFRFailure,4,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,0,NDoorFRCounter,8,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FR
+palcan,2,NDoorRRIntMechHandle,2,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,2,NDoorRRExtMechHandle,2,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,2,NDoorRRCounter,8,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,2,NDoorRRClawStatus,4,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,2,NDoorLatchRRFailure,4,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,2,BDLRRResponseError,1,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RR
+palcan,1,NDoorFLExtMechHandle,2,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,1,NDoorFLIntMechHandle,2,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,1,NDoorFLClawStatus,4,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,1,BDLFLResponseError,1,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,1,NDoorLatchFLFailure,4,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,1,NDoorFLCounter,8,PT CAN,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch FL
+palcan,3,NDoorRLIntMechHandle,2,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,3,NDoorRLExtMechHandle,2,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,3,NDoorRLCounter,8,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,3,NDoorRLClawStatus,4,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,3,NDoorLatchRLFailure,4,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,3,BDLRLResponseError,1,Vehicle CAN02,doors_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch RL
+palcan,1612,IC_Ready,1,PT CAN,media_ecu_monitoring_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1609,HVAC_Set_AC_On,1,PT CAN,messages_climate_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1609,HVAC_Set_Auto_Mode,2,PT CAN,messages_climate_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1609,HVAC_Set_Cabin_temperature,16,PT CAN,messages_climate_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1609,HVAC_Set_Fan_Speed,3,PT CAN,messages_climate_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1609,HVAC_Set_Defrost,2,PT CAN,messages_climate_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1609,HVAC_Set_Airvent_Zones,4,PT CAN,messages_climate_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1609,HVAC_Set_Air_Recirculation,1,PT CAN,messages_climate_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Auto_Hold,2,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Regen_Level,4,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Screen_Brightness,8,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Wiper_Service_Mode,2,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Trunk_Light,2,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Hood_Unlock,2,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Disable_Rear_Door_Unlock,2,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Charging_Port_Lock,2,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Central_Lock,2,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1608,Set_Beam_Compensate_Heavy_Load,3,PT CAN,messages_general_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1563,Charging_Set_Schedule_Time,16,PT CAN,messages_charging_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1563,Charging_SOC_Limit,8,PT CAN,messages_charging_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1563,Charging_Enabled,2,PT CAN,messages_charging_information_run,receive,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Warning_Vehicle_Hold_Enabled,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_IndicatorFailureRight,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_IndicatorFailureLeft,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_General_MalfunctionFlash,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Warning_Reduced_Speed,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Warning_Reduced_Power,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Warning_General_MalfunctionFlash,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_CMS,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_Brakefluidlevel,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_General_Malfunction,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_ABS,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_Power_Steering,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Warning_Brake_Wear,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1611,Error_Brake_Fault,1,PT CAN,messages_telltales_send_safety_errors,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Vehicle_Hold_Unavailable,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Speed_Limit,8,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Collision,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Maintenance,8,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Life_Threatening,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Electrical_Malfunction,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Brake_Fault,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Airbag_Fault,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Vehicle_Hold_Active,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Tire_Pressure,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Slippery_Conditions,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Seatbelt,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Screen_Wash,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_General_Malfunction,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Parkbrake_Fault,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1601,Warning_Door_Status,1,PT CAN,messages_telltales_send_safety_warnings,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1541,Parkbrake,1,PT CAN,messages_telltales_send_parkbrake,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1535,Range,16,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1535,VehicleSpeed,16,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1536,ReverseGearEnabled,1,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1536,ParkGearEnabled,1,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1536,NeutralGearEnabled,1,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1536,DriveGearEnabled,1,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1536,ActiveGear,3,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1554,Trip,32,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1554,Travelled_Distance,32,PT CAN,messages_driving_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1552,BMS_HV_Voltage,8,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1552,BMS_HV_Current,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1552,BMS_HV_Temp,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1552,BMS_HV_SoE,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1552,BMS_HV_SoC,8,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1557,BMS_LV_SoE,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1557,BMS_LV_SoC,8,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1557,BMS_12V_Voltage,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1557,BMS_12V_Current,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1566,Efficiency_Overall_Vehicle,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1566,Power_Out_Driving,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1566,Power_Out_Climate,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1566,Power_Out_Auxiliary,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1560,Vehicle_Energy_Capacity,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1560,Power_In_Regen,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1560,Power_In_Charging,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1560,Power_In_Solar,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1567,Efficiency_Regen,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1567,Efficiency_Cabin_Climate,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1567,Efficiency_Auxiliaries,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1567,Efficiency_Driving,16,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_R61,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_R51,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_R41,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_R42,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_L32,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_L31,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,FRoof_R41,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,FRoof_R32,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,FRoof_R31,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,FRoof_L22,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,FRoof_L21,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,FRoof_L11,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_L21,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1544,Hood_L11,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_R41,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_R33,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_R32,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_R31,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_L23,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_L22,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_L21,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,Trunk_L11,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,RRoof_R42,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,RRoof_R34,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,RRoof_R33,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,RRoof_L24,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,RRoof_L23,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1545,RRoof_L12,4,PT CAN,messages_energy_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1602,Go_Free_Mode_Active,1,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1602,Cruise_Control_Target_Speed,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1602,Cruise_Control_Active,1,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1602,ABS_Active,1,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_RRR,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_RMR,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_RML,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_RLL,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_FRR,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_FMR,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_FML,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1568,Parking_Sense_Dist_FLL,8,PT CAN,messages_driver_assistance_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Coming_Home_Light,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Position_Light,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Park_Light,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Main_Light,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Fog_Light,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Low_Beam,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,High_Beam,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Blinker_right,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1549,Blinker_Left,1,PT CAN,messages_exterior_lighting_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1604,HVAC_AC_On,1,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1604,HVAC_Temperature_Info_Set,16,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1604,HVAC_Airvent_Zones,4,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1604,HVAC_Air_Recirculation_Status,1,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1604,HVAC_Defrost,2,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1604,HVAC_Fan_Speed_Level,3,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1604,HVAC_Auto_Mode,2,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1605,Outside_Temperature,16,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1605,Cabin_Temperature,16,PT CAN,messages_climate_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,DoorStatus_FL_Driver,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Tire_Low_RR,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Tire_Low_RL,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Tire_Low_FR,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Seatbelt_Unbuckled_RR,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Seatbelt_Unbuckled_RM,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Seatbelt_Unbuckled_RL,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Seatbelt_Unbuckled_FR,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Seatbelt_Unbuckled_FL_Driver,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,DoorStatus_Charger_Latch,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,DoorStatus_Trunk,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,DoorStatus_RR,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,DoorStatus_RL,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,DoorStatus_Hood,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,DoorStatus_FR,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1613,Tire_Low_FL,1,PT CAN,messages_widgets_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Power_Saving_Mode,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Rear_Door_Unlock_Attempt,1,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Prompt_Rear_Door_Unlock_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Auto_Hold_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Regen_Level_Info,4,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Wiper_Service_Mode_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Beam_Compensate_Heavy_Load_Info,3,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Trunk_Light_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Charging_Port_Lock_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Ambient_Light_Reliability,3,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Ambient_Light_Level,16,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,System_Notification,16,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Disable_Rear_Door_Unlock_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Hood_Unlock_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1603,Central_Lock_Info,2,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1572,Stalk_Volume_Up_Button,1,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1572,Stalk_Volume_Down_Button,1,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1572,Stalk_Src_Button,1,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1572,Stalk_Roll_Button,8,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1572,Stalk_Previous_Button,1,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1572,Stalk_Next_Button,1,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1572,Stalk_Widget_Select_Button,1,PT CAN,messages_general_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1558,Charging_Remaining_Time,16,PT CAN,messages_charging_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1558,Charging_Actual_Current,16,PT CAN,messages_charging_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1558,Charging_Cable_Locked,2,PT CAN,messages_charging_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1558,Cable_Status,1,PT CAN,messages_charging_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1558,Charging_Mode,3,PT CAN,messages_charging_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1558,Charging_Set_Schedule_Time_Info,16,PT CAN,messages_charging_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,1558,Charging_SoC_Limit_Info,8,PT CAN,messages_charging_information_run,transmit,Driver controls manager,cgw,dvi_task,50,Media ECU
+palcan,tbd,,,,forward_if_received,receive,tbd,cgw,gwy_fw_upgrade_forwarding_task,tbd,
+palcan,tbd,,,,forward_if_received_stmin,receive,tbd,cgw,gwy_fw_upgrade_forwarding_task,tbd,
+palcan,tbd,,,,forward_if_received,transmit,tbd,cgw,gwy_fw_upgrade_forwarding_task,tbd,
+palcan,tbd,,,,forward_if_received_stmin,transmit,tbd,cgw,gwy_fw_upgrade_forwarding_task,tbd,
+palcan,tbd,,,,gwy_receive_task,receive,tbd,cgw,gwy_receive_task,tbd,
+palcan,tbd,,,,gwy_transmit_task,transmit,tbd,cgw,gwy_transmit_task,tbd,
+palcan,tbd,,,,lin_channel_a_read_all,receive,tbd,cgw,lin_gw_task_10ms,tbd,
+palcan,tbd,,,,lin_channel_b_read_all,receive,tbd,cgw,lin_gw_task_10ms,tbd,
+palcan,tbd,,,,lin_channel_a_write_all,transmit,tbd,cgw,lin_gw_task_10ms,tbd,
+palcan,tbd,,,,lin_channel_b_write_all,transmit,tbd,cgw,lin_gw_task_10ms,tbd,
+palcan,11,NCWLatchVehicleLocked,2,Vehicle CAN02,tailgate_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,11,NCWLatchVehicleMoving,2,Vehicle CAN02,tailgate_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,11,NCWLatchOpenInvRequested,2,Vehicle CAN02,tailgate_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,11,NCWLatchOpenRequested,2,Vehicle CAN02,tailgate_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,11,NCWLatchCommandCounter,8,Vehicle CAN02,tailgate_can_command_send,transmit,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,tbd,NCWLatchTriggerInput,2,Vehicle CAN02,tailgate_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,tbd,NCWLatchNodeIdInput,2,Vehicle CAN02,tailgate_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,tbd,NCWLatchClawStatus,2,Vehicle CAN02,tailgate_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,tbd,BCWLResponseError,1,Vehicle CAN02,tailgate_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,tbd,NCWLatchFailure,4,Vehicle CAN02,tailgate_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
+palcan,tbd,NCWLatchCounter,8,Vehicle CAN02,tailgate_can_status_receive,receive,Closures manager,cgw,clr_control_closures_task,50,Latch Tailgate
