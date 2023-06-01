@@ -10,3 +10,6 @@
 [submodule "llvm-project"]
 	path = llvm-project
 	url = https://github.com/llvm/llvm-project.git
+[submodule "can_simulation/omnetpp-cmake"]
+	path = can_simulation/omnetpp-cmake
+	url = git@github.com:StephanOostveen/omnetpp-cmake.git
