@@ -83,6 +83,9 @@ add_library(FiCo4OMNeT SHARED
 
     FiCo4OMNeT/src/fico4omnet/operatingsystem/Scheduler.cc
     FiCo4OMNeT/src/fico4omnet/operatingsystem/Scheduler.h
+
+    FiCo4OMNeT/src/fico4omnet/operatingsystem/DataDictionary.cc
+    FiCo4OMNeT/src/fico4omnet/operatingsystem/DataDictionary.h
 )
 
 add_custom_command(TARGET FiCo4OMNeT PRE_BUILD
@@ -95,9 +98,20 @@ add_custom_command(TARGET FiCo4OMNeT PRE_BUILD
 target_compile_definitions(FiCo4OMNeT PUBLIC -DWITH_CAN_COMMON -DWITH_FR_COMMON)
 target_include_directories(FiCo4OMNeT PUBLIC 
     FiCo4OMNeT/src
-    FiCo4OMNeT/src/fico4omnet/operatingsystem
     FiCo4OMNeT/src/fico4omnet/applications/can/source
-
+    FiCo4OMNeT/src/fico4omnet/applications/can/source/lysourceapp
+    FiCo4OMNeT/src/fico4omnet/applications/can/sink
+    FiCo4OMNeT/src/fico4omnet/applications/can/sink/lysinkapp
+    FiCo4OMNeT/src/fico4omnet/base
+    FiCo4OMNeT/src/fico4omnet/buffer
+    FiCo4OMNeT/src/fico4omnet/buffer/can
+    FiCo4OMNeT/src/fico4omnet/bus
+    FiCo4OMNeT/src/fico4omnet/bus/can
+    FiCo4OMNeT/src/fico4omnet/linklayer
+    FiCo4OMNeT/src/fico4omnet/linklayer/can
+    FiCo4OMNeT/src/fico4omnet/operatingsystem
+    FiCo4OMNeT/src/fico4omnet/scheduler/can/
+    FiCo4OMNeT/src/fico4omnet/utilities/
 )
 
 generate_opp_message(FiCo4OMNeT/src/fico4omnet/linklayer/can/messages/CanDataFrame.msg
@@ -122,7 +136,10 @@ generate_opp_message(FiCo4OMNeT/src/fico4omnet/applications/can/sink/lysinkapp/F
 generate_opp_message(FiCo4OMNeT/src/fico4omnet/operatingsystem/CanList.msg
     TARGET FiCo4OMNeT 
 )
-generate_opp_message(FiCo4OMNeT/src/fico4omnet/operatingsystem/DataDictionary.msg
+generate_opp_message(FiCo4OMNeT/src/fico4omnet/operatingsystem/DataDictionaryDefinition.msg
+    TARGET FiCo4OMNeT 
+)
+generate_opp_message(FiCo4OMNeT/src/fico4omnet/operatingsystem/DataDictionaryValue.msg
     TARGET FiCo4OMNeT 
 )
 generate_opp_message(FiCo4OMNeT/src/fico4omnet/operatingsystem/ScheduleMsg.msg
@@ -137,10 +154,6 @@ set_target_properties(FiCo4OMNeT PROPERTIES
 )
 target_link_libraries(FiCo4OMNeT PRIVATE  OmnetPP::main project_warnings)
 target_compile_options(FiCo4OMNeT
-                             PRIVATE -fsanitize=address,undefined)
+                             PRIVATE $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
 target_link_libraries(FiCo4OMNeT
-                            PRIVATE -fsanitize=address,undefined)
-# from /home/stephan/Documents/LY/graduation/can_simulation/FiCo4OMNeT/src
-# opp_run -l ../../build/libFiCo4OMNeT.so -n ../examples:. ../examples/can/arbitration/omnetpp.ini 
-
-# LD_PRELOAD=$(clang -print-file-name=libclang_rt.asan-x86_64.so) opp_run -l ../build/libFiCo4OMNeT.so -n examples examples/can/bitStuffing/fiftyPercent/omnetpp.ini 
+                            PRIVATE $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
