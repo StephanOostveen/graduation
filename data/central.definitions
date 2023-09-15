@@ -1,0 +1,598 @@
+Name,Override,Data type,With reliability,Initial value,Unit,Precision,Scale,Offset,Min,Max,Description
+accelerator_pedal_reliability,,int16_t,,,,,,,0,255,"The signal condition of the determined accelerator pedal, enum type: safe_sig_cnd_t"
+accelerator_pedal_value,,float,,0,%,0.001,1,0,0,100,The determined value of the accelerator pedal
+active_dt_gear,,i_gear_t,,I_GEAR_UNKNOWN,-,1,1,0,,,
+active_gear,,int16_t,,0,-,1,1,0,,,
+brake_hazard_lights_request,,int16_t,,0-,1,1,0,,,
+charging_lid_open_state,,bool,,0-,1,1,0,,,
+closure_button_action_scu,,uint16_t,,0-,1,1,0,,,
+open_door_request,,uint16_t,,0-,1,1,0,,,
+starter_kill,,bool,,0-,1,1,0,,,
+tmslog_clnt_error_codes,,uint32_t,,0-,1,1,0,,,
+actual_avh_status,,i_actual_avh_status_t,,I_ACTUAL_AVH_STATUS_INITIAL,,1,1,0,,,The actual value of the setting for the Vehicle Auto Hold Enable
+actual_closures_lock_vehicle,,int16_t,,,,1,1,0,,,The actual status of the lock vehicle request.
+actual_closures_lock_lid,,int16_t,,,,1,1,0,,,The actual status of the lock lid request.
+actual_closures_reardoor,,int16_t,,,,1,1,0,,,The actual status of the rear door request.
+actual_cms_brightness,,uint8_t,,,,1,1,0,,,The brightness of the CMS system.
+actual_headlight_level,,int16_t,,,-,1,1,0,,,The actual headlight level.
+actual_input_power_obc_charge,,int32_t,,,W,1,1,0,,,Actual power going into (+) or out (-) of the OBC towards the Grid in Watts
+actual_operating_mode_dt,,i_operating_mode_dt_t,,I_OPERATING_MODE_DT_DISABLED,-,1,1,0,,,
+actual_operating_mode_esc,,int16_t,,,,1,1,0,,,The actual operating mode of ESC
+actual_operating_mode_tms,,int16_t,,0,,1,1,0,,,
+actual_power_draw_dt,,int32_t,,0,W,1,1,0,,,
+hv_battery_actual_power,,int32_t,,,W,1,1,0,,,The actual power going in (-) or out (+) of the HV battery in Watts
+lv_battery_actual_power,,int32_t,,,W,1,1,0,,,The actual power going in (-) or out (+) of the LV battery in Watts
+actual_max_charge_current,,float,,,A,1.00,1,0,,,The maximum charging current for the HVBS.
+actual_max_charge_soc,,float,,,%,1.00,1,0,,,The actual setting for the max charging State of Charge.
+actual_max_discharge_current,,float,,,A,1.00,1,0,,,The maximum discharging current for the HVBS.
+actual_power_hv_to_lv,,int32_t,,,W,1,1,0,,,The actual power being moved from HV to LV (+) OR LV to HV (-) in Watts
+actual_power_obc_charge,,int32_t,,,W,1,1,0,,,The actual charge power as reported by the OBC in Watts
+actual_power_regen_dt,,int32_t,,0,W,1,1,0,,,
+actual_regen_intensity,,i_ivi_regen_intensity_t,,,,1,1,0,,,The actual value of the intensity setting of the regenerative braking.
+actual_solar_operating_mode,,int16_t,,0,-,1,1,0,,,
+actual_solar_yield,,uint32_t,,0,W,1,1,0,,,
+actual_wiper_service_mode,,int16_t,,,,1,1,0,,,The actual wiper service mode request.
+acu_crash_detected,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,-,1,1,0,,,
+acu_ignition_request,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,-,1,1,0,,,
+ac_actual,,int16_t,,,,1,1,0,,,The actual HVAC AC Mode
+airbag_hmi_scenario,,uint16_t,,0,-,1,1,0,,,
+air_distribution_actual,,int16_t,,,,1,1,0,,,The actual HVAC airvent zones
+alarm_hazard_lights_request,,i_alarm_hazard_lights_t,,0,-,1,1,0,,,Blink the indicator lights as requested by the alarm module
+ambient_light_level,,uint16_t,Yes,,lx,1,1,0,,,The ambient light level in Lux
+ambient_light_reliability,,int16_t,Yes,,-,1,1,0,,,The reliability of the ambient light level signal
+audio_notification_request,,int16_t,,,-,1,1,0,,,Request for the sound from the stalks.
+authentication_level,,int16_t,,0,-,1,1,0,,,The level of vehicle authentication based on the status of the authentication module
+bat_coolant_mode,,uint8_t,,0,,1,1,0,,,
+belt_buckle_status,,uint8_t,,0,-,1,1,0,,,Bitwise flags for the seat belt buckle status. [FL, FR, RL, RM, RR]
+belt_reminder_status,,uint8_t,,0,-,1,1,0,,,
+blower_speed_actual,,int16_t,,,,1,1,0,,,The actual HVAC Blower Speed
+bms_hvbs_aux_link_volt,,float,,0,V,1.000,1,0,-1250,1250,BMS Auxiliary link voltage
+bms_hvbs_aux_req,,uint8_t,,0,,1,1,0,0,255,Request to close the auxiliary contactor.
+bms_hvbs_charge_aval_req,,float,,0,,1.000,1,0,0,350,Define amount of available charge power.
+bms_hvbs_cntr_state_aux1,,uint8_t,,0,,1,1,0,0,3,BMS Auxiliary contactor state
+bms_hvbs_isolation_error,,uint8_t,,0,,1,1,0,0,3,BMS isolation error
+bms_hvbs_isolation_req,,uint8_t,,0,,1,1,0,0,255,Request to enable/disable the isolation measurement.
+bms_hvbs_isolation_state,,uint8_t,,0,,1,1,0,0,3,BMS isolation state
+bms_hvbs_max_mod_temp,,float,,0,C,1.000,1,0,-40,85,BMS maximum module temperature of all modules.
+bms_hvbs_min_mod_temp,,float,,0,C,1.000,1,0,-40,85,BMS minimum module temperature of all modules
+bms_hvbs_range_req,,uint8_t,,0,,1,1,0,0,255,Setting to define the maximum charge voltage per cell.
+bms_hvbs_sleep_req,,uint8_t,,0,,1,1,0,0,255,Request to enable/disable the sleep timeout.
+bms_hvbs_state_request,,uint8_t,,0,,1,1,0,0,255,Request to set the battery in an operating state.
+bms_hvbs_state,,uint8_t,,0,,1,1,0,0,15,BMS current state
+brake_abs_active,,bool,,0,-,1,1,0,,,
+brake_hmi_scenario,,uint16_t,,0,-,1,1,0,,, set of bitwise statuses defined by bsm_hmi_scenario_t
+brake_imu_acceleration,,float,,-4.1768,g,0.000000001,0.000127465,-4.1768,-4.1768,4.176618775, Vehicle Longitudinal Acceleration for SSC
+brake_imu_acceleration_reliability,,bool,,,-,1,1,0,,, Vehicle Longitudinal Acceleration for SSC
+brake_lights_request,,int16_t,,,-,1,1,0,,,
+brake_pedal_applied,,int16_t,,0,-,1,1,0,,,Enum brake_pedal_applied_t
+regen_control_request,,i_regen_control_request_t,,,-,1,1,0,,,
+brake_system_fault,,int16_t,,,-,1,1,0,,,
+brake_system_status,,int16_t,,,-,1,1,0,,,
+brake_vehicle_speed,,uint8_t,,,-,1,1,0,,,
+brake_wheel_speed,,uint8_t,,,-,1,1,0,,,
+cabin_temp_actual,,float,,,K,0.01,1,0,,,The actual HVAC Cabin temperature in Kelvin
+cabin_temp_setpoint_actual,,float,,,K,0.01,1,0,,,The actual HVAC Cabin temperature set-point in Kelvin
+charge_allowed,,bool,,,,,,,0,1,Whether the vehicle is allowed to be charged
+charge_action,,int16_t,,,-,1,1,0,,,The requested charge action from the gateway.
+charge_mode,,int16_t,,,-,1,1,0,,,The current grid charging mode (1/3-phase AC/DC)
+charge_possible,,bool,,0,,1,1,0,,,Flag whether charging is allowed
+charging_cable_locked,,int16_t,,,,1,1,0,,,If charging cable is locked by the On Board Charger
+charging_cable_plugged_in,,int16_t,,,,1,1,0,,,If charging cable is plugged into On Board Charger
+charging_lid_lock,,bool,,,-,1,1,0,,, Flag whether charging lid should be locked
+charging_authentication_level,,int16_t,,,,1,1,0,,,Enum charging_authentication_level_t
+actual_grid_charging_current,,float,,,A,0.1,1,0,,,The actual charging current going from a DC charger or from the On Board Charger to the HV battery
+clim_contr_mode_actual,,int16_t,,,,1,1,0,,,The actual HVAC climate control mode
+closures_door_status,,uint16_t,,,,1,1,0,,,Status of the five doors and charger lid as bitflags
+closure_blink_request,,i_light_blinking_request_t,,,0,1,1,0,,,Blink request to provide information about keyfob locking
+closures_hmi_scenario,,uint16_t,,,,1,1,0,,,The HMI scenario for the different closures (doors) telltales and warnings
+cms_hmi_scenario,,uint16_t,,,-,1,1,0,,,The HMI scenario for the Camera Monitoring System.
+coolant_level_low,,bool,,,-,1,1,0,,,
+coolant_power_hv,,uint16_t,,0,W,1,1,0,,,
+coolant_power_lv,,uint16_t,,0,W,1,1,0,,,
+crash_detected,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,-,1,1,0,,,
+cruise_control_active,,bool,,,-,1,1,0,,,Indicates if cruise control is active.
+cruise_control_button_state,,uint16_t,,,-,1,1,0,,,Bitmap that indicates the current cc button status.
+cruise_control_deactiv_req,,bool,,,-,1,1,0,,,
+cruise_control_hmi_scenario,,uint16_t,,,-,1,1,0,,,Value that tells HMI what to scenario to show.
+cruise_velocity_request,,float,,,km/h,1,1,0,,,Indicates the requested speed.
+dcm_hmi_scenario,,uint16_t,,,,1,1,0,,,The HMI scenario for the driver controls manager
+defog_actual,,int16_t,,,,1,1,0,,,The actual HVAC defog/defrost
+defrost_request,,int16_t,,,,1,1,0,,,The state of the defrost request from the driver.
+driver_demand_torque,,float,,0.0,Nm,0.001,1,0,,,
+drivetrain_hmi_scenario,,uint16_t,,,-,1,1,0,,,The HMI scenario for the Drivetrain System.
+excessive_wheelspeed_status,,uint8_t,,,-,1,1,0,,,Bitmask with the status of the excessive wheelspeed detection per tire.
+dt_coolant_mode,,uint8_t,,0,,1,1,0,,,
+dt_system_fault,,uint16_t,,0,-,1,1,0,,,
+emergency_stopping_active,,bool,,0,-,1,1,0,,,
+enabled_gears,,int8_t,,0,-,1,1,0,,,
+esc_ready_to_charge,,int32_t,,,,1,1,0,,,If all the conditions hold for charging (Charging is attempted if true)
+esc_power_mode,,i_power_mode_t,,I_POWER_MODE_INITIAL,,1,1,0,0,40,ESC power mode interface with Power State Manager
+ext_light_hmi_scenario,,uint16_t,,,,1,1,0,,,The HMI scenario for the different light telltales
+ext_wiper_and_washer_hmi_scenario,,uint16_t,,,-,1,1,0,,,The HMI scenario for the Wipers and Washer.
+exterior_lighting_request,,int16_t,Yes,,-,1,1,0,,,"Indicates whether the driver light mode request is off, auto, position/parking or head lights (low/high beam)"
+auto_light_request,,uint8_t,Yes,,-,1,1,0,,,Bitmask of low beam request from RLS
+fan_fhu_speed,,uint8_t,,,%,1,1,0,,,
+fob_closures_lock_lid_action,,i_ivi_closures_lock_t,,I_IVI_CLOSURES_LOCK_INITIAL,,,1,0,0,1,Indicates the request to lock/unlock the charging lid from the keyfob.
+fob_closures_lock_vehicle_action,,int16_t,,0,-,1,1,0,,,Door closures request
+fog_light_request,,int16_t,Yes,,-,1,1,0,,,Indicates whether the fog lights are requested to be on or off
+fog_lights_active,,int16_t,,,,1,1,0,,,
+gear_select_action,,int16_t,,,,1,1,0,,,
+gear_select_degradation_fault,,uint16_t,,,,1,1,0,,,
+gear_select_fault,,uint16_t,,,,1,1,0,,,
+gear_select_park_hold,,bool,,,,1,1,0,,,
+hazard_lights_request,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,-,1,1,0,,,Indicates whether the hazard button is requested to be on or off
+hecu_abs_active,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"ABS_Active signal from HECU Diagnostics_1 message"
+hecu_abs_fail_wl,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"ABS_Fail_WL signal from HECU Diagnostics_1 message"
+hecu_ambient_temp,,float,,,C,0.01,1,0,,,
+hecu_avh_active,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"AVH_Active signal from HECU Diagnostics_1 message"
+hecu_avh_fail,,i_hecu_avh_fail_t,,I_HECU_AVH_FAIL_INITIAL,,,1,0,0,3,"AVH_Fail signal from HECU Diagnostics_1 message"
+hecu_avh_enable,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"AVH_Enable signal to HECU ECM_1 message"
+hecu_brk_fluid_level_low,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"Brake_Fluid_Level_Low signal from HECU Diagnostics_1 message"
+hecu_brk_pedal_act,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"Brake_Pedal_Act signal from HECU Brake_System_1 message"
+hecu_brk_worn_front,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"Brake_Worn_Front signal from HECU Diagnostics_1 message"
+hecu_brk_worn_rear,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"Brake_Worn_Rear signal from HECU Diagnostics_1 message"
+hecu_cpd_active,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"CPD_Active signal from HECU Diagnostics_1 message"
+hecu_driver_out,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"Driver out of the vehicle signal to HECU ECM2 message"
+hecu_epb_apply_cmd,,i_hecu_epb_act_req_t,,I_HECU_EPB_ACT_REQ_INITIAL_STATE,,1,1,0,0,7,"Parking brake apply or release command signal to HECU ECM_1 message"
+hecu_drp_active,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"DRP_Active signal from HECU Diagnostics_1 message"
+hecu_drp_failed,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"DRP_Failed signal from HECU Diagnostics_1 message"
+hecu_epb_act_state,,uint8_t,Yes,0,,,1,0,0,7,"EPB_Actuator_State signal from HECU Diagnostics_1 message"
+hecu_gen_diag_a,,uint16_t,Yes,0,,,1,0,0,65535,"General_Diagnostics signal from HECU Diagnostics_2 message"
+hecu_gen_diag_b,,uint16_t,Yes,0,,,1,0,0,65535,"General_Diagnostics signal from HECU Diagnostics_2 message"
+hecu_operating_mode,,i_hecu_op_mode_t,,I_HECU_OP_MODE_UNKNOWN,,1,1,0,0,4,"Operating mode signal to HECU ECM_1 message"
+hecu_park_brk_wl,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"Park_Brake_WL signal from HECU Diagnostics_1 message"
+hecu_prnd,,i_hecu_prnd_t,,I_HECU_PRND_UNKNOWN,,,1,0,0,1,"PRND Signal to TCM1 Message"
+hecu_prnd_valid,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,1,0,0,1,"PRND Signal to TCM1 Message"
+high_beam_request,,int16_t,Yes,,-,1,1,0,,,"Indicates whether the high beam lights are off, flashed or on"
+high_beams_active,,int16_t,,,,1,1,0,,,
+hmi_scenario,,uint16_t,,0,,1,1,0,,,
+horn_request,,i_on_off_t,Yes,I_OFF,-,1,1,0,,,Request to sound the horn when the input is pressed by the driver
+hv_allowed,,bool,,0,-,1,1,0,,,
+hv_bms_ibatt,,float,,,A,0.001,1,0,,,The current of the high voltage battery system
+powerloss_hv,,uint32_t,,,W,1,1,0,,,The estimated power loss (+) in the HV battery due to internal cell resistances in Watts
+hv_bms_voltext,,float,,,V,0.1,1,0,,,The external voltage on the high voltage battery system
+hv_bus_voltage,,int16_t,,,V,1,1,0,,,The external HV bus voltage as measured by the HV Battery in Volts
+hv_current_draw,,float,,,A,0.1,1,0,,,HV current draw in Amps
+hv_isolation_status,,int16_t,,,,1,1,0,,,The status of the HV battery isolation as reported by the HV Battery
+hv_sop_charge,,int32_t,,,W,1,1,0,,,Max allowed charge power into HV battery in Watts
+hv_sop_discharge,,int32_t,,,W,1,1,0,,,Max allowed discharge power out of HV battery in Watts
+hvac_power_hv,,uint16_t,,0,W,1,1,0,,,
+hvac_power_lv,,uint16_t,,0,W,1,1,0,,,
+hvbs_engage,,bool,,,,,,,0,1,Whether it is allowed to engage the high voltage battery system
+hvbs_ssc_ext_iso_st,,uint8_t,,,,1,1,0,,,External isolation state of the high voltage battery system.
+hvbs_ssc_hvil_sc01_st,,uint8_t,,,,1,1,0,,,High voltage Interlock state of the high voltage battery system from the safe controller.
+hvbs_ssc_hvil_state,,uint8_t,,,,1,1,0,,,High Voltage Interlock state of the high voltage battery system.
+hvbs_ssc_iso_err,,uint8_t,,,,1,1,0,,,Isolation error state of the high voltage battery system
+hvbs_ssc_iso_state,,uint8_t,,,,1,1,0,,,Isolation state of the high voltage batter system
+hvbs_ssc_max_temp,,float,,,,1,1,0,,,Maximum module temperature of all strings.
+hvbs_ssc_state_tr,,uint8_t,,,,1,1,0,,,State thermal runaway from battery management system
+hvbs_system_voltage,,float,,,V,0.1,1,0,,,The internal HV bus voltage as measured by the HV Battery in Volts
+hvbs_temperature_cell_max,,float,,,K,0.1,1,0,,,The maximum HV battery cell temperature in Kelvin
+hvbs_temperature_cell_min,,float,,,K,0.1,1,0,,,The minimum HV battery cell temperature in Kelvin
+hvbs_voltage_cell_max,,float,,,V,0.1,1,0,,,The minimum HV battery cell voltage in Volts
+hvbs_voltage_cell_min,,float,,,V,0.1,1,0,,,The minimum HV battery cell voltage in Volts
+hvh_power,,uint8_t,,,%,1,1,0,,,
+hvil_status,,int16_t,,,,1,1,0,,,The status of the HV interlock as reported by the HV Battery
+powerloss_hvlv,,uint32_t,,,W,1,1,0,,,The actual power loss (+) in the HV to LV converter in the conversion in Watts
+ic_okay,,bool,,,,1,1,0,,,Indicates whether the IC (Instrument Cluster) is operational and can show telltales.
+inv_actual_unit_torque_fl,,float,,0.0,Nm,0.001,1,0,,,
+inv_actual_unit_torque_fr,,float,,0.0,Nm,0.001,1,0,,,
+inv_actual_unit_torque_rl,,float,,0.0,Nm,0.001,1,0,,,
+inv_actual_unit_torque_rr,,float,,0.0,Nm,0.001,1,0,,,
+inv_max_motor_torque_fl,,float,,0.0,Nm,0.001,1,0,,,
+inv_max_motor_torque_fr,,float,,0.0,Nm,0.001,1,0,,,
+inv_max_motor_torque_rl,,float,,0.0,Nm,0.001,1,0,,,
+inv_max_motor_torque_rr,,float,,0.0,Nm,0.001,1,0,,,
+inv_bus_curr_fl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Current_FL signal from Inverters Fusa Feedback FL message"
+inv_bus_curr_fl,,float,,0,,0.1,,,-100.0,104.7,Fusa Feedback FL,Bus_Current_FL
+inv_bus_curr_fr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Current_FR signal from Inverters Fusa Feedback FR message"
+inv_bus_curr_fr,,float,,0,,0.1,,,-100.0,104.7,"Bus_Current_FR signal from Inverters Fusa Feedback FR message"
+inv_bus_curr_rl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Current_RL signal from Inverters Fusa Feedback RL message"
+inv_bus_curr_rl,,float,,0,,0.1,,,-100.0,104.7,"Bus_Current_RL signal from Inverters Fusa Feedback RL message"
+inv_bus_curr_rr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Current_RR signal from Inverters Fusa Feedback RR message"
+inv_bus_curr_rr,,float,,0,,0.1,,,-100.0,104.7,"Bus_Current_RR signal from Inverters Fusa Feedback RR message"
+inv_bus_volt_fl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Voltage_FL signal from Inverters Fusa Feedback FL message"
+inv_bus_volt_fl,,uint16_t,,0,,1,,,0,512,"Bus_Voltage_FL signal from Inverters Fusa Feedback FL message"
+inv_bus_volt_fr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Voltage_FR signal from Inverters Fusa Feedback FR message"
+inv_bus_volt_fr,,uint16_t,,0,,1,,,0,512,"Bus_Voltage_FR signal from Inverters Fusa Feedback FR message"
+inv_bus_volt_rl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Voltage_RL signal from Inverters Fusa Feedback RL message"
+inv_bus_volt_rl,,uint16_t,,0,,1,,,0,512,"Bus_Voltage_RL signal from Inverters Fusa Feedback RL message"
+inv_bus_volt_rr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Bus_Voltage_RR signal from Inverters Fusa Feedback RR message"
+inv_bus_volt_rr,,uint16_t,,0,,1,,,0,512,"Bus_Voltage_RR signal from Inverters Fusa Feedback RR message"
+inv_inverter_temp_fl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Inverter_Temperature_FL signal from Inverters Fusa Feedback FL message"
+inv_inverter_temp_fl,,int16_t,,0,,1,,,-40,214,"Inverter_Temperature_FL signal from Inverters Fusa Feedback FL message"
+inv_inverter_temp_fr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Inverter_Temperature_FR signal from Inverters Fusa Feedback FR message"
+inv_inverter_temp_fr,,int16_t,,0,,1,,,-40,214,"Inverter_Temperature_FR signal from Inverters Fusa Feedback FR message"
+inv_inverter_temp_rl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Inverter_Temperature_RL signal from Inverters Fusa Feedback RL message"
+inv_inverter_temp_rl,,int16_t,,0,,1,,,-40,214,"Inverter_Temperature_RL signal from Inverters Fusa Feedback RL message"
+inv_inverter_temp_rr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Inverter_Temperature_RR signal from Inverters Fusa Feedback RR message"
+inv_inverter_temp_rr,,int16_t,,0,,1,,,-40,214,"Inverter_Temperature_RR signal from Inverters Fusa Feedback RR message"
+inv_motor_rot_spd_fl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Mech_Rotation_speed_FL signal from Inverters Fusa Feedback FL message"
+inv_motor_rot_spd_fl,,float,,0,,0.1,,,-150,150,"Motor_Mech_Rotation_speed_FL signal from Inverters Fusa Feedback FL message"
+inv_motor_rot_spd_fr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Mech_Rotation_speed_FR signal from Inverters Fusa Feedback FR message"
+inv_motor_rot_spd_fr,,float,,0,,0.1,,,-150,150,"Motor_Mech_Rotation_speed_FR signal from Inverters Fusa Feedback FR message"
+inv_motor_rot_spd_rl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Mech_Rotation_speed_RL signal from Inverters Fusa Feedback RL message"
+inv_motor_rot_spd_rl,,float,,0,,0.1,,,-150,150,"Motor_Mech_Rotation_speed_RL signal from Inverters Fusa Feedback RL message"
+inv_motor_rot_spd_rr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Mech_Rotation_speed_RR signal from Inverters Fusa Feedback RR message"
+inv_motor_rot_spd_rr,,float,,0,,0.1,,,-150,150,"Motor_Mech_Rotation_speed_RR signal from Inverters Fusa Feedback RR message"
+inv_motor_temp_fl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Temperature_FL signal from Inverters Fusa Feedback FL message"
+inv_motor_temp_fl,,int16_t,,0,,1,,,-40,214,"Motor_Temperature_FL signal from Inverters Fusa Feedback FL message"
+inv_motor_temp_fr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Temperature_FR signal from Inverters Fusa Feedback FR message"
+inv_motor_temp_fr,,int16_t,,0,,1,,,-40,214,"Motor_Temperature_FR signal from Inverters Fusa Feedback FR message"
+inv_motor_temp_rl_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Temperature_RL signal from Inverters Fusa Feedback RL message"
+inv_motor_temp_rl,,int16_t,,0,,1,,,-40,214,"Motor_Temperature_RL signal from Inverters Fusa Feedback RL message"
+inv_motor_temp_rr_rel,,i_safe_sig_cnd_t,,I_SAFE_SIG_CND_INITIAL,,,1,0,0,1,"Reliability of Motor_Temperature_RR signal from Inverters Fusa Feedback RR message"
+inv_motor_temp_rr,,int16_t,,0,,1,,,-40,214,"Motor_Temperature_RR signal from Inverters Fusa Feedback RR message"
+inv_regen_trq_setpoint,,float,,0.0,Nm,,,,,,Regen Torque Setpoint from brake system
+inv_wheel_speed_raw_fl,,float,,0.0,rad/s,0.001,1,0,,,
+inv_wheel_speed_raw_fr,,float,,0.0,rad/s,0.001,1,0,,,
+inv_wheel_speed_raw_rl,,float,,0.0,rad/s,0.001,1,0,,,
+inv_wheel_speed_raw_rr,,float,,0.0,rad/s,0.001,1,0,,,
+ivi_ac_request,,int16_t,,,,1,1,0,,,The requested HVAC AC Mode
+ivi_air_distribution_request,,int16_t,,,,1,1,0,,,The requested HVAC airvent zones
+ivi_avh_enable,,i_ivi_avh_enable_t,,I_IVI_AVH_ENABLE_INITIAL,,1,1,0,,,The requested setting for the Vehicle Auto Hold Enable
+ivi_blower_speed_request,,int16_t,,,,1,1,0,,,The requested HVAC Blower Speed
+ivi_cabin_temp_request,,float,,,K,0.01,1,0,,,The requested HVAC Cabin temperature in Kelvin
+ivi_charge_action,,int16_t,,,-,1,1,0,,,The requested charge action from the IVI.
+ivi_clim_contr_mode_request,,int16_t,,,,1,1,0,,,The requested HVAC climate control mode
+ivi_closures_hood_action,,int16_t,,,,1,1,0,,,Indicates the request to lock/unlock the hood from the IVI
+ivi_closures_lock_lid_action,,int16_t,,,,1,1,0,,,Indicates the request to lock/unlock the charging lid.
+ivi_closures_lock_vehicle_action,,int16_t,,,,1,1,0,,,Indicates the request to centrally lock/unlock the vehicle from the IVI
+ivi_closures_reardoor_action,,int16_t,,,,1,1,0,,,Indicates the request to set the enabling/disabling of the rear door lock from the IVI
+ivi_cms_brightness_setting,,uint8_t,,,,1,1,0,,,The manual brightness setting for the CMS system set via the IVI.
+ivi_defog_request,,int16_t,,,,1,1,0,,,The requested HVAC defog/defrost
+ivi_max_charge_soc_setting,,float,,,%,1.00,1,0,,,The requested maximum charging setpoint for the state of charge from the IVI.
+ivi_headlight_level_setting,,int16_t,,,,1,1,0,,,Indicates the requested headlight levelling setting.
+ivi_recirculation_request,,int16_t,,,,1,1,0,,,The requested HVAC recirculation
+ivi_regen_intensity_setting,,i_ivi_regen_intensity_t,,,,1,1,0,,,The requested intensity setting of the regenerative braking.
+ivi_wiper_service_request,,int16_t,,,,1,1,0,,,Indicates the requested wipers service position setting.
+ivi_wiper_rain_sensitivity_setting,,uint8_t,,,,1,1,0,,,Rain sensitivity level as described by Hella. 0 to 7
+light_button_action,,uint8_t,,,,1,1,0,,,A bitmask with the status of the interior light buttons.
+lmv_power_mode,,i_power_mode_t,,I_POWER_MODE_INITIAL,,1,1,0,0,40,LMV power mode interface with Power State Manager
+low_beams_active,,int16_t,,,,1,1,0,,,
+lv_bms_current,,float,,,A,0.001,1,0,-100,100,The actual current of the 12V battery system
+lv_bms_temp_max,,float,,,C,1,1,0,-40,215,The actual maximum temperature of the 12V battery system
+lv_bms_voltage,,float,,,V,0.0001,1,0,0,200,The actual voltage of the 12V battery system
+lv_voltage_12v,,float,,,V,0.1,1,0,0,20,Voltage of the 12V safety battery
+lvbs12_current,,float,,,A,0.001,1,0,,,The actual current of the 12V battery system
+lvbs12_error,,int16_t,,,-,1,1,0,,,The error of the 12V battery system
+lvbs12_voltage,,float,,,V,0.1,1,0,,,The actual voltage of the 12V battery system
+lvbs_engage,,bool,,,,,,,0,1,Whether it is allowed to engage the low voltage battery system
+lvbs_actual_volt,,int16_t,,0,mV,1,1,0,-32768,32767,The actual voltage of the low voltage battery system 2
+lvbs_actual_volt_1,,int16_t,,0,mV,1,1,0,-32768,32767,The actual voltage of the low voltage battery system 3
+lvbs_battery_soc,,int8_t,,0,%,1,1,0,0,100,The State of charge of the low voltage battery system 2
+lvbs_battery_current,,float,,0,mA,,1,0,-2097152,2097152,The current of the low voltage battery system 2
+lvbs_battery_soc_1,,int8_t,,0,%,1,1,0,0,100,The State of charge of the low voltage battery system 3
+lvbs_battery_current_1,,float,,0,mA,1,1,0,-2097152,2097152,The current of the low voltage battery system 3
+lvbs_error_status,,int16_t,,,,1,1,0,-32768,32767,The error status of the low voltage battery system 2
+lvbs_error_status_1,,int16_t,,,,1,1,0,-32768,32767,The error status of the low voltage battery system 3
+lvbs_relay_enable,,uint8_t,,0,,,,,0,255,ESC signal to SSC requesting change in the relay state
+lvbs_battery_temperature,,float,,0,C,,1,0,-2097152,2097152,The temperature of the low voltage battery system 2
+lvbs_battery_temperature_1,,float,,0,C,,1,0,-2097152,2097152,The temperature of the low voltage battery system 3
+max_current_draw_dt,,float,,340.0,A,1,1,0,,,The maximum allowed draw current by drivetrain from the HV battery
+max_current_draw_tms,,float,,0.0,A,0.1,1,0,,,The maximum allowed draw current by TMS from the HV battery
+max_current_hv_to_lv,,float,,0.0,A,0.1,1,0,,,The requested transfer current limit from HV to LV in Amperes
+max_current_lv_to_hv,,float,,0.0,A,0.1,1,0,,,The requested transfer current limit from LV to HV in Amperes
+charge_current_en_external_limit,,bool,,0,A,1,1,0,,,Enables the user limit for charging current
+charge_current_external_limit,,int32_t,,0,A,1,1,0,,,If enabled limits the maximum charging current specified in Ampere
+max_current_obc_charge,,float,,0.0,A,0.1,1,0,,,The requested limit of charge current in Amperes
+max_current_regen_dt,,float,,119.0,A,1,1,0,,,The maximum allowed regen current from drivetrain to the HV battery
+max_power_draw_dt,,int32_t,,0,W,1,1,0,,,
+max_power_draw_tms,,int32_t,,0,W,1,1,0,,,
+max_power_hv_to_lv,,int32_t,,0,W,1,1,0,,,The requested limit of power transfer from HV to LV in Watts
+max_power_lv_to_hv,,int32_t,,0,W,1,1,0,,,The requested limit of power transfer from LV to HV in Watts
+max_power_obc_charge,,int32_t,,0,W,1,1,0,,,The requested limit of charge power in Watts
+max_power_regen_dt,,int32_t,,0,W,1,1,0,,,
+media_next,,bool,,,,1,1,0,,,,The request to play the next media from the driver input
+media_prev,,bool,,,,1,1,0,,,,The request to play the previous media from the driver input
+media_volume_up,,bool,,,,1,1,0,,,,The request to increase the media volume from the driver input
+media_volume_down,,bool,,,,1,1,0,,,,The request to decrease the media volume from the driver input
+media_source,,bool,,,,1,1,0,,,,The request to switch the media source from the driver input
+media_toggle_widget,,bool,,,,1,1,0,,,,The request to change the widget shown on the cluster from the driver input
+media_scroll,,uint8_t,,,,1,1,0,,,,The scroll position of the media from the driver input
+motor_dc_current_fl,,float,,0.0,A,0.001,1,0,,,
+motor_dc_current_fr,,float,,0.0,A,0.001,1,0,,,
+motor_dc_current_rl,,float,,0.0,A,0.001,1,0,,,
+motor_dc_current_rr,,float,,0.0,A,0.001,1,0,,,
+powerloss_obc,,uint32_t,,,W,1,1,0,,,The actual power loss (+) in the conversion in the OBC (from grid to DC power) in Watts
+obc_ssc_status,,int16_t,,,,1,1,0,,,The status of the On Board Charger reported to the SSC
+odometer_reading,,uint32_t,,0,m,1,1,0,,,
+operating_mode_dt,,i_operating_mode_dt_t,,I_OPERATING_MODE_DT_UNDEFINED,-,1,1,0,,,
+operating_mode_esc,,int16_t,,0,-,1,1,0,,,
+operating_mode_ignition,,int16_t,,0,,1,1,0,,,
+operating_mode_lighting,,int16_t,,0,,1,1,0,,,
+operating_mode_tms,,int16_t,,0,-,1,1,0,,,
+park_brake_actuation_request,,int16_t,,,-,1,1,0,,,
+park_brake_engaged,,int16_t,,0,-,1,1,0,,, Enum park_brake_engaged_t
+park_brake_failed,,bool,,0,-,1,1,0,,,
+parking_sense_distance_rear_rr,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the rear right right parking sensor.
+parking_sense_distance_rear_mr,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the rear middle right parking sensor.
+parking_sense_distance_rear_ml,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the rear middle left parking sensor.
+parking_sense_distance_rear_ll,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the rear left left parking sensor.
+parking_sense_distance_front_rr,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the front right right parking sensor.
+parking_sense_distance_front_mr,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the front middle right parking sensor.
+parking_sense_distance_front_ml,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the front middle left parking sensor.
+parking_sense_distance_front_ll,,uint8_t,,255,cm,1,1,0,,,Distance to obstacles in cm measured by the front left left parking sensor.
+power_mode,,i_power_mode_t,,I_POWER_MODE_INITIAL,,1,1,0,0,40, Gateway power mode
+power_loss_inverter_fl,,uint32_t,,0,W,1,1,0,,,
+power_loss_inverter_fr,,uint32_t,,0,W,1,1,0,,,
+power_loss_inverter_rl,,uint32_t,,0,W,1,1,0,,,
+power_loss_inverter_rr,,uint32_t,,0,W,1,1,0,,,
+power_loss_motor_fl,,uint32_t,,0,W,1,1,0,,,
+power_loss_motor_fr,,uint32_t,,0,W,1,1,0,,,
+power_loss_motor_rl,,uint32_t,,0,W,1,1,0,,,
+power_loss_motor_rr,,uint32_t,,0,W,1,1,0,,,
+predicted_max_charge_current_1s,,float,,,A,1.00,1,0,,,The maximum predicted charge current for the HVBS for a 1 second time frame.
+predicted_max_charge_power_1s,,float,,,A,1.00,1,0,,,The maximum predicted charge power for the HVBS for a 1 second time frame.
+predicted_max_discharge_current_1s,,float,,,A,1.00,1,0,,,The maximum predicted discharge current for the HVBS for a 1 second time frame.
+predicted_max_discharge_power_1s,,float,,,A,1,1.00,0,,,The maximum predicted discharge current for the HVBS for a 1 second time frame.
+pressure_p11,,float,,,Bar,0.01,1,0,,,
+pressure_p12,,float,,,Bar,0.01,1,0,,,
+pump_bat_speed,,uint8_t,,,%,1,1,0,,,
+pump_dt_speed,,uint8_t,,,%,1,1,0,,,
+recirculation_actual,,int16_t,,,,1,1,0,,,The actual HVAC recirculation
+regenerative_brake_active,,bool,,,-,1,1,0,,,
+requested_torque_fl,,float,,0.0,Nm,0.1,0.5,-500.0,-500.0,523.5,
+requested_torque_fr,,float,,0.0,Nm,0.1,0.5,-500.0,-500.0,523.5,
+requested_torque_reliability,,bool,,0,-,1,1,0,,,
+requested_torque_rl,,float,,0.0,Nm,0.1,0.5,-500.0,-500.0,523.5,
+requested_torque_rr,,float,,0.0,Nm,0.1,0.5,-500.0,-500.0,523.5,
+safe_hv_cur_rampdown_req,,i_safe_ramp_state_t,,I_SAFE_RAMP_STATE_INITIAL,,,,,0,255,The high-voltage battery current rampdown request
+safe_driving_gear_inhibit,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,1,1,0,,,"Whether the driving gear selection is inhibited or not"
+safety_cruise_disable_request,,i_safe_boolean_t,,,,1,1,0,,,"Whether the cruise control functionality is requested to be disabled, enum type: safe_boolean_t"
+safety_doors_unlock_request,,int16_t,,,,,,,0,255,"Whether the doors are requisted to be unlocked, enum type: safe_boolean_t"
+safety_hazard_lights_request,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,,,,,0,255,"Whether the hazard lights are requested to be turned on, enum type: safe_boolean_t"
+safety_horn_request,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,-,1,1,0,,,Request to sound the horn from the safety system
+safety_interior_lights_request,,i_safe_boolean_t,,I_SAFE_BOOLEAN_INITIAL,-,1,1,0,,,Request to turn on the interior lights by safety
+safety_perm_axle_trq_diff_max,,float,Yes,0.0,Nm,0.1,0.5,-500.0,-500.0,523.5,
+safety_perm_wheel_trq_max,,float,,0,Nm,0.001,1,0,,,What the maximum permissable wheel torque is
+safety_perm_wheel_trq_min,,float,,0,Nm,0.001,1,0,,,What the minimum permissable wheel torque is
+safety_vehicle_speed_limit,,uint8_t,,0,km/h,1,1,0,0,160,What the maximum allowable speed is by the safety supervisor
+selected_gear,,i_gear_t,,I_GEAR_UNKNOWN,-,1,1,0,,,
+seat_occupant_status,,uint8_t,,0,-,1,1,0,,,Bitwise flags for the seat occupancy status. [FL, FR, RL, RM, RR]
+shutter_grille_position,,uint8_t,,,%,1,1,0,,,
+soc_hv_max,,float,,100.0,%,0.1,1,0,,,
+soc_hv_min,,float,,0.0,%,0.1,1,0,,,
+soc_lv_max,,float,,100.0,%,0.1,1,0,,,
+soc_lv_min,,float,,0.0,%,0.1,1,0,,,
+ssc_lvbs_engage,,bool,,,,1,1,0,,,,When set the LVBS relays are allowed to be closed
+ssc_power_mode,,i_power_mode_t,,I_POWER_MODE_INITIAL,,1,1,0,0,40,SSC power mode interface with Power State Manager
+speed_control_status,,bool,,,-,1,1,0,,, Indicates if the speed controller is active i.e generating the torque to drive the vehicle
+ssc_hmi_scenario_telltale,,uint16_t,,,-,1,1,0,,,The HMI scenario from the Safety Supervisor Controller for telltales.
+ssc_hmi_scenario_drvr_action,,uint16_t,,,,,,,,,A bitmap containing the hmi driver actions
+ssc_hmi_scenario_issue,,uint16_t,,,,,,,,,A bitmap containing the hmi issues
+lv_available_for_use,,bool,,,-,1,1,0,,,Indicates if the LV battery can be used.
+state_of_charge_lv,,float,,,%,0.1,1,0,,,SoC of the 12V battery
+state_of_charge_hv,,float,,,%,0.1,1,0,,,SoC of the HV battery
+remaining_energy_hv,,float,,,Wh,0.1,1,0,,,The estimated available energy of the HV battery in Wh
+remaining_energy_lv,,float,,,Wh,0.1,1,0,,,The estimated available energy of the LV battery in Wh
+remaining_energy_total,,float,,,Wh,0.1,1,0,,,The estimated available energy of the HV and LV battery combined in Wh
+remaining_charge_time,,uint32_t,,,s,1,1,0,,,The estimated remaining charge time of the HV battery in seconds.
+total_energy_hv_and_lv,,float,,,Wh,0.1,1,0,,,The maximum stored energy of HV and LV batteries in Wh
+spbr_steering_angle,,float,,0.0,deg,0.1,1,0,-3276.8,3276.8,"Steering angle signal to HECU SAS_1 message"
+spbr_steering_angle_cal,,bool,,0,,1,1,0,0,1,"Steering angle calibrated signal to HECU SAS_1 message"
+spbr_steering_angle_rate,,uint16_t,,0,,1,1,0,0,1016,"Steering angle rate signal to HECU SAS_1 message"
+steering_wheel_angle,,int16_t,,,degree,0.1,1,0,-780,780,The angle of the steering wheel
+steering_angular_speed,,uint16_t,,,degree/sec,4,1,0,0,1016,The rotational speed of the steering wheel
+steering_angle_status,,uint8_t,,,,1,1,0,0,7,The status of the steering wheel
+stw_spdc_deactiv_butt_state,,i_switch_state_t,,0,-,1,1,0,,,The state of the deactivate/activate (pause/resume) button for cruise control.
+stw_spdc_set_plus_butt_state,,i_switch_state_t,,0,-,1,1,0,,,The state of the set plus (speed up) button for cruise control.
+stw_spdc_set_min_butt_state,,i_switch_state_t,,0,-,1,1,0,,,The state of the set min (speed down) button for cruise control.
+stw_spdc_func_selection,,i_speed_func_selection_t,,0,-,1,1,0,,,The state of the function selection (off, cruise, limit) button for cruise control.
+temp_actual_hv_battery,,float,,,K,0.1,1,0,0,473,Actual average temperature reported by HV battery in Kelvin
+temp_actual_hv_lv_converter,,float,,,K,0.1,1,0,0,473,Actual temperature of the HV to LV converter in Kelvin
+temp_actual_int_high_hv_battery,,float,,,K,0.1,1,0,0,473,Actual maximum temperature reported by HV battery in Kelvin
+temp_actual_int_low_hv_battery,,float,,,K,0.1,1,0,0,473,Actual minimum temperature reported by HV battery in Kelvin
+temp_actual_inverter_fl,,float,,,K,0.1,1,0,,,
+temp_actual_inverter_fr,,float,,,K,0.1,1,0,,,
+temp_actual_inverter_rl,,float,,,K,0.1,1,0,,,
+temp_actual_inverter_rr,,float,,,K,0.1,1,0,,,
+temp_actual_motor_fl,,float,,,K,0.1,1,0,,,
+temp_actual_motor_fr,,float,,,K,0.1,1,0,,,
+temp_actual_motor_rl,,float,,,K,0.1,1,0,,,
+temp_actual_motor_rr,,float,,,K,0.1,1,0,,,
+temp_actual_obc,,float,,,K,0.1,1,0,0,473,Actual temperature of the On Board Charger in Kelvin
+temp_limit_max_inverter_fl,,float,,,K,0.1,1,0,,,
+temp_limit_max_inverter_fr,,float,,,K,0.1,1,0,,,
+temp_limit_max_inverter_rl,,float,,,K,0.1,1,0,,,
+temp_limit_max_inverter_rr,,float,,,K,0.1,1,0,,,
+temp_limit_max_motor_fl,,float,,,K,0.1,1,0,,,
+temp_limit_max_motor_fr,,float,,,K,0.1,1,0,,,
+temp_limit_max_motor_rl,,float,,,K,0.1,1,0,,,
+temp_limit_max_motor_rr,,float,,,K,0.1,1,0,,,
+temp_limit_min_inverter_fl,,float,,,K,0.1,1,0,,,
+temp_limit_min_inverter_fr,,float,,,K,0.1,1,0,,,
+temp_limit_min_inverter_rl,,float,,,K,0.1,1,0,,,
+temp_limit_min_inverter_rr,,float,,,K,0.1,1,0,,,
+temp_limit_min_motor_fl,,float,,,K,0.1,1,0,,,
+temp_limit_min_motor_fr,,float,,,K,0.1,1,0,,,
+temp_limit_min_motor_rl,,float,,,K,0.1,1,0,,,
+temp_limit_min_motor_rr,,float,,,K,0.1,1,0,,,
+temp_max_hv_battery,,float,,313.15,K,0.1,1,0,,,
+temp_max_hv_lv_converter,,float,,313.15,K,0.1,1,0,,,
+temp_max_inverter_fl,,float,,313.15,K,0.1,1,0,,,
+temp_max_inverter_fr,,float,,313.15,K,0.1,1,0,,,
+temp_max_inverter_rl,,float,,313.15,K,0.1,1,0,,,
+temp_max_inverter_rr,,float,,313.15,K,0.1,1,0,,,
+temp_max_motor_fl,,float,,313.15,K,0.1,1,0,,,
+temp_max_motor_fr,,float,,313.15,K,0.1,1,0,,,
+temp_max_motor_rl,,float,,313.15,K,0.1,1,0,,,
+temp_max_motor_rr,,float,,313.15,K,0.1,1,0,,,
+temp_min_hv_battery,,float,,283.15,K,0.1,1,0,,,
+temp_min_hv_lv_converter,,float,,283.15,K,0.1,1,0,,,
+temp_min_inverter_fl,,float,,283.15,K,0.1,1,0,,,
+temp_min_inverter_fr,,float,,283.15,K,0.1,1,0,,,
+temp_min_inverter_rl,,float,,283.15,K,0.1,1,0,,,
+temp_min_inverter_rr,,float,,283.15,K,0.1,1,0,,,
+temp_min_motor_fl,,float,,283.15,K,0.1,1,0,,,
+temp_min_motor_fr,,float,,283.15,K,0.1,1,0,,,
+temp_min_motor_rl,,float,,283.15,K,0.1,1,0,,,
+temp_min_motor_rr,,float,,283.15,K,0.1,1,0,,,
+temp_nominal_inverter_fl,,float,,,K,0.1,1,0,,,
+temp_nominal_inverter_fr,,float,,,K,0.1,1,0,,,
+temp_nominal_inverter_rl,,float,,,K,0.1,1,0,,,
+temp_nominal_inverter_rr,,float,,,K,0.1,1,0,,,
+temp_nominal_motor_fl,,float,,,K,0.1,1,0,,,
+temp_nominal_motor_fr,,float,,,K,0.1,1,0,,,
+temp_nominal_motor_rl,,float,,,K,0.1,1,0,,,
+temp_nominal_motor_rr,,float,,,K,0.1,1,0,,,
+temp_operating_max_inverter_fl,,float,,,K,0.1,1,0,,,
+temp_operating_max_inverter_fr,,float,,,K,0.1,1,0,,,
+temp_operating_max_inverter_rl,,float,,,K,0.1,1,0,,,
+temp_operating_max_inverter_rr,,float,,,K,0.1,1,0,,,
+temp_operating_max_motor_fl,,float,,,K,0.1,1,0,,,
+temp_operating_max_motor_fr,,float,,,K,0.1,1,0,,,
+temp_operating_max_motor_rl,,float,,,K,0.1,1,0,,,
+temp_operating_max_motor_rr,,float,,,K,0.1,1,0,,,
+temp_operating_min_inverter_fl,,float,,,K,0.1,1,0,,,
+temp_operating_min_inverter_fr,,float,,,K,0.1,1,0,,,
+temp_operating_min_inverter_rl,,float,,,K,0.1,1,0,,,
+temp_operating_min_inverter_rr,,float,,,K,0.1,1,0,,,
+temp_operating_min_motor_fl,,float,,,K,0.1,1,0,,,
+temp_operating_min_motor_fr,,float,,,K,0.1,1,0,,,
+temp_operating_min_motor_rl,,float,,,K,0.1,1,0,,,
+temp_operating_min_motor_rr,,float,,,K,0.1,1,0,,,
+temperature_ambient,,float,,,K,0.01,1,0,,,
+temperature_t11,,float,,,K,0.01,1,0,,,
+temperature_t12,,float,,,K,0.01,1,0,,,
+temperature_t13,,float,,,K,0.01,1,0,,,
+temperature_t15,,float,,,K,0.01,1,0,,,
+temperature_t341,,float,,,K,0.01,1,0,,,
+tms_hmi_scenario,,uint16_t,,,-,1,1,0,,,The HMI scenario for the Thermal Management System.
+tms_power_mode,,i_power_mode_t,,I_POWER_MODE_INITIAL,,1,1,0,0,40,TMS power mode interface with Power State Manager
+tms_system_fault,,int16_t,,0,-,1,1,0,,,
+trip_meter_reading,,uint32_t,,0,m,1,1,0,,,
+turn_indication_request,,int16_t,Yes,,-,1,1,0,,,Indicates whether a left/right turn or single touch of turn signals is requested.
+turn_indicator_left_active,,int16_t,,,,1,1,0,,,
+turn_indicator_right_active,,int16_t,,,,1,1,0,,,
+vehicle_lateral_accel,,float,Yes,0.0,m/s2,0.01,1,0,-50.0,50.0,The vehicle lateral acceleration
+vehicle_long_accel,,float,Yes,-4.1768,g,0.000000001,0.000127465,-4.1768,-4.1768,4.176618775,The vehicle acceleration in longitudinal direction
+vehicle_total_efficiency,,float,,0,Wh/km,0.1,1,0,,,The total overall efficiency (energy loss per Kilometer of driving)
+vehicle_driving_efficiency,,float,,0,Wh/km,0.1,1,0,,,The overall energy used in driving per Kilometer of Driving
+vehicle_auxiliary_efficiency,,float,,0,Wh/km,0.1,1,0,,,The overal energy used in auxiliaries per Kilometer of Driving
+vehicle_cabin_climate_efficiency,,float,,0,Wh/km,0.1,1,0,,,The overal energy used in cabin climate control per Kilometer of Driving
+vehicle_regen_efficiency,,float,,0,Wh/km,0.1,1,0,,,The overal energy gained in regen per Kilometer of Driving
+vehicle_power_auxiliaries,,uint16_t,,0,W,1,1,0,,,Power consumed for auxiliary system e.g. Lighting
+vehicle_power_climate_control,,uint16_t,,0,W,1,1,0,,,Power consumed for climate control
+vehicle_power_consumption_total,,int32_t,,0,W,1,1,0,,,Total power consumed by the vehicle
+vehicle_power_driving,,uint32_t,,0,W,1,1,0,,,Power consumed for driving the vehicle
+vehicle_power_grid_charging,,uint16_t,,0,W,1,1,0,,,Power consumed while grid charging
+vehicle_power_regen,,uint16_t,,0,W,1,1,0,,,Power generated from regenerative braking
+vehicle_power_solar_yield,,uint16_t,,0,W,1,1,0,,,Power generated from solar charging
+vehicle_range_remaining,,uint16_t,,,km,1,1,0,,,The remaining range of the vehicle in kilometres
+vehicle_speed,,float,,0,km/h,0.001,1,0,,,The vehicle speed in longitudinal direction
+vehicle_motion_state,,i_safe_vehicle_motion_t,,I_SAFE_VEHICLE_MOTION_INITIAL,,1,1,0,0,65535, Vehicle Motion State Signal
+vehicle_speed_reliability,,int16_t,,,,,,,0,255,"The signal condition of the vehicle_speed signal, enum type: safe_sig_cnd_t"
+active_vehicle_state,,i_vehicle_state_t,,I_VEHICLE_STATE_UNKNOWN,,1,1,0,0,3, Vehicle state signal
+vpc_hmi_scenario,,uint16_t,,,,1,1,0,,,The HMI Scenario from the Vehicle Power Controller
+washer_spray_request,,bool,Yes,,-,1,1,0,,,True if the wiper wash spray is requested
+wipe_request,,int16_t,Yes,,-,1,1,0,,,Indicates what speed the wipers are set at
+wiper_position,,i_wiper_position_t,,,-,1,1,0,,,Position of the wipers
+wiper_auto_speed,,uint8_t,Yes,,-,1,1,0,,,Requested wiper speed by rain-light sensor
+esc_hmi_scenario,,uint16_t,,,-,1,1,0,,,The HMI scenario for the Energy Storage and Conversion System.
+sol_power_mode,,i_power_mode_t,,I_POWER_MODE_INITIAL,,1,1,0,0,40,SOL power mode interface with Power State Manager
+solar_dsc00_hood_l11_power,,uint8_t,,0,W,1,1,0,,,The output power of solar string hood_l11 equivalent to the power at the input of DSC00 converter A
+solar_dsc00_hood_l21_power,,uint8_t,,0,W,1,1,0,,,The output power of solar string hood_l21 equivalent to the power at the input of DSC00 converter B
+solar_dsc00_power,,uint8_t,,0,W,1,1,0,,,The total power at the output of DSC00
+solar_dsc01_hood_l32_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc01_hood_l31_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc01_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc02_hood_r41_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc02_hood_r42_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc02_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc03_hood_r51_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc03_hood_r61_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc03_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc04_roof_l11_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc04_roof_l21_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc04_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc05_roof_l22_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc05_roof_l23_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc05_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc06_roof_l12_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc06_roof_l24_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc06_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc07_roof_r31_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc07_roof_r41_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc07_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc08_roof_r32_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc08_roof_r33_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc08_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc09_roof_r42_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc09_roof_r34_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc09_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc10_tail_l11_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc10_tail_l21_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc10_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc11_tail_l22_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc11_tail_l23_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc11_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc12_tail_r33_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc12_tail_r32_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc12_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc13_tail_r31_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc13_tail_r41_power,,uint8_t,,0,W,1,1,0,,,
+solar_dsc13_power,,uint8_t,,0,W,1,1,0,,,
+solar_total_power,,uint16_t,,0,W,1,1,0,,,The total charging power generated by Solar
+solar_total_energy,,uint32_t,,0,Wh,1,1,0,,,The total cumulative charging energy transferred by Solar
+
+Name,,Data type,,Initial value,Unit,Precision,Scale,Offset,Min,Max,Description
+tmslog_pos_actual_3wv_13,,uint8_t,,,,1,1,0,,,3 way valve position feedback
+tmslog_pos_actual_3wv_14,,uint8_t,,,,1,1,0,,,3 way valve position feedback
+tmslog_pos_actual_4wv_11,,uint8_t,,,,1,1,0,,,4 way valve position feedback
+tmslog_pump_speed_p11_req,,uint8_t,,0,,1,1,0,,,Battery pump speed duty cycle
+tmslog_pump_speed_p13_req,,uint8_t,,0,,1,1,0,,,Drivetrain pump speed duty cycle
+tmslog_fan_speed_actual_fan31,,uint8_t,,,,1,1,0,,,Actual fan speed
+tmslog_fhu_ctrl_airflow,,float,,,,0.01,1,0,,,Desired airflow
+tmslog_pressure_p21,,float,,,Bar,0.01,1,0,,,Pressure sensor PTI21 measurement
+tmslog_pressure_p22,,float,,,Bar,0.01,1,0,,,Pressure sensor PTI22 measurement
+tmslog_temperature_t11,,float,,,K,0.01,1,0,,,Measured coolant temperature T11
+tmslog_temperature_t13,,float,,,K,0.01,1,0,,,Measured coolant temperature T13
+tmslog_temperature_t14,,float,,,K,0.01,1,0,,,Measured coolant temperature T14
+tmslog_temperature_t15,,float,,,K,0.01,1,0,,,Measured coolant temperature T15
+tmslog_temperature_t25,,float,,,K,0.01,1,0,,,Measured refrigerant temperature T25
+tmslog_temperature_t26,,float,,,K,0.01,1,0,,,Measured refrigerant temperature T26
+tmslog_temperature_t27,,float,,,K,0.01,1,0,,,Measured refrigerant temperature T27
+tmslog_temperature_t41,,float,,,K,0.01,1,0,,,Measured HVAC temperature T41
+tmslog_temperature_t42,,float,,,K,0.01,1,0,,,Measured HVAC temperature T42
+tmslog_temperature_t43,,float,,,K,0.01,1,0,,,Measured HVAC temperature T43
+tmslog_pos_actual_exv21,,float,,,,0.01,1,0,,,Actual EXV21 position
+tmslog_pos_actual_exv22,,float,,,,0.01,1,0,,,Actual EXV22 position
+tmslog_pos_actual_exv23,,float,,,,0.01,1,0,,,Actual EXV23 position
+tmslog_pos_actual_exv24,,float,,,,0.01,1,0,,,Actual EXV24 position
+tmslog_pos_actual_sov21,,uint8_t,,,,1,1,0,,,Actual SOV21 position
+tmslog_pos_actual_sov22,,uint8_t,,,,1,1,0,,,Actual SOV22 position
+tmslog_pos_actual_sov23,,uint8_t,,,,1,1,0,,,Actual SOV23 position
+tmslog_pos_actual_sov24,,uint8_t,,,,1,1,0,,,Actual SOV24 position
+tmslog_comp_capacity_act_c21,,float,,,,0.01,1,0,,,Actual compressor speed
+tmslog_coolant_q_chill_ref_bachi,,float,,,,0.01,1,0,,,Reference heat exchange in chiller for BaChi
+tmslog_coolant_q_chill_act,,float,,,,0.01,1,0,,,Actual heat exchange in chiller
+tmslog_ctrl_ip_bus_sc_pti24,,float,,,,0.01,1,0,,,Subcooling PTI24
+tmslog_ctrl_ip_bus_sh_pti21,,float,,,,0.01,1,0,,,Superheat PTI21
+tmslog_ctrl_ip_bus_sh_pti22,,float,,,,0.01,1,0,,,Superheat PTI22
+obc_charger_state,,i_charger_state_t,,,,1,1,0,0,255,The state of the Charging System
+hlc_state,,i_ccu_hlc_fsm_state_t,,,,1,1,0,0,255,The state of the High Level Communication in the CCU
+obc_error_0,,i_esc_err_t,,,,,,,,,OBC error 0
+obc_error_1,,i_esc_err_t,,,,,,,,,OBC error 1
+obc_error_2,,i_esc_err_t,,,,,,,,,OBC error 2
+obc_error_3,,i_esc_err_t,,,,,,,,,OBC error 3
+obc_error_4,,i_esc_err_t,,,,,,,,,OBC error 4
+obc_error_5,,i_esc_err_t,,,,,,,,,OBC error 5
+obc_error_6,,i_esc_err_t,,,,,,,,,OBC error 6
+obc_error_7,,i_esc_err_t,,,,,,,,,OBC error 7
+obc_error_8,,i_esc_err_t,,,,,,,,,OBC error 8
+obc_error_9,,i_esc_err_t,,,,,,,,,OBC error 9
+scu_power_supply_voltage,,uint16_t,,,,1,1,0,,,Voltage V2 Value
+lead_acid_battery_voltage,,uint16_t,,,,1,1,0,,,Voltage V4 Value
+lv_relay_state,,int32_t,,,,1,1,0,,,Actual LV relay state
+lv_relay_state_request,,uint8_t,,,,1,1,0,,,LV relay state request
+lv_error_flags,,uint32_t,,,,1,1,0,,,Error flags in the LV BMS module
+lv_cell_temp_2_1,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 2 cell 1 
+lv_cell_temp_2_2,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 2 cell 2 
+lv_cell_temp_2_3,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 2 cell 3 
+lv_cell_temp_2_4,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 2 cell 4 
+lv_cell_temp_3_1,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 3 cell 1 
+lv_cell_temp_3_2,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 3 cell 2 
+lv_cell_temp_3_3,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 3 cell 3 
+lv_cell_temp_3_4,,int16_t,Yes,0,C,,0.1,0,,,Temperature lv battery 3 cell 4 
+yaw_rate,,float,Yes,0.0,rad/s,0.001,1,0,-50.0,50.0,Yaw rate signal from brake system
