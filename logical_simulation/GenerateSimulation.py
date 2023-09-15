@@ -11,6 +11,15 @@ runnablestr ='''
             period = {period};
     }}'''
 
+gwyrunnablestr ='''
+    {name}: GatewayRunnable {{
+        parameters:
+            physical = "{physical}";
+            logical = "{logical}";
+            task = "{task}";
+            period = {period};
+    }}'''
+
 datadictstr = '''{name} : DataDictionary {{
     parameters:
         datatype = "{datatype}";
@@ -27,8 +36,28 @@ filestr = '''network vehicle {{
 
     {datadicts}
 
+    Vehicle_CAN : DataRouter {{
+        parameters:
+            busname = "Vehicle_CAN";
+    }}
+    PT_CAN : DataRouter {{
+        parameters:
+            busname = "PT_CAN";
+    }}
     connections allowunconnected:
     {connections}
+
+    safety_control_unit_primary_gwy_transmit_task.DataOut++ --> PT_CAN.in++;
+    PT_CAN.out++ --> safety_control_unit_primary_gwy_receive_task.DataIn++;
+    
+    vehicle_control_unit_gwy_transmit_task.DataOut++ --> Vehicle_CAN.in++;
+    Vehicle_CAN.out++ --> vehicle_control_unit_gwy_receive_task.DataIn++;
+    
+    central_gateway_gwy_transmit_task.DataOut++ --> Vehicle_CAN.in++;
+    Vehicle_CAN.out++ --> central_gateway_gwy_receive_task.DataIn++;
+
+    central_gateway_gwy_transmit_task.DataOut++ --> PT_CAN.in++;
+    PT_CAN.out++ --> central_gateway_gwy_receive_task.DataIn++;
 }}'''
 
 def file_path(string):
@@ -37,7 +66,7 @@ def file_path(string):
     else:
         raise NotADirectoryError(string)
 
-def not_gateway_task(task):
+def gateway_task(task):
     return not task['task'] in ['gwy_receive_task', 'gwy_transmit_task']
 
 if __name__ == "__main__":
@@ -67,19 +96,29 @@ if __name__ == "__main__":
                 definitions[row['Name']] = (row['Data type'], False)
 
     with open(file, 'r', newline='') as csvfile, open('sim.ned', 'w') as outfile:
+
         reader = csv.DictReader(csvfile)
-        for row in filter(not_gateway_task, reader):
+        for row in reader:
             runnablename = '{}_{}'.format(row['physical'],row['task'])
-            runnables.add(runnablestr.format(name=runnablename, physical=row['physical'],
-                                logical=row['logical'],task=row['task'],period=row['period (ms)']))
+            if gateway_task(row):
+                runnables.add(gwyrunnablestr.format(name=runnablename, physical=row['physical'],
+                            logical=row['logical'],task=row['task'],period=row['period (ms)']))
+            else:
+                runnables.add(runnablestr.format(name=runnablename, physical=row['physical'],
+                            logical=row['logical'],task=row['task'],period=row['period (ms)']))
             if not row['variable'] in definitions:
                 print(row['variable'])
                 definitions[row['variable']] = ('Missing central_def', False)
             
-            datadicts.add(datadictstr.format(name=row['variable'], datatype=definitions[row['variable']][0], reliability= 'true' if definitions[row['variable']][1] else 'false'))
+            datadictname = '{}_{}'.format(row['physical'],row['variable'])
+            relstr = 'true' if definitions[row['variable']][1] else 'false'
+            typestr = definitions[row['variable']][0]
+            datadicts.add(datadictstr.format(name=datadictname, datatype=typestr, reliability=relstr))
+            
             if row['action'] == 'read':
-                connections.append(readstr.format(runnable=runnablename, datadict=row['variable']))
+                connections.append(readstr.format(runnable=runnablename, datadict=datadictname))
             elif row['action'] == 'write':
-                connections.append(writestr.format(runnable=runnablename, datadict=row['variable']))
+                connections.append(writestr.format(runnable=runnablename, datadict=datadictname))
+
         outfile.write(filestr.format(runnables='\n'.join(runnables), datadicts='\n\t'.join(datadicts),
                         connections='\n\t'.join(connections)))

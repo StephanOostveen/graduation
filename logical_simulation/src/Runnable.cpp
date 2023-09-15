@@ -33,6 +33,10 @@ void Runnable::handleMessage(omnetpp::cMessage* msg) {
 	}
 
 	// self message should not be deleted, instead it is scheduled again at the end.
+	handleSelfMessage(msg);
+}
+
+void Runnable::handleSelfMessage(omnetpp::cMessage* msg) {
 	using namespace std::literals::string_view_literals;
 	static constexpr auto str             = "Invocation: "sv;
 	static constexpr auto intBase10Digits = []() noexcept {

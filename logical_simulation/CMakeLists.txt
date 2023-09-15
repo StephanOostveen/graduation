@@ -11,6 +11,8 @@ include(OmnetppHelpers)
 add_executable(VehicleLogicalView
     src/DataDictionary.cpp
     src/DataDictionary.hpp
+    src/DataRouter.cpp
+    src/DataRouter.hpp
     src/Runnable.cpp
     src/Runnable.hpp
 )

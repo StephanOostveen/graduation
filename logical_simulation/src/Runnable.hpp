@@ -1,13 +1,15 @@
 #include <omnetpp.h>
 
-class Runnable final : public omnetpp::cSimpleModule {
+class Runnable : public omnetpp::cSimpleModule {
 public:
 	Runnable() = default;
-	~Runnable() noexcept;
+	virtual ~Runnable() noexcept;
 
 protected:
-	virtual void initialize() final;
-	virtual void handleMessage(omnetpp::cMessage* msg) final;
+	virtual void initialize() override;
+	virtual void handleMessage(omnetpp::cMessage* msg) override;
+
+	void handleSelfMessage(omnetpp::cMessage* msg);
 
 private:
 	omnetpp::cMessage* invocationMsg{nullptr};
