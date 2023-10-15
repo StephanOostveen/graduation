@@ -86,6 +86,9 @@ add_library(FiCo4OMNeT SHARED
 
     FiCo4OMNeT/src/fico4omnet/operatingsystem/DataDictionary.cc
     FiCo4OMNeT/src/fico4omnet/operatingsystem/DataDictionary.h
+
+    FiCo4OMNeT/src/fico4omnet/operatingsystem/Observer.cc
+    FiCo4OMNeT/src/fico4omnet/operatingsystem/Observer.h
 )
 
 add_custom_command(TARGET FiCo4OMNeT PRE_BUILD

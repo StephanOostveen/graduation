@@ -8,8 +8,8 @@ import os
 datadictTemplate = '''dd[{index}].name = "{name}";'''
 
 logicalTemplate = '''logical[{index}].name = "{name}";
-        logical[{index}].priority = 6;
-        logical[{index}].period = ;
+        logical[{index}].priority = {priority};
+        logical[{index}].period = {period};
         logical[{index}].canInput = FiCo4OMNeT::CanList{{definition: {canIn}}};
         logical[{index}].canOutput = FiCo4OMNeT::CanList{{definition: {canOut}}};
         logical[{index}].dataDictOut = FiCo4OMNeT::DataDictList{{definition: {ddOutputs} }};
@@ -24,7 +24,7 @@ module {node} extends LyPhysicalNode {{
     parameters:
         numDataDicts = {numDataDicts};
         numLogicals = {numLogicals};
-        sinkApp.priority = 14 + ;
+        sinkApp.priority = 14 + {sinkprio};
 		//Source app has default prio of 4
 
         {dataDicts}
@@ -80,17 +80,15 @@ def addForwardingDD(node, name):
         datadictsSCU.add(name)
         connectionsSCU.append(('get', 'gwy_transmit_task', name))
         connectionsSCU.append(('set', 'gwy_receive_task', name))
-        print("SCU forwarding" + name)
     elif node == "CGW":
         datadictsCGW.add(name)
         connectionsCGW.append(('get', 'gwy_transmit_task', name))
         connectionsCGW.append(('set', 'gwy_receive_task', name))
-        print("CGW forwarding" + name)
+        print("CGW forwarding " + name)
     elif node == "VCU":
         datadictsVCU.add(name)
         connectionsVCU.append(('get', 'gwy_transmit_task', name))
         connectionsVCU.append(('set', 'gwy_receive_task', name))
-        print("VCU forwarding" + name)
     else:
         print("oops, illegal node in addForwardingDD")
         
@@ -131,9 +129,46 @@ def toNedMessage(message, node, bus):
     nedMessage['dd'] = dds
     return nedMessage
 
+def addGwyConnections(message, node, direction):
+    for signal in message.signals:
+        if signal.name.endswith("_upd"):
+            continue
+        elif signal.name.endswith("_rel"):
+            name = "{}iable".format(signal.name)
+            #('get', 'gwy_transmit_task', name)
+            #('set', 'gwy_receive_task', name)
+            connection = ('get', 'gwy_transmit_task', name) if direction == 'tx' else ('set', 'gwy_receive_task', name)
+            if node == 'SCU':
+                if connection not in connectionsSCU:
+                    print(f'adding {connection} to connectionsSCU')
+                    connectionsSCU.append(connection)
+            elif node == 'VCU':
+                if connection not in connectionsVCU:
+                    print(f'adding {connection} to connectionsVCU')
+                    connectionsVCU.append(connection)
+            elif node == 'CGW':
+                if connection not in connectionsCGW:
+                    print(f'adding {connection} to connectionsCGW')
+                    connectionsCGW.append(connection)
+        else :
+            name = signal.name
+            connection = ('get', 'gwy_transmit_task', name) if direction == 'tx' else ('set', 'gwy_receive_task', name)
+            if node == 'SCU':
+                if connection not in connectionsSCU:
+                    print(f'adding {connection} to connectionsSCU')
+                    connectionsSCU.append(connection)
+            elif node == 'VCU':
+                if connection not in connectionsVCU:
+                    print(f'adding {connection} to connectionsVCU')
+                    connectionsVCU.append(connection)
+            elif node == 'CGW':
+                if connection not in connectionsCGW:
+                    print(f'adding {connection} to connectionsCGW')
+                    connectionsCGW.append(connection)
+
 def addOutput(message, node, bus):
     nedMessage = toNedMessage(message, node, bus)
-
+    addGwyConnections(message, node, 'tx')
     if node == "SCU":
         SCUCANOutput.append(nedMessage)
     elif node == "VCU":
@@ -143,10 +178,9 @@ def addOutput(message, node, bus):
     else:
         print("unknown node")
     
-
 def addInput(message, node, bus):
     nedMessage = toNedMessage(message, node, bus)
-
+    addGwyConnections(message, node, 'rx')
     if node == "SCU":
         SCUCANInput.append(nedMessage)
     elif node == "VCU":
@@ -236,7 +270,6 @@ if __name__ == "__main__":
             else:
                 definitions[row['Name']] = (row['Data type'], False)
 
-    # print(definitions)
 
     with open(file, 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -245,26 +278,47 @@ if __name__ == "__main__":
             if row['physical'] == 'safety_control_unit_primary':
                 runnablesSCU.add(row['task'])
                 datadictsSCU.add(row['variable'])
+                if definitions[row['variable']][1] and not row['variable'].endswith('_reliable'):
+                    datadictsSCU.add('{}_reliable'.format(row['variable']))
                 
                 if row['action'] == 'read':
+                    if row['variable'].endswith('_reliable'):
+                        connectionsSCU.append(('get', row['task'], row['variable'][:-9]))
                     connectionsSCU.append(('get', row['task'], row['variable']))
                 else:
+                    if definitions[row['variable']][1]:
+                        # Datadict 'With Reliability' == true, writing a reliable variable writes both.
+                        connectionsSCU.append(('set', row['task'], '{}_reliable'.format(row['variable'])))
                     connectionsSCU.append(('set', row['task'], row['variable']))
             elif row['physical'] == 'central_gateway':
                 runnablesCGW.add(row['task'])
                 datadictsCGW.add(row['variable'])
+                if definitions[row['variable']][1] and not row['variable'].endswith('_reliable'):
+                    datadictsCGW.add('{}_reliable'.format(row['variable']))
                 
                 if row['action'] == 'read':
+                    if row['variable'].endswith('_reliable'):
+                        connectionsCGW.append(('get', row['task'], row['variable'][:-9]))
                     connectionsCGW.append(('get', row['task'], row['variable']))
                 else:
+                    if definitions[row['variable']][1]:
+                        # Datadict 'With Reliability' == true, writing a reliable variable writes both.
+                        connectionsCGW.append(('set', row['task'], '{}_reliable'.format(row['variable'])))
                     connectionsCGW.append(('set', row['task'], row['variable']))
             elif row['physical'] == 'vehicle_control_unit':
                 runnablesVCU.add(row['task'])
                 datadictsVCU.add(row['variable'])
+                if definitions[row['variable']][1] and not row['variable'].endswith('_reliable'):
+                    datadictsVCU.add('{}_reliable'.format(row['variable']))
                 
                 if row['action'] == 'read':
+                    if row['variable'].endswith('_reliable'):
+                        connectionsVCU.append(('get', row['task'], row['variable'][:-9]))
                     connectionsVCU.append(('get', row['task'], row['variable']))
                 else:
+                    if definitions[row['variable']][1]:
+                        # Datadict 'With Reliability' == true, writing a reliable variable writes both.
+                        connectionsVCU.append(('set', row['task'], '{}_reliable'.format(row['variable'])))
                     connectionsVCU.append(('set', row['task'], row['variable']))
             else:
                 print("oopsie")
@@ -272,18 +326,37 @@ if __name__ == "__main__":
     parseDBC(args.fulldbc)
 
     with open('SCUNode.ned', 'w') as scuFile:
-        runnables = list(runnablesSCU)
-        runnables.append("psc_background_app")
-        runnables.append("propulsion_safety_10ms")
+        runnables = [
+            #(name, period, absolute priority)
+            ('ssc_task_10ms', '10ms', 10),
+            ('energy_controller_task_10ms', '10ms', 10),
+            ('gsl_task', '10ms', 10),
+            ('amg_task', '10ms', 10),
+            ('sai_task', '10ms', 10),
+            ('clr_scu_read_button_task', '10ms', 10),
+            ('propulsion_control_task_10ms', '10ms', 10),
+            ('propulsion_safety_10ms', '10ms', 10),
+            ('gwy_receive_task', '50ms', 8),
+            ('vpc_scu_task_50ms', '50ms', 8),
+            ('energy_controller_task_50ms', '50ms', 8),
+            ('dcm_scu_task', '50ms', 8),
+            ('exl_control_task_scu', '50ms', 8),
+            ('clr_scu_control_task', '50ms', 8),
+            ('bsm_task', '50ms', 8),
+            ('gwy_transmit_task', '50ms', 8),
+            ('win_task', '50ms', 8),
+            ('stm_task', '50ms', 8),
+            ('psc_background_app', '1ms', 6)
+        ]
         runnableDict = {}
-        for run in runnables:
+        for run, _, _ in runnables:
             runnableDict[run] = []
             
         datadicts = list(datadictsSCU)
         
         connections = []
         for (action, task, dd) in connectionsSCU:
-            runnableIndex = runnables.index(task)
+            runnableIndex = [run[0] for run in runnables].index(task)
             ddIndex = datadicts.index(dd)
             if action == "get":
                 connections.append(getTemplate.format(logical=runnableIndex, datadict=ddIndex))
@@ -291,34 +364,46 @@ if __name__ == "__main__":
                 connections.append(setTemplate.format(logical=runnableIndex, datadict=ddIndex))
                 runnableDict[task].append({'ddName': dd, 'bitSize' : datatypes[definitions[dd][0]]})
         
-        scuFile.write(physicalTemplate.format(node='SCUNode', numDataDicts=len(datadicts), 
+        scuFile.write(physicalTemplate.format(node='SCUNode', sinkprio = 3, numDataDicts=len(datadicts), 
                                                 numLogicals=len(runnables),
                                                 dataDicts='\n\t\t'.join(
                                                     [datadictTemplate.format(index=datadicts.index(dd), name=dd) for dd in datadicts]),
                                                 logical='\n\t\t'.join(
                                                     [logicalTemplate.format(
-                                                        index=runnables.index(run) , 
+                                                        index=[r[0] for r in runnables].index(run) , 
                                                         name=run,
+                                                        priority = priority,
+                                                        period = period,
                                                         canIn= json.dumps(SCUCANInput) if run == "gwy_receive_task" else [],
                                                         canOut= json.dumps(SCUCANOutput) if run == "gwy_transmit_task" else [],
-                                                        ddOutputs=json.dumps(runnableDict[run])
-                                                    ) for run in runnables]),
+                                                        ddOutputs=json.dumps(runnableDict[run] if run not in ["gwy_receive_task", "gwy_transmit_task"] else [])
+                                                    ) for run, period, priority in runnables]),
                                                 connections='\n\t\t'.join(connections)
                                             ))
         
     with open('CGWNode.ned', 'w') as cgwFile:
-        runnables = list(runnablesCGW)
-        runnables.append("psc_background_app")
-        runnables.append("gw_fw_upgrade_forwarding_task")
+        runnables = [
+            ('clr_gw_read_button_task', '10ms', 9),
+            ('lin_gw_task_10ms', '10ms', 9),
+            ('gwy_receive_task', '50ms', 8),
+            ('aut_task', '50ms', 8),
+            ('exl_control_task_gw', '50ms', 8),
+            ('clr_control_closures_task', '50ms', 8),
+            ('dvi_task', '50ms', 8),
+            ('vpc_gw_task_50ms', '50ms', 8),
+            ('gwy_transmit_task', '50ms', 8),
+            ('gw_fw_upgrade_forwarding_task', '1ms', 7),
+            ('psc_background_app', '1ms', 6)            
+        ]
         runnableDict = {}
-        for run in runnables:
+        for run, _ ,_ in runnables:
             runnableDict[run] = []
         datadicts = list(datadictsCGW)
         
         connections = []
 
         for (action, task, dd) in connectionsCGW:
-            runnableIndex = runnables.index(task)
+            runnableIndex = [run[0] for run in runnables].index(task)
             ddIndex = datadicts.index(dd)
             if action == "get":
                 connections.append(getTemplate.format(logical=runnableIndex, datadict=ddIndex))
@@ -326,28 +411,44 @@ if __name__ == "__main__":
                 connections.append(setTemplate.format(logical=runnableIndex, datadict=ddIndex))
                 runnableDict[task].append({'ddName': dd, 'bitSize': datatypes[definitions[dd][0]]})
         
-        cgwFile.write(physicalTemplate.format(node='CGWNode', numDataDicts=len(datadicts), 
+        cgwFile.write(physicalTemplate.format(node='CGWNode', sinkprio = 4, numDataDicts=len(datadicts), 
                                                 numLogicals=len(runnables),
                                                 dataDicts='\n\t\t'.join(
                                                     [datadictTemplate.format(index=datadicts.index(dd), name=dd) for dd in datadicts]),
                                                 logical='\n\t\t'.join(
                                                     [logicalTemplate.format(
-                                                        index=runnables.index(run) , 
+                                                        index=[r[0] for r in runnables].index(run) , 
                                                         name=run,
+                                                        priority = priority,
+                                                        period = period,
                                                         canIn= json.dumps(CGWCANInput) if run == "gwy_receive_task" else [],
                                                         canOut= json.dumps(CGWCANOutput) if run == "gwy_transmit_task" else [],
-                                                        ddOutputs=json.dumps(runnableDict[run])
-                                                        ) for run in runnables]),
+                                                        ddOutputs=json.dumps(runnableDict[run] if run not in ["gwy_receive_task", "gwy_transmit_task"] else [])
+                                                        ) for run, period, priority in runnables]),
                                                 connections='\n\t\t'.join(connections)
                                             ))
 
     with open('VCUNode.ned', 'w') as vcuFile:
-        runnables = list(runnablesVCU)
-        runnables.append("psc_background_app")
-        runnables.append("dcm_vcu_10_ms_task")
-        runnables.append("tms_100ms_task")
+
+        runnables = [
+            ('dcm_vcu_10_ms_task', '10ms', 10),
+            ('gwy_receive_task', '50ms', 9),
+            ('dcm_vcu_task', '50ms', 9),
+            ('exl_control_task_vcu', '50ms', 9),
+            ('wiper_manager_task', '50ms', 9),
+            ('cmm_task', '50ms', 9),
+            ('hmg_task', '50ms', 9),
+            ('sol_task', '50ms', 9),
+            ('stm_task', '50ms', 9),
+            ('vpc_vcu_task_50ms', '50ms', 9),
+            ('avs_task', '50ms', 9),
+            ('gwy_transmit_task', '50ms', 9),
+            ('tms_100ms_task', '100ms', 8),
+            ('tms_task_500ms', '500ms', 7),
+            ('psc_background_app', '1ms', 6)
+        ]
         runnableDict = {}
-        for run in runnables:
+        for run, _, _ in runnables:
             runnableDict[run] = []
         
         datadicts = list(datadictsVCU)
@@ -355,7 +456,7 @@ if __name__ == "__main__":
         connections = []
 
         for (action, task, dd) in connectionsVCU:
-            runnableIndex = runnables.index(task)
+            runnableIndex = [run[0] for run in runnables].index(task)
             ddIndex = datadicts.index(dd)
             if action == "get":
                 connections.append(getTemplate.format(logical=runnableIndex, datadict=ddIndex))
@@ -363,17 +464,19 @@ if __name__ == "__main__":
                 connections.append(setTemplate.format(logical=runnableIndex, datadict=ddIndex))
                 runnableDict[task].append({'ddName': dd, 'bitSize' : datatypes[definitions[dd][0]]})
         
-        vcuFile.write(physicalTemplate.format(node='VCUNode', numDataDicts=len(datadicts), 
+        vcuFile.write(physicalTemplate.format(node='VCUNode', sinkprio = 5, numDataDicts=len(datadicts), 
                                                 numLogicals=len(runnables),
                                                 dataDicts='\n\t\t'.join(
                                                     [datadictTemplate.format(index=datadicts.index(dd), name=dd) for dd in datadicts]),
                                                 logical='\n\t\t'.join(
                                                     [logicalTemplate.format(
-                                                        index=runnables.index(run) , 
+                                                        index=[r[0] for r in runnables].index(run) , 
                                                         name=run,
+                                                        priority = priority,
+                                                        period = period,
                                                         canIn= json.dumps(VCUCANInput) if run == "gwy_receive_task" else [],
                                                         canOut= json.dumps(VCUCANOutput) if run == "gwy_transmit_task" else [],
-                                                        ddOutputs=json.dumps(runnableDict[run])
-                                                        ) for run in runnables]),
+                                                        ddOutputs=json.dumps(runnableDict[run] if run not in ["gwy_receive_task", "gwy_transmit_task"] else [])
+                                                        ) for run, period, priority in runnables]),
                                                 connections='\n\t\t'.join(connections)
                                             ))
