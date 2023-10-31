@@ -1,30 +1,162 @@
-type,variable,caller,action,logical,physical,task,period (ms)
-palcan,tbd,cd_filling_procedure_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_robertshaw_h45m_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_schrader_valve_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_webasto_hvh_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_paragon_mufu_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_acds_co2_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_hella_sura_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_hella_rls_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_sonceboz_ags_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,cd_sanden_compr_receive_and_process,receive,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,dsc_conv_in_info_read,receive,tbd,vcu,sol_can_all_dsc_conv_in_info_read,tbd
-palcan,tbd,stalks_interface_run,receive,tbd,vcu,dcm_vcu_task,tbd
-palcan,tbd,gwy_receive_task,receive,tbd,vcu,gwy_receive_task,tbd
-palcan,tbd,dsc_in_solar_yield_read,receive,tbd,vcu,sol_task,tbd
-palcan,tbd,dsc_out_solar_yield_read,receive,tbd,vcu,sol_task,tbd
-palcan,tbd,dsc_board_out_info_read,receive,tbd,vcu,sol_can_all_dsc_out_info_read,tbd
-palcan,tbd,dsc_board_state_info_read,receive,tbd,vcu,sol_can_all_dsc_state_info_read,tbd
-palcan,tbd,can_comm_run,receive,tbd,vcu,dcm_vcu_10ms_task,tbd
-palcan,tbd,cd_sanden_compr_process_and_send,transmit,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,cd_filling_procedure_process_and_send,transmit,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_robertshaw_h45m_process_and_send,transmit,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_schrader_valve_process_and_send,transmit,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_webasto_hvh_process_and_send,transmit,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_hella_sura_process_and_send,transmit,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,ld_sonceboz_ags_process_and_send,transmit,tbd,vcu,tms_task_500ms,tbd
-palcan,tbd,stalks_interface_run,transmit,tbd,vcu,dcm_vcu_task,tbd
-palcan,tbd,dsc_single_conv_state_command,transmit,tbd,vcu,sol_task,tbd
-palcan,tbd,gwy_transmit_task,transmit,tbd,vcu,gwy_transmit_task,tbd
-palcan,tbd,vcu_version_handle_transmit,transmit,tbd,vcu,vcu_version_handle_transmit,tbd
+type,variable,CANID,BusName,Length (bytes),action,Node,caller,logical,physical,task,period (ms)
+palcan,tbd,1424,Vehicle,8,receive,Filling tool,cd_filling_procedure_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_robertshaw_h45m_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_schrader_valve_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_webasto_hvh_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_paragon_mufu_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_acds_co2_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_hella_sura_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_hella_rls_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,LIN,LIN,LIN,receive,,ld_sonceboz_ags_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,768,Vehicle,8,receive,sanden compr,cd_sanden_compr_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,769,Vehicle,8,receive,sanden compr,cd_sanden_compr_receive_and_process,tbd,vcu,tms_task_500ms,500ms
+palcan,tbd,65,Solar,8,receive,DSC1,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,81,Solar,8,receive,DSC2,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,97,Solar,8,receive,DSC3,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,113,Solar,8,receive,DSC4,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,129,Solar,8,receive,DSC5,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,145,Solar,8,receive,DSC6,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,161,Solar,8,receive,DSC7,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,177,Solar,8,receive,DSC8,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,193,Solar,8,receive,DSC9,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,209,Solar,8,receive,DSC10,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,225,Solar,8,receive,DSC11,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,241,Solar,8,receive,DSC12,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,257,Solar,8,receive,DSC13,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,273,Solar,8,receive,DSC14,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,66,Solar,8,receive,DSC1,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,82,Solar,8,receive,DSC2,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,98,Solar,8,receive,DSC3,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,114,Solar,8,receive,DSC4,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,130,Solar,8,receive,DSC5,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,146,Solar,8,receive,DSC6,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,162,Solar,8,receive,DSC7,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,178,Solar,8,receive,DSC8,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,194,Solar,8,receive,DSC9,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,210,Solar,8,receive,DSC10,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,226,Solar,8,receive,DSC11,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,242,Solar,8,receive,DSC12,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,258,Solar,8,receive,DSC13,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,274,Solar,8,receive,DSC14,dsc_conv_in_info_read,tbd,vcu,sol_can_all_dsc_conv_in_info_read,50ms
+palcan,tbd,148,Driver support,7,receive,Stalks,stalks_interface_run,tbd,vcu,dcm_vcu_task,50ms
+palcan,tbd,543,Driver support,3,receive,Stalks,stalks_interface_run,tbd,vcu,dcm_vcu_task,50ms
+palcan,tbd,71,Solar,8,receive,DSC1,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,87,Solar,8,receive,DSC2,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,103,Solar,8,receive,DSC3,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,119,Solar,8,receive,DSC4,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,135,Solar,8,receive,DSC5,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,151,Solar,8,receive,DSC6,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,167,Solar,8,receive,DSC7,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,183,Solar,8,receive,DSC8,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,199,Solar,8,receive,DSC9,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,215,Solar,8,receive,DSC10,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,231,Solar,8,receive,DSC11,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,247,Solar,8,receive,DSC12,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,263,Solar,8,receive,DSC13,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,279,Solar,8,receive,DSC14,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,72,Solar,8,receive,DSC1,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,88,Solar,8,receive,DSC2,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,104,Solar,8,receive,DSC3,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,120,Solar,8,receive,DSC4,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,136,Solar,8,receive,DSC5,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,152,Solar,8,receive,DSC6,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,168,Solar,8,receive,DSC7,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,184,Solar,8,receive,DSC8,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,200,Solar,8,receive,DSC9,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,216,Solar,8,receive,DSC10,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,232,Solar,8,receive,DSC11,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,248,Solar,8,receive,DSC12,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,264,Solar,8,receive,DSC13,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,280,Solar,8,receive,DSC14,dsc_in_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,73,Solar,8,receive,DSC1,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,89,Solar,8,receive,DSC2,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,105,Solar,8,receive,DSC3,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,121,Solar,8,receive,DSC4,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,137,Solar,8,receive,DSC5,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,153,Solar,8,receive,DSC6,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,169,Solar,8,receive,DSC7,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,185,Solar,8,receive,DSC8,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,201,Solar,8,receive,DSC9,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,217,Solar,8,receive,DSC10,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,233,Solar,8,receive,DSC11,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,249,Solar,8,receive,DSC12,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,265,Solar,8,receive,DSC13,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,281,Solar,8,receive,DSC14,dsc_out_solar_yield_read,tbd,vcu,sol_task,50ms
+palcan,tbd,67,Solar,8,receive,DSC1,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,83,Solar,8,receive,DSC2,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,99,Solar,8,receive,DSC3,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,115,Solar,8,receive,DSC4,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,131,Solar,8,receive,DSC5,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,147,Solar,8,receive,DSC6,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,163,Solar,8,receive,DSC7,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,179,Solar,8,receive,DSC8,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,195,Solar,8,receive,DSC9,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,211,Solar,8,receive,DSC10,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,227,Solar,8,receive,DSC11,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,243,Solar,8,receive,DSC12,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,259,Solar,8,receive,DSC13,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,275,Solar,8,receive,DSC14,dsc_board_out_info_read,tbd,vcu,sol_can_all_dsc_out_info_read,50ms
+palcan,tbd,69,Solar,8,receive,DSC1,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,85,Solar,8,receive,DSC2,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,101,Solar,8,receive,DSC3,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,117,Solar,8,receive,DSC4,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,133,Solar,8,receive,DSC5,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,149,Solar,8,receive,DSC6,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,165,Solar,8,receive,DSC7,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,181,Solar,8,receive,DSC8,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,197,Solar,8,receive,DSC9,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,213,Solar,8,receive,DSC10,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,229,Solar,8,receive,DSC11,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,245,Solar,8,receive,DSC12,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,261,Solar,8,receive,DSC13,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,277,Solar,8,receive,DSC14,dsc_board_state_info_read,tbd,vcu,sol_can_all_dsc_state_info_read,50ms
+palcan,tbd,"1792,1800,1808,1816,1824,1832,1840,1848,1856",Surround sense,8,receive,Sensor1,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,1793,Surround sense,8,receive,Sensor2,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,1794,Surround sense,8,receive,Sensor3,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,1795,Surround sense,8,receive,Sensor4,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,1796,Surround sense,8,receive,Sensor5,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,1797,Surround sense,8,receive,Sensor6,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,1798,Surround sense,8,receive,Sensor7,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,1799,Surround sense,8,receive,Sensor8,can_comm_run,tbd,vcu,dcm_vcu_10ms_task,10ms
+palcan,tbd,512,Vehicle,8,transmit,sanden compr,cd_sanden_compr_process_and_send,tbd,vcu,tms_task_500ms,tbd
+palcan,tbd,1425,Vehicle,1,transmit,Filling tool,cd_filling_procedure_process_and_send,tbd,vcu,tms_task_500ms,tbd
+palcan,tbd,54,Driver support,8,transmit,Stalks,stalks_interface_run,tbd,vcu,dcm_vcu_task,tbd
+palcan,tbd,258,Driver support,2,transmit,Stalks,stalks_interface_run,tbd,vcu,dcm_vcu_task,tbd
+palcan,tbd,76,Solar,1,transmit,DSC1,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,92,Solar,1,transmit,DSC2,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,108,Solar,1,transmit,DSC3,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,124,Solar,1,transmit,DSC4,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,140,Solar,1,transmit,DSC5,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,156,Solar,1,transmit,DSC6,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,172,Solar,1,transmit,DSC7,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,188,Solar,1,transmit,DSC8,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,204,Solar,1,transmit,DSC9,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,220,Solar,1,transmit,DSC10,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,236,Solar,1,transmit,DSC11,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,252,Solar,1,transmit,DSC12,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,268,Solar,1,transmit,DSC13,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,284,Solar,1,transmit,DSC14,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,77,Solar,1,transmit,DSC1,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,93,Solar,1,transmit,DSC2,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,109,Solar,1,transmit,DSC3,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,125,Solar,1,transmit,DSC4,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,141,Solar,1,transmit,DSC5,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,157,Solar,1,transmit,DSC6,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,173,Solar,1,transmit,DSC7,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,189,Solar,1,transmit,DSC8,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,205,Solar,1,transmit,DSC9,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,221,Solar,1,transmit,DSC10,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,237,Solar,1,transmit,DSC11,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,253,Solar,1,transmit,DSC12,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,269,Solar,1,transmit,DSC13,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,285,Solar,1,transmit,DSC14,dsc_single_conv_state_command,tbd,vcu,sol_task,tbd
+palcan,tbd,536805377,Vehicle,8,transmit,,vcu_version_handle_transmit,tbd,vcu,vcu_version_handle_transmit,tbd
+,,,,,,,,,,,
+palcan,tbd,,,,transmit,,gwy_transmit_task,tbd,vcu,gwy_transmit_task,tbd
+,,,,,,,,,,,
+palcan,tbd,,,,receive,,gwy_receive_task,tbd,vcu,gwy_receive_task,tbd
+palcan,tbd,,,,transmit,,ld_robertshaw_h45m_process_and_send,tbd,vcu,tms_task_500ms,tbd
+palcan,tbd,,,,transmit,,ld_schrader_valve_process_and_send,tbd,vcu,tms_task_500ms,tbd
+palcan,tbd,,,,transmit,,ld_webasto_hvh_process_and_send,tbd,vcu,tms_task_500ms,tbd
+palcan,tbd,,,,transmit,,ld_hella_sura_process_and_send,tbd,vcu,tms_task_500ms,tbd
+palcan,tbd,,,,transmit,,ld_sonceboz_ags_process_and_send,tbd,vcu,tms_task_500ms,tbd
