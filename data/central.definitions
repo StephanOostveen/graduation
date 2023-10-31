@@ -38,6 +38,7 @@ ac_actual,,int16_t,,,,1,1,0,,,The actual HVAC AC Mode
 airbag_hmi_scenario,,uint16_t,,0,-,1,1,0,,,
 air_distribution_actual,,int16_t,,,,1,1,0,,,The actual HVAC airvent zones
 alarm_hazard_lights_request,,i_alarm_hazard_lights_t,,0,-,1,1,0,,,Blink the indicator lights as requested by the alarm module
+alarm_sensors_off,,bool,,0,-,1,1,0,,,Request the interior sensors of the alarm to be on (0) or off (1).
 ambient_light_level,,uint16_t,Yes,,lx,1,1,0,,,The ambient light level in Lux
 ambient_light_reliability,,int16_t,Yes,,-,1,1,0,,,The reliability of the ambient light level signal
 audio_notification_request,,int16_t,,,-,1,1,0,,,Request for the sound from the stalks.
