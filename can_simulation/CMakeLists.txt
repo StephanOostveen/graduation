@@ -5,7 +5,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Include the Omnet++ specific CMake files, add Omnet++ to the Path etc.
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/omnetpp-cmake")
-find_package(OmnetPP 6.0.1 EXACT REQUIRED)
+find_package(OmnetPP 6.0.2 EXACT REQUIRED)
 include(OmnetppHelpers)
 include(CompilerWarnings)
 
