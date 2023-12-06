@@ -91,9 +91,9 @@ return
 endfunction
 
 function utils = getutils(nrLogicals)
-    nrOfTasks = nrLogicals + 4; % Scheduler + CAN Sink + CAN Source + Background task
+    nrOfTasks = nrLogicals + 5; % Scheduler + CAN Sink + CAN Source + Background task + version transmitter
 
-    rtosUtilization = (0.001 / 1) + (0.1/2) + (0.01/2) + (0.001 / 1); % Values are in milliseconds
+    rtosUtilization = (0.001 / 1) + (0.1/2) + (0.01/2) + (0.001 / 1)+ (0.001 / 10000); % Values are in milliseconds
 
     systemMaxUtilization = nrOfTasks * (2^(1/nrOfTasks) -1);
     logicalMaxUtilization = systemMaxUtilization - rtosUtilization;
@@ -116,11 +116,12 @@ LyCanNetwork.SCU.sinkApp.period = 2ms\n\
 LyCanNetwork.SCU.sinkApp.executionTime = 0.1ms\n\
 LyCanNetwork.SCU.scheduler.executionTime = 0.001ms\n\
 LyCanNetwork.SCU.scheduler.interarrivalTime = 1ms\n\
-# SCU has 19 logicals\n")
+# SCU has 20 logicals\n")
 for i = 1:rows(SCUExectionTime)
     printf("LyCanNetwork.SCU.logical[%d].executionTime  = %fms\n", i-1, SCUExectionTime(i))
 endfor
-printf("LyCanNetwork.SCU.logical[18].executionTime  = 0.001ms # Background app\n\n")
+printf("LyCanNetwork.SCU.logical[18].executionTime  = 0.001ms # Background app\n")
+printf("LyCanNetwork.SCU.logical[19].executionTime  = 0.001ms # version transmitter\n\n")
 
 VCUUtilization = getutils(14); % remove the background app and give it fixed util
 VCUPeriods = [10; 50; 50; 50; 50; 50; 50; 50; 50; 50; 50; 50; 100; 500];
@@ -134,12 +135,12 @@ LyCanNetwork.VCU.sinkApp.period = 2ms\n\
 LyCanNetwork.VCU.sinkApp.executionTime = 0.1ms\n\
 LyCanNetwork.VCU.scheduler.executionTime = 0.001ms\n\
 LyCanNetwork.VCU.scheduler.interarrivalTime = 1ms\n\
-#VCU has 15 logicals\n")
+#VCU has 16 logicals\n")
 for i = 1:rows(VCUExecutionTime)
     printf("LyCanNetwork.VCU.logical[%d].executionTime  = %fms\n", i-1, VCUExecutionTime (i))
 endfor
-printf("LyCanNetwork.VCU.logical[14].executionTime  = 0.001ms # Background app\n\n")
-
+printf("LyCanNetwork.VCU.logical[14].executionTime  = 0.001ms # Background app\n")
+printf("LyCanNetwork.VCU.logical[15].executionTime  = 0.001ms # version transmitter\n\n")
 CGWUtilization = getutils(10); % remove the background app and give it fixed util
 CGWPeriods = [10; 10; 50; 50; 50; 50; 50; 50; 50; 1;];
 CGWExecutionTime = CGWUtilization .* CGWPeriods;
@@ -152,8 +153,9 @@ LyCanNetwork.CGW.sinkApp.period = 2ms\n\
 LyCanNetwork.CGW.sinkApp.executionTime = 0.1ms\n\
 LyCanNetwork.CGW.scheduler.executionTime = 0.001ms\n\
 LyCanNetwork.CGW.scheduler.interarrivalTime = 1ms\n\
-#CGW has 11 logicals\n")
+#CGW has 12 logicals\n")
 for i = 1:rows(CGWExecutionTime)
     printf("LyCanNetwork.CGW.logical[%d].executionTime  = %fms\n", i-1, CGWExecutionTime (i))
 endfor
-printf("LyCanNetwork.CGW.logical[10].executionTime  = 0.001ms # Background app\n\n")
+printf("LyCanNetwork.CGW.logical[10].executionTime  = 0.001ms # Background app\n")
+printf("LyCanNetwork.CGW.logical[11].executionTime  = 0.001ms # version transmitter\n\n")
