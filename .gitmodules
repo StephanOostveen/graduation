@@ -1,8 +1,8 @@
 [submodule "lyswe-vehicle"]
 	path = lyswe-vehicle
 	url = git@bitbucket.org:lightyear-company/lyswe-vehicle.git
-[submodule "paper/UseLATEX"]
-	path = paper/UseLATEX
+[submodule "preparation-phase-paper/UseLATEX"]
+	path = preparation-phase-paper/UseLATEX
 	url = https://gitlab.kitware.com/kmorel/UseLATEX.git
 [submodule "logical_simulation/cmake"]
 	path = logical_simulation/cmake
