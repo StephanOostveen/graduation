@@ -1,0 +1,77 @@
+\begin{tikzpicture}[{pink box/.append style}={minimum width=3.3cm, minimum height=2.5em}, {orange box/.append style}={minimum width =2.3cm}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-14, 13) {Central Gateway};
+		\node [style=pink box] (1) at (-10, 10.75) {Vehicle Power\\ Controller runnable};
+		\node [style=pink box] (2) at (-10, 7.75) {Exterior Lighting\\ runnable};
+		\node [style=pink box] (3) at (-10, 1.25) {CAN transmit\\ runnable};
+		\node [style=pink box] (4) at (-10, 4.75) {CAN receive\\ runnable};
+		\node [style=orange box] (5) at (-19, 7.75) {$active\_gear$};
+		\node [style=orange box] (6) at (-19, 1.25) {$power\_mode$};
+		\node [style=none] (7) at (-23, 14) {};
+		\node [style=none] (8) at (-5, 14) {};
+		\node [style=none] (9) at (-5, -1) {};
+		\node [style=none] (10) at (-23, -1) {};
+		\node [style=none] (11) at (14, 13) {Safety Control Unit - primary};
+		\node [style=pink box] (12) at (10, 10.75) {Vehicle Power\\ Controller runnable};
+		\node [style=pink box] (14) at (10, 4.75) {CAN transmit\\ runnable};
+		\node [style=pink box] (15) at (10, 1.25) {CAN receive\\ runnable};
+		\node [style=orange box] (16) at (16, 7.75) {$active\_gear$};
+		\node [style=orange box] (17) at (19, 1.25) {$power\_mode$};
+		\node [style=none] (18) at (5, 14) {};
+		\node [style=none] (19) at (21.5, 14) {};
+		\node [style=none] (20) at (21.5, -1) {};
+		\node [style=none] (21) at (5, -1) {};
+		\node [style=none] (22) at (-22.5, 10.75) {};
+		\node [style=none, label={above:Write}] (23) at (-15, 10.75) {};
+		\node [style=none] (24) at (-22.5, 1.25) {};
+		\node [style=none, label={above:Read}] (25) at (-15, 7.75) {};
+		\node [style=none] (26) at (-5, 4.75) {};
+		\node [style=none] (27) at (-19, 4.75) {};
+		\node [style=none, label={above:Write}] (28) at (-15, 4.75) {};
+		\node [style=none, label={above:Read}] (29) at (-15, 1.25) {};
+		\node [style=none] (30) at (-5, 1.25) {};
+		\node [style=none] (31) at (5, 1.25) {};
+		\node [style=centering, anchor=north] (32) at (0, 1.25) {Powertrain CAN bus\\ Message 2};
+		\node [style=none, label={above:Write}] (34) at (14.5, 1.25) {};
+		\node [style=none] (36) at (19, 10.75) {};
+		\node [style=none, label={left:Read}] (37) at (19, 3) {};
+		\node [style=none] (38) at (10, 7.75) {};
+		\node [style=none, label={right:Write}] (39) at (10, 8.75) {};
+		\node [style=none] (40) at (16, 4.75) {};
+		\node [style=none, label={left:Read}] (41) at (16, 6.25) {};
+		\node [style=none] (42) at (5, 4.75) {};
+		\node [style=centering, anchor=south] (43) at (0, 4.75) {Powertrain CAN bus\\ Message 1};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=palegrey custom] (8.center)
+			 to (9.center)
+			 to (10.center)
+			 to (7.center)
+			 to cycle;
+		\draw [style=palegrey custom] (19.center)
+			 to (20.center)
+			 to (21.center)
+			 to (18.center)
+			 to cycle;
+		\draw [style=line] (22.center) to (1);
+		\draw [style=line] (22.center) to (24.center);
+		\draw [style=arrow] (6) to (24.center);
+		\draw [style=arrow] (2) to (5);
+		\draw [style=arrow] (5) to (27.center);
+		\draw [style=line] (4) to (27.center);
+		\draw [style=arrow] (3) to (6);
+		\draw [style=arrow] (30.center) to (3);
+		\draw [style=mint custom, line width=2pt] (31.center) to (30.center);
+		\draw [style=arrow] (15) to (31.center);
+		\draw [style=arrow] (17) to (15);
+		\draw [style=arrow] (12) to (36.center);
+		\draw [style=line] (12) to (38.center);
+		\draw [style=arrow] (16) to (38.center);
+		\draw [style=arrow] (14) to (40.center);
+		\draw [style=line] (40.center) to (16);
+		\draw [style=arrow] (42.center) to (14);
+		\draw [style=mint custom, line width=2pt] (42.center) to (26.center);
+		\draw [style=arrow] (4) to (26.center);
+		\draw [style=line] (17) to (36.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

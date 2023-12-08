@@ -16,3 +16,6 @@
 [submodule "can_simulation/FiCo4OMNeT"]
 	path = can_simulation/FiCo4OMNeT
 	url = git@github.com:StephanOostveen/FiCo4OMNeT.git
+[submodule "paper/UseLATEX"]
+	path = paper/UseLATEX
+	url = https://gitlab.kitware.com/kmorel/UseLATEX.git

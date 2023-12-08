@@ -1,0 +1,93 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array,tikz,relsize,xspace,tabularx}
+\usepackage[english]{babel}
+\usepackage[backend=biber, maxbibnames=10]{biblatex}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{regexpatch}
+\usepackage{tikzit}
+\newcolumntype{R}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\small}l%
+	<{\end{minipage}\end{turn}}%
+	}
+
+\protected\def\omnet{OMNeT\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}\xspace}
+
+\makeatletter
+\xpatchcmd{\@todo}{\setkeys{todonotes}{#1}}{\setkeys{todonotes}{inline,#1}}{}{}
+\NewBibliographyString{artno}
+\DefineBibliographyStrings{english}{artno = {Art\adddotspace No\adddot}}
+
+\DeclareFieldFormat[article,periodical]{eid}{\bibstring{artno}\addabbrvspace #1}
+
+\addbibresource{resources.bib}
+%------------------------- Colour definitions --------------------------
+\definecolor{lightblue}{HTML}{77AADD}
+\definecolor{lightcyan}{HTML}{99DDFF}
+\definecolor{mint}{HTML}{44BB99}
+\definecolor{pear}{HTML}{BBCC33}
+\definecolor{olive}{HTML}{AAAA00}
+\definecolor{lightyellow}{HTML}{EEDD88}
+\definecolor{orange}{HTML}{EE8866}
+\definecolor{pink}{HTML}{FFAABB}
+\definecolor{palegrey}{HTML}{DDDDDD}
+%--------------------------------- Tikz ---------------------------------
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+
+\input{sample.tikzstyles}
+%------------------------ Macros and Definitions ------------------------
+
+\setlength\headheight{20pt}
+\addtolength\topmargin{-10pt}
+\addtolength\footskip{20pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily\bfseries\large }
+\fancyhead[RO,LE]{\sffamily\bfseries\large Graduation Project ES}
+\fancyfoot[LO,RE]{\sffamily\bfseries\large department of mathematics and computer science}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily\bfseries\large }
+\fancyhead[LO,RE]{\sffamily\bfseries\large Graduation Project ES}
+\fancyfoot[LO,RE]{\sffamily\bfseries\large department of mathematics and computer science}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%--------------------------------- Text ----------------------------------
+
+\begin{document}
+	\pagenumbering{roman}
+	\input{./titlepage.tex}
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic}
+	\input{./1.0.introduction.tex}
+	\clearpage
+	\input{./2.0.domain.tex}
+	\clearpage
+	\input{./3.0.problem_statement.tex}
+	\clearpage
+	\input{./4.0.sota_analysis.tex}
+	\clearpage
+	\input{./5.0.research_description.tex}
+	\clearpage
+	\input{./6.0.approach.tex}
+	\clearpage
+	\input{./7.0.results.tex}
+	\clearpage
+	\input{./8.0.discussion.tex}
+	\clearpage
+	\input{./9.0.conclusion.tex}
+	\clearpage
+	\input{./10.0.reflection.tex}
+	\clearpage
+	\printbibliography
+\end{document}
