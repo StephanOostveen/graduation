@@ -9,6 +9,9 @@ add_latex_document(main.tex
         titlepage.tex
         1.0.introduction.tex
         2.0.domain.tex
+        2.1.architectures.tex
+        2.2.real-time-comm.tex
+        2.3.tsn.tex
         3.0.problem_statement.tex
         4.0.sota_analysis.tex
         5.0.research_description.tex
@@ -20,4 +23,5 @@ add_latex_document(main.tex
         sample.tikzstyles
         figures/logical_example.tikz
         figures/deployment_example.tikz
+    BIBFILES resources.bib USE_BIBLATEX
 )
