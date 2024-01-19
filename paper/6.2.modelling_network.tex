@@ -1,0 +1,13 @@
+In this section we will describe how the Lightyear 0's embedded system as defined in Section~\ref{subsec:network} is modelled in OMNeT++. We also mention the assumptions made and the differences between the model and the real embedded system.
+
+\paragraph{Programmable end nodes} OMNeT++ differentiates between simple modules and compound modules. Simple modules can be seen as the lowest level of the model, they implement the behaviour by means of C++ code which acts on the events received by that module. While compound modules do not have an implementation but serve as an abstraction by grouping submodules and the connections between those submodules inside that abstraction. This makes it possible to keep large models understandable.
+
+The programmable end nodes are implemented as a compound module. A generic compound module \textit{LyPhysicalNode} aggregates the internals of a programmable end node. Specialisations of the \textit{LyPhysicalNode} implement the final specific programmable end node, e.g. the \textit{VCUNode} compound module represents the Vehicle Control Unit by filling in details like the number of data dictionaries and their names, the number of runnables with the names and priorities and the read/write relationship between logicals and data dictionaries of the real world Vehicle Control Unit. The specialisations are generated from the source code such that they closely resemble the real world implementation. The generic \textit{LyPhysicalNode} contains one or more \textit{LyCanDevice} representing the CAN peripherals of that physical node. A source and sink application representing the CAN transmit and CAN receive tasks of the real-time operating system respectively. A scheduler implementing the fixed priority preemptive scheduler. One or more \textit{Logical}, which in fact represent a runnable. And finally one or more \textit{DataDictionary} representing the signals being generated and consumed by the programmable end node.
+
+\todo{Plaatje van een simpele LyPhysicalNode}
+
+The CAN transmit task of the real-time operating system is implemented as a task which has priority number 4, which is the lowest priority task of the real-time operating system that we implement in our model.
+
+\paragraph{Parametrizable end nodes}
+
+\paragraph{CAN network}

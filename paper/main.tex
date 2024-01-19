@@ -1,9 +1,10 @@
 \documentclass[a4paper,twoside]{article}
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,csquotes,caption, subcaption, url,hyperref,booktabs,longtable,rotating,array,tikz,relsize,xspace,tabularx}
 \usepackage[english]{babel}
 \usepackage[backend=biber, maxbibnames=10]{biblatex}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage[title]{appendix}
 \usepackage{regexpatch}
 \usepackage{tikzit}
 \newcolumntype{R}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\small}l%
@@ -61,9 +62,11 @@
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
 
+\renewcommand{\arraystretch}{1.2}
 %--------------------------------- Text ----------------------------------
 
 \begin{document}
+	\rowcolors{2}{gray!25}{white}
 	\pagenumbering{roman}
 	\input{./titlepage.tex}
 	\tableofcontents
@@ -90,4 +93,9 @@
 	\input{./10.0.reflection.tex}
 	\clearpage
 	\printbibliography
+	\clearpage
+	\begin{appendices}
+		\input{./A.tsn.tex}
+	\end{appendices}
+		
 \end{document}

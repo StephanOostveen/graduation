@@ -1,0 +1,112 @@
+\begin{figure}[htb]
+    \centering
+\begin{tikzpicture}[
+    programmablenode/.style={rectangle, draw=lightblue, fill=lightblue},
+    parametrizablenode/.style={rectangle, draw=orange, fill=orange},
+    canbus/.style={rectangle, fill=mint},
+    linbus/.style={rectangle, fill=pink},
+    ethernet/.style={rectangle, fill=olive},
+    other/.style={rectangle, fill=palegrey},
+]
+    % Nodes & Networks
+    \node[programmablenode] (SCU) {Safety Control Unit};
+    \node[canbus] (PT) [above=of SCU] {Powertrain};
+    \node[programmablenode] (CGW) [above=of PT]{Central Gateway};
+    \node[canbus] (VEHICLE) [above=of CGW] {Vehicle};
+    \node[programmablenode] (VCU) [above=of VEHICLE]{Vehicle Control Unit};
+    \draw[-] (SCU.north) -- (PT.south);
+    \draw[-] (CGW.south) -- (PT.north);
+    % Driver support
+    \node[canbus] (DS) [right= of VCU] {Driver Support};
+    \node[parametrizablenode] (SCM) [above=of DS] {Steering Column Module};
+    \draw[-] (DS.west) -- (VCU.east);
+    \draw[-] (DS.north) -- (SCM.south);
+    % Drivetrain
+    \node[canbus] (DT) [below= of SCU] {Drivetrain};  
+    \node[parametrizablenode] (INVFL) [below left=of DT]{Inverter FL};
+    \node[parametrizablenode] (INVFR) [below =of INVFL]{Inverter FR};
+    \node[parametrizablenode] (INVRL) at (DT|-INVFL){Inverter RL};
+    \node[parametrizablenode] (INVRR) at (DS|-INVFL){Inverter RR};
+    \draw[-] (SCU.south) -- (DT.north);
+    \draw[-] (INVFL.north) -- (DT.west);
+    \draw[-] (DT.south west) -- (INVFR.north east);
+    \draw[-] (DT.south) -- (INVRL.north);
+    \draw[-] (DT.south east) -- (INVRR.north west);
+    % Energy Management
+    \node[canbus] (EM) at (DS|-SCU) {Energy Managment};
+    \node[parametrizablenode] (OBC) [below= of EM] {On-board charger};
+    \draw[-] (EM.west) -- (SCU.east);
+    \draw[-] (EM.south) -- (OBC.north);
+    % Powertrain
+    \node[parametrizablenode] (MEDIA) [left= of SCU] {Media ECU};
+    \node[parametrizablenode] (SAS) at (DS|-PT) {Steering angle sensor};
+    \draw[-] (MEDIA.north) -- (PT.west);
+    \draw[-] (SAS.west) -- (PT.east);
+    % Surounding Sense
+    \node[canbus] (SS) [above= of VCU] {Surounding Sense};
+    \node[parametrizablenode] (PSS) [above right=of SS] {Parking Sensor System};
+    \node[parametrizablenode] (CMS) [above=of SS] {Camera Monitoring System};
+    \draw[-] (VCU.north) -- (SS.south);
+    \draw[-] (SS.north) -- (CMS.south);
+    \draw[-] (SS.north east) -- (PSS.south west);
+    % Solar
+    \node[canbus] (SOLAR) [left=of SS] {Solar};
+    \node[parametrizablenode] (DSC) [left=of CMS] {Dual String Converter 1};
+    \draw[-] (SOLAR.south east) -- (VCU.north west);
+    \draw[-] (DSC.south) -- (SOLAR.north);
+    % Telematics
+    \node[canbus] (TELE) [left=of PT] {Telematics};
+    \node[parametrizablenode] (TCU) [left=of TELE] {Telematics Control Unit};
+    \node[ethernet] (MEDIAETH) at(TCU|-MEDIA) {Media Ethernet};
+    \draw[-] (CGW.south west) -- (TELE.north east);
+    \draw[-] (TELE.west) -- (TCU.east);
+    \draw[-] (MEDIAETH.north) -- (TCU.south);
+    \draw[-] (MEDIAETH.east) -- (MEDIA.west);
+    % HVBS
+    \node[canbus] (HVBS) [below left= of SCU] {HVBS};
+    \node[parametrizablenode] (BAT) at(MEDIAETH|-HVBS) {High Voltage Battery};
+    \draw[-] (HVBS.north east) -- (SCU.south west);
+    \draw[-] (HVBS.west) -- (BAT.east);
+    % Vehicle
+    \node[parametrizablenode] (WIP) at (DS|-VEHICLE) {Window Wiper};
+    \node[parametrizablenode] (COMP) [below=of WIP] {RC Compressor};
+    \draw[-] (CGW.north) -- (VEHICLE.south);
+    \draw[-] (VEHICLE.north) -- (VCU.south);
+    \draw[-] (VEHICLE.east) -- (WIP.west);
+    \draw[-] (VEHICLE.south east) -- (COMP.west);
+    % Vehicle2
+    \node[canbus] (VEHICLE2) [left=of VCU] {Vehicle 2};
+    \node[parametrizablenode] (LATCH) at (DSC|-SOLAR) {Tailgate Latch};
+    \draw[-] (VCU.west) -- (VEHICLE2.east);
+    \draw[-] (VEHICLE2.north west) -- (LATCH.south);
+    %INVerter Ethernet
+    \node[ethernet] (ETHFL) at(MEDIAETH|-INVFL) {Inverter FL};
+    \draw[-] (INVFL.west) -- (ETHFL.east);
+    \node[ethernet] (ETHFR) at(MEDIAETH|-INVFR) {Inverter FR};
+    \draw[-] (INVFR.west) -- (ETHFR.east);
+    \node[ethernet] (ETHRL) at(INVRL|-INVFR) {Inverter RL};
+    \draw[-] (INVRL.south) -- (ETHRL.north);
+    \node[ethernet] (ETHRR) at(INVRR|-INVFR) {Inverter RR};
+    \draw[-] (INVRR.south) -- (ETHRR.north);
+    %LIN busses
+    \node[linbus] (LINA) at(MEDIA|-VEHICLE) {LINA};
+    \node[parametrizablenode] (RAIN) at(TCU|-LINA) {Rain light sensor};
+    \draw[-] (RAIN.east) -- (LINA.west);
+    \draw[-] (LINA.east) -- (CGW.north west);
+    \node[linbus] (LINB) at(MEDIA|-CGW) {LINB};
+    \node[parametrizablenode] (AIR) at (TCU|-LINB) {Air flap actuator};
+    \draw[-] (AIR.east) -- (LINB.west);
+    \draw[-] (LINB.east) -- (CGW.west);
+    %Legend
+    \filldraw[palegrey, thick] (-8.3,10.3) rectangle (6.0, 13);
+    \node[programmablenode] (PROG) [align=center] at (TCU|- 50,11){Programmable\\ end node};
+    \node[parametrizablenode] (PARA) [right=of PROG, align=center] {Parametrizable\\ end node};
+    \node[canbus] (CAN) [right=of PARA] {CAN bus};
+    \node[linbus] (LIN) [right=of CAN] {LIN bus};
+    \node[ethernet] (ETH) [right=of LIN, align=center] {Ethernet\\ network};
+    \node[] (Legend) at (-1.1,12.5) {Legend};
+    
+\end{tikzpicture}
+\caption{Partial block diagram of the in-vehicle networks and nodes}
+\label{fig:networkoverview}
+\end{figure}

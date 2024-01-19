@@ -1,0 +1,93 @@
+\begingroup
+\renewcommand*{\arraystretch}{1}
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    % \begin{tabular}{@{}lllllllllllllllllll@{}}
+    \begin{tabular}{lllllllllllllllllll}
+                                & \multicolumn{10}{c}{Controller Area Network} & \multicolumn{2}{c|}{LIN} & \multicolumn{5}{c}{Ethernet} & \multicolumn{1}{c}{Other} \\* \cmidrule(lr){2-11} \cmidrule(r){12-13} \cmidrule(r){14-18} \cmidrule(r){19-19}
+    Node name                & \multicolumn{1}{R{2.5cm}}{Driver support} & \multicolumn{1}{R{2cm}}{Drivetrain} & \multicolumn{1}{R{2cm}}{Energy\\ management} & \multicolumn{1}{R{2cm}}{HVBS} & \multicolumn{1}{R{2cm}}{Powertrain} & \multicolumn{1}{R{2cm}}{Solar} & \multicolumn{1}{R{2cm}}{Surrounding\\ sense} & \multicolumn{1}{R{2cm}}{Telematics} & \multicolumn{1}{R{2cm}}{Vehicle} & \multicolumn{1}{R{2cm}}{Vehicle 2} & \multicolumn{1}{R{2cm}}{LIN A} & \multicolumn{1}{R{2cm}|}{LIN B} & \multicolumn{1}{R{2cm}}{Media} & \multicolumn{1}{R{2cm}}{Inverter FL} & \multicolumn{1}{R{2cm}}{Inverter FR} & \multicolumn{1}{R{2cm}}{Inverter RL} & \multicolumn{1}{R{2cm}}{Inverter RR} & \multicolumn{1}{R{2cm}}{Others}   \\*\cmidrule(r){1-1} \cmidrule(r){2-11}\cmidrule(r){12-13} \cmidrule(r){14-18} \cmidrule(r){19-19}
+    \textcolor{mint}{Vehicle control unit}       & X &   &   &   &   & X & X &   & X &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Central gateway}            &   &   &   &   & X &   &   & X & X & X & X & \multicolumn{1}{c|}{X} &   &   &   &   &   &   \\
+    \textcolor{mint}{Safety control unit}        &   & X & X & X & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Steering column module}     & X &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Inverter FL}                &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   & X &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Inverter FR}                &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   & X &   &   &   \\
+    \textcolor{mint}{Inverter RL}                &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   & X &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Inverter RR}                &   & X &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   & X &   \\
+    High voltage battery                         &   &   &   & X &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    On-board charger                             &   &   & X &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Media ECU}                  &   &   &   &   & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  & X &   &   &   &   & X \\
+    \rowcolor[gray]{0.925}
+    Steering angle sensor                        &   &   &   &   & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Dual string controller 1}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Dual string controller 2}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Dual string controller 3}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Dual string controller 4}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Dual string controller 5}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Dual string controller 6}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Dual string controller 7}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Dual string controller 8}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Dual string controller 9}   &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Dual string controller 10}  &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Dual string controller 11}  &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Dual string controller 12}  &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Dual string controller 13}  &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Dual string controller 14}  &   &   &   &   &   & X &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Camera monitoring system                     &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Parking sensor 1}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Parking sensor 2}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Parking sensor 3}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Parking sensor 4}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Parking sensor 5}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Parking sensor 6}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Parking sensor 7}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Parking sensor 8}           &   &   &   &   &   &   & X &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    Telematics control unit                      &   &   &   &   &   &   &   & X &   &   &   & \multicolumn{1}{c|}{}  & X &   &   &   &   &   \\
+    Window wiper                                 &   &   &   &   &   &   &   &   & X &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{RC compressor}              &   &   &   &   &   &   &   &   & X &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Tailgate latch}             &   &   &   &   &   &   &   &   &   & X &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{User authentication system} &   &   &   &   &   &   &   &   &   & X &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{User authentication app}    &   &   &   &   &   &   &   & X &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Alarm system}               &   &   &   &   & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Front left door latch}      &   &   &   &   & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Front right door latch}     &   &   &   &   &   &   &   &   &   & X &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Rear left door latch}       &   &   &   &   &   &   &   &   &   & X &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    \textcolor{mint}{Rear right door latch}      &   &   &   &   & X &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \textcolor{mint}{Filling tool}               &   &   &   &   &   &   &   &   & X &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    Rain light sensor                            &   &   &   &   &   &   &   &   &   &   & X & \multicolumn{1}{c|}{}  &   &   &   &   &   &   \\
+    Air flap actuator                            &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{X} &   &   &   &   &   &   \\
+    \rowcolor[gray]{0.925}
+    Speaker left                                 &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   & X \\
+    Display                                      &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   & X \\
+    \rowcolor[gray]{0.925}
+    Rearview camera                              &   &   &   &   &   &   &   &   &   &   &   & \multicolumn{1}{c|}{}  &   &   &   &   &   & X \\
+\end{tabular}%
+}
+\caption{Partial overview of in-vehicle networks and nodes}
+\label{tab:networkoverview}
+\end{table}
+\endgroup

@@ -1,0 +1,22 @@
+\begin{table}[]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    Priority & Task                       & Trigger            & Description                                                                                                                \\ \midrule
+    14+n     & CAN messaging (event) task & 2ms periodic burst & Handles CAN messaging                                                                                                      \\
+    13+n     & J1939 messaging task       & 5ms periodic       & Handles J1939 messaging                                                                                                    \\
+    12+n     & PFF task                   & 10ms periodic      & Handles freeze frame processing                                                                                            \\
+    11+n     & PFS task                   & 10ms periodic      & Handles non-volatile filesystem                                                                                            \\
+    10+n     & PISO messaging task        & 5ms periodic       & Handles ISO-15765 messaging                                                                                                \\
+    9+n      & PDG messaging task         & 10ms periodic      & Handles ISO15765 based diagnostics messaging                                                                               \\
+    6..6+n   & Application tasks          & Angular            & Handles application processing                                                                                             \\
+    5        & PDTC task                  & 100ms              & Handles diagnostic trouble code processing                                                                                 \\
+    4        & CAN messaging task         & 2ms periodic burst & Handles CAN messaging                                                                                                      \\
+    2        & Watchdog task              & 200ms periodic     & Handles the processor watchdog                                                                                             \\
+    1        & CCP task                   & 5ms periodic       & \begin{tabular}[c]{@{}l@{}}Handles the CAN Calibration Protocol messaging to \\ and from the calibration tool\end{tabular}
+    \end{tabular}%
+    }
+    \caption{Real-time operating system and application tasks for OpenECU M560 and M130 as defined by OpenECU documentation}
+    \label{tab:priorities}
+\end{table}
