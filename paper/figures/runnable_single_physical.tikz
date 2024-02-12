@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (1, 7) {Central Gateway};
+		\node [style=pink box] (1) at (-2.75, 5) {Brake pedal\\runnable};
+		\node [style=pink box] (2) at (4.5, 5) {Rear light\\runnable};
+		\node [style=orange box] (3) at (1, 2) {Stop light\\data dictionary};
+		\node [style=none] (4) at (-2.75, 2) {};
+		\node [style=none] (5) at (4.5, 2) {};
+		\node [style=none] (6) at (-5.5, 7.75) {};
+		\node [style=none] (7) at (-5.5, -0.5) {};
+		\node [style=none] (8) at (7, -0.5) {};
+		\node [style=none] (9) at (7, 7.75) {};
+		\node [style=centering] (11) at (-4, 3.25) {Write};
+		\node [style=centering] (12) at (5.5, 3) {Read};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=palegrey custom] (7.center)
+			 to (8.center)
+			 to (9.center)
+			 to (6.center)
+			 to cycle;
+		\draw [style=line, in=90, out=-90] (1) to (4.center);
+		\draw [style=arrow] (3) to (4.center);
+		\draw [style=line] (3) to (5.center);
+		\draw [style=arrow] (2) to (5.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

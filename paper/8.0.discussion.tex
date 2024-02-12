@@ -1,2 +1,9 @@
 \section{Discussion}
 \label{sec:discussion}
+\todo{reflect hoe moeilijk/makkelijk het was om benchmark getallen naar boven te krijgen en hoe je dit op architectuur niveau makkelijker zou kunnen maken om te analyseren.}
+
+Runnables with the same period deployed on a certain programmable end node have been grouped in a single task which is scheduled by the operating system, see Listing~\ref{lst:rtos_task} for an example. The runnables inside a task have been given a specific order in which they are executed. The reason for this deviation in the initial model or the reason for the specific order in which runnables are executed is unknown. 
+
+\lstinputlisting[caption=Example scheduled task, label={lst:rtos_task}, language=C, firstline=1,frame=single,numbers=left,keywordstyle=\color{blue}]{example_task.c}
+
+\todo{discuss the effect of this deviation for the results -> probably not such an issue as the runnables in a task have the same, but order in which they occur is semi random}

@@ -1,2 +1,181 @@
 \section{Results}
 \label{sec:results}
+\subsection{Lightyear 0's embedded system benchmark}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+    Type      & Size (bits) & Nr of datadictionaries \\ \midrule
+    bool      & 8           & 25                     \\
+    int8\_t   & 8           & 1                      \\
+    uint8\_t  & 8           & 93                     \\
+    int16\_t  & 16          & 88                     \\
+    uint16\_t & 16          & 46                     \\
+    int32\_t  & 32          & 19                     \\
+    uint32\_t & 32          & 19                     \\
+    float     & 32          & 144                    \\
+    enumerate & 32          & 87                     \\ \bottomrule
+    \end{tabular}
+    \caption{Breakdown of data dictionary types used in the programmable end nodes}
+    \label{tab:prog_nodes_types}
+\end{table}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+    \multicolumn{2}{c}{Nr of runnables} & \\
+    Writing & Reading & Occurences \\ \midrule
+    0       & 1      & 27         \\
+    1       & 0      & 135        \\
+    1       & 1      & 303        \\
+    1       & 2      & 31         \\
+    1       & 3      & 11         \\
+    1       & 4      & 2          \\
+    1       & 6      & 1          \\
+    1       & 8      & 1          \\
+    1       & 9      & 1          \\
+    1       & 10     & 1          \\
+    1       & 11     & 1          \\ \bottomrule
+    \end{tabular}
+    \caption{Read/write ratios for data dictionaries in the programmable end nodes}
+    \label{tab:prog_nodes_read_write}
+\end{table}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}lllllll@{}}\toprule
+    & & \multicolumn{5}{c}{Consumer period (ms)}                                  \\\cmidrule{3-7}
+    &  & 1 & 10 & 50  & 100 & 500 \\ \cmidrule{3-7}
+    \multirow{5}{*}{\rotatebox[origin=c]{90}{\parbox{1.8cm}{Producer period (ms)}}} & 1      & 0 & 0  & 0   & 0   & 0   \\
+                                & 10     & 0 & 58 & 76  & 0   & 17  \\
+                                & 50     & 0 & 39 & 204 & 0   & 39  \\
+                                & 100    & 0 & 0  & 0   & 0   & 0   \\
+                                & 500    & 0 & 1  & 16  & 0   & 0  \\ \bottomrule
+    \end{tabular}
+    \caption{Number of data dictionaries produced and consumed at different runnable rates.}
+    \label{tab:data_dict_prod_cons_rates}
+\end{table}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}ll@{}}
+    \toprule
+    Communication type        & Count \\ \midrule
+    Local only                & 140   \\
+    Direct only               & 117   \\
+    Bridged only              & 57    \\
+    Local and direct          & 18    \\
+    Local and bridged         & 6     \\
+    Direct and bridged        & 6     \\
+    Local, direct and bridged & 8     \\ \bottomrule
+    \end{tabular}
+    \caption{Breakdown of data dictionary read/write location}
+    \label{tab:dd_rw_location}
+\end{table}
+
+\begin{table}[htb]
+    \centering
+\begin{tabular}{@{}llll@{}}
+    \toprule
+    Task                           & Period (ms) & Priority & Runnable                     \\ \midrule
+    cgw\_task\_50ms                & 50          & 2        & Gateway receive              \\
+                                   &             &          & Authentication manager       \\
+                                   &             &          & Exterior lighting control    \\
+                                   &             &          & Closures control             \\
+                                   &             &          & Media ECU interface          \\
+                                   &             &          & Vehicle Power Control        \\
+                                   &             &          & Gateway transmit             \\
+                                   &             &          & Version transmitter          \\
+                                   &             &          & Non volatile memory manager  \\
+    cgw\_task\_10ms                & 10          & 3        & Closures read button         \\
+                                   &             &          & LIN task                     \\
+    cgw\_upgrade\_forwarding\_task & 1           & 1        & Firmware upgrade forwarding  \\
+    psc\_background\_app           & -           & 0        & -                            \\ \bottomrule
+\end{tabular}
+\caption{Mapping of runnables to scheduled task on the Central Gateway}
+\label{tab:runnable_mapping_cgw}
+\end{table}
+\begin{table}[htb]
+    \centering
+\begin{tabular}{@{}llll@{}}
+    \toprule
+    Task                           & Period (ms) & Priority & Runnable                     \\ \midrule
+    scu\_task\_10ms                & 10          & 4        & Safety supervisor controller \\
+                                   &             &          & Energy controller            \\
+                                   &             &          & Gear selector                \\
+                                   &             &          & Airbags manager              \\
+                                   &             &          & Steering angle interface     \\
+                                   &             &          & Closures read button         \\
+                                   &             &          & Propulsion control           \\
+                                   &             &          & Propulsion safety            \\
+    scu\_task\_50ms                & 50          & 2        & Gateway receive              \\
+                                   &             &          & Vehicle power control        \\
+                                   &             &          & Energy controller            \\
+                                   &             &          & Driver controls              \\
+                                   &             &          & Exterior lighting control    \\
+                                   &             &          & Closures manager             \\
+                                   &             &          & Braking system manager       \\
+                                   &             &          & Gateway transmit             \\
+                                   &             &          & Windows controller           \\
+                                   &             &          & Power steering               \\
+                                   &             &          & Version transmitter          \\
+    psc\_background\_app           & -           & 0        & -                            \\ \bottomrule
+\end{tabular}
+\caption{Mapping of runnables to scheduled task on the Safety Control Unit}
+\label{tab:runnable_mapping_scu}
+\end{table}
+\begin{table}[htb]
+    \centering
+\begin{tabular}{@{}llll@{}}
+    \toprule
+    Task                           & Period (ms) & Priority & Runnable                     \\ \midrule
+    vcu\_task\_10ms                & 10          & 4        & Driver controls              \\
+    vcu\_task\_50ms                & 50          & 3        & Gateway receive              \\
+                                   &             &          & Driver controls              \\
+                                   &             &          & Exterior lighting control    \\
+                                   &             &          & Wiper manager                \\
+                                   &             &          & Camera monitoring system     \\
+                                   &             &          & Horn manager                 \\
+                                   &             &          & Solar manager                \\
+                                   &             &          & Power steering               \\
+                                   &             &          & Vehicle power controller     \\
+                                   &             &          & Acoustic Vehicle Alerting System \\
+                                   &             &          & Gateway transmit             \\
+                                   &             &          & Version transmitter          \\
+    vcu\_task\_100ms               & 100         & 2        & Thermal management system    \\
+    vcu\_task\_500ms               & 500         & 1        & Thermal management system    \\
+    psc\_background\_app           & -           & 0        & -                            \\ \bottomrule
+    \end{tabular}
+    \caption{Mapping of runnables to scheduled task on the Vehicle Control Unit}
+    \label{tab:runnable_mapping_vcu}
+\end{table}
+\begin{figure}[htb]
+    \centering
+    \input{images/Produce_Consume_graph.pgf}
+    \caption{Data dictionaries consumed/produced per runnables}
+    \label{fig:produce_consume_runnable}
+\end{figure}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    Bus name          & Bitrate (kbps) & Nr of CAN messages & Nr of nodes \\ \midrule
+    Driver support    & 125            & 4                  & 2           \\
+    Drivetrain        & 500            & 18                 & 5           \\
+    Energy management & 500            & 100                & 8           \\
+    HVBS              & 500            & 13                 & 3           \\
+    Powertrain        & 500            & 97                 & 7           \\
+    Solar             & 500            & 153                & 15          \\
+    Surrounding sense & 500            & 72                 & 9           \\
+    Telematics        & 500            & 5                  & 2           \\
+    Vehicle           & 500            & 64                 & 4           \\
+    Vehicle 2         & 500            & 15                 & 5           \\ \bottomrule
+    \end{tabular}
+    \caption{Details of Lightyear 0's CAN busses}
+    \label{tab:can_busses}
+\end{table}
+
+\subsection{Simulation experiments}

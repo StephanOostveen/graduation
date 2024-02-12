@@ -1,7 +1,7 @@
 \section{Domain}
 \label{sec:domain}
-\todo{Samenvatting hoofdstuk + structuur (sectie 2.1 ..., 2.2 ...)}
-\input{2.1.architectures.tex}
+Current automotive in-vehicle networks are mostly based on the Controller Area Network (CAN) and the Local Interconnect Network (LIN) technology for the real-time control of the vehicle. These networks have some drawbacks such as a limited bandwidth which is becoming problematic as functions require more data to be transferred, e.g. autonomous driving. This has led to a redesign of the traditional CAN based function/domain architecture into a zonal architecture where Time Sensitive Networking serves as the main network technology. The remainder of this section explains the main concepts behind CAN in Section~\ref{sec:can}, the challenges and solutions of real-time communication using Ethernet in Section~\ref{sec:real-time-comm} and finally an overview of the domain and zonal architectures is presented in Section~\ref{sec:architectures}.
+
+\input{2.1.can.tex}
 \input{2.2.real-time-comm.tex}
-\input{2.3.tsn.tex}
-\input{2.4.can.tex}
+\input{2.3.architectures.tex}
