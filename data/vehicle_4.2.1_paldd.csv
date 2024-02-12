@@ -270,7 +270,7 @@ paldd,vehicle_speed,read,Driver Controls manager,central_gateway,dvi_task,50
 paldd,vehicle_speed_reliability,read,Driver Controls manager,central_gateway,dvi_task,50
 paldd,vehicle_total_efficiency,read,Driver Controls manager,central_gateway,dvi_task,50
 paldd,vpc_hmi_scenario,read,Driver Controls manager,central_gateway,dvi_task,50
-paldd,lvbs_relay_enable,write,Energy Storage Controller,safety_control_unit_primary,energy_controller_task_10ms,
+paldd,lvbs_relay_enable,write,Energy Storage Controller,safety_control_unit_primary,energy_controller_task_10ms,10
 paldd,actual_grid_charging_current,write,Energy Storage Controller,safety_control_unit_primary,energy_controller_task_50ms,50
 paldd,actual_input_power_obc_charge,write,Energy Storage Controller,safety_control_unit_primary,energy_controller_task_50ms,50
 paldd,actual_max_charge_current,write,Energy Storage Controller,safety_control_unit_primary,energy_controller_task_50ms,50
