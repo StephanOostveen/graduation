@@ -1,0 +1,15 @@
+[
+{"canID": 827, "sizeInBytes": 8, "bus": "hvbs", "interval": 0.1},
+{"canID": 826, "sizeInBytes": 8, "bus": "hvbs", "interval": 1},
+{"canID": 825, "sizeInBytes": 8, "bus": "hvbs", "interval": 0.1},
+{"canID": 823, "sizeInBytes": 7, "bus": "hvbs", "interval": 0.1},
+{"canID": 819, "sizeInBytes": 4, "bus": "hvbs", "interval": 0.1},
+{"canID": 822, "sizeInBytes": 8, "bus": "hvbs", "interval": 1},
+{"canID": 820, "sizeInBytes": 8, "bus": "hvbs", "interval": 1},
+{"canID": 821, "sizeInBytes": 8, "bus": "hvbs", "interval": 0.1},
+{"canID": 919, "sizeInBytes": 8, "bus": "hvbs", "interval": 0.01},
+{"canID": 282, "sizeInBytes": 5, "bus": "hvbs", "interval": 0.01},
+{"canID": 817, "sizeInBytes": 8, "bus": "hvbs", "interval": 0.01},
+{"canID": 31, "sizeInBytes": 5, "bus": "hvbs", "interval": 0.1},
+{"canID": 283, "sizeInBytes": 7, "bus": "HVBS", "interval": 0.01}
+]

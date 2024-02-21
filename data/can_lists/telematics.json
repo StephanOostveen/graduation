@@ -1,0 +1,17 @@
+[
+    {"canID": 405, "sizeInBytes": 8, "bus": "telematics", "interval": 0.05},
+    {"canID": 406, "sizeInBytes": 8, "bus": "telematics", "interval": 0.05},
+    {"canID": 407, "sizeInBytes": 1, "bus": "telematics", "interval": 0.05},
+    {"canID": 415, "sizeInBytes": 1, "bus": "telematics", "interval": 0.05},
+    {"canID": 404, "sizeInBytes": 1, "bus": "telematics", "interval": 0.05},
+    {"canID": 16777217, "sizeInBytes": 8, "bus": "telematics", "interval": 0.05}, 
+{"canID": 16777218, "sizeInBytes": 8, "bus": "telematics", "interval": 0.05}, 
+{"canID": 16777219, "sizeInBytes": 8, "bus": "telematics", "interval": 0.05}, 
+{"canID": 16777220, "sizeInBytes": 7, "bus": "telematics", "interval": 0.05}, 
+{"canID": 16777221, "sizeInBytes": 7, "bus": "telematics", "interval": 0.05}, 
+{"canID": 16777222, "sizeInBytes": 8, "bus": "telematics", "interval": 0.05}, 
+{"canID": 16777223, "sizeInBytes": 8, "bus": "telematics", "interval": 0.05}, 
+{"canID": 16777224, "sizeInBytes": 3, "bus": "telematics", "interval": 0.05},
+{"canID": 536805378, "sizeInBytes": 8, "bus": "telematics", "interval": 10}
+]
+

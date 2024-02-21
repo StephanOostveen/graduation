@@ -158,7 +158,14 @@
     \label{fig:produce_consume_runnable}
 \end{figure}
 
-\begin{table}[]
+\begin{figure}[htb]
+    \centering
+    \input{images/Produce_Consume_CAN_graph.pgf}
+    \caption{CAN messages consumed/produced per runnable or parametrizable node}
+    \label{fig:produce_consume_CAN_runnable}
+\end{figure}
+
+\begin{table}[htb]
     \centering
     \begin{tabular}{@{}llll@{}}
     \toprule
@@ -178,4 +185,89 @@
     \label{tab:can_busses}
 \end{table}
 
+\subsubsection{Inverter debug Ethernet interface}
+As mentioned in section~\ref{subsec:network} the four inverters each have a dedicated Ethernet network. In the default configuration these networks have only a single node connected to it: the inverter. Thus, there is no network traffic. When required a laptop can be connected to an inverter to form a two node network which can be used to configure or debug the inverter. The inverters implement an Internet Protocol stack using UDP to exchange messages. Configuration traffic is sparse, consisting of a dozen Ethernet frames exchanged between the two nodes.
+
+For debugging purposes the inverters sample seven 32-bit integers and 23 floating point numbers at 1 kHz which are streamed to debugging software on the laptop. This is good for 992 kilobit/second per inverter of measurement data. Assuming that one UDP datagram maps to one Ethernet frame and datagrams only contain full samples each inverter will send 1.05 megabit/second of Ethernet frames. 
+\clearpage
 \subsection{Simulation experiments}
+\paragraph{Runnable execution times.}
+One important aspect of the simulation are the runnable's execution times. As we don't have this information we need a method to fairly generate random execution times. During the time at Lightyear, issues with runnables taking to long to complete occurred several times. Assuming the runnables in the final product are schedulable, we will assume that the total ECU load is close to the scheduler's limit. The programmable end nodes use a fixed priority pre-emptive scheduler and the priorities are assigned rate monotonically. We will use the Liu \& Layland least upper bound~\cite{liu1973scheduling} as the programmable end node utilization factor $U_{ECU}$. Given $n$ tasks the utilization is given by:
+\begin{equation}
+    U_{ECU} = n \cdot (2^{1/n} -1)
+\end{equation}
+
+This fixed utilization is randomly distributed over the number of tasks running on that programmable end node using the Randfixedsum algorithm~\cite{emberson2010techniques}. The algorithm generates $n$ random numbers, lying in a given interval, whose sum is equal to $s$. As the node comprises a scheduling task, RTOS tasks and runnables, $U_{ECU}$ should be distributed over each task. As the lower bound for a task utilization we take 0.1\%, this could be a short task which only transmits a single CAN message with precomputed values. As the upper bound for a task utilization we take 50\%, since this occurred at Lightyear with one specific task. It is unlikely that the scheduler requires 50\% of the total utilization as this should be a highly optimized task. The same is true for the CAN receive and transmit tasks of the operating system. From analysing the source code we know that the background tasks are never used. The assumed execution times, periods and resulting utilizations are shown in table~\ref{tab:util}.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    Task            & Execution time (ms) & Period (ms) & Utilization \\ \midrule
+    Scheduler       & 0.001               & 1           & 0.001       \\
+    CAN receive     & 0.1                 & 2           & 0.05        \\
+    CAN transmit    & 0.01                & 2           & 0.005       \\
+    Background task & 0.001               & 1           & 0.001       \\ \bottomrule
+    \end{tabular}
+    \caption{Real time operating system task utilization}
+    \label{tab:util}
+\end{table}
+
+Let $U_{rtos}$ be the sum of utilizations in table~\ref{tab:util}, representing the utilization by the real time operating system. Randfixedsum then only needs to distribute $U_{logical}=U_{ECU}-U{rtos}$ over the $n$ runnables. And as mentioned previously each utilization $U_{task}$ should be in the range $0.001 < U < 0.5$.
+
+\todo{drawback, CAN RX/TX is event based, not each ecu is strictly rate monotonic}
+
+\paragraph{Comparing simulated CAN bitrates to theoretical bitrate.}
+
+To validate that the simulation properly encodes and transmits all CAN messages the achieved bitrates and number of transmitted messages in the simulation are compared to the theoretical value. Because CAN uses bit stuffing that is dependent on the CAN ID and data transmitted this value is a range. In the best case no bit stuffing occurs, the size in bits is found using formula~\ref{eq:min}. Where $g$ is 34 for standard format (11-bit identifiers) or 54 for extended format (29-bit identifiers), $n$ is the number of data $bytes$ in the payload.
+\begin{equation}
+    \label{eq:min}
+    Framesize_{min}(n) = g+8\cdot n + 13
+\end{equation}
+
+The theoretical maximum bitrate~\cite{davis2007controller} is calculated using the maximum size formula~\ref{eq:max}. Where $g$ is 34 for standard format (11-bit identifiers) or 54 for extended format (29-bit identifiers), $n$ is the number of data $bytes$ in the payload.
+\begin{equation}
+    \label{eq:max}
+Framesize_{max}(n) = g +8\cdot n +13 +\left\lfloor\frac{g+8\cdot n-1}{4}\right\rfloor
+\end{equation}
+
+Each CAN bus the theoretical minimum and maximum bitrate can be found in Table~\ref{tab:bitrate_sim}. We note that the theoretical maximal bitrates for the \textit{Energy management} and \textit{Surrounding sense} CAN buses are higher than the real world configured bitrates. This is likely due to an inaccuracy in the model generation method. For example, the method can not detect whether a runnable reads or transmits a CAN message on every iteration, every n'th iteration or aperiodically when a specific event occurs. From examination of source code instances where found where a CAN message is transmitted every second iteration to achieve a lower transmission rate. Other instances where found where diagnostic messages where only transmitted during vehicle assembly, which would not occur during normal operation of the vehicle. For this experiment we will increase the \textit{Energy management} and \textit{Surrounding sense} CAN bus bitrates to 1 megabit per second. Other interesting results are the bitrates of the \textit{Solar} and \textit{Powertrain} CAN buses. At 77\% and 67\% of the maximum bitrate respectively, scheduling issues are becoming more likely if the schedule is not chosen carefully. We expect scheduling issues to manifest themselves as large queue sizes combined with long busy periods of the CAN bus.
+
+We run two experiments on the entire vehicle network, varying the bit stuffing percentage as to achieve a minimal and maximal bitrate for each CAN bus. In the first experiment we set the bit stuffing percentage to 0, meaning no CAN message receives any stuffing bits. In the second experiment the bit stuffing percentage is set to 1, meaning that every CAN message receives the maximum number of stuffing bits. To reduce interference caused by specific execution times of runnables and the schedulers the hardware buffer size of the programmable end nodes is set to 100. The runnables' execution times are drawn randomly using the Randfixedsum method described above, but are kept constant during this experiment. Each experiment is repeated 10 times and simulates 120 seconds with a warm-up period of 30 simulated seconds. The total number of bits transmitted on each CAN bus is recorded together with the number of transmitted frames. At the end the statistics are averages over the simulation length and taken as a single statistic for that repetition. For each experiment the average of the 10 repetitions is calculated and can be found under the simulation columns of table~\ref{tab:bitrate_sim}.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}lllllll@{}}
+        \toprule
+                                                                     & \multicolumn{3}{c}{Theoretical}                                                                                                                                                                     & \multicolumn{3}{c}{Simulated}                                                                                                                                                                     \\* \cmidrule(lr){2-4} \cmidrule(r){5-7}
+        Bus name                                                     & \begin{tabular}[c]{@{}l@{}}Minimal \\ bitrate (bps)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Maximal \\ bitrate (bps)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Frames\\ per\\ second\end{tabular} & \begin{tabular}[c]{@{}l@{}}Minimal\\ bitrate (bps)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Maximal\\ bitrate (bps)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Frames\\ per\\ second\end{tabular} \\ \midrule
+        Driver support                                               & 6,960                                                            & 8,400                                                            & 80                                                            & 4,902                                                           & 6,292                                                           &                                                               \\
+        Drivetrain                                                   & 64,837                                                           & 78,856                                                           & 584                                                           & 64,842                                                          & 78,863                                                          &                                                               \\
+        \begin{tabular}[c]{@{}l@{}}Energy \\ management\end{tabular} & 458,798                                                          & 558,925                                                          & 3,886                                                         & 458,828                                                         & 558,957                                                         &                                                               \\
+        HVBS                                                         & 47,553                                                           & 57,705                                                           & 463                                                           & 47,557                                                          & 57,709                                                          &                                                               \\
+        Powertrain                                                   & 277,260                                                          & 337,500                                                          & 2,420                                                         & 277,281                                                         & 337,522                                                         &                                                               \\
+        Solar                                                        & 318,140                                                          & 386,200                                                          & 3,060                                                         & 298,690                                                         & 381,613                                                         &                                                               \\
+        \begin{tabular}[c]{@{}l@{}}Surrounding \\ sense\end{tabular} & 799,200                                                          & 972,000                                                          & 7,200                                                         & 799,218                                                         & 972,004                                                         &                                                               \\
+        Telematics                                                   & 27,593                                                           & 33,516                                                           & 260                                                           & 27,604                                                          & 33,529                                                          &                                                               \\
+        Vehicle                                                      & 150,091                                                          & 183,226                                                          & 1,170                                                         & 139,371                                                         & 179,644                                                         &                                                               \\
+        Vehicle 2                                                    & 27,700                                                           & 33,500                                                           & 300                                                           & 25,488                                                          & 30,810                                                          &                                                               \\ \bottomrule
+        \end{tabular}
+        \caption{Theoretical and simulated bitrates and frames per second per CAN bus}
+        \label{tab:bitrate_sim}
+\end{table}
+
+A large difference between the theoretical and simulated values can be found in the \textit{Driver support}, \textit{Solar}, \textit{Vehicle} and \textit{Vehicle 2} buses. Two runnables on the Vehicle Control Unit transmit messages on the \textit{Solar} CAN bus, the \textit{Solar Controller} and \textit{Gateway Transmit} runnables. The \textit{Driver controls manager} runnable on the VCU transmits on the \textit{Driver support} CAN bus. During the simulation, if a runnable is rescheduled before the previous execution finished the task is said to be \textit{overrun}. If this is the case the runnable is not rescheduled until it has terminated, effectively skipping one or more iterations. As a result CAN messages will not be received or transmitted by the skipped occurrences. The total number of overruns per task is counted throughout the simulation, the result for the previously mentioned runnables can be found in figure~\ref{fig:task_overrun}. A rough calculation using the average number of overruns for the bit stuffing percentage 0 experiment, shows that the VCU fails to transmit 19,017 bits per second on the \textit{Solar} CAN bus. And 1990 bits per second for the \textit{Driver support} CAN bus, accounting for a large part of the missing bitrate.
+
+\begin{figure}[htb]
+    \centering
+    \input{images/task_overrun.pgf}
+    \caption{Overruns of tasks executing on the VCU}
+    \label{fig:task_overrun}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \input{images/utilization.pgf}
+    \caption{Utilization of tasks executing on the VCU}
+    \label{fig:task_util}
+\end{figure}

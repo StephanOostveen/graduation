@@ -1,0 +1,17 @@
+[
+    {"canID": 0, "sizeInBytes": 8, "bus": "vehicle2", "interval": 0.05},
+    {"canID": 13, "sizeInBytes": 8, "bus": "vehicle2", "interval": 0.05},
+    {"canID": 1, "sizeInBytes":1, "bus": "vehicle2", "interval": 0.05},
+{"canID": 400, "sizeInBytes":1, "bus": "vehicle2", "interval": 0.05},
+{"canID": 401, "sizeInBytes":8, "bus": "vehicle2", "interval": 0.05},
+{"canID": 402, "sizeInBytes":1, "bus": "vehicle2", "interval": 0.05},
+{"canID": 403, "sizeInBytes":1, "bus": "vehicle2", "interval": 0.05},
+{"canID": 416, "sizeInBytes":8, "bus": "vehicle2", "interval": 0.05},
+{"canID": 3, "sizeInBytes":8, "bus": "vehicle2", "interval": 0.05},
+{"canID": 411, "sizeInBytes": 8, "bus": "vehicle2", "interval": 0.05},
+{"canID": 412, "sizeInBytes": 8, "bus": "vehicle2", "interval": 0.05},
+{"canID": 408, "sizeInBytes": 1, "bus": "vehicle2", "interval": 0.05},
+{"canID": 6, "sizeInBytes": 8, "bus": "vehicle2", "interval": 0.05},
+{"canID": 5, "sizeInBytes": 8, "bus": "vehicle2", "interval": 0.05},
+{"canID": 11, "sizeInBytes": 8, "bus": "vehicle2", "interval": 0.05}
+]

@@ -1,0 +1,39 @@
+[
+    {"canID": 9, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.01},
+    {"canID": 536805376, "sizeInBytes": 8, "bus": "drivetrain", "interval": 10},
+    {"canID": 21, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.01},
+{"canID": 37, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 1749, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 2005, "sizeInBytes": 8, "bus": "drivetrain", "interval": 1},
+{"canID": 22, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.01},
+{"canID": 38, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 1750, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 2006, "sizeInBytes": 8, "bus": "drivetrain", "interval": 1},
+{"canID": 23, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.01},
+{"canID": 39, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 1751, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 2007, "sizeInBytes": 8, "bus": "drivetrain", "interval": 1},
+{"canID": 24, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.01},
+{"canID": 40, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 1752, "sizeInBytes": 8, "bus": "drivetrain", "interval": 0.1},
+{"canID": 2008, "sizeInBytes": 8, "bus": "drivetrain", "interval": 1}
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

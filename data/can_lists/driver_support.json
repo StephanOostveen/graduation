@@ -1,0 +1,6 @@
+[
+    {"canID": 148, "sizeInBytes": 7, "bus": "driver_support", "interval": 0.05},
+    {"canID": 543, "sizeInBytes": 3, "bus": "driver_support", "interval": 0.05},
+    {"canID": 54, "sizeInBytes": 8, "bus": "driver_support", "interval": 0.05},
+    {"canID": 248, "sizeInBytes": 2, "bus": "driver_support", "interval": 0.05}
+]

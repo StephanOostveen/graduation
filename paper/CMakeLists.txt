@@ -38,5 +38,8 @@ add_latex_document(main.tex
         figures/runnable_single_physical.tikz
         example_task.c
         images/Produce_Consume_graph.pgf
+        images/Produce_Consume_CAN_graph.pgf
+        images/task_overrun.pgf
+        images/utilization.pgf
     BIBFILES resources.bib USE_BIBLATEX
 )
