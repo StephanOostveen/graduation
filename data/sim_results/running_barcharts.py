@@ -17,11 +17,11 @@ def calculate_pdf(df, lower, upper):
         print("oopsiedoodle")
         exit()
     pdf = []
-    T = df["time"].max() - df["time"].min() # Simulation time length
-    dtime = df["time"].diff().iloc[1:].reset_index(drop=True)
-    data = df["size"][:-1]
-    minimalObservedSize = int(max(df["size"].min(), lower))
-    maximalObservedSize = int(min(df["size"].max(), upper))
+    T = df.iloc[:,0].max() - df.iloc[:,0].min() # Simulation time length
+    dtime = df.iloc[:,0].diff().iloc[1:].reset_index(drop=True)
+    data = df.iloc[:,1][:-1]
+    minimalObservedSize = int(max(df.iloc[:,1].min(), lower))
+    maximalObservedSize = int(min(df.iloc[:,1].max(), upper))
     for i in range(0, minimalObservedSize):
         pdf.append(0)
     
@@ -73,24 +73,47 @@ if __name__ == "__main__":
     args = parser.parse_args()
     file = args.csv
 
-    K = 19
-    N=10
+    K = 19 #VCU
+    # K = 15 #CGW
+    # K = 23 #SCU
+    N=100
     ConfidenceLevel = 0.95
 
-    df = pd.read_csv(file, names=['t0','0','t1', '1', 't2','2', 't3','3', 't4','4', 't5','5', 't6','6', 't7','7', 't8','8', 't9','9'], skiprows=1)
+    df = pd.read_csv('bitstuffing0_VCU_running0.csv', skiprows=1)
+    N=26
     for i in range(0,N):
-        time = 't{}'.format(i)
-        running = str(i)
         if (i == 0):
-            pdfs = calculate_pdf(df[[time,running]].rename(columns={time: "time", running: 'size'})
-                                 , 0, K)
+            pdfs = calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)
         else:
-            pdfs = pd.concat([pdfs, calculate_pdf(df[[time,running]].rename(columns={time: "time", running: 'size'}), 0, K)])
+            pdfs = pd.concat([pdfs, calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)])
 
-    samplemeanpdf = pd.DataFrame({'x': range(0,K+1), 'y': pdfs.mean()})
-
+    df = pd.read_csv('bitstuffing0_VCU_running1.csv', skiprows=1)
+    N=25
+    for i in range(0,N):
+        if (i == 0):
+            pdfs = pd.concat([pdfs, calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)])
+        else:
+            pdfs = pd.concat([pdfs, calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)])
+    
+    df = pd.read_csv('bitstuffing0_VCU_running2.csv', skiprows=1)
+    N=25
+    for i in range(0,N):
+        if (i == 0):
+            pdfs = pd.concat([pdfs, calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)])
+        else:
+            pdfs = pd.concat([pdfs, calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)])
+    df = pd.read_csv('bitstuffing0_VCU_running3.csv', skiprows=1)
+    N=24
+    for i in range(0,N):
+        if (i == 0):
+            pdfs = pd.concat([pdfs, calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)])
+        else:
+            pdfs = pd.concat([pdfs, calculate_pdf(df.iloc[:,[2*i, 2*i+1]], 0, K)])
+    
+    N = 100
     stddev = pdfs.std()
     zAlpha = stats.t.ppf(1-(1-ConfidenceLevel)/2, N-1)
+    samplemeanpdf = pd.DataFrame({'x': range(0,K+1), 'y': pdfs.mean()})
     lower = samplemeanpdf['y'] - zAlpha*((stddev.pow(2)).div(N)).pow(0.5)
     upper = samplemeanpdf['y'] + zAlpha*((stddev.pow(2)).div(N)).pow(0.5)
     
@@ -98,23 +121,41 @@ if __name__ == "__main__":
     errors.append([u-m for u,m in zip(upper,samplemeanpdf['y'])])
 
     items = ['Idle', 'Scheduler', 'Source application', 'Sink application',
-             'dcm_vcu_10_ms_task', 'gwy_receive_task','dcm_vcu_task','exl_control_task_vcu',
-             'wiper_manager_task','cmm_task','hmg_task','sol_task','stm_task','vpc_vcu_task_50ms',
-             'avs_task','gwy_transmit_task','tms_100ms_task','tms_task_500ms','psc_background_app',
-             'version_transmitter']
+             'Driver controls fast', 'CAN receive','Driver Controls slow','Exterior lighting',
+             'Window wiper','Cameras','Horn manager','Solar control','Power steering','Vehicle power',
+             'AVAS','CAN transmit','Thermal management','Thermal slow','Background',
+             'Version']
+    # items = ['Idle', 'Scheduler', 'Source application', 'Sink application',
+    #          'Closures fast', 'LIN', 'CAN receive', 'Authentication', 'Exterior lighting',
+    #          'Closures slow', 'Driver controls', 'Vehicle Power', 'CAN transmit', 
+    #          'Firmware Upgrade', 'Background', 'Version']
+    # items = ['Idle', 'Scheduler', 'Source application', 'Sink application', 
+    #          'Safety Supervisor', 'Energy Controller fast', 'gsl', 'amg', 'sai',
+    #          'Closures fast', 'Propulsion fast', 'Propulsion safety', 'CAN receive', 'Vehicle Power', 
+    #          'Energy Controller slow', 'DCM', 'Exterior Lighting', 'Closures slow',
+    #          'Battery Management', 'CAN transmit', 'Window wiper', 'STM', 
+    #          'Background', 'Version']
+             
     # ax = samplemeanpdf.plot(kind='scatter', x='x', y='y', legend=True, label="Sample pdf", xlabel='Size', ylabel='Probability')
     # plt.errorbar(samplemeanpdf['x'], samplemeanpdf['y'], yerr=errors, fmt='none', capsize=8, ecolor='red')
     # plt.xticks(range(0,K+1, 2))
     # plt.rcParams['ytick.major.pad'] = '10'
-    plt.figure(figsize=set_size(0.95*424.58624))
+
+    size = set_size(424.58624)
+    plt.figure(figsize=(size[0], size[1]*1.4))
     plt.grid(visible=True, alpha=0.7)
-    plt.barh(samplemeanpdf['x'],samplemeanpdf['y'], xerr=errors,capsize=8, ecolor='red')
+    plt.barh(samplemeanpdf['x'],samplemeanpdf['y'], xerr=errors,capsize=5, ecolor='red')
     plt.xlabel('Utilization')
+    
+    xlim=0.05 #VCU
+    # xlim=0.3 #CGW
+    # xlim=0.2 #SCU
+    plt.xlim(0, xlim)
     plt.yticks(range(0,K+1,1),items)
     plt.tight_layout()
     plt.rcParams.update({"font.family": "serif",  # use serif/main font for text elements
     "text.usetex": True,     # use inline math for ticks
     "pgf.rcfonts": False     # don't setup fonts from rc parameters
     })
-    plt.savefig('utilization.pgf', format='pgf')
+    plt.savefig('utilization_vcu_100.pgf', format='pgf')
     plt.show()
