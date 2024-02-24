@@ -160,3 +160,7 @@ target_compile_options(FiCo4OMNeT
                              PRIVATE $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
 target_link_libraries(FiCo4OMNeT
                             PRIVATE $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
+
+add_executable(LYSim /dev/null)
+target_link_libraries(LYSim PRIVATE OmnetPP::main OmnetPP::sim OmnetPP::envir OmnetPP::cmdenv FiCo4OMNeT)
+set_target_properties(LYSim PROPERTIES LINKER_LANGUAGE CXX)
