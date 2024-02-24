@@ -41,5 +41,7 @@ add_latex_document(main.tex
         images/Produce_Consume_CAN_graph.pgf
         images/task_overrun.pgf
         images/utilization.pgf
+        images/vehicle_speed_age.pgf
+        images/buffersize.pgf
     BIBFILES resources.bib USE_BIBLATEX
 )
