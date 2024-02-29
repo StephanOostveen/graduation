@@ -37,6 +37,8 @@ add_latex_document(main.tex
         figures/logical_example.tikz
         figures/runnable_single_physical.tikz
         example_task.c
+        palvar.c
+        pseudocode.py
         images/Produce_Consume_graph.pgf
         images/Produce_Consume_CAN_graph.pgf
         images/task_overrun.pgf

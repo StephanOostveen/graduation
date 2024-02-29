@@ -1,12 +1,16 @@
 \section{Results}
 \label{sec:results}
+In section~\ref{sec:sota} we have seen benchmarks describing in-vehicle networks of several vehicles. Unfortunately these benchmarks were not suitable to create a model resembling the Lightyear 0's in-vehicle network. Section~\ref{sec:problem_statement} described that such a model is necessary for guiding the design of a new TSN based in-vehicle network. In section~\ref{sec:benchmark} we show the model representing the Lightyear 0's in-vehicle network, which was retrieved from the Lightyear 0's source code using the approach presented in ~\ref{subsec:model_gen}. The benchmark describes the datatypes, production/consumption pattern, rates and location of data dictionaries. The number of CAN messages and data data dictionaries produced and consumed is shown per runnable as well as the runnables period and priority. The network load of Ethernet based inverter interface is also described, demonstrating the need for network speeds that are unavailable in traditional automotive networks. Finally, a demonstration of the analyses possible with the presented model is presented in section~\ref{sec:experiments}. The results should be viewed as a demonstration that the extracted model is abstract enough to make simulation feasible, but is detailed enough to adequately answer performance questions at the system level.
+
 \subsection{Lightyear 0's embedded system benchmark}
 \label{sec:benchmark}
+
+From a system's perspective communication happens mostly in terms of data dictionaries. They are the main mechanism for sharing the system state between runnables. Many solutions exist for transmitting the samples between physical nodes, but from the application's perspective it is not an important detail. In fact the mapping of data dictionaries to CAN messages is not fixed, but generated automatically during the build phase of the project and thus changes over time. In our benchmark we focus on describing the details of the data dictionaries as opposed to CAN messages. Table~\ref{tab:prog_nodes_types} shows the number of occurrences of a certain C-style datatype. This information was available in a single database and was trivially collectable.
 \begin{table}[htb]
     \centering
     \begin{tabular}{@{}lll@{}}
     \toprule
-    Type      & Size (bits) & Nr of datadictionaries \\ \midrule
+    Type      & Size (bits) & Nr of data dictionaries \\ \midrule
     bool      & 8           & 25                     \\
     int8\_t   & 8           & 1                      \\
     uint8\_t  & 8           & 93                     \\
@@ -21,6 +25,7 @@
     \label{tab:prog_nodes_types}
 \end{table}
 
+When deciding where in the network a certain data dictionary should be generated and which runnable should produce the samples it makes sense to take its usage pattern into account. Part of that pattern is how many runnables depend on the data dictionary. For example if only a single runnable depends on a data dictionary it might be more efficient from a network perspective to put these runnables on the same physical node, or even combine them into a single runnable. Table~\ref{tab:prog_nodes_read_write} shows the occurrence of a certain write/read ratio. For example, 303 data dictionaries are read by a single runnable, while only five data dictionaries are used by six or more runnables. Interestingly we found 27 data dictionaries which where read but never written and 135 data dictionaries that are written but never read. After investigating several of those cases and talking to developers it seems that these are either leftovers of code refactoring or functionality that is partially implemented. A developer working on runnable A might decide to proactively write a certain data dictionary so that a developer of runnable B can start using that data dictionary when necessary. A drawback of that approach is that time is wasted on creating and transmitting a data dictionary which has either no real data or is never used. The most used data dictionary is the \textit{vehicle\_speed}, which is used by 11 of the 46 runnables.
 \begin{table}[htb]
     \centering
     \begin{tabular}{@{}lll@{}}
@@ -43,7 +48,7 @@
     \label{tab:prog_nodes_read_write}
 \end{table}
 
-\todo{vehicle speed is the 1 to 11 variable}
+Part of the data dictionary usage pattern is the rate at which it is both produced and consumed. If a data dictionary is produced at a rate of 10ms but is only consumed every 500ms the data is potentially transmitted way more often than necessary, causing unnecessary network load. While the opposite could lead to an inconsistent view of the vehicle's state. Table~\ref{tab:data_dict_prod_cons_rates} shows the occurrence of a specific producer/consumer rate. It must be noted that some inaccuracies can exist as it is assumed that a data dictionary is read and written in every invocation of a runnable. While in reality the read and write action could be conditional, for example only every second iteration of a runnable. Unfortunately it is not feasible to extract this information using our method as that would entail parsing the entire C code in order to determine the conditions. Interesting are the cases on the bottom row and in the right column where a large difference in consumption and production rate occur. We did not investigate the reasons behind this discrepancy.
 \begin{table}[htb]
     \centering
     \begin{tabular}{@{}lllllll@{}}\toprule
@@ -58,6 +63,8 @@
     \caption{Number of data dictionaries produced and consumed at different runnable rates.}
     \label{tab:data_dict_prod_cons_rates}
 \end{table}
+
+Concluding the data dictionary usage pattern are the locations where a read or write occur. Which is interesting as this is the reason why a network is necessary in the first place. We identified three types of communication between runnables of the programmable end nodes: Local, Direct and Bridged, corresponding with figure~\ref{fig:one_physical}, \ref{fig:physical_example} and \ref{fig:bridging_example} respectively. Data dictionaries which are used by multiple runnables can have a combined communication type. Noteworthy are the cases where a data dictionary is only consumed on a different node than where it is produced. As a system designer this could be an opportunity for optimization, though it is likely that the production location is chosen for its physical location or the availability of certain hardware. The number of data dictionaries that are bridged is quite high, causing unnecessary load in the bridge. The possibility of adding a direct connection between the bridged node should be investigated.
 
 \begin{table}[htb]
     \centering
@@ -76,6 +83,49 @@
     \label{tab:dd_rw_location}
 \end{table}
 
+A different perspective which is less relevant for the design of an in-vehicle network but is interesting for the design of the nodes, is the perspective of the runnables. Figure~\ref{fig:produce_consume_runnable} show for each runnable how many data dictionaries it consumes and produces. On the X and Y axis we see runnables that either do not consume or produce any data. Marked in orange are the runnables responsible for receiving or transmitting CAN messages to the other programmable end nodes. Some other big consumers and producers exist but the majority of the runnables produce and consume less than 20 data dictionaries. 
+\begin{figure}[htb]
+    \centering
+    \input{images/Produce_Consume_graph.pgf}
+    \caption{Data dictionaries consumed/produced per runnables}
+    \label{fig:produce_consume_runnable}
+\end{figure}
+
+Going back to the network perspective, Figure~\ref{fig:produce_consume_CAN_runnable} shows the production and consumption of CAN messages broken down per runnable. Because parametrizable end nodes also communicate in terms of CAN messages they are also shown in the graph. Again on the X and Y axes we see in orange the runnables responsible for receiving and transmitting the data dictionaries as CAN messages. Responsible for 28 produced and 98 consumed CAN messages is the solar runnable on the VCU. The surrounding sense runnable is responsible for zero produced and 72 consumed messages, which also runs on the VCU. When all these messages are phased in the worst case, it could cause the Vehicle Control Unit to spend a lot of time scheduling and executing the CAN Sink application. If not taken into consideration this could lead to runnables missing their deadlines.
+\begin{figure}[htb]
+    \centering
+    \input{images/Produce_Consume_CAN_graph.pgf}
+    \caption{CAN messages consumed/produced per runnable or parametrizable node}
+    \label{fig:produce_consume_CAN_runnable}
+\end{figure}
+
+As mentioned in section~\ref{subsec:network} due to time limitations only part of the Lightyear network was modelled. We also don't know how many nodes or CAN messages we did not model. Due to gaps in documentation this information needs to be retrieved from source code. Unfortunately our method does not work as expected on a specific part of the source code, this is limited to the \textit{safety supervisor core} runnable which executes on the Safety Control Unit. Table~\ref{tab:can_busses} summarizes the available information.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    Bus name          & Bitrate (kbps) & Nr of CAN messages & Nr of nodes \\ \midrule
+    Driver support    & 125            & 4                  & 2           \\
+    Drivetrain        & 500            & 18                 & 5           \\
+    Energy management & 500            & 100                & 8           \\
+    HVBS              & 500            & 13                 & 3           \\
+    Powertrain        & 500            & 97                 & 7           \\
+    Solar             & 500            & 153                & 15          \\
+    Surrounding sense & 500            & 72                 & 9           \\
+    Telematics        & 500            & 5                  & 2           \\
+    Vehicle           & 500            & 64                 & 4           \\
+    Vehicle 2         & 500            & 15                 & 5           \\ \bottomrule
+    \end{tabular}
+    \caption{Details of Lightyear 0's CAN busses}
+    \label{tab:can_busses}
+\end{table}
+
+As mentioned in section~\ref{subsec:network} the four inverters each have a dedicated Ethernet network. In the default configuration these networks have only a single node connected to it: the inverter. Thus, there is no network traffic. When required a laptop can be connected to an inverter to form a two node network which can be used to configure or debug the inverter. The inverters implement an Internet Protocol stack using UDP to exchange messages. Configuration traffic is sparse, consisting of a dozen Ethernet frames exchanged between the two nodes. For debugging purposes the inverters sample seven 32-bit integers and 23 floating point numbers at 1 kHz which are streamed to debugging software on the laptop. This is good for 992 kilobit/second per inverter of measurement data. Assuming that one UDP datagram maps to one Ethernet frame and datagrams only contain full samples each inverter will send 1.05 megabit/second of Ethernet frames. 
+
+Finally, tables~\ref{tab:runnable_mapping_cgw}, \ref{tab:runnable_mapping_scu} and \ref{tab:runnable_mapping_vcu} show the period and priority of each runnable. In the real deployments runnables with the same period deployed on a certain programmable end node have been grouped in a single task which is scheduled by the operating system, see Listing~\ref{lst:rtos_task} for an example. The runnables inside a task have been given a specific order in which they are executed. The reason for this deviation from the documented model or the reason for the specific order in which runnables are executed is unknown. The priorities are assigned in rate monotonic order, except for the tasks on the Central Gateway where the fastest task, \textit{cgw\_upgrade\_forwarding\_task} received the lowest priority. Which could be problematic as it is responsible for sending firmware updates to other nodes in the vehicle.
+
+\lstinputlisting[caption=Example scheduled task, label={lst:rtos_task}, language=C, firstline=1,frame=single,numbers=left,keywordstyle=\color{blue}]{example_task.c}
 \begin{table}[htb]
     \centering
 \begin{tabular}{@{}llll@{}}
@@ -152,55 +202,18 @@
     \caption{Mapping of runnables to scheduled task on the Vehicle Control Unit}
     \label{tab:runnable_mapping_vcu}
 \end{table}
-\begin{figure}[htb]
-    \centering
-    \input{images/Produce_Consume_graph.pgf}
-    \caption{Data dictionaries consumed/produced per runnables}
-    \label{fig:produce_consume_runnable}
-\end{figure}
 
-\begin{figure}[htb]
-    \centering
-    \input{images/Produce_Consume_CAN_graph.pgf}
-    \caption{CAN messages consumed/produced per runnable or parametrizable node}
-    \label{fig:produce_consume_CAN_runnable}
-\end{figure}
-
-\begin{table}[htb]
-    \centering
-    \begin{tabular}{@{}llll@{}}
-    \toprule
-    Bus name          & Bitrate (kbps) & Nr of CAN messages & Nr of nodes \\ \midrule
-    Driver support    & 125            & 4                  & 2           \\
-    Drivetrain        & 500            & 18                 & 5           \\
-    Energy management & 500            & 100                & 8           \\
-    HVBS              & 500            & 13                 & 3           \\
-    Powertrain        & 500            & 97                 & 7           \\
-    Solar             & 500            & 153                & 15          \\
-    Surrounding sense & 500            & 72                 & 9           \\
-    Telematics        & 500            & 5                  & 2           \\
-    Vehicle           & 500            & 64                 & 4           \\
-    Vehicle 2         & 500            & 15                 & 5           \\ \bottomrule
-    \end{tabular}
-    \caption{Details of Lightyear 0's CAN busses}
-    \label{tab:can_busses}
-\end{table}
-
-\subsubsection{Inverter debug Ethernet interface}
-As mentioned in section~\ref{subsec:network} the four inverters each have a dedicated Ethernet network. In the default configuration these networks have only a single node connected to it: the inverter. Thus, there is no network traffic. When required a laptop can be connected to an inverter to form a two node network which can be used to configure or debug the inverter. The inverters implement an Internet Protocol stack using UDP to exchange messages. Configuration traffic is sparse, consisting of a dozen Ethernet frames exchanged between the two nodes.
-
-For debugging purposes the inverters sample seven 32-bit integers and 23 floating point numbers at 1 kHz which are streamed to debugging software on the laptop. This is good for 992 kilobit/second per inverter of measurement data. Assuming that one UDP datagram maps to one Ethernet frame and datagrams only contain full samples each inverter will send 1.05 megabit/second of Ethernet frames. 
 \clearpage
 \subsection{Simulation experiments}
 \label{sec:experiments}
 In this section we demonstrate that the extracted model is abstract enough to make simulation feasible, but detailed enough to adequately answer performance questions at the system level. Analysis of the results' statistical significance is outside the scope of this project, it is likely that simulation parameters such as the task execution times will affect the network performance. But the chosen parameters might not accurately represent reality. 
 
 \paragraph{Selecting simulation parameters.}
-In this section the simulation parameters that are not altered for the rest of the experiments are described. When evaluating the performance of the system these parameters must be chosen carefully as to reflect reality. In this study the model required any value to be able to execute here we state the chosen values for completeness together with the rationale.
+We start by describing the simulation parameters that are not altered for the rest of the experiments. When evaluating the performance of the system these parameters must be chosen carefully as to reflect reality. In this study the model required any value to be able to execute here we state the chosen values for completeness together with the rationale.
 
 The used CAN model (FiCo4OMNeT) implements the ability for a CAN frame to incur errors during its transmission, resulting in Error frames and the transmitting peripherals to retry the transmission. The error rate is an input parameter to the simulation and is used as the upperbound in a uniform distribution to determine whether a frame should become an error frame or not. In the following experiments an error rate of 0 is used, disabling error generation. The reason being that it complicates testing of the complete model and the lack of an accurate error model for the Lightyear 0. To reduce interference caused by specific execution times of runnables and the schedulers, the hardware buffer size of the programmable end nodes is set to 100 unless specifically mentioned. Real-time operating system task priorities have been assigned according to the OpenECU documentation which can be found in Section~\ref{subsec:programmablenode}. The runnables have been assigned the priorities as described in Table~\ref{tab:runnable_mapping_cgw},\ref{tab:runnable_mapping_scu} and \ref{tab:runnable_mapping_vcu}. 
 
-In a real-time system a task's execution times directly influence the system's performance. Unfortunately no data on the runnables' execution times is unavailable, hence a method to fairly generate random execution times is used. We observed on several occasions that Lightyear had issues with programmable end nodes being overloaded. Assuming the runnables in the final product are schedulable, we will assume that the total ECU load is close to the scheduler's limit. The programmable end nodes use a fixed priority pre-emptive scheduler and the priorities are assigned rate monotonically. We will use the Liu \& Layland least upper bound~\cite{liu1973scheduling} as the programmable end node utilization factor $U_{ECU}$. Since a total utilization less than or equal to this bound is always schedulable. Given $n$ tasks the utilization is given by:
+In a real-time system a task's execution times directly influence the system's performance. Unfortunately no data on the runnables' execution times is unavailable, hence a method to fairly generate random execution times is used. We observed on several occasions that Lightyear had issues with programmable end nodes being overloaded. Assuming the runnables in the final product are schedulable, we will assume that the total ECU load is close to the scheduler's limit. The programmable end nodes use a fixed priority pre-emptive scheduler and the priorities are assigned rate monotonically. The Liu \& Layland least upper bound~\cite{liu1973scheduling} is used as the programmable end node utilization factor $U_{ECU}$. Since a total utilization less than or equal to this bound is always schedulable. Given $n$ tasks the utilization is given by:
 \begin{equation}
     U_{ECU} = n \cdot (2^{1/n} -1)
 \end{equation}
@@ -223,7 +236,7 @@ This fixed utilization is randomly distributed over the number of tasks running 
 
 \paragraph{Comparing simulated CAN bitrates to theoretical bitrate.}
 
-To validate that the simulation properly encodes and transmits all CAN messages the achieved bitrates and number of transmitted messages in the simulation are compared to the theoretical value. Because CAN uses bit stuffing in its encoding that is dependent on the CAN ID and data transmitted the theoretical bitrate is a range. In the best case no bit stuffing occurs~\cite{davis2007controller}, the size in bits is found using formula~\ref{eq:min}. Where $g$ is 34 for standard format (11-bit identifiers) or 54 for extended format (29-bit identifiers), $n$ is the number of data $bytes$ in the payload.
+To validate that the simulation properly encodes and transmits all CAN messages the achieved bitrates and number of transmitted messages in the simulation are compared to the theoretical value. Because CAN uses bit stuffing in its encoding the FiCo4OMNeT framework added a configuration parameter for the percentage of bits that are stuffed. Because bit stuffing is dependent on the CAN ID and data transmitted the theoretical bitrate is a range. In the best case no bit stuffing occurs~\cite{davis2007controller}, the size in bits is found using formula~\ref{eq:min}. Where $g$ is 34 for standard format (11-bit identifiers) or 54 for extended format (29-bit identifiers), $n$ is the number of data $bytes$ in the payload.
 \begin{equation}
     \label{eq:min}
     Framesize_{min}(n) = g+8\cdot n + 13
@@ -296,10 +309,12 @@ The \textit{vehicle speed} data dictionary is generated at a rate of 10 ms on th
 
 A series of experiments with varying hardware buffer sizes from the set ${2,10,16,48}$ was performed, each experiment is repeated 20 times. The model implements a software buffer for each CAN bus. Each buffer has one slot per CAN frame that the node transmits on that CAN bus. In case that a message with a certain CAN id is scheduled for transmission by a runnable, while that message still exists in the software buffer it will be overwritten. This behaviour is consistent with the OpenECU documentation. The size of each software buffer is logged throughout the simulation. In this experiment we look at the \textit{powertrain} buffer on the Safety Control Unit. Figure~\ref{fig:buffer_size} shows the probability to find a certain number of messages in the buffer for each of the simulated hardware buffer sizes.
 
-For hardware buffer sizes 2 and 10 the software buffer always contain messages, indicating that the software is not able to transmit certain messages before they are overwritten by the runnables. This is obviously problematic since certain messages will never arrive at their destination. The OpenECU documentation states: \textquote{To lessen the load experienced by the CAN bus and the ECU, after the library has transmitted one message, it will wait for 2 milliseconds before determining the next message to transmit}. Our model implements this behaviour with the exception that it fills the hardware buffer completely before waiting for 2 milliseconds. As can be seen in Figure~\ref{fig:buffer_size} even with a hardware buffer size of 10 this behaviour results in messages which are never transmitted. 
+For hardware buffer sizes 2 and 10 the software buffer always contain messages, indicating that the software is not able to transmit certain messages before they are overwritten by the runnables. This is obviously problematic since certain messages will never arrive at their destination. The OpenECU documentation states: \textquote{To lessen the load experienced by the CAN bus and the ECU, after the library has transmitted one message, it will wait for 2 milliseconds before determining the next message to transmit}. Our model implements this behaviour with the exception that it fills the hardware buffer completely before waiting for 2 milliseconds. Even with a hardware buffer size of 10 this behaviour results in messages which are never transmitted as the lowest recorded occupation still has two buffered messages. 
 \begin{figure}[htb]
     \centering
     \input{images/buffersize.pgf}
     \caption{Software buffer occupation for various hardware buffer sizes}
     \label{fig:buffer_size}
 \end{figure}
+
+The experiments were executed on a Lenovo T480 laptop, containing an Intel i7-8550U CPU with a TDP of 45W, Fedora Linux 39 and \omnet 6.0.2. In one instance the single core execution time of 10 full model simulations of 120 seconds each took 17 minutes and 12 seconds to execute. Averaging to 1.16 simulated seconds per second. In one instance a multi-core execution of 200 full model simulations of 120 seconds took 147 minutes and 51 seconds to execute, resulting in an average of 2.7 simulated seconds per second. Each simulation used less than 100 megabytes of memory. And the stored results of a single run average at 1GB of data. These results should not be interpreted as an accurate statement of performance. They are simply stated to indicate achievable performance.
