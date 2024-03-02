@@ -28,21 +28,21 @@ From a system's perspective communication happens mostly in terms of data dictio
 When deciding where in the network a certain data dictionary should be generated and which runnable should produce the samples it makes sense to take its usage pattern into account. Part of that pattern is how many runnables depend on the data dictionary. For example if only a single runnable depends on a data dictionary it might be more efficient from a network perspective to put these runnables on the same physical node, or even combine them into a single runnable. Table~\ref{tab:prog_nodes_read_write} shows the occurrence of a certain write/read ratio. For example, 303 data dictionaries are read by a single runnable, while only five data dictionaries are used by six or more runnables. Interestingly we found 27 data dictionaries which where read but never written and 135 data dictionaries that are written but never read. After investigating several of those cases and talking to developers it seems that these are either leftovers of code refactoring or functionality that is partially implemented. A developer working on runnable A might decide to proactively write a certain data dictionary so that a developer of runnable B can start using that data dictionary when necessary. A drawback of that approach is that time is wasted on creating and transmitting a data dictionary which has either no real data or is never used. The most used data dictionary is the \textit{vehicle\_speed}, which is used by 11 of the 46 runnables.
 \begin{table}[htb]
     \centering
-    \begin{tabular}{@{}lll@{}}
+    \begin{tabular}{@{}llll@{}}
     \toprule
-    \multicolumn{2}{c}{Nr of runnables} & \\
-    Writing & Reading & Occurences \\ \midrule
-    0       & 1      & 27         \\
-    1       & 0      & 135        \\
-    1       & 1      & 303        \\
-    1       & 2      & 31         \\
-    1       & 3      & 11         \\
-    1       & 4      & 2          \\
-    1       & 6      & 1          \\
-    1       & 8      & 1          \\
-    1       & 9      & 1          \\
-    1       & 10     & 1          \\
-    1       & 11     & 1          \\ \bottomrule
+    \multicolumn{2}{c}{Nr of runnables} & & \\
+    Writing & Reading & Occurences & Remarks\\ \midrule
+    0                & 1                & 27         & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Partially implemented functionality,\\ leftovers from code refactoring\end{tabular}} \\
+1                & 0                & 135        &                                                                                                                                 \\
+1                & 1                & 303        & -                                                                                                                               \\
+1                & 2                & 31         & -                                                                                                                               \\
+1                & 3                & 11         & -                                                                                                                               \\
+1                & 4                & 2          & -                                                                                                                               \\
+1                & 6                & 1          & vehicle\_speed\_reliability                                                                                                     \\
+1                & 8                & 1          & active\_gear                                                                                                                    \\
+1                & 9                & 1          & operating\_mode\_ignition                                                                                                       \\
+1                & 10               & 1          & power\_mode                                                                                                                     \\
+1                & 11               & 1          & vehicle\_speed \\ \bottomrule
     \end{tabular}
     \caption{Read/write ratios for data dictionaries in the programmable end nodes}
     \label{tab:prog_nodes_read_write}
@@ -208,6 +208,7 @@ Finally, tables~\ref{tab:runnable_mapping_cgw}, \ref{tab:runnable_mapping_scu} a
 \label{sec:experiments}
 In this section we demonstrate that the extracted model is abstract enough to make simulation feasible, but detailed enough to adequately answer performance questions at the system level. Analysis of the results' statistical significance is outside the scope of this project, it is likely that simulation parameters such as the task execution times will affect the network performance. But the chosen parameters might not accurately represent reality. 
 
+\paragraph{A note on performance.} The experiments were executed on a Lenovo T480 laptop, containing an Intel i7-8550U CPU with a TDP of 45W, Fedora Linux 39 with kernel 6.7.4 and \omnet 6.0.2. In one instance the single core execution time of 10 full model simulations of 120 simulated seconds each took 17 minutes and 12 seconds to execute. Averaging to 1.16 simulated seconds per second. In one instance a multithreaded execution using 8 threads, of 200 full model simulations of 120 simulated seconds took 147 minutes and 51 seconds to execute, resulting in an average of 2.7 simulated seconds per second. Each simulation used less than 100 megabytes of system memory. And the stored results of a single run average at 1GB of data. These results should not be interpreted as an accurate statement of performance. They are simply stated to indicate achievable performance.
 \paragraph{Selecting simulation parameters.}
 We start by describing the simulation parameters that are not altered for the rest of the experiments. When evaluating the performance of the system these parameters must be chosen carefully as to reflect reality. In this study the model required any value to be able to execute here we state the chosen values for completeness together with the rationale.
 
@@ -316,5 +317,3 @@ For hardware buffer sizes 2 and 10 the software buffer always contain messages, 
     \caption{Software buffer occupation for various hardware buffer sizes}
     \label{fig:buffer_size}
 \end{figure}
-
-The experiments were executed on a Lenovo T480 laptop, containing an Intel i7-8550U CPU with a TDP of 45W, Fedora Linux 39 and \omnet 6.0.2. In one instance the single core execution time of 10 full model simulations of 120 seconds each took 17 minutes and 12 seconds to execute. Averaging to 1.16 simulated seconds per second. In one instance a multi-core execution of 200 full model simulations of 120 seconds took 147 minutes and 51 seconds to execute, resulting in an average of 2.7 simulated seconds per second. Each simulation used less than 100 megabytes of memory. And the stored results of a single run average at 1GB of data. These results should not be interpreted as an accurate statement of performance. They are simply stated to indicate achievable performance.
