@@ -1,6 +1,6 @@
 \section{Approach}
 \label{sec:approach}
-\todo{explain section content}
+We start by describing the nodes found in the Lightyear 0's network and how they are networked in section~\ref{subsec:network}. Followed by an in-depth description of the software execution model of the nodes developed by Lightyear. Notably we find that the functionality implemented by the tasks is decoupled from the physical deployment. The tasks communicate in terms of data dictionaries as opposed to CAN messages. The relationship between tasks can be described in terms of data dictionaries, which is more interesting than CAN messages. The data dictionary view makes it possible to experiment with different deployments and different mappings to network packets, while observing the effects on the applications. Section~\ref{subsec:moddeling} describes the implementation in \omnet, the differences compared to the vehicle's implementation and the assumptions made in cases where documentation was lacking. In section~\ref{subsec:model_gen} we develop a method based on call-graph analysis to retrieve from source code the data required for performing simulation experiments on the network.
 
 \subsection{Lightyear 0's embedded system}
 \input{6.1.embedded_system.tex}

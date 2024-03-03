@@ -208,7 +208,25 @@ Finally, tables~\ref{tab:runnable_mapping_cgw}, \ref{tab:runnable_mapping_scu} a
 \label{sec:experiments}
 In this section we demonstrate that the extracted model is abstract enough to make simulation feasible, but detailed enough to adequately answer performance questions at the system level. Analysis of the results' statistical significance is outside the scope of this project, it is likely that simulation parameters such as the task execution times will affect the network performance. But the chosen parameters might not accurately represent reality. 
 
-\paragraph{A note on performance.} The experiments were executed on a Lenovo T480 laptop, containing an Intel i7-8550U CPU with a TDP of 45W, Fedora Linux 39 with kernel 6.7.4 and \omnet 6.0.2. In one instance the single core execution time of 10 full model simulations of 120 simulated seconds each took 17 minutes and 12 seconds to execute. Averaging to 1.16 simulated seconds per second. In one instance a multithreaded execution using 8 threads, of 200 full model simulations of 120 simulated seconds took 147 minutes and 51 seconds to execute, resulting in an average of 2.7 simulated seconds per second. Each simulation used less than 100 megabytes of system memory. And the stored results of a single run average at 1GB of data. These results should not be interpreted as an accurate statement of performance. They are simply stated to indicate achievable performance.
+\paragraph{A note on performance.} The experiments were executed on two machines with different hardware but similar software, the exact specifications are mentioned in the table below. To get a feeling for the simulation performance, 200 simulations were performed on both machines. The required time was recorded, the average simulation speed can be found in table~\ref{tab:performance} and contains all the overhead of setting up a simulation and storing the results. Each simulation used less than 100 megabytes of system memory and produced 1GB of data. These results should not be interpreted as an accurate statement of performance. They are simply stated to indicate achievable performance. We note a significant jump in performance in the multithreaded execution on the more modern desktop. We hypothesize that the modern desktop can achieve much higher clock speed in a multithreaded execution than the older laptop. While the clock speed difference in a single threaded workload does not differ that much between the machines.
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{@{}ll@{}}
+    \toprule
+    Laptop                                      & Desktop                                     \\ \midrule
+    1.16 simulated seconds/second single thread & 1.48 simulated seconds/second single thread \\
+    2.71 simulated seconds/second multi thread  & 8.05 simulated seconds/second multi thread  \\
+    Lenovo T480                                 &                                             \\
+    Intel i7-8550U (8 thread) 45W TDP CPU       & AMD Ryzen 5 3600 (12 thread) 65W TDP CPU    \\
+    16 GB DDR4 @2400 MT/s memory                & 32 GB DDR4 @ 3200 MT/s memory               \\
+    Fedora Linux 39, kernel 6.7.4               & Fedora Linux 39, kernel 6.7.4               \\
+    Clang 17.0.6 compiler                       & Clang 17.0.6 compiler                       \\
+    \omnet 6.0.2 framework                      & \omnet 6.0.2 framework                     \\ \bottomrule
+    \end{tabular}
+    \caption{Simulation performance}
+    \label{tab:performance}
+\end{table}
+
 \paragraph{Selecting simulation parameters.}
 We start by describing the simulation parameters that are not altered for the rest of the experiments. When evaluating the performance of the system these parameters must be chosen carefully as to reflect reality. In this study the model required any value to be able to execute here we state the chosen values for completeness together with the rationale.
 
