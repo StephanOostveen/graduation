@@ -37,13 +37,13 @@ If the producing and consuming runnables are deployed on different \textit{progr
     \resizebox{\textwidth}{!}{%
         \tikzfig{deployment_example}
     }
- \caption{Example of two logical components consisting of several runnables communicating through data dictionaries}
+ \caption{Two logical components consisting of several runnables deployed on two physical nodes}
 \label{fig:physical_example}
 \end{figure}
 
 Lastly, if the producing and consuming runnables are deployed on different \textit{programmable end nodes} which are not directly connected to each other, the data dictionary must be bridged across networks by the \textit{Central Gateway}. Bridging is implemented by the \textit{CAN transmit} and \textit{CAN receive} tasks and is also generated automatically. The data dictionaries that need to be bridged but are not used by the \textit{Central Gateway} are stored similarly to data dictionaries which are used, but other runnables can't read or write them. An example is shown in Figure~\ref{fig:bridging_example}. This means that some extra delay is introduced in the transmission of bridged data dictionaries by the scheduling of the receive and transmit runnables in the \textit{Central Gateway}.
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \resizebox{\textwidth}{!}{%
         \tikzfig{bridging_example}

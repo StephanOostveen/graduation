@@ -4,7 +4,7 @@ for component in weakly_connected_component(callgraph):
         if any(substring in node.name for 
                substring in['palvar_read', 'palvar_write']):
             # subgraph components contains palvar_read 
-            #or palvar_write node
+            # or palvar_write node
 
             # create a graph containing only the ancestors of `node`
             ancestors = subgraph(component, ancestors(node))
