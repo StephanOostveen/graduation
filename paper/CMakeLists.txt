@@ -45,5 +45,6 @@ add_latex_document(main.tex
         images/utilization.pgf
         images/vehicle_speed_age.pgf
         images/buffersize.pgf
+        images/buffersize_dist.pgf
     BIBFILES resources.bib USE_BIBLATEX
 )

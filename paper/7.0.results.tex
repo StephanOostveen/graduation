@@ -331,7 +331,7 @@ A series of experiments with varying hardware buffer sizes from the set ${2,10,1
 For hardware buffer sizes 2 and 10 the software buffer always contain messages, indicating that the software is not able to transmit certain messages before they are overwritten by the runnables. This is obviously problematic since certain messages will never arrive at their destination. The OpenECU documentation states: \textquote{To lessen the load experienced by the CAN bus and the ECU, after the library has transmitted one message, it will wait for 2 milliseconds before determining the next message to transmit}. Our model implements this behaviour with the exception that it fills the hardware buffer completely before waiting for 2 milliseconds. Even with a hardware buffer size of 10 this behaviour results in messages which are never transmitted as the lowest recorded occupation still has two buffered messages. 
 \begin{figure}[htb]
     \centering
-    \input{images/buffersize.pgf}
+    \input{images/buffersize_dist.pgf}
     \caption{Software buffer occupation for various hardware buffer sizes}
     \label{fig:buffer_size}
 \end{figure}
