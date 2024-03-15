@@ -12,10 +12,10 @@
 	url = https://github.com/llvm/llvm-project.git
 [submodule "can_simulation/omnetpp-cmake"]
 	path = can_simulation/omnetpp-cmake
-	url = git@github.com:StephanOostveen/omnetpp-cmake.git
+	url = ../omnetpp-cmake.git
 [submodule "can_simulation/FiCo4OMNeT"]
 	path = can_simulation/FiCo4OMNeT
-	url = git@github.com:StephanOostveen/FiCo4OMNeT.git
+	url = ../FiCo4OMNeT.git
 [submodule "paper/UseLATEX"]
 	path = paper/UseLATEX
 	url = https://gitlab.kitware.com/kmorel/UseLATEX.git
