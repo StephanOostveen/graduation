@@ -32,11 +32,10 @@ RUN . ./setenv && ./configure WITH_OSG=no && make -j8
 # Clone the graduation project repository containing the Omnet++ model, for efficiency don't clone 
 # all submodules but only the ones needed for simulation
 WORKDIR /home/project
-RUN git clone https://github.com/StephanOostveen/graduation.git . \
-&& git submodule update --init can_simulation/FiCo4OMNeT can_simulation/omnetpp-cmake
+COPY . /home/project/
 # Build the modified Fico4OMNeT framework, for unknown reasons linking fails when using GCC,
 # so compile using clang
-WORKDIR /home/project/can_simulation/build
+WORKDIR /home/project/build
 RUN . /home/omnetpp-6.0.2/setenv && CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE:STRING=Release \
 ../ -G Ninja && ninja
 
@@ -59,7 +58,7 @@ RUN . /home/omnetpp-6.0.2/setenv && CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYP
 
 # Multi threaded commandline of the `ModifiedBandwidth` experiment, executing all the runs:
 # opp_runall ./build/LYSim -c ModifiedBandwidth -n FiCo4OMNeT/examplesLy:FiCo4OMNeT/src/ FiCo4OMNeT/examplesLy/LYES/omnetpp.ini FiCo4OMNeT/examplesLy/LYES/executionTimes.ini
-WORKDIR /home/project/can_simulation
+WORKDIR /home/project
 COPY <<EOF run.sh
     #!/bin/bash
     . /home/omnetpp-6.0.2/setenv
@@ -67,4 +66,4 @@ COPY <<EOF run.sh
 EOF
 RUN chmod +x run.sh
 
-CMD ["/bin/bash", "-c", "/home/project/can_simulation/run.sh"]
+CMD ["/bin/bash", "-c", "/home/project/run.sh"]
